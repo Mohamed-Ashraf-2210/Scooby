@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.Scooby.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/avd_scooby</item>
+        <item name="postSplashScreenTheme">@style/Theme.Scooby</item>
+        <item name="windowSplashScreenAnimationDuration">3000</item>
+    </style>
+</resources>
