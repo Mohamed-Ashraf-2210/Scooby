@@ -12,6 +12,8 @@ import android.text.style.ForegroundColorSpan
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.Fragment
+import com.example.scooby.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("ResourceAsColor")
@@ -21,9 +23,8 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         setContentView(R.layout.activity_main)
 
-        val textView = findViewById<TextView>(R.id.welcome_id)
-        val spanString = SpannableString("Welcome to Scooby \nyour pet home!")
-        spanString.setSpan(ForegroundColorSpan(Color.rgb(81,57,115)),11,17,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spanString
+
     }
+
+
 }

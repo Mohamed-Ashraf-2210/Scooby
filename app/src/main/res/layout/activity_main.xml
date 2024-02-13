@@ -7,75 +7,7 @@
     android:padding="@dimen/small_padding"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/onboarding_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/onboarding_logo"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/welcome_id"
-        android:layout_width="251dp"
-        android:layout_height="72dp"
-        android:fontFamily="@font/roboto"
-        android:gravity="center"
-        android:text="@string/welcome_to_scooby_your_pet_home"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/onboarding_logo" />
 
-    <Button
-        android:id="@+id/sign_up_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
-        android:backgroundTint="@color/primary"
-        android:fontFamily="@font/roboto"
-        android:text="@string/sign_up"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/welcome_id" />
-
-    <Button
-        android:id="@+id/login_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/White"
-        android:fontFamily="@font/roboto"
-        android:text="@string/login"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_btn" />
-
-    <TextView
-        android:id="@+id/explore_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/explore"
-        android:textStyle="bold"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/roboto"
-        android:textSize="16sp"
-        android:textColor="@color/primary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_btn"
-        android:clickable="true"
-        tools:ignore="MissingConstraints"
-        android:focusable="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

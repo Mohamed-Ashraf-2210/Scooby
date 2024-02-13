@@ -4,4 +4,22 @@
     <string name="sign_up">Sign up</string>
     <string name="login">Login</string>
     <string name="explore">Explore</string>
+
+    <!--    Login Page String-->
+    <string name="Login_Page_Title">Login to your pet home</string>
+    <string name="email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Forget_Your_pass">Forgot your password?</string>
+    <string name="or_continue_with">Or continue with</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
+
 </resources>
