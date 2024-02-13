@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Scooby"
         tools:targetApi="31">
         <activity
-            android:name=".authentication.AuthenticationActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".authentication.AuthenticationActivity"
             android:exported="true"
             android:theme="@style/Theme.Scooby.Splash">
             <intent-filter>

@@ -15,24 +15,25 @@ import com.example.scooby.databinding.FragmentOnboardingBinding
 
 
 class OnboardingFragment : Fragment() {
-    private var binding: FragmentOnboardingBinding? = null
+    private lateinit var binding: FragmentOnboardingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        binding = FragmentOnboardingBinding.inflate(inflater)
         val spanString = SpannableString("Welcome to Scooby \nyour pet home!")
         spanString.setSpan(ForegroundColorSpan(Color.rgb(81,57,115)),11,17, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        binding!!.welcomeId.text = spanString
+        binding.welcomeId.text = spanString
 
-        binding!!.signUpBtn.setOnClickListener { nav ->
+        binding.signUpBtn.setOnClickListener { nav ->
             Navigation.findNavController(nav).navigate(R.id.action_onboardingFragment_to_signupFragment)
         }
-        binding!!.loginBtn.setOnClickListener { nav ->
+        binding.loginBtn.setOnClickListener { nav ->
             Navigation.findNavController(nav).navigate(R.id.action_onboardingFragment_to_loginPage)
         }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_onboarding, container, false)
+        return binding.root
     }
 
 }

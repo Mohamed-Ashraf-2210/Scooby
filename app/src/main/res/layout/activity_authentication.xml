@@ -15,6 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_authentication" />
+        app:navGraph="@navigation/nav_authentication"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
