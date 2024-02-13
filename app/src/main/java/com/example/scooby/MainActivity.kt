@@ -20,10 +20,5 @@ class MainActivity : AppCompatActivity() {
         Thread.sleep(3000)
         installSplashScreen()
         setContentView(R.layout.activity_main)
-
-        val textView = findViewById<TextView>(R.id.welcome_id)
-        val spanString = SpannableString("Welcome to Scooby \nyour pet home!")
-        spanString.setSpan(ForegroundColorSpan(Color.rgb(81,57,115)),11,17,Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spanString
     }
 }
