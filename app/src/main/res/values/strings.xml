@@ -28,4 +28,6 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="or_continue_with">Or continue with</string>
+    <string name="not_on_scooby_yet">Not on Scooby yet?</string>
+    <string name="tv_sign_up">Sign up</string>
 </resources>
