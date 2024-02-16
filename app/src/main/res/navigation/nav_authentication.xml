@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_authentication"
+    app:startDestination="@id/onboardingFragment">
+
+    <fragment
+        android:id="@+id/loginPage"
+        android:name="com.example.scooby.authentication.LoginPage"
+        android:label="fragment_login_page"
+        tools:layout="@layout/fragment_login_page" />
+    <fragment
+        android:id="@+id/signupFragment"
+        android:name="com.example.scooby.authentication.SignupFragment"
+        android:label="fragment_signup"
+        tools:layout="@layout/fragment_signup" />
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.example.scooby.authentication.OnboardingFragment"
+        android:label="fragment_onboarding"
+        tools:layout="@layout/fragment_onboarding">
+        <action
+            android:id="@+id/action_onboardingFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+        <action
+            android:id="@+id/action_onboardingFragment_to_loginPage"
+            app:destination="@id/loginPage" />
+    </fragment>
+</navigation>
