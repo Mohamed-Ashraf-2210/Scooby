@@ -7,7 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface UserApi {
-    @POST("/api/users/login")
+    @POST("/scooby/api/users/login")
     suspend fun loginUser(@Body loginRequest: LoginRequest): Response<LoginResponse>
 
     companion object {

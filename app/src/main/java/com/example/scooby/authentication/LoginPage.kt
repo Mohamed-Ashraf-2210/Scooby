@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,7 @@ class LoginPage : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentLoginPageBinding.inflate(inflater)
+        mContext = requireContext()
         val token = TokenManager.getToken(mContext)
         if (!token.isNullOrBlank()) {
             goToHome()
@@ -51,6 +53,7 @@ class LoginPage : Fragment() {
 
                 is BaseResponse.Error -> {
                     processError(it.msg)
+                    Log.i("MSG_ERORR",it.msg.toString())
                 }
                 else -> {
                     stopLoading()
