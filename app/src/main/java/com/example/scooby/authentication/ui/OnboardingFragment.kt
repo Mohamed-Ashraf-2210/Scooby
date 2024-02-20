@@ -1,4 +1,4 @@
-package com.example.scooby.authentication
+package com.example.scooby.authentication.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

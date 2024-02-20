@@ -7,18 +7,21 @@
 
     <fragment
         android:id="@+id/loginPage"
-        android:name="com.example.scooby.authentication.LoginFragment"
+        android:name="com.example.scooby.authentication.ui.LoginFragment"
         android:label="fragment_login_page"
-        tools:layout="@layout/fragment_login_page" >
+        tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginPage_to_mainActivity"
             app:destination="@id/mainActivity"
             app:popUpTo="@id/onboardingFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginPage_to_resetPassword"
+            app:destination="@id/resetPassword" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.scooby.authentication.SignupFragment"
+        android:name="com.example.scooby.authentication.ui.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action
@@ -29,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
-        android:name="com.example.scooby.authentication.OnboardingFragment"
+        android:name="com.example.scooby.authentication.ui.OnboardingFragment"
         android:label="fragment_onboarding"
         tools:layout="@layout/fragment_onboarding">
         <action
@@ -44,4 +47,18 @@
         android:name="com.example.scooby.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/createNewPassword"
+        android:name="com.example.scooby.authentication.ui.CreateNewPassword"
+        android:label="fragment_create_new_password"
+        tools:layout="@layout/fragment_create_new_password" />
+    <fragment
+        android:id="@+id/resetPassword"
+        android:name="com.example.scooby.authentication.ui.ResetPassword"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" >
+        <action
+            android:id="@+id/action_resetPassword_to_createNewPassword"
+            app:destination="@id/createNewPassword" />
+    </fragment>
 </navigation>

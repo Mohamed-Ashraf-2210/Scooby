@@ -1,4 +1,4 @@
-package com.example.scooby.authentication
+package com.example.scooby.authentication.ui
 
 import android.content.Context
 import android.content.Intent
@@ -10,19 +10,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import com.example.scooby.MainActivity
+import com.example.scooby.authentication.TokenManager
 import com.example.scooby.authentication.data.BaseResponse
 import com.example.scooby.authentication.data.model.UserResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
-import com.example.scooby.databinding.FragmentLoginPageBinding
-import com.example.scooby.utils.Constant
+import com.example.scooby.databinding.FragmentLoginBinding
 
 
 class LoginFragment : Fragment() {
 
-    private var _binding: FragmentLoginPageBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
@@ -37,7 +36,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginPageBinding.inflate(inflater,container,false)
+        _binding = FragmentLoginBinding.inflate(inflater,container,false)
         mContext = requireContext()
         val token = TokenManager.getToken(mContext)
         if (!token.isNullOrBlank()) {
