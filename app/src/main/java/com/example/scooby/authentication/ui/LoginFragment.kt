@@ -1,4 +1,4 @@
-package com.example.scooby.authentication
+package com.example.scooby.authentication.ui
 
 import android.content.Context
 import android.content.Intent
@@ -12,16 +12,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.scooby.MainActivity
+import com.example.scooby.authentication.TokenManager
 import com.example.scooby.authentication.data.BaseResponse
-import com.example.scooby.authentication.data.model.LoginResponse
-import com.example.scooby.authentication.viewmodel.LoginViewModel
-import com.example.scooby.databinding.FragmentLoginPageBinding
+import com.example.scooby.authentication.data.model.UserResponse
+import com.example.scooby.authentication.viewmodel.AuthViewModel
+import com.example.scooby.databinding.FragmentLoginBinding
 
 
-class LoginPage : Fragment() {
+class LoginFragment : Fragment() {
 
-    private lateinit var binding: FragmentLoginPageBinding
-    private val viewModel by viewModels<LoginViewModel>()
+    private var _binding: FragmentLoginBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +36,7 @@ class LoginPage : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginPageBinding.inflate(inflater)
+        _binding = FragmentLoginBinding.inflate(inflater,container,false)
         mContext = requireContext()
         val token = TokenManager.getToken(mContext)
         if (!token.isNullOrBlank()) {
@@ -69,14 +71,14 @@ class LoginPage : Fragment() {
     }
 
     private fun doLogin() {
-        val email = binding.emailTextFiled.toString()
-        val password = binding.PasswordTextFiled.toString()
+        val email = binding.emailTextFiled.editText?.text.toString()
+        val password = binding.PasswordTextFiled.editText?.text.toString()
         viewModel.loginUser(email,password)
     }
     private fun showToast(msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
     }
-    private fun processLogin(data: LoginResponse?) {
+    private fun processLogin(data: UserResponse?) {
         showToast("Welcome:" + (data?.data?.result?.name ?: ""))
         if (!data?.token.isNullOrEmpty()) {
             data?.token?.let { TokenManager.saveAuthToken(mContext, it) }
@@ -97,5 +99,10 @@ class LoginPage : Fragment() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
         startActivity(intent)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

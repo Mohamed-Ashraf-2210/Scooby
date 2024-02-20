@@ -2,7 +2,7 @@ package com.example.scooby.authentication.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class LoginResponse(
+data class UserResponse(
     @SerializedName("data")
     val `data`: Data,
     @SerializedName("status")

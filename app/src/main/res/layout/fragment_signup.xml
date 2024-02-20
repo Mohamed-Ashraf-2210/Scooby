@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="@dimen/small_padding"
-    tools:context=".authentication.SignupFragment">
+    tools:context=".authentication.ui.SignupFragment">
 
     <TextView
         android:id="@+id/create_your_account_text_view"

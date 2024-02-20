@@ -4,16 +4,16 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.scooby.authentication.repository.UserRepository
 import com.example.scooby.authentication.data.BaseResponse
 import com.example.scooby.authentication.data.model.LoginRequest
-import com.example.scooby.authentication.data.model.LoginResponse
+import com.example.scooby.authentication.data.model.UserResponse
+import com.example.scooby.authentication.repository.UserRepository
 import kotlinx.coroutines.launch
 
-class LoginViewModel(application: Application) : AndroidViewModel(application) {
+class AuthViewModel (application: Application) : AndroidViewModel(application) {
 
     private val userResponse = UserRepository()
-    val loginResult : MutableLiveData<BaseResponse<LoginResponse>> = MutableLiveData()
+    val loginResult : MutableLiveData<BaseResponse<UserResponse>> = MutableLiveData()
 
     fun loginUser(email: String, password: String) {
         loginResult.value = BaseResponse.Loading()

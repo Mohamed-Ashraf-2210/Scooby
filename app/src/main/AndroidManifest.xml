@@ -17,7 +17,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".authentication.AuthenticationActivity"
+            android:name=".authentication.ui.AuthenticationActivity"
             android:exported="true"
             android:theme="@style/Theme.Scooby.Splash">
             <intent-filter>
