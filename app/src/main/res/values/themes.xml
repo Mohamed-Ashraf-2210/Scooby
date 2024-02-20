@@ -5,4 +5,29 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+
+    <!--    facebook blue button-->
+    <style name="blue_btn" parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">
+            @drawable/rounded_button
+        </item>
+    </style>
+
+    <style name="rounded_button">
+        <item name="colorPrimary">
+            @color/blue
+        </item>
+    </style>
+
+    <!--    Google blue button-->
+    <style name="white_btn" parent="Widget.MaterialComponents.Button">
+        <item name="materialThemeOverlay">
+            @drawable/rounded_button_white
+        </item>
+    </style>
+
+    <style name="rounded_button_whit">
+        <item name="colorPrimary">@color/white</item>
+    </style>
+
 </resources>
