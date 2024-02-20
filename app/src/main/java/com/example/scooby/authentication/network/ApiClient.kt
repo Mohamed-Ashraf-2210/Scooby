@@ -1,6 +1,6 @@
 package com.example.scooby.authentication.network
 
-import com.example.scooby.util.Constant
+import com.example.scooby.utils.Constant
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
