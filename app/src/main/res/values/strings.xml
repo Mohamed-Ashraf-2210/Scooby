@@ -30,4 +30,17 @@
     <string name="or_continue_with">Or continue with</string>
     <string name="not_on_scooby_yet">Not on Scooby yet?</string>
     <string name="tv_sign_up">Sign up</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="already_a_scooby_member">Already a Scooby member?</string>
+    <string name="tv_terms_of_service">By clicking Sign up or Log in, I agree to Scooby’s Terms of Service and Privacy Policy.</string>
+    <string name="instruction_reset_pass">Don’t worry, It happens. Please enter the email address associated with your account, and we’ll send you a link to reset your password.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="instruction_reset_password_2">
+        "To keep your account secure, your new password
+must be at least 8 characters long and contain a minimum
+of 3 of the following: 1 number, 1 lowercase letter,
+1 uppercase letter or 1 special character."</string>
+    <string name="create_new_password">create new password</string>
+    <string name="confirm_password">confirm password</string>
+
 </resources>
