@@ -6,17 +6,16 @@
     app:startDestination="@id/onboardingFragment">
 
     <fragment
-        android:id="@+id/loginPage"
+        android:id="@+id/loginFragment"
         android:name="com.example.scooby.authentication.ui.LoginFragment"
         android:label="fragment_login_page"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginPage_to_mainActivity"
+            android:id="@+id/action_loginFragment_to_mainActivity"
             app:destination="@id/mainActivity"
-            app:popUpTo="@id/onboardingFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_loginPage_to_resetPassword"
+            android:id="@+id/action_loginFragment_to_resetPassword"
             app:destination="@id/resetPassword" />
     </fragment>
     <fragment
@@ -27,8 +26,10 @@
         <action
             android:id="@+id/action_signupFragment_to_mainActivity"
             app:destination="@id/mainActivity"
-            app:popUpTo="@id/onboardingFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_signupFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/onboardingFragment"
@@ -39,8 +40,11 @@
             android:id="@+id/action_onboardingFragment_to_signupFragment"
             app:destination="@id/signupFragment" />
         <action
-            android:id="@+id/action_onboardingFragment_to_loginPage"
-            app:destination="@id/loginPage" />
+            android:id="@+id/action_onboardingFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_onboardingFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"

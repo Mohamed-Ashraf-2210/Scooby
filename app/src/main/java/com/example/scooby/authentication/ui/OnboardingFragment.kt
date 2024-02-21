@@ -22,10 +22,11 @@ class OnboardingFragment : Fragment() {
             Navigation.findNavController(nav).navigate(R.id.action_onboardingFragment_to_signupFragment)
         }
         binding.loginBtn.setOnClickListener { nav ->
-            Navigation.findNavController(nav).navigate(R.id.action_onboardingFragment_to_loginPage)
+            Navigation.findNavController(nav).navigate(R.id.action_onboardingFragment_to_loginFragment)
         }
-        // Inflate the layout for this fragment
+        binding.exploreTextView.setOnClickListener {nav ->
+            Navigation.findNavController(nav).navigate(R.id.action_onboardingFragment_to_mainActivity)
+        }
         return binding.root
     }
-
 }

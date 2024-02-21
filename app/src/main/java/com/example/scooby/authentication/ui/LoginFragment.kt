@@ -4,14 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import com.example.scooby.MainActivity
+import com.example.scooby.R
 import com.example.scooby.authentication.TokenManager
 import com.example.scooby.authentication.data.BaseResponse
 import com.example.scooby.authentication.data.model.UserResponse
@@ -25,12 +26,6 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,10 +33,7 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater,container,false)
         mContext = requireContext()
-        val token = TokenManager.getToken(mContext)
-        if (!token.isNullOrBlank()) {
-            goToHome()
-        }
+
         viewModel.loginResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
@@ -55,7 +47,6 @@ class LoginFragment : Fragment() {
 
                 is BaseResponse.Error -> {
                     processError(it.msg)
-                    Log.i("MSG_ERORR",it.msg.toString())
                 }
                 else -> {
                     stopLoading()
@@ -66,7 +57,9 @@ class LoginFragment : Fragment() {
         binding.btnLogin.setOnClickListener {
             doLogin()
         }
-        // Inflate the layout for this fragment
+        binding.tvForgetPass.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_resetPassword)
+        }
         return binding.root
     }
 
@@ -81,7 +74,7 @@ class LoginFragment : Fragment() {
     private fun processLogin(data: UserResponse?) {
         showToast("Welcome:" + (data?.data?.result?.name ?: ""))
         if (!data?.token.isNullOrEmpty()) {
-            data?.token?.let { TokenManager.saveAuthToken(mContext, it) }
+            data?.token?.let { TokenManager.saveAuthToken(this.mContext, it) }
             goToHome()
         }
     }
@@ -92,7 +85,7 @@ class LoginFragment : Fragment() {
         binding.loading.visibility = View.GONE
     }
     private fun processError(msg: String?) {
-        showToast("Error:$msg")
+        showToast("Error is:$msg")
     }
     private fun goToHome() {
         val intent = Intent(mContext, MainActivity::class.java)

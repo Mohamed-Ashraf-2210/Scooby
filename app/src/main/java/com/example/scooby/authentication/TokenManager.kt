@@ -1,11 +1,10 @@
 package com.example.scooby.authentication
 
 import android.content.Context
-import android.content.SharedPreferences
 import com.example.scooby.R
+import com.example.scooby.utils.Constant
 
 object TokenManager {
-    private const val USER_TOKEN_KEY = "user_token"
 
     // region save auth token
     fun saveAuthToken(context: Context, token: String) {
@@ -15,7 +14,7 @@ object TokenManager {
     private fun saveString(context: Context, value: String) {
         val prefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
         val editor = prefs.edit()
-        editor.putString(this.USER_TOKEN_KEY, value)
+        editor.putString(Constant.USER_TOKEN, value)
         editor.apply()
     }
     // endregion
@@ -27,13 +26,15 @@ object TokenManager {
 
     private fun getString(context: Context): String? {
         val prefs = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE)
-        return prefs.getString(this.USER_TOKEN_KEY, null)
+        return prefs.getString(Constant.USER_TOKEN, null)
     }
     // endregion
 
+    // region clear auth token
     fun clearToken(context: Context){
         val editor = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE).edit()
         editor.clear()
         editor.apply()
     }
+    // endregion
 }
