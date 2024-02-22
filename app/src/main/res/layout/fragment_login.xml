@@ -42,7 +42,7 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/v_view" />
+        app:layout_constraintTop_toBottomOf="@id/v_view" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailTextFiled"
@@ -53,7 +53,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_msg_error">
+        app:layout_constraintTop_toBottomOf="@id/tv_msg_error">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
