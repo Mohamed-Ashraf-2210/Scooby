@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/create_your_account_text_view"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
@@ -29,6 +29,9 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="32dp"
         android:hint="@string/name"
+        app:helperTextEnabled="true"
+        app:helperText="The name field must not be empty "
+        app:helperTextTextColor="@color/red"
         app:layout_constraintBottom_toTopOf="@+id/email_text_field"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -178,13 +181,11 @@
 
     <TextView
         android:id="@+id/tv_terms"
-        android:layout_width="255dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="52.5dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="52.5dp"
-        android:layout_marginBottom="48dp"
-
         android:gravity="center"
         android:text="@string/tv_terms_of_service"
         app:layout_constraintEnd_toEndOf="parent"

@@ -23,7 +23,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="create_your_account"><![CDATA[Create your account to spend more time & love with your pets]]></string>
+    <string name="create_your_account"><![CDATA["Create your account to spend more
+     time & love with your pets"]]></string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -32,7 +33,7 @@
     <string name="tv_sign_up">Sign up</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="already_a_scooby_member">Already a Scooby member?</string>
-    <string name="tv_terms_of_service">By clicking Sign up or Log in, I agree to Scooby’s Terms of Service and Privacy Policy.</string>
+    <string name="tv_terms_of_service">By clicking Sign up or Log in, I agree to <font color = "#513973"> Scooby’s \n Terms of Service</font> and  <font color = "#513973">Privacy Policy</font>.</string>
     <string name="instruction_reset_pass">Don’t worry, It happens. Please enter the email address associated with your account, and we’ll send you a link to reset your password.</string>
     <string name="reset_password">Reset Password</string>
     <string name="instruction_reset_password_2">
@@ -42,5 +43,7 @@ of 3 of the following: 1 number, 1 lowercase letter,
 1 uppercase letter or 1 special character."</string>
     <string name="create_new_password">create new password</string>
     <string name="confirm_password">confirm password</string>
+    <string name="tv_incorrect_email_or_pass">"Email or Password is incorrect. Please try
+again."</string>
 
 </resources>
