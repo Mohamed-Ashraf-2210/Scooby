@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.scooby.MainActivity
 import com.example.scooby.R
-import com.example.scooby.authentication.TokenManager
+import com.example.scooby.TokenManager
 import com.example.scooby.authentication.data.BaseResponse
 import com.example.scooby.authentication.data.model.UserResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel

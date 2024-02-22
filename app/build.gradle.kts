@@ -81,4 +81,7 @@ dependencies {
     implementation("com.intuit.ssp:ssp-android:1.0.6")
 
     implementation("androidx.preference:preference-ktx:1.2.1")
+
+    // Google Play services
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
 }

@@ -1,7 +1,6 @@
-package com.example.scooby.authentication
+package com.example.scooby
 
 import android.content.Context
-import com.example.scooby.R
 import com.example.scooby.utils.Constant
 
 object TokenManager {

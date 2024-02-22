@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/white_BG"
+    tools:context=".authentication.ui.VerificationFragment">
+
+
+    <TextView
+        android:id="@+id/tv_otp"
+        android:layout_width="@dimen/_146sdp"
+        android:layout_height="@dimen/_23sdp"
+        android:layout_marginTop="@dimen/_162sdp"
+        android:text="@string/otp_verification"
+        android:textSize="@dimen/_20ssp"
+        android:textColor="@color/primary"
+        android:textFontWeight="500"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/we_will_send_you_a_one_time_password_on_fatma00_gmail_com"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:textColor="@color/black_clear"
+        android:textFontWeight="500"
+        android:fontFamily="@font/roboto"
+        app:layout_constraintTop_toBottomOf="@+id/tv_otp" />
+
+    <EditText
+        android:id="@+id/number_one"
+        android:layout_width="@dimen/_42sdp"
+        android:layout_height="@dimen/_42sdp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/white_otp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email"
+        tools:ignore="MissingConstraints" />
+    <EditText
+        android:id="@+id/number_two"
+        android:layout_width="@dimen/_42sdp"
+        android:layout_height="@dimen/_42sdp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/white_otp"
+        app:layout_constraintStart_toEndOf="@id/number_one"
+        android:layout_marginStart="@dimen/_8sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email"
+        tools:ignore="MissingConstraints" />
+</androidx.constraintlayout.widget.ConstraintLayout>

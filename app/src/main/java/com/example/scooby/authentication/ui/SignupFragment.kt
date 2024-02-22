@@ -12,11 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.scooby.MainActivity
 import com.example.scooby.R
-import com.example.scooby.authentication.TokenManager
+import com.example.scooby.TokenManager
 import com.example.scooby.authentication.data.BaseResponse
 import com.example.scooby.authentication.data.model.UserResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
-import com.example.scooby.databinding.FragmentLoginBinding
 import com.example.scooby.databinding.FragmentSignupBinding
 
 
@@ -25,6 +24,7 @@ class SignupFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
+//    private lateinit var googleApiClient: GoogleApiClient
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +50,18 @@ class SignupFragment : Fragment() {
                 }
             }
         }
+
+//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//            .requestEmail()
+//            .build()
+//        googleApiClient = GoogleApiClient.Builder(requireContext())
+//            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//            .build()
+//        binding.btnGoogle.setOnClickListener {
+//            val signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient)
+//            startActivityForResult(signInIntent, RC_SIGN_IN)
+//        }
+
         binding.signUpBtnCreate.setOnClickListener {
             doSignUp()
         }
@@ -91,8 +103,30 @@ class SignupFragment : Fragment() {
         startActivity(intent)
     }
 
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == RC_SIGN_IN) {
+//            val result = data?.let { Auth.GoogleSignInApi.getSignInResultFromIntent(it) }
+//            if (result != null) {
+//                if (result.isSuccess) {
+//                    // Sign-in successful, handle the user's account
+//                    val account = result.signInAccount
+//                    // You can now use account.email, account.id, etc.
+//                    Toast.makeText(requireContext(), "Sign in successful", Toast.LENGTH_SHORT).show()
+//                    goToHome()
+//                } else {
+//                    // Sign-in failed, handle the error
+//                    Toast.makeText(requireContext(), "Sign in failed", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//        }
+//    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+//    companion object {
+//        private const val RC_SIGN_IN = 9001
+//    }
 }

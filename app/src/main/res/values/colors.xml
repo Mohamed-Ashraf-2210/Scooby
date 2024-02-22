@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#CC0F0F0F</color>
+    <color name="black_80">#CC0F0F0F</color>
+    <color name="black_clear">#000000</color>
+    <color name="black_font">#F20F0F0F</color>
     <color name="white_BG">#F5F3F3</color>
     <color name="white">#FFFFFF</color>
+    <color name="white_otp">#FFF7F7</color>
     <color name="primary">#513973</color>
     <color name="black_blue">#0F0F0FCC</color>
     <color name="blacks">#0F0F0FCC</color>
     <color name="blue">#19519A</color>
     <color name="red">#D50000</color>
     <color name="gray">#7E7E7E</color>
-    <color name="black_font">#F20F0F0F</color>
     <color name="light_gray">#B8B6BB</color>
+    <color name="top_app_bar_bg">#0FE384FF</color>
 </resources>
