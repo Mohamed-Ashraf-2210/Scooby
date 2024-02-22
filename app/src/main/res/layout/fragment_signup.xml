@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/create_your_account_text_view"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
@@ -31,7 +31,6 @@
         android:hint="@string/name"
         app:layout_constraintBottom_toTopOf="@+id/email_text_field"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/create_your_account_text_view"
         app:layout_constraintVertical_chainStyle="packed"
@@ -43,7 +42,56 @@
             android:fontFamily="@font/roboto"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
+
     </com.google.android.material.textfield.TextInputLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="The name field must not be empty "
+        android:textColor="@color/red"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:drawableLeft="@drawable/cancel"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="3dp"
+        app:layout_constraintTop_toBottomOf="@id/name_text_field"
+        app:layout_constraintStart_toStartOf="@id/name_text_field"
+        />
+
+
+    <TextView
+        android:id="@+id/msg_error_email_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter your email address "
+        android:textColor="@color/red"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:drawableLeft="@drawable/cancel"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="3dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/email_text_field"
+        app:layout_constraintStart_toStartOf="@id/email_text_field"
+        />
+    <TextView
+        android:id="@+id/msg_error_email_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please enter a valid email address, e.g. joe@mail.com"
+        android:textColor="@color/red"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:drawableLeft="@drawable/cancel"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="3dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/msg_error_email_one"
+        app:layout_constraintStart_toStartOf="@id/msg_error_email_one"
+        />
+
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_text_field"
@@ -72,14 +120,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="17dp"
         android:hint="@string/password"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@+id/sign_up_btn_create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_text_field"
+        app:layout_constraintTop_toBottomOf="@+id/msg_error_email_two"
         tools:ignore="ExtraText">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -89,6 +137,23 @@
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/msg_error_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Must be at least 8 characters long "
+        android:textColor="@color/red"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:drawableLeft="@drawable/cancel"
+        android:drawablePadding="8dp"
+        android:layout_marginTop="3dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/password_text_field"
+        app:layout_constraintStart_toStartOf="@id/msg_error_email_one"
+        />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/sign_up_btn_create"
@@ -178,13 +243,11 @@
 
     <TextView
         android:id="@+id/tv_terms"
-        android:layout_width="255dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="52.5dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="52.5dp"
-        android:layout_marginBottom="48dp"
-
         android:gravity="center"
         android:text="@string/tv_terms_of_service"
         app:layout_constraintEnd_toEndOf="parent"
@@ -200,6 +263,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

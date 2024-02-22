@@ -26,7 +26,9 @@ class CreateNewPassword : Fragment() {
     }
 
     private fun initView() {
+        binding.editTextCreateNewPass.setEndIconOnClickListener {
 
+        }
     }
 
 

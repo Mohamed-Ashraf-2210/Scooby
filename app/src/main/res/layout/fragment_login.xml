@@ -4,24 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="78dp"
     tools:context=".authentication.ui.LoginFragment">
 
-
-    <TextView
-        android:id="@+id/tv_login_title"
-        android:layout_width="167dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="26dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/Login_Page_Title"
-        android:textColor="#F20F0F0F"
-        android:textSize="16sp"
-        android:textStyle="bold"
+    <View
+        android:id="@+id/v_view"
+        android:layout_width="wrap_content"
+        android:layout_height="92dp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/tv_msg_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tv_incorrect_email_or_pass"
+        android:background="@drawable/bg_rounded_corner_erorr"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_login_title" />
+
+    <TextView
+        android:id="@+id/tv_login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/Login_Page_Title"
+        android:textColor="#F20F0F0F"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/v_view" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailTextFiled"
@@ -29,15 +50,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_title">
+        app:layout_constraintTop_toBottomOf="@+id/tv_msg_error">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
+            android:textSize="12sp"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +80,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textSize="12sp"
+            />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,21 +96,8 @@
         android:text="@string/Forget_Your_pass"
         android:textColor="@color/primary"
         app:layout_constraintEnd_toEndOf="@+id/PasswordTextFiled"
-        app:layout_constraintStart_toStartOf="@+id/PasswordTextFiled"
         app:layout_constraintTop_toBottomOf="@id/PasswordTextFiled" />
 
-
-    <!--    <Button-->
-    <!--        android:id="@+id/btn_login"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="228dp"-->
-    <!--        android:text="Login"-->
-    <!--        android:textSize="16sp"-->
-    <!--        android:backgroundTint="@color/primary"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/tv_forget_pass" />-->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
@@ -94,10 +105,9 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="228dp"
         android:backgroundTint="@color/primary"
-        android:fontFamily="@font/roboto"
+        android:fontFamily="@font/roboto_medium"
         android:paddingVertical="12dp"
-        android:text="Login"
-        android:textFontWeight="400"
+        android:text="@string/login"
         android:textSize="16sp"
         app:cornerRadius="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,46 +121,47 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/roboto"
         android:text="@string/or_continue_with"
-        android:textFontWeight="400"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
-    <com.google.android.material.button.MaterialButton
+    <ImageButton
         android:id="@+id/btn_facebook"
-        style="@style/blue_btn"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_button"
-        android:drawableRight="@drawable/ic_facebook"
+        android:src="@drawable/ic_v_facebookl"
         app:layout_constraintStart_toStartOf="@+id/tv_orContinueWith"
         app:layout_constraintTop_toBottomOf="@id/tv_orContinueWith" />
 
-    <com.google.android.material.button.MaterialButton
+
+    <ImageButton
         android:id="@+id/btn_google"
-        style="@style/white_btn"
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button_white"
-        android:drawableRight="@drawable/ic_google"
+        android:contentDescription="@string/sign_in_with_google"
+        android:src="@drawable/ic_google"
         app:layout_constraintEnd_toEndOf="@+id/tv_orContinueWith"
         app:layout_constraintTop_toBottomOf="@id/tv_orContinueWith" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_google">
+        app:layout_constraintTop_toBottomOf="@+id/btn_facebook">
 
         <TextView
             android:id="@+id/tv_not_on_scooby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:fontFamily="@font/roboto"
             android:text="@string/not_on_scooby_yet"
             android:textSize="16sp" />
@@ -160,17 +171,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/tv_sign_up"
             android:textColor="@color/primary"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-
-        />
+            android:textSize="16sp" />
 
     </LinearLayout>
+
+
 
     <ProgressBar
         android:id="@+id/loading"
