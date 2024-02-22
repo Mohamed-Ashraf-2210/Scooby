@@ -10,7 +10,7 @@
         android:id="@+id/v_view"
         android:layout_width="wrap_content"
         android:layout_height="92dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:fontFamily="@font/roboto"
         android:textSize="12sp"
         android:gravity="center"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginTop="12dp"
         android:layout_marginHorizontal="16dp"
         app:layout_constraintEnd_toEndOf="parent"
