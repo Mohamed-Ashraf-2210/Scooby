@@ -44,53 +44,52 @@
             android:textSize="12sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
+        android:id="@+id/tv_msg_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="The name field must not be empty "
-        android:textColor="@color/red"
-        android:fontFamily="@font/roboto"
-        android:textSize="12sp"
-        android:visibility="gone"
+        android:layout_marginTop="3dp"
         android:drawableLeft="@drawable/cancel"
         android:drawablePadding="8dp"
-        android:layout_marginTop="3dp"
-        app:layout_constraintTop_toBottomOf="@id/name_text_field"
+        android:fontFamily="@font/roboto"
+        android:text="The name field must not be empty "
+        android:textColor="@color/red"
+        android:textSize="12sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="@id/name_text_field"
-        />
+        app:layout_constraintTop_toBottomOf="@id/name_text_field" />
 
 
     <TextView
         android:id="@+id/msg_error_email_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please enter your email address "
-        android:textColor="@color/red"
-        android:fontFamily="@font/roboto"
-        android:textSize="12sp"
+        android:layout_marginTop="3dp"
         android:drawableLeft="@drawable/cancel"
         android:drawablePadding="8dp"
-        android:layout_marginTop="3dp"
+        android:fontFamily="@font/roboto"
+        android:text="Please enter your email address "
+        android:textColor="@color/red"
+        android:textSize="12sp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/email_text_field"
         app:layout_constraintStart_toStartOf="@id/email_text_field"
-        />
+        app:layout_constraintTop_toBottomOf="@id/email_text_field" />
+
     <TextView
         android:id="@+id/msg_error_email_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please enter a valid email address, e.g. joe@mail.com"
-        android:textColor="@color/red"
-        android:fontFamily="@font/roboto"
-        android:textSize="12sp"
+        android:layout_marginTop="3dp"
         android:drawableLeft="@drawable/cancel"
         android:drawablePadding="8dp"
-        android:layout_marginTop="3dp"
+        android:fontFamily="@font/roboto"
+        android:text="Please enter a valid email address, e.g. joe@mail.com"
+        android:textColor="@color/red"
+        android:textSize="12sp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/msg_error_email_one"
         app:layout_constraintStart_toStartOf="@id/msg_error_email_one"
-        />
-
+        app:layout_constraintTop_toBottomOf="@id/msg_error_email_one" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -142,17 +141,16 @@
         android:id="@+id/msg_error_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Must be at least 8 characters long "
-        android:textColor="@color/red"
-        android:fontFamily="@font/roboto"
-        android:textSize="12sp"
+        android:layout_marginTop="3dp"
         android:drawableLeft="@drawable/cancel"
         android:drawablePadding="8dp"
-        android:layout_marginTop="3dp"
+        android:fontFamily="@font/roboto"
+        android:text="Must be at least 8 characters long "
+        android:textColor="@color/red"
+        android:textSize="12sp"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/password_text_field"
         app:layout_constraintStart_toStartOf="@id/msg_error_email_one"
-        />
+        app:layout_constraintTop_toBottomOf="@id/password_text_field" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -263,8 +261,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

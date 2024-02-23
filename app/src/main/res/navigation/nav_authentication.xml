@@ -62,7 +62,16 @@
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" >
         <action
-            android:id="@+id/action_resetPassword_to_createNewPassword"
+            android:id="@+id/action_resetPassword_to_verificationFragment2"
+            app:destination="@id/verificationFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/verificationFragment2"
+        android:name="com.example.scooby.authentication.ui.VerificationFragment"
+        android:label="fragment_verification"
+        tools:layout="@layout/fragment_verification" >
+        <action
+            android:id="@+id/action_verificationFragment2_to_createNewPassword"
             app:destination="@id/createNewPassword" />
     </fragment>
 </navigation>

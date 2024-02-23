@@ -3,12 +3,15 @@ package com.example.scooby.authentication.ui
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.scooby.MainActivity
@@ -46,6 +49,7 @@ class LoginFragment : Fragment() {
                 }
 
                 is BaseResponse.Error -> {
+                    stopLoading()
                     processError(it.msg)
                 }
                 else -> {
@@ -63,6 +67,8 @@ class LoginFragment : Fragment() {
         return binding.root
     }
 
+
+
     private fun doLogin() {
         val email = binding.emailTextFiled.editText?.text.toString()
         val password = binding.PasswordTextFiled.editText?.text.toString()
@@ -75,6 +81,16 @@ class LoginFragment : Fragment() {
         showToast("Welcome:" + (data?.data?.result?.name ?: ""))
         if (!data?.token.isNullOrEmpty()) {
             data?.token?.let { TokenManager.saveAuthToken(this.mContext, it) }
+            binding.tvMsgError.visibility = View.GONE
+            binding.vView.visibility = View.GONE
+            binding.emailTextFiled.apply {
+                boxStrokeColor = Color.alpha(Color.argb(255,81,57,115))
+                hintTextColor = ColorStateList.valueOf(Color.argb(255,81,57,115))
+            }
+            binding.PasswordTextFiled.apply {
+                boxStrokeColor = Color.argb(255,81,57,115)
+                hintTextColor = ColorStateList.valueOf(Color.argb(255,81,57,115))
+            }
             goToHome()
         }
     }
@@ -85,7 +101,16 @@ class LoginFragment : Fragment() {
         binding.loading.visibility = View.GONE
     }
     private fun processError(msg: String?) {
-        showToast("Error is:$msg")
+        binding.tvMsgError.visibility = View.VISIBLE
+        binding.vView.visibility = View.VISIBLE
+        binding.emailTextFiled.apply {
+            boxStrokeColor = Color.RED
+            hintTextColor = ColorStateList.valueOf(Color.RED)
+        }
+        binding.PasswordTextFiled.apply {
+            boxStrokeColor = Color.RED
+            hintTextColor = ColorStateList.valueOf(Color.RED)
+        }
     }
     private fun goToHome() {
         val intent = Intent(mContext, MainActivity::class.java)

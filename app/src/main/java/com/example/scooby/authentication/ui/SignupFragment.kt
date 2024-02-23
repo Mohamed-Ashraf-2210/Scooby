@@ -2,12 +2,15 @@ package com.example.scooby.authentication.ui
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.scooby.MainActivity
@@ -24,13 +27,13 @@ class SignupFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
-//    private lateinit var googleApiClient: GoogleApiClient
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentSignupBinding.inflate(inflater,container,false)
         mContext = requireContext()
+
         viewModel.signUpResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
@@ -51,26 +54,85 @@ class SignupFragment : Fragment() {
             }
         }
 
-//        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//            .requestEmail()
-//            .build()
-//        googleApiClient = GoogleApiClient.Builder(requireContext())
-//            .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-//            .build()
-//        binding.btnGoogle.setOnClickListener {
-//            val signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient)
-//            startActivityForResult(signInIntent, RC_SIGN_IN)
-//        }
-
         binding.signUpBtnCreate.setOnClickListener {
-            doSignUp()
+            val name = checkName()
+            val email = checkEmail()
+            val pass = checkPassword()
+            if (name && email && pass)
+                doSignUp()
         }
+
         binding.tvSignIn.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_signupFragment_to_loginFragment)
         }
 
         return binding.root
     }
+
+    // region Checking if field is okay
+    private fun checkName(): Boolean {
+        val name = binding.nameTextField.editText?.text.toString()
+        if (name.isEmpty()) {
+            binding.tvMsgError.visibility = View.VISIBLE
+            binding.nameTextField.apply {
+                boxStrokeColor = Color.RED
+                hintTextColor = ColorStateList.valueOf(Color.RED)
+            }
+            return false
+        } else {
+            binding.tvMsgError.visibility = View.GONE
+            binding.nameTextField.apply {
+                boxStrokeColor = Color.argb(255,81,57,115)
+                hintTextColor = ColorStateList.valueOf(Color.argb(255,81,57,115))
+            }
+        }
+        return true
+    }
+    private fun checkEmail(): Boolean {
+        val email = binding.emailTextField.editText?.text.toString()
+        if (email.isEmpty() || !isEmailValid(email)) {
+            binding.msgErrorEmailOne.visibility = View.VISIBLE
+            binding.msgErrorEmailTwo.visibility = View.VISIBLE
+            binding.emailTextField.apply {
+                boxStrokeColor = Color.RED
+                hintTextColor = ColorStateList.valueOf(Color.RED)
+            }
+            return false
+        } else {
+            binding.msgErrorEmailOne.visibility = View.GONE
+            binding.msgErrorEmailTwo.visibility = View.GONE
+            binding.emailTextField.apply {
+                boxStrokeColor = Color.argb(255,81,57,115)
+                hintTextColor = ColorStateList.valueOf(Color.argb(255,81,57,115))
+            }
+        }
+        return true
+    }
+    private fun isEmailValid(email: String): Boolean {
+        val emailRegex = Regex("^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})")
+        return emailRegex.matches(email)
+    }
+    private fun checkPassword(): Boolean {
+        val password = binding.passwordTextField.editText?.text.toString()
+        if (password.length < 8) {
+            binding.msgErrorPass.visibility = View.VISIBLE
+            binding.passwordTextField.apply {
+                boxStrokeColor = Color.RED
+                hintTextColor = ColorStateList.valueOf(Color.RED)
+            }
+            return false
+        } else {
+            binding.msgErrorPass.visibility = View.GONE
+            binding.passwordTextField.apply {
+                boxStrokeColor = Color.argb(255,81,57,115)
+                hintTextColor = ColorStateList.valueOf(Color.argb(255,81,57,115))
+            }
+        }
+        return true
+    }
+    // endregion
+
+
     private fun doSignUp() {
         val email = binding.emailTextField.editText?.text.toString()
         val name = binding.nameTextField.editText?.text.toString()
@@ -78,23 +140,11 @@ class SignupFragment : Fragment() {
         viewModel.signUpUser(email,name,password)
     }
     private fun processLogin(data: UserResponse?) {
-        showToast("Welcome:" + (data?.data?.result?.name ?: ""))
+        showToast("Welcome: " + (data?.data?.result?.name ?: ""))
         if (!data?.token.isNullOrEmpty()) {
             data?.token?.let { TokenManager.saveAuthToken(this.mContext, it) }
             goToHome()
         }
-    }
-    private fun showToast(msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-    }
-    private fun showLoading(){
-        binding.loading.visibility = View.VISIBLE
-    }
-    private fun stopLoading(){
-        binding.loading.visibility = View.GONE
-    }
-    private fun processError(msg: String?) {
-        showToast("Error is:$msg")
     }
     private fun goToHome() {
         val intent = Intent(mContext, MainActivity::class.java)
@@ -103,30 +153,27 @@ class SignupFragment : Fragment() {
         startActivity(intent)
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (requestCode == RC_SIGN_IN) {
-//            val result = data?.let { Auth.GoogleSignInApi.getSignInResultFromIntent(it) }
-//            if (result != null) {
-//                if (result.isSuccess) {
-//                    // Sign-in successful, handle the user's account
-//                    val account = result.signInAccount
-//                    // You can now use account.email, account.id, etc.
-//                    Toast.makeText(requireContext(), "Sign in successful", Toast.LENGTH_SHORT).show()
-//                    goToHome()
-//                } else {
-//                    // Sign-in failed, handle the error
-//                    Toast.makeText(requireContext(), "Sign in failed", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//    }
+
+    // region Loading
+    private fun showLoading(){
+        binding.loading.visibility = View.VISIBLE
+    }
+    private fun stopLoading(){
+        binding.loading.visibility = View.GONE
+    }
+    // endregion
+
+    private fun processError(msg: String?) {
+//        showToast("Error is:$msg")
+    }
+
+    private fun showToast(msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-//    companion object {
-//        private const val RC_SIGN_IN = 9001
-//    }
+
 }
