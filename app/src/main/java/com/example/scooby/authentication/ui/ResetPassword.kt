@@ -1,6 +1,8 @@
 package com.example.scooby.authentication.ui
 
 import android.content.Context
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,6 +24,7 @@ class ResetPassword : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
+    private var flag = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,11 +41,13 @@ class ResetPassword : Fragment() {
 
                 is BaseResponse.Success -> {
                     stopLoading()
-                    processLogin(it.data)
+                    flag = true
+//                    processLogin(it.data)
                 }
 
                 is BaseResponse.Error -> {
                     stopLoading()
+                    flag = false
                     processError(it.msg)
                 }
                 else -> {
@@ -53,13 +58,19 @@ class ResetPassword : Fragment() {
 
 
         binding.btnContinue.setOnClickListener {v->
-            Navigation.findNavController(v).navigate(R.id.action_resetPassword_to_verificationFragment2)
+            if (flag)
+                Navigation.findNavController(v).navigate(R.id.action_resetPassword_to_verificationFragment2)
         }
         return binding.root
     }
 
     private fun processError(msg: String?) {
-
+        binding.msgErrorEmailOne.visibility = View.VISIBLE
+        binding.msgErrorEmailTwo.visibility = View.VISIBLE
+        binding.editTextResetPassEmail.apply {
+            boxStrokeColor = Color.RED
+            hintTextColor = ColorStateList.valueOf(Color.RED)
+        }
     }
 
     private fun processLogin(data: ForgotPasswordResponse?) {
@@ -67,11 +78,11 @@ class ResetPassword : Fragment() {
     }
 
     private fun stopLoading() {
-
+        binding.loading.visibility = View.GONE
     }
 
     private fun showLoading() {
-
+        binding.loading.visibility = View.VISIBLE
     }
     private fun showToast(msg: String) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
