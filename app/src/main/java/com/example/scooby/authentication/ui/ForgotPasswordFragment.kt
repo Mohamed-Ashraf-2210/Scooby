@@ -15,12 +15,11 @@ import com.example.scooby.R
 import com.example.scooby.authentication.data.BaseResponse
 import com.example.scooby.authentication.data.model.ForgotPasswordResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
-import com.example.scooby.databinding.FragmentLoginBinding
-import com.example.scooby.databinding.FragmentResetPasswordBinding
+import com.example.scooby.databinding.FragmentForgotPasswordBinding
 
 
-class ResetPassword : Fragment() {
-    private var _binding: FragmentResetPasswordBinding? = null
+class ForgotPasswordFragment : Fragment() {
+    private var _binding: FragmentForgotPasswordBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
@@ -30,7 +29,7 @@ class ResetPassword : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentResetPasswordBinding.inflate(inflater,container,false)
+        _binding = FragmentForgotPasswordBinding.inflate(inflater,container,false)
         mContext = requireContext()
 
         viewModel.forgotPasswordResult.observe(viewLifecycleOwner) {
@@ -59,7 +58,7 @@ class ResetPassword : Fragment() {
 
         binding.btnContinue.setOnClickListener {v->
             if (flag)
-                Navigation.findNavController(v).navigate(R.id.action_resetPassword_to_verificationFragment2)
+                Navigation.findNavController(v).navigate(R.id.action_resetPassword_to_otpVerificationFragment)
         }
         return binding.root
     }

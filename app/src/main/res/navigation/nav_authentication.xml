@@ -53,25 +53,25 @@
         tools:layout="@layout/activity_main" />
     <fragment
         android:id="@+id/createNewPassword"
-        android:name="com.example.scooby.authentication.ui.CreateNewPassword"
+        android:name="com.example.scooby.authentication.ui.ResetPasswordFragment"
         android:label="fragment_create_new_password"
-        tools:layout="@layout/fragment_create_new_password" />
+        tools:layout="@layout/fragment_reset_password" />
     <fragment
         android:id="@+id/resetPassword"
-        android:name="com.example.scooby.authentication.ui.ResetPassword"
+        android:name="com.example.scooby.authentication.ui.ForgotPasswordFragment"
         android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password" >
+        tools:layout="@layout/fragment_forgot_password" >
         <action
-            android:id="@+id/action_resetPassword_to_verificationFragment2"
-            app:destination="@id/verificationFragment2" />
+            android:id="@+id/action_resetPassword_to_otpVerificationFragment"
+            app:destination="@id/otpVerificationFragment" />
     </fragment>
     <fragment
-        android:id="@+id/verificationFragment2"
-        android:name="com.example.scooby.authentication.ui.VerificationFragment"
-        android:label="fragment_verification"
-        tools:layout="@layout/fragment_verification" >
+        android:id="@+id/otpVerificationFragment"
+        android:name="com.example.scooby.authentication.ui.OtpVerificationFragment"
+        android:label="fragment_otp_verification"
+        tools:layout="@layout/fragment_otp_verification" >
         <action
-            android:id="@+id/action_verificationFragment2_to_createNewPassword"
+            android:id="@+id/action_otpVerificationFragment_to_createNewPassword"
             app:destination="@id/createNewPassword" />
     </fragment>
 </navigation>
