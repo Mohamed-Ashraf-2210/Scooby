@@ -84,4 +84,8 @@ dependencies {
 
     // Google Play services
     implementation("com.google.android.gms:play-services-auth:21.0.0")
+
+
+    // PinView Provides a widget for enter PIN/OTP/password etc on Android
+    implementation ("io.github.chaosleung:pinview:1.4.4")
 }
