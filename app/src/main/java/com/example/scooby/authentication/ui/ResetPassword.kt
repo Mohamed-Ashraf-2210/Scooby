@@ -53,7 +53,7 @@ class ResetPassword : Fragment() {
 
 
         binding.btnContinue.setOnClickListener {v->
-            Navigation.findNavController(v).navigate(R.id.action_resetPassword_to_verificationFragment2)
+            Navigation.findNavController(v).navigate(R.id.action_resetPassword_to_otpVerificationFragment)
         }
         return binding.root
     }

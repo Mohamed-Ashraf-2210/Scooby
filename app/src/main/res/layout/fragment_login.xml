@@ -120,8 +120,8 @@
         android:layout_marginTop="32dp"
         android:fontFamily="@font/roboto"
         android:text="@string/or_continue_with"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login"
-        app:layout_constraintStart_toStartOf="@+id/btn_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
     <ImageButton
@@ -132,8 +132,10 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_button"
         android:src="@drawable/ic_v_facebookl"
-        app:layout_constraintStart_toStartOf="@+id/tv_orContinueWith"
-        app:layout_constraintTop_toBottomOf="@id/tv_orContinueWith" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_google"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_orContinueWith" />
 
 
     <ImageButton
@@ -144,38 +146,67 @@
         android:background="@drawable/rounded_button_white"
         android:contentDescription="@string/sign_in_with_google"
         android:src="@drawable/ic_google"
-        app:layout_constraintEnd_toEndOf="@+id/tv_orContinueWith"
-        app:layout_constraintTop_toBottomOf="@id/tv_orContinueWith" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_facebook"
+        app:layout_constraintTop_toBottomOf="@+id/tv_orContinueWith" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
+    <TextView
+        android:id="@+id/tv_not_on_scooby"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/roboto"
+        android:text="@string/not_on_scooby_yet"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_signup"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_facebook">
+        app:layout_constraintTop_toBottomOf="@+id/btn_facebook" />
 
-        <TextView
-            android:id="@+id/tv_not_on_scooby"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:text="@string/not_on_scooby_yet"
-            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/tv_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/tv_sign_up"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_not_on_scooby"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_not_on_scooby" />
 
-        <TextView
-            android:id="@+id/tv_signup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/tv_sign_up"
-            android:textColor="@color/primary"
-            android:textSize="16sp" />
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/linearLayout2"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="74dp"-->
+    <!--        android:orientation="horizontal"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/btn_facebook">-->
 
-    </LinearLayout>
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_not_on_scooby"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:fontFamily="@font/roboto"-->
+    <!--            android:text="@string/not_on_scooby_yet"-->
+    <!--            android:textSize="16sp" />-->
+
+    <!--        <TextView-->
+    <!--            android:id="@+id/tv_signup"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginStart="6dp"-->
+    <!--            android:fontFamily="@font/roboto_medium"-->
+    <!--            android:text="@string/tv_sign_up"-->
+    <!--            android:textColor="@color/primary"-->
+    <!--            android:textSize="16sp" />-->
+
+    <!--    </LinearLayout>-->
 
 
     <ProgressBar

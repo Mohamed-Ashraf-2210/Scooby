@@ -36,11 +36,18 @@
     <string name="tv_terms_of_service">By clicking Sign up or Log in, I agree to <font color="#513973"> Scooby’s \n Terms of Service</font> and  <font color="#513973">Privacy Policy</font>.</string>
     <string name="instruction_reset_pass">Don’t worry, It happens. Please enter the email address associated with your account, and we’ll send you a link to reset your password.</string>
     <string name="reset_password">Reset Password</string>
-    <string name="instruction_reset_password_2">
-        "To keep your account secure, your new password
+<!--    <string name="instruction_reset_password_2">-->
+<!--        "To keep your account secure, your new password-->
+<!--must be at least 8 characters long and contain a minimum-->
+<!--of 3 of the following: 1 number, 1 lowercase letter,-->
+<!--1 uppercase letter or 1 special character."</string>-->
+
+    <string name="instruction_reset_password_2">To keep your account secure, your new password
 must be at least 8 characters long and contain a minimum
 of 3 of the following: 1 number, 1 lowercase letter,
-1 uppercase letter or 1 special character."</string>
+        1 uppercase letter or 1 special character.</string>
+
+
     <string name="create_new_password">create new password</string>
     <string name="confirm_password">confirm password</string>
     <string name="otp_verification">OTP Verification</string>
