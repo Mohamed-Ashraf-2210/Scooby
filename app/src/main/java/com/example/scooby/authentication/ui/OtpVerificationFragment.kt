@@ -1,8 +1,6 @@
 package com.example.scooby.authentication.ui
 
 import android.content.Context
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,9 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.authentication.data.BaseResponse
-import com.example.scooby.authentication.data.model.ForgotPasswordResponse
+import com.example.scooby.authentication.data.model.CheckCodeResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentOtpVerificationBinding
 import com.example.scooby.utils.Constant
@@ -23,7 +22,8 @@ class OtpVerificationFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
-    var flag = false
+    private var flag = false
+    private val args: OtpVerificationFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +31,7 @@ class OtpVerificationFragment : Fragment() {
     ): View? {
         _binding = FragmentOtpVerificationBinding.inflate(inflater,container,false)
         mContext = requireContext()
-        binding.tvEmail.text = Constant.email
+        binding.tvEmail.text = args.email
 
         viewModel.checkCodeResult.observe(viewLifecycleOwner) {
             when (it) {
@@ -41,12 +41,12 @@ class OtpVerificationFragment : Fragment() {
 
                 is BaseResponse.Success -> {
                     stopLoading()
-//                    processLogin(it.data)
+                    processLogin(it.data)
                 }
 
                 is BaseResponse.Error -> {
                     stopLoading()
-//                    processError(it.msg)
+                    processError(it.msg)
                 }
                 else -> {
                     stopLoading()
@@ -55,13 +55,27 @@ class OtpVerificationFragment : Fragment() {
         }
 
         binding.btnSubmit.setOnClickListener {
-            doCheck()
+            doCheck(it)
         }
         return binding.root
     }
 
-    private fun doCheck() {
+    private fun processLogin(data: CheckCodeResponse?) {
+        if (data != null) {
+            Constant.ID_USER = data.userId
+        }
+    }
+
+    private fun processError(msg: String?) {
+        showToast("$msg Try again")
+    }
+
+    private fun doCheck(v: View) {
         viewModel.checkCode(binding.pinview.text.toString())
+        if (flag) {
+            val action = OtpVerificationFragmentDirections.actionOtpVerificationFragmentToResetPasswordFragment()
+            Navigation.findNavController(v).navigate(action)
+        }
     }
     private fun stopLoading() {
         binding.loading.visibility = View.GONE

@@ -27,7 +27,7 @@ interface UserApi {
     @POST("/scooby/api/users/checkCode")
     suspend fun checkCode(@Body checkCodeRequest: CheckCodeRequest): Response<CheckCodeResponse>
 
-    @POST("/scooby/api/users/reset-password/${Constant.ID_USER}")
+    @POST("/scooby/api/users/reset-password/65db566868eec600486f06a5")
     suspend fun resetPassword(@Body resetPasswordRequest: ResetPasswordRequest): Response<ResetPasswordResponse>
 
     companion object {

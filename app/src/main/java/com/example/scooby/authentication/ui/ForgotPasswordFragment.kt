@@ -33,8 +33,6 @@ class ForgotPasswordFragment : Fragment() {
         _binding = FragmentForgotPasswordBinding.inflate(inflater,container,false)
         mContext = requireContext()
 
-
-
         viewModel.forgotPasswordResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
@@ -72,9 +70,8 @@ class ForgotPasswordFragment : Fragment() {
         val email = binding.editTextResetPassEmail.editText?.text.toString()
         viewModel.forgotPassword(email)
         if (flag) {
-            Constant.email = email
-            Navigation.findNavController(v)
-                .navigate(R.id.action_forgotPasswordFragment_to_otpVerificationFragment)
+            val action = ForgotPasswordFragmentDirections.actionForgotPasswordFragmentToOtpVerificationFragment(email)
+            Navigation.findNavController(v).navigate(action)
         }
     }
     private fun processError(msg: String?) {
