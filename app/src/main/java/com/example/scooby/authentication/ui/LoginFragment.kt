@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.scooby.MainActivity
@@ -62,7 +61,10 @@ class LoginFragment : Fragment() {
             doLogin()
         }
         binding.tvForgetPass.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_resetPassword)
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
+        binding.tvSignup.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_loginFragment_to_signupFragment)
         }
         return binding.root
     }

@@ -5,4 +5,5 @@ object Constant {
     const val TAG = "Scooby_Tag"
     const val USER_TOKEN = "user_token"
     const val ID_USER = ""
+    var email = ""
 }
