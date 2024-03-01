@@ -77,6 +77,10 @@
             android:id="@+id/action_otpVerificationFragment_to_resetPasswordFragment"
             app:destination="@id/resetPasswordFragment"
             app:popUpTo="@id/forgotPasswordFragment" />
+        <argument
+            android:name="email"
+            app:argType="string"
+            android:defaultValue="default email" />
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
