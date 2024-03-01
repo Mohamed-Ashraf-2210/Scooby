@@ -189,11 +189,13 @@
         android:layout_width="44dp"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/rounded_button"
         android:src="@drawable/ic_v_facebookl"
-        app:layout_constraintStart_toStartOf="@+id/continue_with_text_view"
-        app:layout_constraintTop_toBottomOf="@id/continue_with_text_view"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_google"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/continue_with_text_view" />
 
 
     <ImageButton
@@ -204,40 +206,68 @@
         android:background="@drawable/rounded_button_white"
         android:contentDescription="@string/sign_in_with_google"
         android:src="@drawable/ic_google"
-        app:layout_constraintEnd_toEndOf="@+id/continue_with_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_facebook"
         app:layout_constraintTop_toBottomOf="@+id/continue_with_text_view" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <TextView
+        android:id="@+id/tv_AlaScooby"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
         android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/roboto"
+        android:text="@string/already_a_scooby_member"
+        android:textSize="14sp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@+id/tv_SignIn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_google"
-        tools:ignore="ExtraText">
+        app:layout_constraintTop_toBottomOf="@+id/btn_facebook" />
 
-        <TextView
-            android:id="@+id/tv_AlaScooby"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginEnd="5dp"
-            android:fontFamily="@font/roboto"
-            android:text="@string/already_a_scooby_member"
-            android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tv_SignIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/login"
+        android:textColor="@color/primary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/tv_AlaScooby"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_AlaScooby"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_facebook" />
 
-        <TextView
-            android:id="@+id/tv_SignIn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/login"
-            android:textColor="@color/primary"
-            android:textSize="16sp" />
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/btn_google"-->
+<!--        tools:ignore="ExtraText">-->
 
-    </LinearLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_AlaScooby"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginEnd="5dp"-->
+<!--            android:fontFamily="@font/roboto"-->
+<!--            android:text="@string/already_a_scooby_member"-->
+<!--            android:textSize="14sp" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/tv_SignIn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/roboto_medium"-->
+<!--            android:text="@string/login"-->
+<!--            android:textColor="@color/primary"-->
+<!--            android:textSize="16sp" />-->
+
+<!--    </LinearLayout>-->
 
     <TextView
         android:id="@+id/tv_terms"
@@ -247,10 +277,12 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="52.5dp"
         android:gravity="center"
+        android:textSize="12sp"
         android:text="@string/tv_terms_of_service"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_AlaScooby"
+        />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -261,6 +293,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
