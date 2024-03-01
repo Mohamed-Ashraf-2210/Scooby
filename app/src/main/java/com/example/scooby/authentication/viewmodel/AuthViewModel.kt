@@ -21,6 +21,7 @@ class AuthViewModel (application: Application) : AndroidViewModel(application) {
 
     private val userRepository = UserRepository()
 
+
     // region Login
     val loginResult : MutableLiveData<BaseResponse<UserResponse>> = MutableLiveData()
 
@@ -41,6 +42,7 @@ class AuthViewModel (application: Application) : AndroidViewModel(application) {
         }
     }
     // endregion
+
 
     // region Sign Up
     val signUpResult : MutableLiveData<BaseResponse<UserResponse>> = MutableLiveData()
