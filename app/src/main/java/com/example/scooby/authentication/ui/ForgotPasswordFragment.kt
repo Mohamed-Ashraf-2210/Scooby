@@ -16,6 +16,7 @@ import com.example.scooby.authentication.data.BaseResponse
 import com.example.scooby.authentication.data.model.ForgotPasswordResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentForgotPasswordBinding
+import com.example.scooby.utils.Constant
 
 
 class ForgotPasswordFragment : Fragment() {
@@ -32,6 +33,8 @@ class ForgotPasswordFragment : Fragment() {
         _binding = FragmentForgotPasswordBinding.inflate(inflater,container,false)
         mContext = requireContext()
 
+
+
         viewModel.forgotPasswordResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
@@ -40,8 +43,8 @@ class ForgotPasswordFragment : Fragment() {
 
                 is BaseResponse.Success -> {
                     stopLoading()
+                    processLogin(it.data)
                     flag = true
-//                    processLogin(it.data)
                 }
 
                 is BaseResponse.Error -> {
@@ -56,13 +59,24 @@ class ForgotPasswordFragment : Fragment() {
         }
 
 
-        binding.btnContinue.setOnClickListener {v->
-            if (flag)
-                Navigation.findNavController(v).navigate(R.id.action_resetPassword_to_otpVerificationFragment)
+        binding.btnContinue.setOnClickListener {
+            doForgot(it)
+        }
+        binding.back.setOnClickListener {v ->
+            Navigation.findNavController(v).navigate(R.id.action_forgotPasswordFragment_to_loginFragment)
         }
         return binding.root
     }
 
+    private fun doForgot(v: View) {
+        val email = binding.editTextResetPassEmail.editText?.text.toString()
+        viewModel.forgotPassword(email)
+        if (flag) {
+            Constant.email = email
+            Navigation.findNavController(v)
+                .navigate(R.id.action_forgotPasswordFragment_to_otpVerificationFragment)
+        }
+    }
     private fun processError(msg: String?) {
         binding.msgErrorEmailOne.visibility = View.VISIBLE
         binding.msgErrorEmailTwo.visibility = View.VISIBLE
@@ -73,7 +87,12 @@ class ForgotPasswordFragment : Fragment() {
     }
 
     private fun processLogin(data: ForgotPasswordResponse?) {
-
+        binding.msgErrorEmailOne.visibility = View.GONE
+        binding.msgErrorEmailTwo.visibility = View.GONE
+        binding.editTextResetPassEmail.apply {
+            boxStrokeColor = Color.alpha(Color.argb(255,81,57,115))
+            hintTextColor = ColorStateList.valueOf(Color.argb(255,81,57,115))
+        }
     }
 
     private fun stopLoading() {

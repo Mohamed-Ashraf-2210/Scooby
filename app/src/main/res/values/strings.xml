@@ -47,5 +47,6 @@ of 3 of the following: 1 number, 1 lowercase letter,
     <string name="we_will_send_you_a_one_time_password_on_fatma00_gmail_com">We will send you a one time password on fatma00@gmail.com</string>
     <string name="tv_incorrect_email_or_pass">"Email or Password is incorrect. Please try
 again."</string>
+    <string name="submit">Submit</string>
 
 </resources>
