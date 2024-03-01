@@ -7,7 +7,7 @@
     tools:context=".authentication.ui.OnboardingFragment">
 
 
-    <androidx.appcompat.widget.AppCompatImageView
+   <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/onboarding_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -22,11 +22,12 @@
         android:id="@+id/welcome_id"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_marginHorizontal="55dp"
+        android:fontFamily="@font/roboto_bold"
         android:gravity="center"
+        android:layout_marginTop="24dp"
         android:text="@string/welcome_to_scooby_your_pet_home"
         android:textSize="28sp"
-        android:layout_marginHorizontal="55dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/onboarding_logo" />
@@ -35,14 +36,14 @@
         android:id="@+id/sign_up_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="184dp"
         android:backgroundTint="@color/primary"
         android:fontFamily="@font/roboto_medium"
-        android:paddingVertical="14dp"
         android:text="@string/sign_up"
         android:textColor="@color/white_BG"
         android:textSize="16sp"
+        android:layout_marginHorizontal="16dp"
+        android:paddingVertical="14dp"
         app:cornerRadius="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -81,5 +82,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_btn"
         tools:ignore="MissingConstraints" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
