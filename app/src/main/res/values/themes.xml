@@ -30,4 +30,22 @@
         <item name="colorPrimary">@color/white</item>
     </style>
 
+    <style name="CustomBottomNavigationTextAppearanceActive" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_gray</item>
+        <!-- Add any other text appearance attributes you want to customize -->
+    </style>
+    <style name="CustomBottomNavigationTextAppearanceInActive" parent="TextAppearance.AppCompat.Caption">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_gray</item>
+        <!-- Add any other text appearance attributes you want to customize -->
+    </style>
+    <style name="bottomNavigationStyle">
+        <item name="colorOnSurface">@color/dark_gray</item>
+        <item name="colorOnSecondaryContainer">@color/dark_gray</item>
+        <item name="colorSecondaryContainer">@android:color/transparent</item>
+        <item name="compatShadowEnabled">true</item>
+    </style>
 </resources>

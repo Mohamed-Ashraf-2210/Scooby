@@ -7,17 +7,30 @@
     android:padding="@dimen/small_padding"
     tools:context=".MainActivity">
 
-
-    <TextView
-        android:id="@+id/name_user"
-        android:layout_width="wrap_content"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_chainStyle="spread_inside"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Home"
-        android:fontFamily="@font/roboto"
-        android:textSize="@dimen/_20ssp"
+        android:visibility="visible"
+        android:theme="@style/bottomNavigationStyle"
+        app:elevation="20dp"
+        app:backgroundTint="@color/menu_background"
+        app:itemTextAppearanceActive="@style/CustomBottomNavigationTextAppearanceActive"
+        app:itemTextAppearanceInactive="@style/CustomBottomNavigationTextAppearanceInActive"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:menu="@menu/bottom_nav_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
