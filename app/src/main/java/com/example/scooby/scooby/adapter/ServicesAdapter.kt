@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.scooby.R
 import com.example.scooby.scooby.data.model.ServicesResponse
 
-class ServicesAdapter(private var servicesList: List<ServicesResponse>) :
+class ServicesAdapter(private var servicesList: ServicesResponse) :
     RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>() {
 
     class ServicesViewHolder(iteView: View): RecyclerView.ViewHolder(iteView) {
@@ -26,15 +26,15 @@ class ServicesAdapter(private var servicesList: List<ServicesResponse>) :
         return ServicesViewHolder(iteView)
     }
 
-    override fun getItemCount() = servicesList.size
+    override fun getItemCount() = servicesList.allServices.size
 
     override fun onBindViewHolder(holder: ServicesViewHolder, position: Int) {
-        val currentItem = servicesList[position]
-        holder.serviceImage.setImageResource(currentItem.allServices[position].serviceImage.toInt())
-        holder.serviceType.text = currentItem.allServices[position].serviceType
-        holder.city.text = currentItem.allServices[position].city
-        holder.price.text = currentItem.allServices[position].price.toString()
-        holder.rate.rating = currentItem.allServices[position].rate.toFloat()
+        val currentItem = servicesList.allServices
+        holder.serviceImage.setImageResource(currentItem[position].serviceImage.toInt())
+        holder.serviceType.text = currentItem[position].serviceType
+        holder.city.text = currentItem[position].city
+        holder.price.text = currentItem[position].price.toString()
+        holder.rate.rating = currentItem[position].rate.toFloat()
     }
 
 }

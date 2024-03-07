@@ -5,7 +5,7 @@ import com.example.scooby.scooby.network.ServicesApi
 import retrofit2.Response
 
 class ServicesRepository {
-    suspend fun getServices(): Response<List<ServicesResponse>>? {
+    suspend fun getServices(): Response<ServicesResponse>? {
         return ServicesApi.getApi()?.getServices()
     }
 }

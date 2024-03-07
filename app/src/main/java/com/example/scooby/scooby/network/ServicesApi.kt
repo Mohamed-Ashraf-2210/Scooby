@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface ServicesApi {
     @GET("/scooby/api/services/getAllServices")
-    suspend fun getServices(): Response<List<ServicesResponse>>
+    suspend fun getServices(): Response<ServicesResponse>
 
     companion object {
         fun getApi(): ServicesApi? {

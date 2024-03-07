@@ -11,8 +11,7 @@ import kotlinx.coroutines.launch
 
 class ServicesViewModel (application: Application) : AndroidViewModel(application) {
     private val servicesRepository = ServicesRepository()
-
-    val servicesResult : MutableLiveData<BaseResponse<List<ServicesResponse>>> = MutableLiveData()
+    val servicesResult : MutableLiveData<BaseResponse<ServicesResponse>> = MutableLiveData()
 
     fun getServices() {
         servicesResult.value = BaseResponse.Loading()
