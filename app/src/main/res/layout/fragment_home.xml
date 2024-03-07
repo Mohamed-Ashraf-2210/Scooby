@@ -27,7 +27,6 @@
             app:iss_period="1500"
             app:iss_selected_dot="@drawable/selected_icon"
             app:iss_unselected_dot="@drawable/not_selected_icon"
-            app:layout_constraintBaseline_toTopOf="@id/text_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
