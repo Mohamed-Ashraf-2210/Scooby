@@ -6,22 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide.init
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.scooby.R
 import com.example.scooby.utils.BaseResponse
 import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.ServicesAdapter
 import com.example.scooby.scooby.data.model.ServicesResponse
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeFragment : Fragment() {
 
@@ -36,7 +30,6 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
         mContext = requireContext()
-        discount()
         init()
         viewModel.servicesResult.observe(viewLifecycleOwner) {
             when (it) {
@@ -58,24 +51,25 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-        binding.topAppBar.apply {
-            setNavigationOnClickListener {
-                binding.drawerLayout.open()
-            }
-            setOnMenuItemClickListener {
-                Navigation.findNavController(this).navigate(R.id.action_homeFragment_to_inboxFragment)
-                true
-            }
-        }
-        binding.navigationView.setNavigationItemSelectedListener {
-            it.isChecked = true
-            binding.drawerLayout.close()
-            true
-        }
+//        binding.topAppBar.apply {
+//            setNavigationOnClickListener {
+//                binding.drawerLayout.open()
+//            }
+//            setOnMenuItemClickListener {
+//                Navigation.findNavController(this).navigate(R.id.action_homeFragment_to_inboxFragment)
+//                true
+//            }
+//        }
+//        binding.navigationView.setNavigationItemSelectedListener {
+//            it.isChecked = true
+//            binding.drawerLayout.close()
+//            true
+//        }
         return binding.root
     }
 
     private fun init() {
+        discount()
         viewModel.getServices()
     }
 

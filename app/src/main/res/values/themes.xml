@@ -15,21 +15,6 @@
 
     </style>
 
-    <style name="Theme.NavigationDrawer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/primary</item>
-        <item name="colorSecondaryVariant">@color/primary</item>
-        <item name="colorOnSecondary">@color/black_clear</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" >@color/app_background</item>
-        <item name="android:windowLightStatusBar">true</item>
-
-    </style>
-
     <!--    facebook blue button-->
     <style name="blue_btn" parent="Widget.MaterialComponents.Button">
         <item name="materialThemeOverlay">
