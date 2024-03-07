@@ -77,7 +77,7 @@ class HomeFragment : Fragment() {
 
     private fun processLogin(data: ServicesResponse?) {
         servicesRV = binding.servicesRv
-        servicesRV.adapter = ServicesAdapter(data!!)
+        servicesRV.adapter = ServicesAdapter(data!!,requireContext())
     }
 
 
