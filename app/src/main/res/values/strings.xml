@@ -48,5 +48,24 @@ of 3 of the following: 1 number, 1 lowercase letter,
     <string name="tv_incorrect_email_or_pass">"Email or Password is incorrect. Please try
 again."</string>
     <string name="submit">Submit</string>
+    <string name="message">message</string>
+    <string name="what_are_you_looking_for">What are you looking for?</string>
+    <string name="vet">Vet</string>
+    <string name="boarding">Boarding</string>
+    <string name="sitting">Sitting</string>
+    <string name="pet_friendly_places">"Pet-friendly\nplaces"</string>
+    <string name="grooming">Grooming</string>
+    <string name="training">Training</string>
+    <string name="supplies">Supplies</string>
+    <string name="more">more</string>
+    <string name="see_more">"see more  >"</string>
+    <string name="services">Services</string>
+    <string name="settings_and_privacy">Settings and privacy</string>
+    <string name="help_center">Help Center</string>
+    <string name="reminders">Reminders</string>
+    <string name="favorites">Favorites</string>
+    <string name="notifications">Notifications</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
 
 </resources>
