@@ -8,7 +8,7 @@ import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.scooby.MainActivity
 import com.example.scooby.R
-import com.example.scooby.TokenManager
+import com.example.scooby.utils.TokenManager
 
 class AuthenticationActivity : AppCompatActivity() {
        @SuppressLint("ResourceAsColor")

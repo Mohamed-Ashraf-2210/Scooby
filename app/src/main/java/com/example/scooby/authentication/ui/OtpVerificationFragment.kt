@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
-import com.example.scooby.authentication.data.BaseResponse
+import com.example.scooby.utils.BaseResponse
 import com.example.scooby.authentication.data.model.CheckCodeResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentOtpVerificationBinding

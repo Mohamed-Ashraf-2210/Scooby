@@ -1,8 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.Scooby" parent="Theme.Material3.Light.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorSecondaryVariant">@color/primary</item>
+        <item name="colorOnSecondary">@color/black_clear</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
     </style>
 
 
@@ -36,16 +44,20 @@
         <item name="android:textColor">@color/dark_gray</item>
         <!-- Add any other text appearance attributes you want to customize -->
     </style>
+
     <style name="CustomBottomNavigationTextAppearanceInActive" parent="TextAppearance.AppCompat.Caption">
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/dark_gray</item>
         <!-- Add any other text appearance attributes you want to customize -->
     </style>
+
     <style name="bottomNavigationStyle">
         <item name="colorOnSurface">@color/dark_gray</item>
         <item name="colorOnSecondaryContainer">@color/dark_gray</item>
         <item name="colorSecondaryContainer">@android:color/transparent</item>
         <item name="compatShadowEnabled">true</item>
     </style>
+
+
 </resources>

@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.scooby.authentication.data.BaseResponse
+import com.example.scooby.utils.BaseResponse
 import com.example.scooby.authentication.data.model.CheckCodeRequest
 import com.example.scooby.authentication.data.model.CheckCodeResponse
 import com.example.scooby.authentication.data.model.ForgotPasswordRequest
