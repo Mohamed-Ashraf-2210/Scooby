@@ -2,13 +2,7 @@ package com.example.scooby.scooby.data.model
 
 
 import com.google.gson.annotations.SerializedName
-/*
-* serviceImage
-* serviceType -> Pet Boarding
-* city
-* rate
-* price
-* */
+
 data class ServicesResponse(
     @SerializedName("allServices")
     val allServices: List<AllService>
