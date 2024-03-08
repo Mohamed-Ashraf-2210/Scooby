@@ -62,7 +62,7 @@ class OtpVerificationFragment : Fragment() {
 
     private fun processLogin(data: CheckCodeResponse?) {
         if (data != null) {
-            Constant.ID_USER = data.userId
+//            Constant.ID_USER = data.userId
         }
     }
 
