@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -14,16 +13,14 @@ import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.scooby.R
-import com.example.scooby.databinding.AppBarMainBinding
 import com.example.scooby.utils.BaseResponse
 import com.example.scooby.databinding.FragmentHomeBinding
-import com.example.scooby.scooby.adapter.BlogAdapter
+import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.ServicesAdapter
 import com.example.scooby.scooby.data.model.BlogResponse
 import com.example.scooby.scooby.data.model.ServicesResponse
 import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
-import com.google.android.material.appbar.AppBarLayout
 
 class HomeFragment : Fragment() {
 
@@ -134,7 +131,7 @@ class HomeFragment : Fragment() {
 
     private fun getBlogsData(data: BlogResponse?) {
         blogsRV = binding.blogsRv
-        blogsRV.adapter = BlogAdapter(data!!,requireContext())
+        blogsRV.adapter = BlogHomeAdapter(data!!,requireContext())
     }
 
     private fun init() {
