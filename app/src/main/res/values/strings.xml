@@ -79,5 +79,8 @@ again."</string>
     <string name="night">/night</string>
     <string name="hello">Hello,</string>
     <string name="your_pets">Your Pets</string>
+    <string name="more_icon">more icon</string>
+    <string name="dog_walking_cartoon">dog walking cartoon</string>
+    <string name="blogs">Blogs</string>
 
 </resources>
