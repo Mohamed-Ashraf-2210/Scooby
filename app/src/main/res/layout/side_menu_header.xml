@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="21dp"
-    android:layout_marginTop="25dp"
+    android:layout_marginTop="67dp"
     android:fitsSystemWindows="true">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/roboto"
-        android:text="Hello,"
+        android:text="@string/hello"
         android:textColor="@color/black_font"
         android:textFontWeight="400"
         android:textSize="14sp"
@@ -34,10 +35,36 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Lama"
+        tools:text="Lama"
         android:textColor="@color/black_font"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/user_image"
         app:layout_constraintTop_toBottomOf="@id/hello_text" />
+
+    <TextView
+        android:id="@+id/your_pets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/black_font"
+        android:textSize="16sp"
+        android:fontFamily="@font/noto_sans"
+        android:text="@string/your_pets"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/user_image" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/your_pets_rv"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="46dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/your_pets"
+        tools:listitem="@layout/your_pets_item_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

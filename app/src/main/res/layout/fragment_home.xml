@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
-    android:backgroundTint="@color/app_background"
+    android:background="@color/white_BG"
+    android:backgroundTint="@color/white_BG"
     app:layout_behavior="com.google.android.material.search.SearchBar$ScrollingViewBehavior"
     tools:context=".scooby.ui.HomeFragment">
 
@@ -13,7 +13,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
@@ -36,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="58dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/roboto_medium"
             android:text="@string/what_are_you_looking_for"
             android:textColor="@color/black_font"
@@ -173,7 +172,6 @@
             android:text="@string/grooming"
             android:textFontWeight="400"
             android:textSize="12sp"
-
             app:layout_constraintEnd_toEndOf="@+id/grooming_icon"
             app:layout_constraintStart_toStartOf="@+id/grooming_icon"
             app:layout_constraintTop_toBottomOf="@id/grooming_icon"
@@ -200,7 +198,6 @@
             android:text="@string/training"
             android:textFontWeight="400"
             android:textSize="12sp"
-
             app:layout_constraintEnd_toEndOf="@+id/training_icon"
             app:layout_constraintStart_toStartOf="@+id/training_icon"
             app:layout_constraintTop_toBottomOf="@id/training_icon"
@@ -259,10 +256,12 @@
         <LinearLayout
             android:id="@+id/services_title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="18dp"
+            android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -271,8 +270,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginEnd="202dp"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/services"
                 android:textColor="@color/black_font"
@@ -282,10 +280,10 @@
                 android:id="@+id/moreBlogs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_weight="1"
                 android:fontFamily="@font/roboto"
-                android:gravity="center"
                 android:text="@string/see_more"
+                android:textAlignment="textEnd"
                 android:textColor="@color/primary"
                 android:textFontWeight="400"
                 android:textSize="10sp"
@@ -304,6 +302,173 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/services_title"
             tools:listitem="@layout/services_item_home" />
+
+        <LinearLayout
+            android:id="@+id/Pets_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="18dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/services_rv">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="180dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/pets_in_community"
+                android:textColor="@color/black_font"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:text="@string/see_more"
+                android:textAlignment="textEnd"
+                android:textColor="@color/primary"
+                android:textFontWeight="400"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pets_rv"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Pets_title"
+            tools:listitem="@layout/pets_item_home" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_dag_walking"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            app:cardBackgroundColor="#75E384FF"
+            app:cardCornerRadius="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pets_rv">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="92dp"
+                    android:layout_height="110dp"
+                    android:src="@drawable/dog_walking_cartoon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_card_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="7dp"
+                    android:layout_marginTop="21dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/let_your_pet_explore_the_world"
+                    android:textColor="@color/black_clear"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_card_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/walk_with_scooby_and_share"
+                    android:textColor="@color/black_clear"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_card_1" />
+
+                <TextView
+                    android:id="@+id/text_card_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="7dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/info_with_your_friends"
+                    android:textColor="@color/black_clear"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_card_2" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/Blogs_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="18dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_dag_walking">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="180dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Blogs"
+                android:textColor="@color/black_font"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/blogs_see_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto"
+                android:text="@string/see_more"
+                android:textAlignment="textEnd"
+                android:textColor="@color/primary"
+                android:textFontWeight="400"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/blogs_rv"
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/Blogs_title"
+            tools:listitem="@layout/blogs_item_home" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -71,5 +71,13 @@ again."</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
     <string name="do_you_need_help_with_your_pets">Do you need help with your pets?</string>
+    <string name="pets_in_community">Pets in Community</string>
+    <string name="let_your_pet_explore_the_world">Let your pet explore the world,</string>
+    <string name="walk_with_scooby_and_share">Walk with <font color="#513973">Scooby</font> and share</string>
+    <string name="info_with_your_friends">info with your friends</string>
+    <string name="image_services">Image services</string>
+    <string name="night">/night</string>
+    <string name="hello">Hello,</string>
+    <string name="your_pets">Your Pets</string>
 
 </resources>
