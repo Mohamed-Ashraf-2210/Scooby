@@ -5,6 +5,7 @@
     android:layout_width="134dp"
     android:layout_height="165dp"
     android:layout_marginStart="16dp"
+    app:strokeWidth="0dp"
     android:backgroundTint="@color/white_card_services"
     app:cardCornerRadius="8dp">
 
@@ -18,7 +19,7 @@
             android:layout_height="121dp"
             android:layout_marginBottom="44dp"
             android:contentDescription="@string/image_services"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:src="@drawable/pet_boarding_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
