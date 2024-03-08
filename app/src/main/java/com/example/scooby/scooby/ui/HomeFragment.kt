@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -16,6 +17,7 @@ import com.example.scooby.utils.BaseResponse
 import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.ServicesAdapter
 import com.example.scooby.scooby.data.model.ServicesResponse
+import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
 
 class HomeFragment : Fragment() {
@@ -23,6 +25,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<ServicesViewModel>()
+
     private lateinit var mContext: Context
     private lateinit var servicesRV: RecyclerView
     override fun onCreateView(
@@ -32,6 +35,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
         mContext = requireContext()
         init()
+        goToBlogs()
         viewModel.servicesResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
@@ -67,6 +71,12 @@ class HomeFragment : Fragment() {
 //            true
 //        }
         return binding.root
+    }
+
+    private fun goToBlogs() {
+        binding.moreBlogs.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_blogsFragment)
+        }
     }
 
     private fun init() {

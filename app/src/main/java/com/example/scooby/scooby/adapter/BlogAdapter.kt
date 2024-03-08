@@ -19,7 +19,7 @@ class BlogAdapter(private val blogList: BlogResponse,private val context: Contex
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlogViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.blog_item, parent, false)
-        return BlogAdapter.BlogViewHolder(itemView)
+        return BlogViewHolder(itemView)
     }
 
     override fun getItemCount() = blogList.data.size

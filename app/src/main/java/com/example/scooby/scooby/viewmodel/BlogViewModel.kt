@@ -2,6 +2,7 @@ package com.example.scooby.scooby.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.scooby.scooby.data.model.BlogResponse
@@ -12,7 +13,9 @@ import kotlinx.coroutines.launch
 
 class BlogViewModel (application: Application) : AndroidViewModel(application) {
     private val blogRepo = BlogRepo()
-    val blogResult : MutableLiveData<BaseResponse<BlogResponse>> = MutableLiveData()
+     val blogResult : MutableLiveData<BaseResponse<BlogResponse>> = MutableLiveData()
+//    val blogResult:LiveData<BaseResponse<BlogResponse>>
+//        get() = _blogResult
 
     fun getBlogs(){
         blogResult.value = BaseResponse.Loading()
