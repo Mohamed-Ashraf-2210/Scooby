@@ -25,8 +25,8 @@ class ServicesAdapter(private var servicesList: ServicesResponse,private val con
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesViewHolder {
-        val iteView = LayoutInflater.from(parent.context).inflate(R.layout.services_item_home, parent, false)
-        return ServicesViewHolder(iteView)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.services_item_home, parent, false)
+        return ServicesViewHolder(itemView)
     }
 
     override fun getItemCount() = servicesList.allServices.size
@@ -35,7 +35,6 @@ class ServicesAdapter(private var servicesList: ServicesResponse,private val con
 
         val currentItem = servicesList.allServices
         Glide.with(context).load(currentItem[position].serviceImage).into(holder.serviceImage)
-//        holder.serviceImage.setImageResource(currentItem[position].serviceImage.toInt())
         holder.serviceType.text = currentItem[position].serviceType
         holder.city.text = currentItem[position].city
         holder.price.text = currentItem[position].price.toString()

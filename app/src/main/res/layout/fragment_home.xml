@@ -51,7 +51,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
             android:src="@drawable/vet_image"
-            app:layout_constraintEnd_toStartOf="@id/boarding_icon"
+            app:layout_constraintEnd_toStartOf="@+id/boarding_icon"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_1" />
 
@@ -73,9 +74,12 @@
             android:id="@+id/boarding_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
+            android:layout_marginStart="29dp"
             android:src="@drawable/boarding_image"
-            app:layout_constraintTop_toTopOf="@+id/vet_icon"
-            tools:layout_editor_absoluteX="105dp" />
+            app:layout_constraintEnd_toStartOf="@+id/sitting_icon"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/vet_icon"
+            app:layout_constraintTop_toTopOf="@+id/vet_icon" />
 
         <TextView
             android:id="@+id/boarding_text"
@@ -99,7 +103,9 @@
             android:layout_marginStart="29dp"
             android:layout_marginTop="24dp"
             android:src="@drawable/sitting_image"
-            app:layout_constraintStart_toEndOf="@id/boarding_icon"
+            app:layout_constraintEnd_toStartOf="@+id/pet_friendly_places_icon"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/boarding_icon"
             app:layout_constraintTop_toBottomOf="@id/text_1" />
 
         <TextView
@@ -125,8 +131,10 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/pet_friendly_places_image"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/sitting_icon"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/sitting_icon"
             app:layout_constraintTop_toBottomOf="@id/text_1" />
 
         <TextView
@@ -159,14 +167,15 @@
             android:id="@+id/grooming_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/grooming"
             android:textFontWeight="400"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintEnd_toEndOf="@+id/grooming_icon"
+            app:layout_constraintStart_toStartOf="@+id/grooming_icon"
             app:layout_constraintTop_toBottomOf="@id/grooming_icon"
             tools:ignore="MissingConstraints" />
 
@@ -185,14 +194,15 @@
             android:id="@+id/training_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="38dp"
             android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/training"
             android:textFontWeight="400"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/grooming_text"
+
+            app:layout_constraintEnd_toEndOf="@+id/training_icon"
+            app:layout_constraintStart_toStartOf="@+id/training_icon"
             app:layout_constraintTop_toBottomOf="@id/training_icon"
             tools:ignore="MissingConstraints" />
 
@@ -211,16 +221,15 @@
             android:id="@+id/supplies_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="8dp"
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/supplies"
             android:textFontWeight="400"
             android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/training_text"
-            app:layout_constraintTop_toBottomOf="@id/supplies_icon"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toEndOf="@+id/supplies_icon"
+            app:layout_constraintStart_toStartOf="@+id/supplies_icon"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteY="420dp" />
 
         <ImageView
             android:id="@+id/more_icon"
@@ -238,18 +247,14 @@
             android:id="@+id/more_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="51dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/more"
             android:textFontWeight="400"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/supplies_text"
-            app:layout_constraintTop_toBottomOf="@id/more_icon"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="340dp"
+            tools:layout_editor_absoluteY="420dp" />
 
         <LinearLayout
             android:id="@+id/services_title"
