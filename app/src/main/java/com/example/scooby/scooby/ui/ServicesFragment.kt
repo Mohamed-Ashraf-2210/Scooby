@@ -15,6 +15,7 @@ class ServicesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+//        test
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_services, container, false)
     }
