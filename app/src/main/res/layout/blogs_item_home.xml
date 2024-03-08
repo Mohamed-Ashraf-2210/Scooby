@@ -2,10 +2,10 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="24dp"
+    android:layout_width="243dp"
+    android:layout_height="135dp"
+    android:layout_marginStart="16dp"
+    android:backgroundTint="@color/white_BG"
     app:cardCornerRadius="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
         <ImageView
             android:id="@+id/bg_shadow"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="42dp"
             android:scaleType="fitXY"
             android:src="@drawable/shadow_item_plog"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,14 +36,15 @@
         <TextView
             android:id="@+id/title_card_plog"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginVertical="9dp"
             android:fontFamily="@font/roboto_medium"
             android:minLines="2"
-            android:paddingStart="15dp"
-            android:paddingEnd="140dp"
+            android:paddingStart="11dp"
+            android:paddingEnd="32dp"
             android:text="@string/title_card_blog_item"
             android:textColor="@color/white_card"
-            android:textSize="10sp"
+            android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

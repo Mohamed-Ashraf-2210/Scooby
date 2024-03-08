@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         val toolbar: Toolbar = findViewById(R.id.tool_bar)
         setSupportActionBar(toolbar)
+        supportActionBar?.title = "Test"
 //        binding.bottomNavigationView.setupWithNavController(navController)
 
 

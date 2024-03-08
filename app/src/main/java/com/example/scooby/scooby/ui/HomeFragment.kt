@@ -6,25 +6,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.scooby.R
+import com.example.scooby.databinding.AppBarMainBinding
 import com.example.scooby.utils.BaseResponse
 import com.example.scooby.databinding.FragmentHomeBinding
+import com.example.scooby.scooby.adapter.BlogAdapter
 import com.example.scooby.scooby.adapter.ServicesAdapter
+import com.example.scooby.scooby.data.model.BlogResponse
 import com.example.scooby.scooby.data.model.ServicesResponse
+import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
+import com.google.android.material.appbar.AppBarLayout
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val viewModel by viewModels<ServicesViewModel>()
+    private val servicesViewModel by viewModels<ServicesViewModel>()
+    private val blogsViewModel by viewModels<BlogViewModel>()
     private lateinit var mContext: Context
     private lateinit var servicesRV: RecyclerView
+    private lateinit var blogsRV: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +41,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
         mContext = requireContext()
         init()
-        viewModel.servicesResult.observe(viewLifecycleOwner) {
+        servicesViewModel.servicesResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
 //                    showLoading()
@@ -40,7 +49,27 @@ class HomeFragment : Fragment() {
 
                 is BaseResponse.Success -> {
 //                    stopLoading()
-                    processLogin(it.data)
+                    getServicesData(it.data)
+                }
+
+                is BaseResponse.Error -> {
+//                    stopLoading()
+//                    processError(it.msg)
+                }
+                else -> {
+//                    stopLoading()
+                }
+            }
+        }
+        blogsViewModel.blogResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is BaseResponse.Loading -> {
+//                    showLoading()
+                }
+
+                is BaseResponse.Success -> {
+//                    stopLoading()
+                    getBlogsData(it.data)
                 }
 
                 is BaseResponse.Error -> {
@@ -66,16 +95,56 @@ class HomeFragment : Fragment() {
 //            binding.drawerLayout.close()
 //            true
 //        }
+
+        binding.vetIcon.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_vetFragment)
+        }
+        binding.boardingIcon.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_boardingFragment)
+        }
+        binding.sittingIcon.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_sittingFragment)
+        }
+        binding.suppliesIcon.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_suppliesFragment)
+        }
+        binding.petFriendlyPlacesIcon.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_petFriendlyPlacesFragment)
+        }
+        binding.groomingIcon.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_groomingFragment)
+        }
+        binding.trainingIcon.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_trainingFragment)
+        }
+        binding.blogsSeeMore.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_blogsFragment)
+        }
+
+
+        // actionBar == null
+        activity?.actionBar?.apply {
+            title = "Hi, Fatma"
+        }
+        /* supportActionBar == null */
+//        (activity as AppCompatActivity).supportActionBar?.title = "Home 2"
+
         return binding.root
+    }
+
+    private fun getBlogsData(data: BlogResponse?) {
+        blogsRV = binding.blogsRv
+        blogsRV.adapter = BlogAdapter(data!!,requireContext())
     }
 
     private fun init() {
         discount()
-        viewModel.getServices()
+        servicesViewModel.getServices()
+        blogsViewModel.getBlogs()
     }
 
 
-    private fun processLogin(data: ServicesResponse?) {
+    private fun getServicesData(data: ServicesResponse?) {
         servicesRV = binding.servicesRv
         servicesRV.adapter = ServicesAdapter(data!!,requireContext())
     }

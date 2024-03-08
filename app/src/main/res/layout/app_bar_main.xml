@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/top_app_bar_bg"
+            app:navigationIcon="@drawable/menu"
+            app:menu="@menu/top_app_bar"
             android:minHeight="?attr/actionBarSize" />
     </com.google.android.material.appbar.AppBarLayout>
 
