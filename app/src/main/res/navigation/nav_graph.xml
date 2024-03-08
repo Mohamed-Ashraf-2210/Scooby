@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_boardingFragment"
             app:destination="@id/boardingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
     </fragment>
     <fragment
         android:id="@+id/inboxFragment"
@@ -83,4 +86,9 @@
         android:name="com.example.scooby.scooby.ui.SuppliesFragment"
         android:label="fragment_supplies"
         tools:layout="@layout/fragment_supplies" />
+    <fragment
+        android:id="@+id/servicesFragment"
+        android:name="com.example.scooby.scooby.ui.ServicesFragment"
+        android:label="fragment_services"
+        tools:layout="@layout/fragment_services" />
 </navigation>
