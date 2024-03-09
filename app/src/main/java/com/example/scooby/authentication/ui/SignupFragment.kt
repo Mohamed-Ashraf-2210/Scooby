@@ -19,6 +19,7 @@ import com.example.scooby.utils.BaseResponse
 import com.example.scooby.authentication.data.model.UserResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentSignupBinding
+import com.example.scooby.utils.Constant
 
 
 class SignupFragment : Fragment() {
@@ -141,7 +142,9 @@ class SignupFragment : Fragment() {
     private fun processLogin(data: UserResponse?) {
         showToast("Welcome: " + (data?.data?.result?.name ?: ""))
         if (!data?.token.isNullOrEmpty()) {
-            data?.token?.let { TokenManager.saveAuthToken(this.mContext, it) }
+            data?.token?.let { TokenManager.saveAuth(this.mContext,Constant.USER_TOKEN, it) }
+            TokenManager.saveAuth(this.mContext,Constant.USER_NAME, data?.data?.result?.name ?: "")
+            TokenManager.saveAuth(this.mContext,Constant.USER_ID, data?.data?.result?.id ?: "")
             goToHome()
         }
     }
