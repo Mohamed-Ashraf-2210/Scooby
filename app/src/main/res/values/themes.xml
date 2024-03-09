@@ -60,5 +60,9 @@
         <item name="compatShadowEnabled">true</item>
     </style>
 
+    <style name="outlined_button">
+        <item name="materialThemeOverlay">@drawable/outlined_button</item>
+    </style>
+
 
 </resources>

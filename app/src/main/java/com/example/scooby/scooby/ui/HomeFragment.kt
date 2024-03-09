@@ -117,6 +117,9 @@ class HomeFragment : Fragment() {
         binding.blogsSeeMore.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_blogsFragment)
         }
+        binding.moreServices.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_servicesFragment)
+        }
 
 
         // actionBar == null

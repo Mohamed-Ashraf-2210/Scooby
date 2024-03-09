@@ -7,6 +7,7 @@
     tools:context=".scooby.ui.ServicesFragment">
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -17,11 +18,34 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <TextView
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Rv_Services_circle"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:listitem="@layout/services_circle_item"
+        tools:itemCount="10"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/outlinedButton"
+        android:backgroundTint="@drawable/outlined_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hossam"
-        />
+        android:layout_marginStart="16dp"
+        android:textSize="10sp"
+        android:text="Outlined button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Rv_Services_circle" />
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
