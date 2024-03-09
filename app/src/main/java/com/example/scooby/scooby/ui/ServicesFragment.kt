@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.scooby.R
-import com.example.scooby.databinding.FragmentBlogsBinding
 import com.example.scooby.databinding.FragmentServicesBinding
 import com.example.scooby.scooby.adapter.ServicesRvHorAdapter
 import com.example.scooby.scooby.data.model.ServicesRvList
@@ -15,7 +14,6 @@ class ServicesFragment : Fragment() {
 
     private var _binding: FragmentServicesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var servicesList : ArrayList<ServicesRvList>
     private lateinit var servicesAdapter : ServicesRvHorAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,15 +36,6 @@ class ServicesFragment : Fragment() {
             ServicesRvList(R.drawable.sitting_dog,"Sitting"),
             ServicesRvList(R.drawable.pet_supplies,"Supplies")
         )
-//        servicesList.add(ServicesRvList(R.drawable.pets,"All"))
-//        servicesList.add(ServicesRvList(R.drawable.veterinarian,"vet"))
-//        servicesList.add(ServicesRvList(R.drawable.world_animal,"Boarding"))
-//        servicesList.add(ServicesRvList(R.drawable.grooming,"Grooming"))
-//        servicesList.add(ServicesRvList(R.drawable.dog_training,"Training"))
-//        servicesList.add(ServicesRvList(R.drawable.dog_walking,"Walking"))
-//        servicesList.add(ServicesRvList(R.drawable.pet_taxi,"Taxi"))
-//        servicesList.add(ServicesRvList(R.drawable.sitting_dog,"Sitting"))
-//        servicesList.add(ServicesRvList(R.drawable.pet_supplies,"Supplies"))
         servicesAdapter = ServicesRvHorAdapter(itemList as ArrayList,requireContext())
         binding.RvServicesCircle.adapter = servicesAdapter
     }
