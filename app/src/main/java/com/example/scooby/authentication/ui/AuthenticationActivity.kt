@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.scooby.MainActivity
 import com.example.scooby.R
+import com.example.scooby.utils.Constant
 import com.example.scooby.utils.TokenManager
 
 class AuthenticationActivity : AppCompatActivity() {
@@ -16,7 +17,7 @@ class AuthenticationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
            Thread.sleep(3000)
            installSplashScreen()
-           val token = TokenManager.getToken(this)
+           val token = TokenManager.getAuth(this,Constant.USER_TOKEN)
            if (!token.isNullOrBlank()) {
                goToHome()
            }

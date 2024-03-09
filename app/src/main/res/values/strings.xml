@@ -83,5 +83,8 @@ again."</string>
     <string name="dog_walking_cartoon">dog walking cartoon</string>
     <string name="blogs">Blogs</string>
     <string name="img_card_blog_home">img card blog home</string>
+    <string name="pet_home_image">pet home image</string>
+    <string name="back_ground_shadow_blog_home">back ground shadow blog home</string>
+    <string name="requests">Requests</string>
 
 </resources>

@@ -5,6 +5,7 @@
     android:layout_width="130dp"
     android:layout_height="170dp"
     android:layout_marginStart="16dp"
+    app:strokeWidth="0dp"
     android:backgroundTint="@color/app_background"
     app:cardCornerRadius="8dp">
 
@@ -13,7 +14,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/pet_image"
+            android:id="@+id/pet_home_image"
             android:layout_width="match_parent"
             android:layout_height="137dp"
             android:layout_marginBottom="33dp"
@@ -22,10 +23,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/pet_home_image" />
 
         <TextView
-            android:id="@+id/pet_name"
+            android:id="@+id/pet_home_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -34,13 +36,13 @@
             android:textColor="@color/gray_font"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pet_image"
+            app:layout_constraintTop_toBottomOf="@id/pet_home_image"
             tools:ignore="SmallSp"
-            tools:text="Batata" />
+            tools:text="Bata ta" />
 
 
         <TextView
-            android:id="@+id/owner_name"
+            android:id="@+id/pet_home_owner_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -48,11 +50,10 @@
             android:layout_marginBottom="7dp"
             android:fontFamily="@font/roboto"
             android:textColor="@color/owner_name"
-            android:textFontWeight="400"
             android:textSize="7sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pet_name"
+            app:layout_constraintTop_toBottomOf="@id/pet_home_name"
             tools:ignore="SmallSp"
             tools:text="Karim" />
 
