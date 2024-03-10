@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.title = "Test"
 //        binding.bottomNavigationView.setupWithNavController(navController)
 
-        var name = findViewById<TextView>(R.id.user_name).text.toString()
-        name = TokenManager.getAuth(this, Constant.USER_NAME).toString()
+//        var name = findViewById<TextView>(R.id.user_name).text.toString()
+//        name = TokenManager.getAuth(this, Constant.USER_NAME).toString()
 
         myPetsViewModel.myPetsResult.observe(this, Observer {
             when (it) {

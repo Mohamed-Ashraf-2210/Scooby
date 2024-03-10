@@ -29,7 +29,7 @@ class BlogsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBlogsBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentBlogsBinding.inflate(inflater,container,false)
          mContext = requireContext()
          blogViewModel.blogResult.observe(viewLifecycleOwner){
              when (it) {

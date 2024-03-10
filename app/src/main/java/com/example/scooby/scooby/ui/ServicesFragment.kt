@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.ui
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,15 +12,17 @@ import com.example.scooby.scooby.adapter.ServicesRvHorAdapter
 import com.example.scooby.scooby.data.model.ServicesRvList
 
 class ServicesFragment : Fragment() {
+    private lateinit var mContext: Context
 
     private var _binding: FragmentServicesBinding? = null
     private val binding get() = _binding!!
     private lateinit var servicesAdapter : ServicesRvHorAdapter
-    override fun onCreateView(
+        override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentServicesBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentServicesBinding.inflate(inflater,container,false)
+        mContext = requireContext()
         initRv()
         return binding.root
     }
