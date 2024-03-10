@@ -86,5 +86,8 @@ again."</string>
     <string name="pet_home_image">pet home image</string>
     <string name="back_ground_shadow_blog_home">back ground shadow blog home</string>
     <string name="requests">Requests</string>
+    <string name="do_you_need_help_with_your_pets_book_what_you_re_looking_for">Do you need help with your pets?\nbook what you\'re looking for</string>
+    <string name="daycare">Daycare</string>
+    <string name="pet_friendly">Pet-friendly..</string>
 
 </resources>

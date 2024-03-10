@@ -3,11 +3,7 @@ package com.example.scooby.scooby.data.model
 
 import com.google.gson.annotations.SerializedName
 
-/*
-* petimage
-* name
-* owner
-* */
+
 data class AllPetsResponse(
     @SerializedName("data")
     val `data`: List<Data>,
@@ -29,7 +25,7 @@ data class AllPetsResponse(
         val name: String,
         @SerializedName("owner")
         val owner: String,
-        @SerializedName("petimage") // petImage
+        @SerializedName("petimage")
         val petimage: String,
         @SerializedName("profileBio")
         val profileBio: String,
@@ -41,7 +37,7 @@ data class AllPetsResponse(
         val user: User,
         @SerializedName("vaccinations_id")
         val vaccinationsId: List<Any>,
-        @SerializedName("weigth") // weight
+        @SerializedName("weigth")
         val weigth: Int
     ) {
         data class User(

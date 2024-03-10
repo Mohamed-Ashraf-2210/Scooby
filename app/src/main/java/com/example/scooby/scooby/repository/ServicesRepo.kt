@@ -4,7 +4,7 @@ import com.example.scooby.scooby.data.model.ServicesResponse
 import com.example.scooby.scooby.network.ServicesApi
 import retrofit2.Response
 
-class ServicesRepository {
+class ServicesRepo {
     suspend fun getServices(): Response<ServicesResponse>? {
         return ServicesApi.getApi()?.getServices()
     }

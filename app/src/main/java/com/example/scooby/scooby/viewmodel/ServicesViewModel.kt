@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.scooby.utils.BaseResponse
 import com.example.scooby.scooby.data.model.ServicesResponse
-import com.example.scooby.scooby.repository.ServicesRepository
+import com.example.scooby.scooby.repository.ServicesRepo
 import kotlinx.coroutines.launch
 
 class ServicesViewModel (application: Application) : AndroidViewModel(application) {
-    private val servicesRepository = ServicesRepository()
+    private val servicesRepository = ServicesRepo()
     val servicesResult : MutableLiveData<BaseResponse<ServicesResponse>> = MutableLiveData()
 
     fun getServices() {
