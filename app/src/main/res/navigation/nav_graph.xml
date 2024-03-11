@@ -40,6 +40,18 @@
         <action
             android:id="@+id/action_homeFragment_to_servicesFragment"
             app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_pawsFragment"
+            app:destination="@id/pawsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_communityFragment"
+            app:destination="@id/communityFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookingFragment"
+            app:destination="@id/bookingFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/inboxFragment"
@@ -91,4 +103,24 @@
         android:name="com.example.scooby.scooby.ui.ServicesFragment"
         android:label="fragment_services"
         tools:layout="@layout/fragment_services" />
+    <fragment
+        android:id="@+id/pawsFragment"
+        android:name="com.example.scooby.scooby.ui.PawsFragment"
+        android:label="fragment_paws"
+        tools:layout="@layout/fragment_paws" />
+    <fragment
+        android:id="@+id/communityFragment"
+        android:name="com.example.scooby.scooby.ui.CommunityFragment"
+        android:label="fragment_community"
+        tools:layout="@layout/fragment_community" />
+    <fragment
+        android:id="@+id/bookingFragment"
+        android:name="com.example.scooby.scooby.ui.BookingFragment"
+        android:label="fragment_booking"
+        tools:layout="@layout/fragment_booking" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.scooby.scooby.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

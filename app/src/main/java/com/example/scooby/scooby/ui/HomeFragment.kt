@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -130,34 +131,32 @@ class HomeFragment : Fragment() {
         // endregion
 
         binding.vetIcon.setOnClickListener {
-            Toast.makeText(mContext, "Vet", Toast.LENGTH_SHORT).show()
-            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_vetFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
         }
         binding.boardingIcon.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_boardingFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_boardingFragment)
         }
         binding.sittingIcon.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_sittingFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_sittingFragment)
         }
         binding.suppliesIcon.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_suppliesFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_suppliesFragment)
         }
         binding.petFriendlyPlacesIcon.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_petFriendlyPlacesFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_petFriendlyPlacesFragment)
         }
         binding.groomingIcon.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_groomingFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_groomingFragment)
         }
         binding.trainingIcon.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_trainingFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_trainingFragment)
         }
         binding.blogsSeeMore.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_blogsFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_blogsFragment)
         }
         binding.servicesSeeMore.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_servicesFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
         }
-
 
         binding.moreIcon.setOnClickListener {
             val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet,null)
@@ -165,6 +164,7 @@ class HomeFragment : Fragment() {
             dialog.setContentView(dialogView)
             dialog.show()
         }
+
         return binding.root
     }
 

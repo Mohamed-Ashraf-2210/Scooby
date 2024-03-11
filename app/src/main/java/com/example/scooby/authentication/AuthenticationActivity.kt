@@ -1,4 +1,4 @@
-package com.example.scooby.authentication.ui
+package com.example.scooby.authentication
 
 import android.annotation.SuppressLint
 import android.content.Intent
