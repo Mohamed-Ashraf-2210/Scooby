@@ -3,7 +3,6 @@ package com.example.scooby.scooby.data.model
 
 import com.google.gson.annotations.SerializedName
 
-// @GET("/scooby/api/offer")
 data class OfferResponse(
     @SerializedName("data")
     val `data`: List<Data>,

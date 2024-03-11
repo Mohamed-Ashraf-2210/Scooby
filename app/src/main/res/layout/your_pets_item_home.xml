@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="60dp"
     android:layout_height="90dp"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginEnd="16dp"
+    app:strokeWidth="0dp"
     android:backgroundTint="@color/white_BG"
     app:cardCornerRadius="0dp">
 
@@ -21,19 +22,19 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/your_pet_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Salah"
-            app:layout_constraintTop_toBottomOf="@id/your_pet_icon"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp"
-            android:textSize="14sp"
             android:textColor="@color/black_font"
             android:textFontWeight="600"
-            />
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/your_pet_icon"
+            tools:text="Salah" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

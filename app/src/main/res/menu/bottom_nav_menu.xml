@@ -3,17 +3,17 @@
     <item
         android:id="@+id/toHomeFragment"
         android:icon="@drawable/icon"
-        android:title="Home" />
+        android:title="@string/home" />
     <item
         android:id="@+id/toPawsFragment"
         android:icon="@drawable/icon"
-        android:title="Paws" />
+        android:title="@string/paws" />
     <item
         android:id="@+id/toCommunityFragment"
         android:icon="@drawable/icon"
-        android:title="Community" />
+        android:title="@string/community" />
     <item
         android:id="@+id/toBookingFragment"
         android:icon="@drawable/icon"
-        android:title="booking" />
+        android:title="@string/booking" />
 </menu>

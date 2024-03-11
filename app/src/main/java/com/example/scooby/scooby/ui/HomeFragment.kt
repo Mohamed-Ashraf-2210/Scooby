@@ -1,11 +1,13 @@
 package com.example.scooby.scooby.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
@@ -20,10 +22,14 @@ import com.example.scooby.scooby.adapter.PetsHomeAdapter
 import com.example.scooby.scooby.adapter.ServicesAdapter
 import com.example.scooby.scooby.data.model.AllPetsResponse
 import com.example.scooby.scooby.data.model.BlogResponse
+import com.example.scooby.scooby.data.model.OfferResponse
 import com.example.scooby.scooby.data.model.ServicesResponse
 import com.example.scooby.scooby.viewmodel.BlogViewModel
+import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.PetsViewModel
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
+import com.example.scooby.utils.Constant
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeFragment : Fragment() {
 
@@ -32,10 +38,12 @@ class HomeFragment : Fragment() {
     private val servicesViewModel by viewModels<ServicesViewModel>()
     private val blogsViewModel by viewModels<BlogViewModel>()
     private val petsViewModel by viewModels<PetsViewModel>()
+    private val offerViewModel by viewModels<OfferViewModel>()
     private lateinit var mContext: Context
     private lateinit var servicesRV: RecyclerView
     private lateinit var blogsRV: RecyclerView
     private lateinit var petsRV: RecyclerView
+    @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,21 +55,14 @@ class HomeFragment : Fragment() {
         // region View Model
         servicesViewModel.servicesResult.observe(viewLifecycleOwner) {
             when (it) {
-                is BaseResponse.Loading -> {
-//                    showLoading()
-                }
-
                 is BaseResponse.Success -> {
-//                    stopLoading()
                     getServicesData(it.data)
                 }
 
                 is BaseResponse.Error -> {
-//                    stopLoading()
 //                    processError(it.msg)
                 }
                 else -> {
-//                    stopLoading()
                 }
             }
         }
@@ -106,10 +107,31 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+        offerViewModel.offerResult.observe(viewLifecycleOwner) {
+            when (it) {
+                is BaseResponse.Loading -> {
+//                    showLoading()
+                }
+
+                is BaseResponse.Success -> {
+//                    stopLoading()
+                    getOfferData(it.data)
+                }
+
+                is BaseResponse.Error -> {
+//                    stopLoading()
+//                    processError(it.msg)
+                }
+                else -> {
+//                    stopLoading()
+                }
+            }
+        }
         // endregion
 
         binding.vetIcon.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_vetFragment)
+            Toast.makeText(mContext, "Vet", Toast.LENGTH_SHORT).show()
+            //Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_vetFragment)
         }
         binding.boardingIcon.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_boardingFragment)
@@ -136,17 +158,34 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_servicesFragment)
         }
 
+
+        binding.moreIcon.setOnClickListener {
+            val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet,null)
+            val dialog = BottomSheetDialog(requireContext(), com.google.android.material.R.style.Theme_Material3_Light_BottomSheetDialog)
+            dialog.setContentView(dialogView)
+            dialog.show()
+        }
         return binding.root
     }
 
+
     private fun init() {
-        discount()
         servicesViewModel.getServices()
         petsViewModel.getPets()
         blogsViewModel.getBlogs()
+        offerViewModel.getOffer()
     }
 
-
+    // region Get Data
+    private fun getOfferData(data: OfferResponse?) {
+        val imgList = ArrayList<SlideModel>()
+        val sizeOfList = data?.data?.size
+        for (i in 0..<sizeOfList!!) {
+            imgList.add(SlideModel(data.data[i].offerImage))
+        }
+        binding.imageSlider.setImageList(imgList,ScaleTypes.FIT)
+        binding.imageSlider.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
+    }
     private fun getServicesData(data: ServicesResponse?) {
         servicesRV = binding.servicesRv
         servicesRV.adapter = ServicesAdapter(data!!,requireContext())
@@ -160,14 +199,6 @@ class HomeFragment : Fragment() {
         blogsRV = binding.blogsRv
         blogsRV.adapter = BlogHomeAdapter(data!!,requireContext())
     }
+    // endregion
 
-
-    private fun discount() {
-        val imgList = ArrayList<SlideModel>()
-        imgList.add(SlideModel("https://s3-alpha-sig.figma.com/img/5f89/bf81/b869778e5de0070c02acd14f101db216?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=A1mnCKvW9GNvW3Hfl3V-ug6lzLUK2BJFi8VIuuJfgsWoNDS7AgCe6totG0M8scSvrN9zso1~F7QHg0l~lpL8lj6z2oAP9tAWUtu73ewh6QZGAjPKaUTkVFzA9eu7OBiT6KHwPM0-E-EIs1HMaoM28WNpXE9sAgVPNFjTYu1~bqYXkIoDO2PfgP8uAo8Olj3zdLwko36JHD97NLfwx76FtpRgJXSTz7vsYvPbHV9TOP9~gxoUtAz9K5OBgvEANsZFJatzGvPvjt2Yiz4p4lPTn-lgJKtaOxZ-Q6m~Vf4qlrHSSmWFU56IFby3aRyIk0u5ifFySc-ttsLTxxgjg11qQA__"))
-        imgList.add(SlideModel("https://s3-alpha-sig.figma.com/img/b942/f329/7458e2f3c8eaa5bbb87439b0b51feee3?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZJNPYgfkpEXP5tjeVW~OO4qywsj34xbcSe4fh2YRwWPvXTg9kJ1~0iMjG2U3at1SEfUkr8gEu068h-cdL3qFCJCpnwmWOw6w47ikDunhedg783-LvBiF5E~k2QiSa5CtKvvAYamk2SenJRFoIS9mP8Lr63v9oxg~XpRCoA8F89iHcc3nJL67qWaw8cENdU6slfuoQUqphpU2yOri5aD3es6L5aLeD19wGAo7yhuK-h5VKZ23EZMBtSdU8BcT-Kc5vlxehmbw8Qppp7K3xaeL5XVDtn5En-vWLiR~Wp6az53eVf4ucA3hE8tfKJWMCjylN71~ndo215A6YAvjxGaPxA__"))
-        imgList.add(SlideModel("https://s3-alpha-sig.figma.com/img/2793/085f/6103dac34bb37e214c315326a726b1a1?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=UW7gpMi~epi6nmM7WYBAYULyg7b5pZ4~WFVP0E36j1Vn5avN7LxOd074uhfjAEfB0delHibUhr1X7MxEpFxCp6uSfJsEyalDWAY8xBdtZFNEJtSKyu0nnZQm7pIKK5~gkgrqMI3EWeGv570aekqTFUywKZzQ8V9oTgGAkfKhE61uepWOXZMlP3weXwc3t99Zq8mG0So6lB0a8eayqu55JCgljWUtwLc3M2UQx8vAY~tFl57aIJ47XkQrl1If--id5WS90ck7e-IgotKAR6mkW1Ux6slfSmvEJUeArdNx-kK1ZLdajRcjQF1jYQPbp0-fSwfh5DwkZLF1n802Wm3tJw__"))
-        binding.imageSlider.setImageList(imgList,ScaleTypes.FIT)
-        binding.imageSlider.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
-    }
 }

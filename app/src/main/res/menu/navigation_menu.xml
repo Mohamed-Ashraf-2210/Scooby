@@ -9,42 +9,34 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_profile"
-            android:checkable="true"
             android:icon="@drawable/profile_icon"
             android:title="@string/profile" />
         <item
             android:id="@+id/nav_search"
-            android:checkable="true"
             android:icon="@drawable/search_icon"
             android:title="@string/search" />
         <item
             android:id="@+id/nav_notifications"
-            android:checkable="true"
             android:icon="@drawable/notifications_icon"
             android:title="@string/notifications" />
         <item
             android:id="@+id/nav_favorite"
-            android:checkable="true"
             android:icon="@drawable/favorite_icon"
             android:title="@string/favorites" />
         <item
             android:id="@+id/nav_reminders"
-            android:checkable="true"
             android:icon="@drawable/reminders_icon"
             android:title="@string/reminders" />
     </group>
-
     <group
         android:id="@+id/group2"
         android:checkableBehavior="single">
         <item
             android:id="@+id/nav_settings"
-            android:checkable="true"
             android:icon="@drawable/settings_icon"
             android:title="@string/settings_and_privacy" />
         <item
             android:id="@+id/nav_help"
-            android:checkable="true"
             android:icon="@drawable/help_icon"
             android:title="@string/help_center" />
     </group>

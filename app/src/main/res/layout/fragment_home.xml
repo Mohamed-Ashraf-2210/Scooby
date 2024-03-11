@@ -9,7 +9,6 @@
     app:layout_behavior="com.google.android.material.search.SearchBar$ScrollingViewBehavior"
     tools:context=".scooby.ui.HomeFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="124dp"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="64dp"
             app:iss_auto_cycle="true"
             app:iss_corner_radius="24"
             app:iss_delay="0"
@@ -115,7 +114,6 @@
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/sitting"
-
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/sitting_icon"
             app:layout_constraintStart_toStartOf="@+id/sitting_icon"
@@ -130,7 +128,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/pet_friendly_places_image"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sitting_icon"
@@ -144,7 +141,6 @@
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/pet_friendly_places"
-
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/pet_friendly_places_icon"
             app:layout_constraintStart_toStartOf="@+id/pet_friendly_places_icon"
@@ -170,7 +166,6 @@
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/grooming"
-
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/grooming_icon"
             app:layout_constraintStart_toStartOf="@+id/grooming_icon"
@@ -235,11 +230,11 @@
             android:layout_marginStart="29dp"
             android:layout_marginTop="11dp"
             android:layout_marginEnd="17dp"
+            android:contentDescription="@string/more_icon"
             android:src="@drawable/more_circle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/supplies_icon"
-            app:layout_constraintTop_toBottomOf="@+id/pet_friendly_places_text"
-            android:contentDescription="@string/more_icon" />
+            app:layout_constraintTop_toBottomOf="@+id/pet_friendly_places_text" />
 
         <TextView
             android:id="@+id/more_text"
@@ -248,10 +243,10 @@
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/more"
+            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/more_icon"
             app:layout_constraintStart_toStartOf="@+id/more_icon"
             app:layout_constraintTop_toBottomOf="@id/more_icon"
-            android:textSize="12sp"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="340dp"
             tools:layout_editor_absoluteY="420dp" />
@@ -375,10 +370,10 @@
                 <ImageView
                     android:layout_width="92dp"
                     android:layout_height="110dp"
+                    android:contentDescription="@string/dog_walking_cartoon"
                     android:src="@drawable/dog_walking_cartoon"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/dog_walking_cartoon" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/text_card_1"
@@ -470,16 +465,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/Blogs_title"
             tools:listitem="@layout/blogs_item_home" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/more_menu_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="297dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:visibility="gone"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -23,7 +23,7 @@ class PetsHomeAdapter(private val petsList: AllPetsResponse, private val context
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PetsHomeViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.pets_item_home, parent, false)
-        return PetsHomeAdapter.PetsHomeViewHolder(itemView)
+        return PetsHomeViewHolder(itemView)
     }
 
     override fun getItemCount() = petsList.data.size

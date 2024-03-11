@@ -73,7 +73,7 @@ again."</string>
     <string name="do_you_need_help_with_your_pets">Do you need help with your pets?</string>
     <string name="pets_in_community">Pets in Community</string>
     <string name="let_your_pet_explore_the_world">Let your pet explore the world,</string>
-    <string name="walk_with_scooby_and_share">Walk with <font color="#513973">Scooby</font> and share</string>
+    <string name="walk_with_scooby_and_share">Walk with <font color="#513973" >Scooby</font> and share</string>
     <string name="info_with_your_friends">info with your friends</string>
     <string name="image_services">Image services</string>
     <string name="night">/night</string>
@@ -89,5 +89,13 @@ again."</string>
     <string name="do_you_need_help_with_your_pets_book_what_you_re_looking_for">Do you need help with your pets?\nbook what you\'re looking for</string>
     <string name="daycare">Daycare</string>
     <string name="pet_friendly">Pet-friendly..</string>
+    <string name="pet_taxi">Pet taxi</string>
+    <string name="walking">Walking</string>
+    <string name="booking">booking</string>
+    <string name="community">Community</string>
+    <string name="home">Home</string>
+    <string name="paws">Paws</string>
+    <string name="nav_open">Drawer Open</string>
+    <string name="nav_close">Drawer Closed</string>
 
 </resources>
