@@ -18,7 +18,7 @@ import com.example.scooby.utils.BaseResponse
 
 
 class BlogsFragment : Fragment() {
-    private val blogViewModel by viewModels<BlogViewModel>()
+    private val blogsViewModel by viewModels<BlogViewModel>()
     private var _binding: FragmentBlogsBinding? = null
     private val binding get() = _binding!!
     private lateinit var blogRV:RecyclerView
@@ -31,26 +31,6 @@ class BlogsFragment : Fragment() {
     ): View {
         _binding = FragmentBlogsBinding.inflate(inflater,container,false)
          mContext = requireContext()
-         blogViewModel.blogResult.observe(viewLifecycleOwner){
-             when (it) {
-                 is BaseResponse.Loading -> {
-                      showLoading()
-                 }
-
-                 is BaseResponse.Success -> {
-                       stopLoading()
-                     initRecycleView(it.data)
-                 }
-
-                 is BaseResponse.Error -> {
-                    stopLoading()
-//                    processError(it.msg)
-                 }
-                 else -> {
-                    stopLoading()
-                 }
-             }
-         }
          initGetBlog()
 
         return binding.root
@@ -65,10 +45,15 @@ class BlogsFragment : Fragment() {
     }
 
     private fun initGetBlog() {
-        blogViewModel.getBlogs()
+        blogsViewModel.apply {
+            getBlogs()
+            blogResult.observe(viewLifecycleOwner) {
+                getBlogsData(it)
+            }
+        }
     }
 
-    private fun initRecycleView(data:BlogResponse?) {
+    private fun getBlogsData(data:BlogResponse?) {
         blogRV = binding.RvBlogs
         blogRV.adapter = BlogAdapter(data!!,requireContext())
 //        val adapter = BlogAdapter(data!!,requireContext())

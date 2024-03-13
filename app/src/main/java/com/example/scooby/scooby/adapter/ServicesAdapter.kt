@@ -12,11 +12,10 @@ import com.bumptech.glide.Glide
 import com.example.scooby.R
 import com.example.scooby.scooby.data.model.ServicesResponse
 
-class ServicesAdapter(private var servicesList: ServicesResponse,private val context: Context) :
+class ServicesAdapter(private var servicesList: ServicesResponse, private val context: Context) :
     RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>() {
 
-    class ServicesViewHolder(iteView: View): RecyclerView.ViewHolder(iteView) {
-
+    class ServicesViewHolder(iteView: View) : RecyclerView.ViewHolder(iteView) {
         val serviceImage: ImageView = iteView.findViewById(R.id.service_image)
         val serviceType: TextView = iteView.findViewById(R.id.service_type)
         val city: TextView = iteView.findViewById(R.id.city)
@@ -25,14 +24,14 @@ class ServicesAdapter(private var servicesList: ServicesResponse,private val con
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.services_item_home, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.services_item_home, parent, false)
         return ServicesViewHolder(itemView)
     }
 
     override fun getItemCount() = servicesList.allServices.size
 
     override fun onBindViewHolder(holder: ServicesViewHolder, position: Int) {
-
         val currentItem = servicesList.allServices
         Glide.with(context).load(currentItem[position].serviceImage).into(holder.serviceImage)
         holder.serviceType.text = currentItem[position].serviceType

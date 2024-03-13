@@ -30,7 +30,7 @@ class PetsHomeAdapter(private val petsList: AllPetsResponse, private val context
 
     override fun onBindViewHolder(holder: PetsHomeViewHolder, position: Int) {
         val currentItem = petsList.data
-        Glide.with(context).load(currentItem[position].petimage).into(holder.petImage)
+        Glide.with(context).load(currentItem[position].petImage).into(holder.petImage)
         holder.petName.text = currentItem[position].name
         holder.ownerPetName.text = currentItem[position].owner
     }

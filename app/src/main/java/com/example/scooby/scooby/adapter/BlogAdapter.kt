@@ -26,8 +26,8 @@ class BlogAdapter(private val blogList: BlogResponse,private val context: Contex
 
     override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
         val currentItem = blogList.data
-        Glide.with(context).load(currentItem[position].plogImage).into(holder.imgLink)
-        holder.imgTitle.text = currentItem[position].discription
+        Glide.with(context).load(currentItem[position].blogImage).into(holder.imgLink)
+        holder.imgTitle.text = currentItem[position].description
 
     }
 

@@ -28,8 +28,7 @@ class BlogHomeAdapter(private val blogList: BlogResponse, private val context: C
 
     override fun onBindViewHolder(holder: BlogHomeViewHolder, position: Int) {
         val currentItem = blogList.data
-        Glide.with(context).load(currentItem[position].plogImage).into(holder.imgLink)
-        holder.imgTitle.text = currentItem[position].discription
+        Glide.with(context).load(currentItem[position].blogImage).into(holder.imgLink)
+        holder.imgTitle.text = currentItem[position].description
     }
-
 }

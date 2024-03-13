@@ -10,13 +10,13 @@ data class BlogResponse(
     val status: String
 ) {
     data class Data(
-        @SerializedName("discription") //description
-        val discription: String,
+        @SerializedName("description")
+        val description: String,
         @SerializedName("_id")
         val id: String,
         @SerializedName("link")
         val link: String,
-        @SerializedName("plogImage") // blogImage
-        val plogImage: String
+        @SerializedName("blogImage")
+        val blogImage: String
     )
 }
