@@ -1,30 +1,30 @@
 package com.example.scooby.scooby.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.scooby.utils.BaseResponse
 import com.example.scooby.scooby.data.model.ServicesResponse
 import com.example.scooby.scooby.repository.ServicesRepo
+import com.example.scooby.utils.Constant
 import kotlinx.coroutines.launch
 
-class ServicesViewModel (application: Application) : AndroidViewModel(application) {
-    private val servicesRepository = ServicesRepo()
-    val servicesResult : MutableLiveData<BaseResponse<ServicesResponse>> = MutableLiveData()
+class ServicesViewModel() : ViewModel() {
+    private val servicesRepo = ServicesRepo()
+    private val _servicesResult : MutableLiveData<ServicesResponse?> = MutableLiveData()
+    val servicesResult: LiveData<ServicesResponse?>
+        get() =_servicesResult
 
     fun getServices() {
-        servicesResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
-                val response = servicesRepository.getServices()
-                if (response?.code() == 200) {
-                    servicesResult.value = BaseResponse.Success(response.body())
-                } else {
-                    servicesResult.value = BaseResponse.Error(response?.message())
+                val response = servicesRepo.getServices()
+                if (response != null) {
+                    _servicesResult.value =response.body()
                 }
             } catch (e: Exception) {
-                servicesResult.value = BaseResponse.Error(e.message)
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
             }
         }
     }

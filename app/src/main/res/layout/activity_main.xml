@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
@@ -22,11 +23,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragmentContainerView2"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="80dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
 
@@ -38,16 +42,19 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="top">
 
                 <com.google.android.material.appbar.MaterialToolbar
                     android:id="@+id/tool_bar"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:background="@color/top_app_bar_bg"
-                    android:elevation="4dp"
+                    android:elevation="0dp"
                     android:minHeight="?attr/actionBarSize"
-                    app:menu="@menu/top_app_bar"
+                    app:menu="@menu/home_menu"
+                    app:title="Hi, Fatma"
+                    app:titleTextColor="@color/black_font"
                     app:navigationIcon="@drawable/menu" />
             </com.google.android.material.appbar.AppBarLayout>
 

@@ -3,19 +3,17 @@ package com.example.scooby.scooby.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.scooby.R
-import com.example.scooby.utils.BaseResponse
 import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.PetsHomeAdapter
@@ -42,90 +40,16 @@ class HomeFragment : Fragment() {
     private lateinit var servicesRV: RecyclerView
     private lateinit var blogsRV: RecyclerView
     private lateinit var petsRV: RecyclerView
+
     @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater,container,false)
+    ): View? {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         mContext = requireContext()
         init()
-        // region View Model
-        servicesViewModel.servicesResult.observe(viewLifecycleOwner) {
-            when (it) {
-                is BaseResponse.Success -> {
-                    getServicesData(it.data)
-                }
 
-                is BaseResponse.Error -> {
-//                    processError(it.msg)
-                }
-                else -> {
-                }
-            }
-        }
-
-        petsViewModel.petsResult.observe(viewLifecycleOwner) {
-            when (it) {
-                is BaseResponse.Loading -> {
-//                    showLoading()
-                }
-
-                is BaseResponse.Success -> {
-//                    stopLoading()
-                    getPetsData(it.data)
-                }
-
-                is BaseResponse.Error -> {
-//                    stopLoading()
-//                    processError(it.msg)
-                }
-                else -> {
-//                    stopLoading()
-                }
-            }
-        }
-        blogsViewModel.blogResult.observe(viewLifecycleOwner) {
-            when (it) {
-                is BaseResponse.Loading -> {
-//                    showLoading()
-                }
-
-                is BaseResponse.Success -> {
-//                    stopLoading()
-                    getBlogsData(it.data)
-                }
-
-                is BaseResponse.Error -> {
-//                    stopLoading()
-//                    processError(it.msg)
-                }
-                else -> {
-//                    stopLoading()
-                }
-            }
-        }
-        offerViewModel.offerResult.observe(viewLifecycleOwner) {
-            when (it) {
-                is BaseResponse.Loading -> {
-//                    showLoading()
-                }
-
-                is BaseResponse.Success -> {
-//                    stopLoading()
-                    getOfferData(it.data)
-                }
-
-                is BaseResponse.Error -> {
-//                    stopLoading()
-//                    processError(it.msg)
-                }
-                else -> {
-//                    stopLoading()
-                }
-            }
-        }
-        // endregion
 
         binding.vetIcon.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
@@ -156,8 +80,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.moreIcon.setOnClickListener {
-            val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet,null)
-            val dialog = BottomSheetDialog(requireContext(), com.google.android.material.R.style.Theme_Material3_Light_BottomSheetDialog)
+            val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet, null)
+            val dialog = BottomSheetDialog(
+                requireContext(),
+                com.google.android.material.R.style.Theme_Material3_Light_BottomSheetDialog
+            )
             dialog.setContentView(dialogView)
             dialog.show()
         }
@@ -167,10 +94,33 @@ class HomeFragment : Fragment() {
 
 
     private fun init() {
-        servicesViewModel.getServices()
-        petsViewModel.getPets()
-        blogsViewModel.getBlogs()
-        offerViewModel.getOffer()
+        servicesViewModel.apply {
+            getServices()
+            servicesResult.observe(viewLifecycleOwner) {
+                getServicesData(it)
+            }
+        }
+
+        petsViewModel.apply {
+            getPets()
+            petsResult.observe(viewLifecycleOwner) {
+                getPetsData(it)
+            }
+        }
+
+        blogsViewModel.apply {
+            getBlogs()
+            blogResult.observe(viewLifecycleOwner) {
+                getBlogsData(it)
+            }
+        }
+
+        offerViewModel.apply {
+            getOffer()
+            offerResult.observe(viewLifecycleOwner) {
+                getOfferData(it)
+            }
+        }
     }
 
     // region Get Data
@@ -180,22 +130,23 @@ class HomeFragment : Fragment() {
         for (i in 0..<sizeOfList!!) {
             imgList.add(SlideModel(data.data[i].offerImage))
         }
-        binding.imageSlider.setImageList(imgList,ScaleTypes.FIT)
+        binding.imageSlider.setImageList(imgList, ScaleTypes.CENTER_CROP)
         binding.imageSlider.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
     }
+
     private fun getServicesData(data: ServicesResponse?) {
         servicesRV = binding.servicesRv
-        servicesRV.adapter = ServicesAdapter(data!!,requireContext())
+        servicesRV.adapter = ServicesAdapter(data!!, requireContext())
     }
+
     private fun getPetsData(data: AllPetsResponse?) {
         petsRV = binding.petsRv
-        petsRV.adapter = PetsHomeAdapter(data!!,requireContext())
+        petsRV.adapter = PetsHomeAdapter(data!!, requireContext())
     }
 
     private fun getBlogsData(data: BlogResponse?) {
         blogsRV = binding.blogsRv
-        blogsRV.adapter = BlogHomeAdapter(data!!,requireContext())
+        blogsRV.adapter = BlogHomeAdapter(data!!, requireContext())
     }
     // endregion
-
 }

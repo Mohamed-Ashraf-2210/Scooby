@@ -25,8 +25,8 @@ data class AllPetsResponse(
         val name: String,
         @SerializedName("owner")
         val owner: String,
-        @SerializedName("petimage")
-        val petimage: String,
+        @SerializedName("petImage")
+        val petImage: String,
         @SerializedName("profileBio")
         val profileBio: String,
         @SerializedName("size")
