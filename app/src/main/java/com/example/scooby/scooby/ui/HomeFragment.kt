@@ -45,7 +45,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         mContext = requireContext()
         init()
@@ -130,7 +130,7 @@ class HomeFragment : Fragment() {
         for (i in 0..<sizeOfList!!) {
             imgList.add(SlideModel(data.data[i].offerImage))
         }
-        binding.imageSlider.setImageList(imgList, ScaleTypes.FIT)
+        binding.imageSlider.setImageList(imgList, ScaleTypes.CENTER_CROP)
         binding.imageSlider.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
     }
 
@@ -149,5 +149,4 @@ class HomeFragment : Fragment() {
         blogsRV.adapter = BlogHomeAdapter(data!!, requireContext())
     }
     // endregion
-
 }

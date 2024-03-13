@@ -52,7 +52,6 @@
                     android:background="@color/top_app_bar_bg"
                     android:elevation="0dp"
                     android:minHeight="?attr/actionBarSize"
-                    app:menu="@menu/top_app_bar"
                     app:navigationIcon="@drawable/menu" />
             </com.google.android.material.appbar.AppBarLayout>
 
