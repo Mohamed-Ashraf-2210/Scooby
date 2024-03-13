@@ -52,6 +52,9 @@
                     android:background="@color/top_app_bar_bg"
                     android:elevation="0dp"
                     android:minHeight="?attr/actionBarSize"
+                    app:menu="@menu/home_menu"
+                    app:title="Hi, Fatma"
+                    app:titleTextColor="@color/black_font"
                     app:navigationIcon="@drawable/menu" />
             </com.google.android.material.appbar.AppBarLayout>
 
