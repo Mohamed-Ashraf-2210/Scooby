@@ -6,14 +6,17 @@ import android.view.MenuItem
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.scooby.databinding.ActivityMainBinding
 import com.example.scooby.utils.Constant
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var fragmentManager: FragmentManager
@@ -62,23 +65,34 @@ class MainActivity : AppCompatActivity() {
             }
         }
         fragmentManager = supportFragmentManager
-        binding.navigationView.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.nav_profile -> navController.navigate(R.id.homeFragment)
-                R.id.nav_search -> navController.navigate(R.id.profileFragment)
-                R.id.nav_notifications -> navController.navigate(R.id.profileFragment)
-                R.id.nav_favorite -> navController.navigate(R.id.profileFragment)
-                R.id.nav_reminders -> navController.navigate(R.id.profileFragment)
-                R.id.nav_settings -> navController.navigate(R.id.profileFragment)
-                R.id.nav_help -> navController.navigate(R.id.profileFragment)
-            }
-            true
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (toggle.onOptionsItemSelected(item))
             return true
         return super.onOptionsItemSelected(item)
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_profile -> navController.navigate(R.id.homeFragment)
+            R.id.nav_search -> navController.navigate(R.id.profileFragment)
+            R.id.nav_notifications -> navController.navigate(R.id.profileFragment)
+            R.id.nav_favorite -> navController.navigate(R.id.profileFragment)
+            R.id.nav_reminders -> navController.navigate(R.id.profileFragment)
+            R.id.nav_settings -> navController.navigate(R.id.profileFragment)
+            R.id.nav_help -> navController.navigate(R.id.profileFragment)
+        }
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        return true
     }
 }
