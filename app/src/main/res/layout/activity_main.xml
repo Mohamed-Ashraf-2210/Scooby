@@ -29,7 +29,6 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="45dp"
             android:layout_marginBottom="80dp"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph" />
@@ -42,6 +41,7 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
+                android:visibility="visible"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top">
 
