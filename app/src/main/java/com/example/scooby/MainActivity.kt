@@ -3,6 +3,7 @@ package com.example.scooby
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     R.id.toCommunityFragment -> navController.navigate(R.id.communityFragment)
                     R.id.toBookingFragment -> navController.navigate(R.id.bookingFragment)
                 }
+                binding.appBar.visibility = View.GONE
                 true
             }
         }

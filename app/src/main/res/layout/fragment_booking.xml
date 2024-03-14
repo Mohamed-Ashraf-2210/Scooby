@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".scooby.ui.BookingFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_upcoming"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:text="Booking Fragment"
-        android:textSize="@dimen/_20ssp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Upcoming"
+        android:textSize="10sp"
+        app:cornerRadius="100dp"
+        app:layout_constraintBaseline_toBaselineOf="@id/btn_past"
+        app:layout_constraintEnd_toStartOf="@id/btn_past"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_past"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="59dp"
+        android:backgroundTint="@color/white_btn_booking"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Past"
+        android:textColor="#F2000000"
+        android:textSize="10sp"
+        app:cornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_upcoming"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="#1A0F0F0F"
+        app:strokeWidth="0.5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

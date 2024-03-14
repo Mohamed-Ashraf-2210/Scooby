@@ -26,4 +26,5 @@
     <color name="yellow_rate">#FFCC01</color>
     <color name="yellow_price">#FDCA25</color>
     <color name="menu_background">#FFFBFE</color>
+    <color name="white_btn_booking">#FBFBFB</color>
 </resources>
