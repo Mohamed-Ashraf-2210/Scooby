@@ -71,4 +71,9 @@
     </style>
 
 
+    <!--Size Action Bar-->
+    <style name="sizeText" parent="@android:style/TextAppearance">
+        <item name="android:textSize">5sp</item>
+    </style>
+
 </resources>

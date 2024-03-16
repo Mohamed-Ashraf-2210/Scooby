@@ -3,7 +3,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.core.graphics.drawable.toDrawable
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.scooby.databinding.ServicesCircleItemBinding
@@ -11,7 +10,7 @@ import com.example.scooby.scooby.data.model.ServicesRvList
 
 class ServicesRvHorAdapter(private val arraylist:ArrayList<ServicesRvList>,private val context: Context) :RecyclerView.Adapter<ServicesRvHorAdapter.ServicesRvHorViewHolder>(){
 
-    class ServicesRvHorViewHolder(binding: ServicesCircleItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class ServicesRvHorViewHolder(val binding: ServicesCircleItemBinding): RecyclerView.ViewHolder(binding.root) {
         val img: ImageView = binding.icItemCircle
         val name = binding.nameIcItemCircle
     }
