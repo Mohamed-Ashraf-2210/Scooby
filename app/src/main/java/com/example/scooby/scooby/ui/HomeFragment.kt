@@ -1,7 +1,6 @@
 package com.example.scooby.scooby.ui
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,13 +29,11 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
     private val servicesViewModel by viewModels<ServicesViewModel>()
     private val blogsViewModel by viewModels<BlogViewModel>()
     private val petsViewModel by viewModels<PetsViewModel>()
     private val offerViewModel by viewModels<OfferViewModel>()
-    private lateinit var mContext: Context
     private lateinit var servicesRV: RecyclerView
     private lateinit var blogsRV: RecyclerView
     private lateinit var petsRV: RecyclerView
@@ -45,55 +42,20 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        mContext = requireContext()
+    ): View {
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         init()
-
-
-        binding.vetIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
-        }
-        binding.boardingIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_boardingFragment)
-        }
-        binding.sittingIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_sittingFragment)
-        }
-        binding.suppliesIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_suppliesFragment)
-        }
-        binding.petFriendlyPlacesIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_petFriendlyPlacesFragment)
-        }
-        binding.groomingIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_groomingFragment)
-        }
-        binding.trainingIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_trainingFragment)
-        }
-        binding.blogsSeeMore.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_blogsFragment)
-        }
-        binding.servicesSeeMore.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
-        }
-
-        binding.moreIcon.setOnClickListener {
-            val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet, null)
-            val dialog = BottomSheetDialog(
-                requireContext(),
-                com.google.android.material.R.style.Theme_Material3_Light_BottomSheetDialog
-            )
-            dialog.setContentView(dialogView)
-            dialog.show()
-        }
 
         return binding.root
     }
 
-
     private fun init() {
+        observeViewModel()
+        requestsSection()
+        seeMore()
+    }
+
+    private fun observeViewModel() {
         servicesViewModel.apply {
             getServices()
             servicesResult.observe(viewLifecycleOwner) {
@@ -123,6 +85,29 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun seeMore() {
+        binding.blogsSeeMore.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_blogsFragment)
+        }
+        binding.servicesSeeMore.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
+        }
+    }
+
+    @SuppressLint("InflateParams")
+    private fun requestsSection() {
+        binding.moreIcon.setOnClickListener {
+            val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet, null)
+            val dialog = BottomSheetDialog(
+                requireContext(),
+                com.google.android.material.R.style.Theme_Material3_Light_BottomSheetDialog
+            )
+            dialog.setContentView(dialogView)
+            dialog.show()
+        }
+    }
+
+
     // region Get Data
     private fun getOfferData(data: OfferResponse?) {
         val imgList = ArrayList<SlideModel>()
@@ -149,4 +134,11 @@ class HomeFragment : Fragment() {
         blogsRV.adapter = BlogHomeAdapter(data!!, requireContext())
     }
     // endregion
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.servicesRv.adapter = null
+        binding.petsRv.adapter = null
+        binding.petsRv.adapter = null
+    }
 }

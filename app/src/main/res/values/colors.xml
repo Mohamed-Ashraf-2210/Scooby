@@ -2,14 +2,22 @@
 <resources>
     <color name="app_background">#FFFFFF</color>
     <color name="black_80">#CC0F0F0F</color>
+    <color name="black_70">#B30F0F0F</color>
     <color name="black_clear">#000000</color>
     <color name="black_font">#F20F0F0F</color>
+    <color name="black_edit_text">#0F0F0F</color>
     <color name="white_BG">#F5F3F3</color>
     <color name="white">#FCF5F5</color>
     <color name="white_card">#F5F3F3</color>
     <color name="white_card_services">#FCF5F5</color>
+    <color name="white_tool_bar">#FEF9F9</color>
     <color name="white_otp">#FFF7F7</color>
     <color name="primary">#513973</color>
+    <color name="primary_70">#B3513973</color>
+    <color name="primary_90">#E6513973</color>
+    <color name="pink_50">#80E384FF</color>
+    <color name="green">#D8F7EA</color>
+    <color name="magenta">#FFE1F2</color>
     <color name="black_blue">#0F0F0FCC</color>
     <color name="blacks">#0F0F0FCC</color>
     <color name="blue">#19519A</color>
@@ -19,12 +27,17 @@
     <color name="top_app_bar_bg">#0FE384FF</color>
     <color name="dark_gray">#49454F</color>
     <color name="gray_font">#555151</color>
+    <color name="gray_font_hint">#800F0F0F</color>
     <color name="gray_font_second">#8F8F8F</color>
+    <color name="gray_line_divider">#338F8F8F</color>
     <color name="gray_font_third">#605C5C</color>
     <color name="owner_name">#606873</color>
     <color name="yellow">#FFA33C</color>
+    <color name="yellow_bg">#FFEEC6</color>
     <color name="yellow_rate">#FFCC01</color>
     <color name="yellow_price">#FDCA25</color>
+    <color name="orange_bg">#FFEADB</color>
+    <color name="red_bg">#FEDEDE</color>
     <color name="menu_background">#FFFBFE</color>
     <color name="white_btn_booking">#FBFBFB</color>
 </resources>

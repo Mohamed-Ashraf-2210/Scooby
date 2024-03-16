@@ -17,38 +17,8 @@
             android:id="@+id/action_homeFragment_to_blogsFragment"
             app:destination="@id/blogsFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_vetFragment"
-            app:destination="@id/vetFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_sittingFragment"
-            app:destination="@id/sittingFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_petFriendlyPlacesFragment"
-            app:destination="@id/petFriendlyPlacesFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_groomingFragment"
-            app:destination="@id/groomingFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_trainingFragment"
-            app:destination="@id/trainingFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_suppliesFragment"
-            app:destination="@id/suppliesFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_boardingFragment"
-            app:destination="@id/boardingFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_servicesFragment"
             app:destination="@id/servicesFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_pawsFragment"
-            app:destination="@id/pawsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_communityFragment"
-            app:destination="@id/communityFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_bookingFragment"
-            app:destination="@id/bookingFragment" />
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -64,63 +34,30 @@
         android:label="fragment_blogs"
         tools:layout="@layout/fragment_blogs" />
     <fragment
-        android:id="@+id/vetFragment"
-        android:name="com.example.scooby.scooby.ui.VetFragment"
-        android:label="fragment_vet"
-        tools:layout="@layout/fragment_vet" />
-    <fragment
-        android:id="@+id/boardingFragment"
-        android:name="com.example.scooby.scooby.ui.BoardingFragment"
-        android:label="fragment_boarding"
-        tools:layout="@layout/fragment_boarding" />
-    <fragment
-        android:id="@+id/groomingFragment"
-        android:name="com.example.scooby.scooby.ui.GroomingFragment"
-        android:label="fragment_grooming"
-        tools:layout="@layout/fragment_grooming" />
-    <fragment
-        android:id="@+id/petFriendlyPlacesFragment"
-        android:name="com.example.scooby.scooby.ui.PetFriendlyPlacesFragment"
-        android:label="fragment_pet_friendly_places"
-        tools:layout="@layout/fragment_pet_friendly_places" />
-    <fragment
-        android:id="@+id/trainingFragment"
-        android:name="com.example.scooby.scooby.ui.TrainingFragment"
-        android:label="fragment_training"
-        tools:layout="@layout/fragment_training" />
-    <fragment
-        android:id="@+id/sittingFragment"
-        android:name="com.example.scooby.scooby.ui.SittingFragment"
-        android:label="fragment_sitting"
-        tools:layout="@layout/fragment_sitting" />
-    <fragment
-        android:id="@+id/suppliesFragment"
-        android:name="com.example.scooby.scooby.ui.SuppliesFragment"
-        android:label="fragment_supplies"
-        tools:layout="@layout/fragment_supplies" />
-    <fragment
         android:id="@+id/servicesFragment"
         android:name="com.example.scooby.scooby.ui.ServicesFragment"
         android:label="fragment_services"
         tools:layout="@layout/fragment_services" />
     <fragment
-        android:id="@+id/pawsFragment"
-        android:name="com.example.scooby.scooby.ui.PawsFragment"
-        android:label="fragment_paws"
-        tools:layout="@layout/fragment_paws" />
-    <fragment
-        android:id="@+id/communityFragment"
-        android:name="com.example.scooby.scooby.ui.CommunityFragment"
-        android:label="fragment_community"
-        tools:layout="@layout/fragment_community" />
-    <fragment
-        android:id="@+id/bookingFragment"
-        android:name="com.example.scooby.scooby.ui.BookingFragment"
-        android:label="fragment_booking"
-        tools:layout="@layout/fragment_booking" />
-    <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.scooby.scooby.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_petProfileFragment"
+            app:destination="@id/petProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.scooby.scooby.ui.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/petProfileFragment"
+        android:name="com.example.scooby.scooby.ui.PetProfileFragment"
+        android:label="fragment_pet_profile"
+        tools:layout="@layout/fragment_pet_profile" />
 </navigation>
