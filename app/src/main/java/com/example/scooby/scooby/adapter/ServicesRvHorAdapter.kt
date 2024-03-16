@@ -26,7 +26,6 @@ class ServicesRvHorAdapter(private val arraylist:ArrayList<ServicesRvList>,priva
     override fun onBindViewHolder(holder: ServicesRvHorViewHolder, position: Int) {
         val currentItem = arraylist[position]
         Glide.with(context).load(currentItem.image).into(holder.img)
-//        holder.img.setImageDrawable(currentItem.image.toDrawable())
         holder.name.text = currentItem.name
     }
 }

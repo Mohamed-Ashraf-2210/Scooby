@@ -38,9 +38,6 @@
             android:id="@+id/action_homeFragment_to_boardingFragment"
             app:destination="@id/boardingFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_servicesFragment"
-            app:destination="@id/servicesFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_pawsFragment"
             app:destination="@id/pawsFragment" />
         <action
@@ -52,6 +49,9 @@
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_serviceFragment"
+            app:destination="@id/serviceFragment" />
     </fragment>
     <fragment
         android:id="@+id/inboxFragment"
@@ -99,11 +99,6 @@
         android:label="fragment_supplies"
         tools:layout="@layout/fragment_supplies" />
     <fragment
-        android:id="@+id/servicesFragment"
-        android:name="com.example.scooby.scooby.ui.ServicesFragment"
-        android:label="fragment_services"
-        tools:layout="@layout/fragment_services" />
-    <fragment
         android:id="@+id/pawsFragment"
         android:name="com.example.scooby.scooby.ui.PawsFragment"
         android:label="fragment_paws"
@@ -123,4 +118,9 @@
         android:name="com.example.scooby.scooby.ui.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/serviceFragment"
+        android:name="com.example.scooby.scooby.ui.ServiceFragment"
+        android:label="fragment_service"
+        tools:layout="@layout/fragment_service" />
 </navigation>

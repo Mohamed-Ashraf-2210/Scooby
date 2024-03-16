@@ -76,7 +76,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_blogsFragment)
         }
         binding.servicesSeeMore.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_serviceFragment)
         }
 
         binding.moreIcon.setOnClickListener {

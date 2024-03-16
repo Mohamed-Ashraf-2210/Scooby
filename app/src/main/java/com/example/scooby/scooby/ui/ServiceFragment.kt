@@ -2,32 +2,32 @@ package com.example.scooby.scooby.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.scooby.R
-import com.example.scooby.databinding.FragmentServicesBinding
+import com.example.scooby.databinding.FragmentServiceBinding
 import com.example.scooby.scooby.adapter.ServicesRvHorAdapter
 import com.example.scooby.scooby.data.model.ServicesRvList
 
-class ServicesFragment : Fragment() {
-    private lateinit var mContext: Context
 
-    private var _binding: FragmentServicesBinding? = null
+class ServiceFragment : Fragment() {
+    private var _binding: FragmentServiceBinding? = null
     private val binding get() = _binding!!
     private lateinit var servicesAdapter : ServicesRvHorAdapter
-        override fun onCreateView(
+    private lateinit var mContext: Context
+
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentServicesBinding.inflate(inflater,container,false)
-        mContext = requireContext()
+    ): View? {
+        _binding = FragmentServiceBinding.inflate(layoutInflater,container,false)
         initRv()
+        mContext = requireContext()
+        // Inflate the layout for this fragment
         return binding.root
     }
-
     private fun initRv() {
         val itemList = mutableListOf(
             ServicesRvList(R.drawable.pets,"All"),
@@ -40,9 +40,8 @@ class ServicesFragment : Fragment() {
             ServicesRvList(R.drawable.sitting_dog,"Sitting"),
             ServicesRvList(R.drawable.pet_supplies,"Supplies")
         )
-        servicesAdapter = ServicesRvHorAdapter(itemList as ArrayList,requireContext())
+        servicesAdapter = ServicesRvHorAdapter(itemList as ArrayList,requireActivity())
         binding.RvServicesCircle.adapter = servicesAdapter
     }
-
 
 }
