@@ -86,6 +86,7 @@ class LoginFragment : Fragment() {
             data?.token?.let { TokenManager.saveAuth(this.mContext,Constant.USER_TOKEN, it) }
             TokenManager.saveAuth(this.mContext,Constant.USER_NAME, data?.data?.result?.name ?: "")
             TokenManager.saveAuth(this.mContext,Constant.USER_ID, data?.data?.result?.id ?: "")
+            Constant.id = data!!.data.result.name
             binding.tvMsgError.visibility = View.GONE
             binding.vView.visibility = View.GONE
             binding.emailTextFiled.apply {

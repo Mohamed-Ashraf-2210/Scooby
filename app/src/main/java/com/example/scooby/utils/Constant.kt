@@ -6,4 +6,5 @@ object Constant {
     const val USER_ID = "user_id"
     const val USER_NAME = "user_name"
     const val MY_TAG = "Tag Scooby"
+    var id = ""
 }

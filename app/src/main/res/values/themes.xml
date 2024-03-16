@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/primary</item>
         <item name="colorOnSecondary">@color/black_clear</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >@color/app_background</item>
+        <item name="android:statusBarColor" >@color/white_BG</item>
         <item name="android:windowLightStatusBar">true</item>
 
     </style>
@@ -62,6 +62,12 @@
 
     <style name="outlined_button">
         <item name="materialThemeOverlay">@drawable/outlined_button</item>
+    </style>
+
+    <style name="Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray_line_divider</item>
     </style>
 
 
