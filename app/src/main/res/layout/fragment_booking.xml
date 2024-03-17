@@ -8,7 +8,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_upcoming"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="59dp"
         android:layout_marginEnd="8dp"
@@ -25,7 +25,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_past"
-        android:layout_width="100dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="59dp"
         android:backgroundTint="@color/white_btn_booking"
@@ -34,10 +34,22 @@
         android:textColor="#F2000000"
         android:textSize="10sp"
         app:cornerRadius="100dp"
+        android:paddingHorizontal="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_upcoming"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeColor="#1A0F0F0F"
         app:strokeWidth="0.5dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_booking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_upcoming"
+        tools:listitem="@layout/item_booking_1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
