@@ -20,9 +20,11 @@ class ProfileViewModel: ViewModel() {
         viewModelScope.launch {
             try {
                 val response = profileRepo.getUser(userId)
-                if (response != null) {
+                if (response != null && response.isSuccessful) {
                     _profileResult.value = response.body()
                 }
+                Log.d(Constant.MY_TAG, "Response code: ${response?.code()}")
+                Log.d(Constant.MY_TAG, "Response body: ${response?.body()}")
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
             }
