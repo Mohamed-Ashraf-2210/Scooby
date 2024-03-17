@@ -70,6 +70,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/add_pet_card"
         app:layout_constraintTop_toBottomOf="@id/your_pets"
         tools:listitem="@layout/your_pets_item_home" />
 

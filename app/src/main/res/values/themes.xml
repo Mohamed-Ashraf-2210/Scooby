@@ -76,4 +76,10 @@
         <item name="android:textSize">5sp</item>
     </style>
 
+    <style name="TitleTextAppearance" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#F20F0F0F</item>
+        <item name="fontFamily">@font/roboto_medium</item>
+    </style>
+
 </resources>

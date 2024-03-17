@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -38,6 +40,7 @@ class HomeFragment : Fragment() {
     private lateinit var blogsRV: RecyclerView
     private lateinit var petsRV: RecyclerView
 
+
     @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +48,6 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         init()
-
         return binding.root
     }
 
@@ -96,6 +98,9 @@ class HomeFragment : Fragment() {
 
     @SuppressLint("InflateParams")
     private fun requestsSection() {
+        binding.vetIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+        }
         binding.moreIcon.setOnClickListener {
             val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet, null)
             val dialog = BottomSheetDialog(
