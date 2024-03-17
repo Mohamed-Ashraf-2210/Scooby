@@ -43,7 +43,7 @@ class BlogsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.hide()
+        //(activity as AppCompatActivity).supportActionBar?.hide()
         val navBar : BottomNavigationView = (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.GONE
     }

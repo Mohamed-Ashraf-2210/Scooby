@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -23,8 +24,8 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
+
         init()
-        //MainActivity().hideBottomNavigation()
         binding.editProfile.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
         }
@@ -37,7 +38,7 @@ class ProfileFragment : Fragment() {
 
     private fun init() {
         profileViewModel.apply {
-            getUser()
+            getUser("65db22b7f93993b1a0b35bb3")
             profileResult.observe(viewLifecycleOwner) {
                 getProfileData(it)
             }
@@ -51,6 +52,15 @@ class ProfileFragment : Fragment() {
 //            Constant.id.toString()
         //myPetsRV = binding.myPetsRv
         //myPetsRV.adapter = MyPetsAdapter(it!!,requireContext())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.hide()
+    }
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).supportActionBar?.show()
     }
 
     override fun onDestroyView() {

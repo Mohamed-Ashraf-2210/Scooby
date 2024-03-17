@@ -21,11 +21,10 @@ class ServiceFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentServiceBinding.inflate(layoutInflater,container,false)
         initRv()
         mContext = requireContext()
-        // Inflate the layout for this fragment
         return binding.root
     }
     private fun initRv() {

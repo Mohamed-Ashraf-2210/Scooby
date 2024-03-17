@@ -8,8 +8,8 @@ import retrofit2.http.Path
 
 interface ProfileApi {
 
-    @GET("/scooby/api/user/getuser/65db22b7f93993b1a0b35bb3")
-    suspend fun getUser(): Response<ProfileDetailsResponse>
+    @GET("/scooby/api/user/getuser/{userId}")
+    suspend fun getUser(@Path("userId") userId: String): Response<ProfileDetailsResponse>
 
     companion object {
         fun getApi(): ProfileApi? {
