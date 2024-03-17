@@ -5,8 +5,8 @@ import com.example.scooby.scooby.network.ProfileApi
 import retrofit2.Response
 
 class ProfileRepo {
-    suspend fun getUser(): Response<ProfileDetailsResponse>? {
-        return ProfileApi.getApi()?.getUser()
+    suspend fun getUser(userId: String): Response<ProfileDetailsResponse>? {
+        return ProfileApi.getApi()?.getUser(userId)
     }
 
 }
