@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.scooby.MainActivity
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentProfileBinding
 import com.example.scooby.scooby.adapter.MyPetsAdapter
@@ -40,7 +41,7 @@ class ProfileFragment : Fragment() {
 
     private fun init() {
         profileViewModel.apply {
-            getUser("65db566868eec600486f06a5")
+            getUser("65db22b7f93993b1a0b35bb3")
             profileResult.observe(viewLifecycleOwner) {
                 getProfileData(it)
             }
@@ -50,8 +51,7 @@ class ProfileFragment : Fragment() {
     private fun getProfileData(it: ProfileDetailsResponse?) {
         val data = it?.data?.data
         Glide.with(this).load(data?.profileImage).into(binding.profileImage)
-        binding.userName.text = it?.data?.data?.name
-        //    Constant.id.toString()
+        binding.userName.text = data?.name
         myPetsRV = binding.myPetsRv
         myPetsRV.adapter = MyPetsAdapter(it!!,requireContext())
     }
@@ -59,11 +59,17 @@ class ProfileFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.hide()
+        (activity as AppCompatActivity).apply {
+            supportActionBar?.hide()
+
+        }
+        (activity as MainActivity).hideBottomNavigationView()
+
     }
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity).supportActionBar?.show()
+        (activity as MainActivity).showBottomNavigationView()
     }
 
     override fun onDestroyView() {
