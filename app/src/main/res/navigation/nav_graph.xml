@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.scooby.scooby.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_inboxFragment"
             app:destination="@id/inboxFragment" />
@@ -42,7 +42,7 @@
         android:id="@+id/profileFragment"
         android:name="com.example.scooby.scooby.ui.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
@@ -59,5 +59,11 @@
         android:id="@+id/petProfileFragment"
         android:name="com.example.scooby.scooby.ui.PetProfileFragment"
         android:label="fragment_pet_profile"
-        tools:layout="@layout/fragment_pet_profile" />
+        tools:layout="@layout/fragment_pet_profile">
+        <!--suppress NavigationFile -->
+        <argument
+            android:name="pet_position"
+            app:argType="integer" />
+    </fragment>
+
 </navigation>
