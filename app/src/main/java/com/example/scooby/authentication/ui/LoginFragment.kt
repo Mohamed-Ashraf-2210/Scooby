@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.scooby.MainActivity
 import com.example.scooby.R
 import com.example.scooby.utils.TokenManager
@@ -25,8 +26,7 @@ import com.example.scooby.utils.Constant
 
 class LoginFragment : Fragment() {
 
-    private var _binding: FragmentLoginBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding : FragmentLoginBinding
     private val viewModel by viewModels<AuthViewModel>()
     private lateinit var mContext: Context
 
@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginBinding.inflate(inflater,container,false)
+        binding = FragmentLoginBinding.inflate(inflater,container,false)
         mContext = requireContext()
 
         viewModel.loginResult.observe(viewLifecycleOwner) {
@@ -86,7 +86,6 @@ class LoginFragment : Fragment() {
             data?.token?.let { TokenManager.saveAuth(this.mContext,Constant.USER_TOKEN, it) }
             TokenManager.saveAuth(this.mContext,Constant.USER_NAME, data?.data?.result?.name ?: "")
             TokenManager.saveAuth(this.mContext,Constant.USER_ID, data?.data?.result?.id ?: "")
-            Constant.id = data!!.data.result.name
             binding.tvMsgError.visibility = View.GONE
             binding.vView.visibility = View.GONE
             binding.emailTextFiled.apply {
@@ -119,14 +118,17 @@ class LoginFragment : Fragment() {
         }
     }
     private fun goToHome() {
-        val intent = Intent(mContext, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
-        startActivity(intent)
+        findNavController().apply {
+            popBackStack()
+            navigate(R.id.fragmentContainerView2)
+        }
+//        val intent = Intent(mContext, MainActivity::class.java)
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+//        intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
+//        startActivity(intent)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }

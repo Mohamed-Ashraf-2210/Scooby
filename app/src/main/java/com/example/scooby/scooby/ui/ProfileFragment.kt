@@ -16,11 +16,14 @@ import com.example.scooby.databinding.FragmentProfileBinding
 import com.example.scooby.scooby.adapter.MyPetsAdapter
 import com.example.scooby.scooby.data.model.ProfileDetailsResponse
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.utils.Constant
+import com.example.scooby.utils.TokenManager
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private val profileViewModel by viewModels<ProfileViewModel>()
     private lateinit var myPetsRV: RecyclerView
+    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,12 +43,14 @@ class ProfileFragment : Fragment() {
     
 
     private fun init() {
+        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
         profileViewModel.apply {
-            getUser("65db22b7f93993b1a0b35bb3")
+            getUser(userId)
             profileResult.observe(viewLifecycleOwner) {
                 getProfileData(it)
             }
         }
+        backOffFragment()
     }
 
     private fun getProfileData(it: ProfileDetailsResponse?) {
@@ -56,15 +61,17 @@ class ProfileFragment : Fragment() {
         myPetsRV.adapter = MyPetsAdapter(it!!,requireContext())
     }
 
+    private fun backOffFragment() {
+        binding.backProfile.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).apply {
-            supportActionBar?.hide()
-
-        }
+        (activity as AppCompatActivity).supportActionBar?.hide()
         (activity as MainActivity).hideBottomNavigationView()
-
     }
     override fun onStop() {
         super.onStop()
