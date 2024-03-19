@@ -46,6 +46,7 @@ class ServiceFragment : Fragment() {
 
 
         servicesViewModel.apply {
+            getServicesByFilter("Hotel")
             servicesResultByFilter.observe(viewLifecycleOwner){
                 getServicesByFilter("Hotel")
             }

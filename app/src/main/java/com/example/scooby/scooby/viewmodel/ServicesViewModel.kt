@@ -44,8 +44,8 @@ class ServicesViewModel() : ViewModel() {
                 if (response != null && response.isSuccessful){
                     _servicesResultByFilter.value = response.body()
                 }
-//                Log.d("TEST_FILTER", "Response code: ${response?.code()}")
-                Log.d("TEST_FILTER", "Response body: ${response?.body().toString()}")
+                Log.d("TEST_FILTER", "Response code: ${response?.code()}")
+                Log.d("TEST_FILTER", "Response body: ${response?.body()}")
             } catch (e: Exception) {
                 Log.e("TEST_FILTER", "ERROR FETCHING URLS $e")
             }
