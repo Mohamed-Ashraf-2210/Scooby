@@ -8,4 +8,9 @@ class ServicesRepo {
     suspend fun getServices(): Response<ServicesResponse>? {
         return ServicesApi.getApi()?.getServices()
     }
+
+    suspend fun getServicesByFilter(type:String) :Response<ServicesResponse>?{
+        return ServicesApi.getApi()?.getServicesByFilter(type)
+    }
 }
+
