@@ -9,12 +9,20 @@ import com.example.scooby.scooby.data.model.ServicesResponse
 import com.example.scooby.scooby.repository.ServicesRepo
 import com.example.scooby.utils.Constant
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 class ServicesViewModel() : ViewModel() {
     private val servicesRepo = ServicesRepo()
     private val _servicesResult : MutableLiveData<ServicesResponse?> = MutableLiveData()
     val servicesResult: LiveData<ServicesResponse?>
         get() =_servicesResult
+
+    private val _servicesResultByFilter : MutableLiveData<ServicesResponse?> = MutableLiveData()
+    val servicesResultByFilter:LiveData<ServicesResponse?>
+        get() = _servicesResultByFilter
+
+
+
 
     fun getServices() {
         viewModelScope.launch {
@@ -28,4 +36,23 @@ class ServicesViewModel() : ViewModel() {
             }
         }
     }
+
+    fun getServicesByFilter(type:String){
+        viewModelScope.launch {
+            val response = servicesRepo.getServicesByFilter(type)
+            try {
+                if (response != null && response.isSuccessful){
+                    _servicesResultByFilter.value = response.body()
+                }
+//                Log.d("TEST_FILTER", "Response code: ${response?.code()}")
+                Log.d("TEST_FILTER", "Response body: ${response?.body().toString()}")
+            } catch (e: Exception) {
+                Log.e("TEST_FILTER", "ERROR FETCHING URLS $e")
+            }
+
+
+        }
+    }
+
+
 }

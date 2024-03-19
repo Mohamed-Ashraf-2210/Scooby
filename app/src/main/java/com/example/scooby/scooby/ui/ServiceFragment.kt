@@ -1,46 +1,66 @@
 package com.example.scooby.scooby.ui
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.scooby.R
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.RecyclerView
 import com.example.scooby.databinding.FragmentServiceBinding
-import com.example.scooby.scooby.adapter.ServicesRvHorAdapter
-import com.example.scooby.scooby.data.model.ServicesRvList
+import com.example.scooby.scooby.adapter.ServicesAdapter
+import com.example.scooby.scooby.data.model.ServicesResponse
+import com.example.scooby.scooby.viewmodel.ServicesViewModel
 
+@SuppressLint("InflateParams")
 
 class ServiceFragment : Fragment() {
+    private val servicesViewModel by viewModels<ServicesViewModel>()
+    private lateinit var servicesRV: RecyclerView
     private var _binding: FragmentServiceBinding? = null
     private val binding get() = _binding!!
-    private lateinit var servicesAdapter : ServicesRvHorAdapter
-    private lateinit var mContext: Context
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentServiceBinding.inflate(layoutInflater,container,false)
-        initRv()
-        mContext = requireContext()
+            _binding = FragmentServiceBinding.inflate(inflater,container,false)
+            init()
         return binding.root
     }
-    private fun initRv() {
-        val itemList = mutableListOf(
-            ServicesRvList(R.drawable.pets,"All"),
-            ServicesRvList(R.drawable.veterinarian,"vet"),
-            ServicesRvList(R.drawable.world_animal,"Boarding"),
-            ServicesRvList(R.drawable.grooming,"Grooming"),
-            ServicesRvList(R.drawable.dog_training,"Training"),
-            ServicesRvList(R.drawable.dog_walking,"Walking"),
-            ServicesRvList(R.drawable.pet_taxi,"Taxi"),
-            ServicesRvList(R.drawable.sitting_dog,"Sitting"),
-            ServicesRvList(R.drawable.pet_supplies,"Supplies")
-        )
-        servicesAdapter = ServicesRvHorAdapter(itemList as ArrayList,requireActivity())
-        binding.RvServicesCircle.adapter = servicesAdapter
+
+    private fun init() {
+
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+        servicesViewModel.apply {
+            getServices()
+            servicesResult.observe(viewLifecycleOwner){
+                getServicesData(it)
+            }
+
+        }
+
+
+        servicesViewModel.apply {
+            servicesResultByFilter.observe(viewLifecycleOwner){
+                getServicesByFilter("Hotel")
+            }
+
+        }
+    }
+
+    private fun getServicesData(data: ServicesResponse?) {
+        servicesRV = binding.RvServicesContent
+        servicesRV.adapter = ServicesAdapter(data!!, requireContext())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.RvServicesContent.adapter = null
     }
 
 }

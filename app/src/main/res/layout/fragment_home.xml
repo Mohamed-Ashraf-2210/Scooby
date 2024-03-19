@@ -285,7 +285,9 @@
                 android:textAlignment="textEnd"
                 android:textColor="@color/primary"
                 android:textSize="10sp"
-                tools:ignore="SmallSp" />
+                android:clickable="true"
+                android:focusable="true"
+                />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
