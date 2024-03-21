@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_homeFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_vetFragment"
+            app:destination="@id/vetFragment" />
     </fragment>
     <fragment
         android:id="@+id/inboxFragment"
@@ -73,5 +76,19 @@
         android:name="com.example.scooby.scooby.ui.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/doctorsFragment"
+        android:name="com.example.scooby.scooby.ui.DoctorsFragment"
+        android:label="fragment_doctors"
+        tools:layout="@layout/fragment_doctors" />
+    <fragment
+        android:id="@+id/vetFragment"
+        android:name="com.example.scooby.scooby.ui.VetFragment"
+        android:label="fragment_vet"
+        tools:layout="@layout/fragment_vet" >
+        <action
+            android:id="@+id/action_vetFragment_to_doctorsFragment"
+            app:destination="@id/doctorsFragment" />
+    </fragment>
 
 </navigation>

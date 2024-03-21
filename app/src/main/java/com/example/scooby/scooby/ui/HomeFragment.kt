@@ -99,6 +99,9 @@ class HomeFragment : Fragment() {
     @SuppressLint("InflateParams")
     private fun requestsSection() {
         binding.vetIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
+        }
+        binding.boardingIcon.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
         }
         binding.moreIcon.setOnClickListener {
