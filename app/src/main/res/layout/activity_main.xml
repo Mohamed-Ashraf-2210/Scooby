@@ -27,6 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:theme="@style/ThemeOverlay.AppCompat.Light"
+            android:background="@color/white_BG"
+            android:backgroundTint="@color/white_BG"
             app:title="@string/hi"
             app:titleTextAppearance="@style/TitleTextAppearance"
             app:layout_constraintBottom_toTopOf="@id/fragmentContainerView2"

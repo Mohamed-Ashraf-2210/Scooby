@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="app_background">#FFFFFF</color>
+    <color name="black_95">#F20F0F0F</color>
+    <color name="black_85">#D90F0F0F</color>
     <color name="black_80">#CC0F0F0F</color>
+    <color name="black_75">#BF0F0F0F</color>
     <color name="black_70">#B30F0F0F</color>
+    <color name="black_20">#330F0F0F</color>
     <color name="black_clear">#000000</color>
     <color name="black_font">#F20F0F0F</color>
     <color name="black_edit_text">#0F0F0F</color>

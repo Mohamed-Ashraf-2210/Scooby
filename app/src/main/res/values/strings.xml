@@ -122,5 +122,20 @@ again."</string>
     <string name="other_treatments">Other treatments</string>
     <string name="hi">Hi,</string>
     <string name="filters">Filters</string>
+    <string name="veterinary">Veterinary</string>
+    <string name="meet_the_doctors">Meet the Doctors</string>
+    <string name="scooby_is_dedicated_to_providing_compassionate_quality_healthcare_to_your_pets_and_outstanding_customer_service_to_our_clients">Scooby is dedicated to providing compassionate,\n quality healthcare to your pets and outstanding\n customer service to our clients.</string>
+    <string name="book_now">Book Now</string>
+    <string name="veterinary_pharmacy">Veterinary Pharmacy</string>
+    <string name="all_you_need_for_your_pets_health_care_scooby_delivers_to_your_doorstep">All you need for your pets health care\n Scooby delivers to your doorstep</string>
+    <string name="order_now">Order Now</string>
+    <string name="veterinary_nearby">Veterinary nearby</string>
+    <string name="doctors">Doctors</string>
+    <string name="what_worries_your_pet">What worries your pet?</string>
+    <string name="book">Book</string>
+    <string name="general">General</string>
+    <string name="ears">Ears</string>
+    <string name="injury">Injury</string>
+    <string name="stomach">Stomach</string>
 
 </resources>
