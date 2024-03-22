@@ -23,7 +23,6 @@ class ServicesViewModel() : ViewModel() {
 
 
 
-
     fun getServices() {
         viewModelScope.launch {
             try {
@@ -37,7 +36,7 @@ class ServicesViewModel() : ViewModel() {
         }
     }
 
-    fun getServicesByFilter(type:String){
+    fun getServicesFilter(type:String){
         viewModelScope.launch {
             val response = servicesRepo.getServicesByFilter(type)
             try {
@@ -53,6 +52,7 @@ class ServicesViewModel() : ViewModel() {
 
         }
     }
+
 
 
 }

@@ -39,22 +39,27 @@
 
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/all_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 app:strokeWidth="0dp">
 
                 <LinearLayout
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:focusable="true"
+                    >
 
                     <FrameLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
 
                         <ImageView
+                            android:id="@+id/circle_background"
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:src="@drawable/item_circle" />
@@ -409,13 +414,13 @@
 
     <Button
         android:id="@+id/outlinedButton"
-        style="?attr/materialButtonOutlinedStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/white_BG"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:paddingHorizontal="16dp"
-        android:text="Filters"
+        android:text="@string/filters"
+        android:textSize="10sp"
         android:textColor="@color/black_font"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hor_scroll"
@@ -425,14 +430,14 @@
         android:id="@+id/Rv_Services_Content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="8dp"
+        android:layout_marginHorizontal="16dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/outlinedButton"
-        tools:listitem="@layout/item_services"
         app:spanCount="2"
-        />
+        tools:listitem="@layout/item_services" />
 
 
 

@@ -17,6 +17,7 @@ import com.example.scooby.scooby.adapter.BlogAdapter
 import com.example.scooby.scooby.data.model.BlogResponse
 import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.utils.BaseResponse
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -46,12 +47,18 @@ class BlogsFragment : Fragment() {
         //(activity as AppCompatActivity).supportActionBar?.hide()
         val navBar : BottomNavigationView = (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.GONE
+
+        val appBar : Toolbar = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
+        appBar.visibility = View.GONE
     }
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity).supportActionBar?.show()
         val navBar : BottomNavigationView = (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.VISIBLE
+
+//        val appBar : AppBarLayout = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
+//        appBar.visibility = View.VISIBLE
     }
 
     private fun stopLoading() {
@@ -76,8 +83,6 @@ class BlogsFragment : Fragment() {
     private fun getBlogsData(data:BlogResponse?) {
         blogRV = binding.RvBlogs
         blogRV.adapter = BlogAdapter(data!!,requireContext())
-//        val adapter = BlogAdapter(data!!,requireContext())
-//        binding.RvBlogs.adapter = adapter
     }
 
 }
