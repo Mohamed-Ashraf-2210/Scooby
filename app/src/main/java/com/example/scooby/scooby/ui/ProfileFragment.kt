@@ -30,27 +30,25 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-
+        getUserId()
         init()
-        binding.editProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
-        }
-        binding.favoritesSection.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_petProfileFragment)
-        }
         return binding.root
     }
-    
+
 
     private fun init() {
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        observeViewModel()
+        clickToBack()
+        clickToEdit()
+    }
+
+    private fun observeViewModel() {
         profileViewModel.apply {
             getUser(userId)
             profileResult.observe(viewLifecycleOwner) {
                 getProfileData(it)
             }
         }
-        backOffFragment()
     }
 
     private fun getProfileData(it: ProfileDetailsResponse?) {
@@ -61,12 +59,20 @@ class ProfileFragment : Fragment() {
         myPetsRV.adapter = MyPetsAdapter(it!!,requireContext())
     }
 
-    private fun backOffFragment() {
+    private fun clickToBack() {
         binding.backProfile.setOnClickListener {
             findNavController().popBackStack()
         }
     }
 
+    private fun clickToEdit() {
+        binding.editProfile.setOnClickListener {
+            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
+        }
+    }
+    private fun getUserId() {
+        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+    }
 
     override fun onResume() {
         super.onResume()

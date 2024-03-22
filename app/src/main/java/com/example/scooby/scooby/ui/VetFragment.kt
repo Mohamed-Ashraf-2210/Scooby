@@ -5,14 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.denzcoskun.imageslider.constants.AnimationTypes
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
+import com.bumptech.glide.Glide
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentVetBinding
 import com.example.scooby.scooby.adapter.VetAdapter
@@ -20,8 +17,7 @@ import com.example.scooby.scooby.data.model.OfferResponse
 import com.example.scooby.scooby.data.model.VetResponse
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.VetViewModel
-import kotlin.random.Random
-import kotlin.random.nextInt
+
 
 
 class VetFragment : Fragment() {
@@ -34,40 +30,48 @@ class VetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentVetBinding.inflate(inflater, container, false)
-        binding.btnBookDoctorVet.setOnClickListener {
-            findNavController().navigate(R.id.action_vetFragment_to_doctorsFragment)
-        }
         init()
+        observeOfferViewModel()
         return binding.root
     }
 
     private fun init() {
         observeViewModel()
         backOffFragment()
+        btnBookDoctor()
+    }
+
+    private fun btnBookDoctor() {
+        binding.btnBookDoctorVet.setOnClickListener {
+            findNavController().navigate(R.id.action_vetFragment_to_doctorsFragment)
+        }
     }
 
     private fun observeViewModel() {
         vetViewModel.apply {
             getVet()
             vetResult.observe(viewLifecycleOwner) {
-                getvetData(it)
+                getVetData(it)
             }
         }
+
+    }
+
+    private fun observeOfferViewModel() {
         offerViewModel.apply {
             getOffer()
             offerResult.observe(viewLifecycleOwner) {
-                getOfferData(it)
+                getOneOfferData(it)
             }
         }
     }
-
-    private fun getOfferData(it: OfferResponse?) {
+        private fun getOneOfferData(it: OfferResponse?) {
         val sizeOfList = it?.data?.size
         val randomNumber = (0..<sizeOfList!!).random()
-        binding.offerVetImage.setImageURI(it.data[randomNumber].offerImage.toUri())
+        Glide.with(this).load(it.data[randomNumber].offerImage).into(binding.offerVetImage)
     }
 
-    private fun getvetData(it: VetResponse?) {
+    private fun getVetData(it: VetResponse?) {
         vetRV = binding.veterinaryCardRv
         vetRV.adapter = VetAdapter(it!!, requireContext())
     }

@@ -20,7 +20,6 @@
             android:layout_height="105dp"
             android:layout_marginStart="9dp"
             android:layout_marginTop="13dp"
-            android:src="@drawable/pharmacy_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,11 +30,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="15dp"
             android:fontFamily="@font/roboto_medium"
-            tools:text="Dr Anas El Gazzar"
             android:textColor="@color/primary"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Dr Anas El Gazzar" />
 
         <TextView
             android:id="@+id/rate_doctor_tv"
@@ -44,11 +43,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="9dp"
             android:fontFamily="@font/roboto"
+            android:textColor="@color/black_75"
             android:textSize="8sp"
             app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
             app:layout_constraintTop_toBottomOf="@id/name_doctor_tv"
             tools:ignore="SmallSp"
-            android:textColor="@color/black_75"
             tools:text="4.1" />
 
         <RatingBar
@@ -74,49 +73,57 @@
             android:layout_marginStart="44dp"
             android:layout_marginTop="9dp"
             android:fontFamily="@font/roboto"
+            android:textColor="@color/black_75"
             android:textSize="8sp"
             app:layout_constraintStart_toEndOf="@id/rate_doctor_tv"
             app:layout_constraintTop_toBottomOf="@id/name_doctor_tv"
             tools:ignore="SmallSp"
-            android:textColor="@color/black_75"
             tools:text="(108)" />
 
         <TextView
             android:id="@+id/description_doctor_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="2dp"
+            android:layout_marginEnd="6dp"
+            android:ellipsize="end"
             android:fontFamily="@font/roboto"
+            android:maxLines="1"
+            android:textColor="@color/black_95"
             android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
             app:layout_constraintTop_toBottomOf="@id/rate_doctor_tv"
             tools:ignore="SmallSp"
-            android:textColor="@color/black_95"
             tools:text="3+ years in business" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/man"
-            android:layout_marginTop="4dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/man"
             app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
-            app:layout_constraintTop_toBottomOf="@id/description_doctor_tv"/>
+            app:layout_constraintTop_toBottomOf="@id/description_doctor_tv" />
 
         <TextView
             android:id="@+id/review_doctor_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:textSize="8sp"
-            tools:ignore="SmallSp"
-            android:textColor="@color/black_95"
-            tools:text="3+ years in business"
-            android:layout_marginTop="4dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="6dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/roboto"
+            android:maxLines="1"
+            android:textColor="@color/black_95"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
-            app:layout_constraintTop_toBottomOf="@id/description_doctor_tv"/>
+            app:layout_constraintTop_toBottomOf="@id/description_doctor_tv"
+            tools:ignore="SmallSp"
+            tools:text="3+ years in business" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_book_doctor"

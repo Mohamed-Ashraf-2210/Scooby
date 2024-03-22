@@ -19,7 +19,6 @@
             android:layout_height="137dp"
             android:layout_marginBottom="33dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/pet_boarding_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
