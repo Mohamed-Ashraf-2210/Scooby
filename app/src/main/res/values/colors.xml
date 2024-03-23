@@ -45,4 +45,5 @@
     <color name="menu_background">#FFFBFE</color>
     <color name="white_btn_booking">#FBFBFB</color>
     <color name="Light_purple">#CC513973</color>
+    <color name="black_50">#80000000</color>
 </resources>
