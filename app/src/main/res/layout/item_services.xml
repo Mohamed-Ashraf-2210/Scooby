@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="156dp"
     android:layout_height="192dp"
     app:strokeWidth="0dp"
-    android:layout_margin="8dp"
-    android:backgroundTint="@color/white_card_services"
     app:cardCornerRadius="8dp"
-    app:cardUseCompatPadding="true"
-    app:cardPreventCornerOverlap="true"
+    android:layout_marginStart="16dp"
+    android:layout_marginBottom="16dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,14 +19,22 @@
             android:id="@+id/service_image"
             android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:layout_marginBottom="44dp"
             android:contentDescription="@string/image_services"
             android:scaleType="fitXY"
             android:src="@drawable/pet_boarding_image"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/white_card_services"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/service_image" />
 
         <TextView
             android:id="@+id/service_type"
@@ -39,10 +46,9 @@
             android:textColor="@color/gray_font"
             android:textSize="10sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/service_image"
+            app:layout_constraintTop_toBottomOf="@+id/service_image"
             tools:ignore="SmallSp"
             tools:text="Pet Boarding" />
-
 
         <RatingBar
             android:id="@+id/rate"

@@ -12,8 +12,8 @@ import com.bumptech.glide.Glide
 import com.example.scooby.R
 import com.example.scooby.scooby.data.model.ServicesResponse
 
-class ServicesAdapter(private var servicesList: ServicesResponse, private val context: Context) :
-    RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>() {
+class ServicesMainAdapter(private var servicesList: ServicesResponse, private val context: Context) :
+    RecyclerView.Adapter<ServicesMainAdapter.ServicesViewHolder>() {
 
 
 
@@ -27,7 +27,7 @@ class ServicesAdapter(private var servicesList: ServicesResponse, private val co
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.services_item_home, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_services, parent, false)
         return ServicesViewHolder(itemView)
     }
 
