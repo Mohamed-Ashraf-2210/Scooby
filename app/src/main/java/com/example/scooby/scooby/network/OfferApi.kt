@@ -6,7 +6,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface OfferApi {
-    @GET("/scooby/api/offer")
+    @GET("/scooby/api/offer/getalloffer")
     suspend fun getOffer(): Response<OfferResponse>
 
     companion object{
