@@ -98,6 +98,10 @@ class HomeFragment : Fragment() {
         binding.petFriendlyPlacesIcon.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
         }
+
+        binding.sittingIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_medicineFragment)
+        }
     }
 
     @SuppressLint("InflateParams")

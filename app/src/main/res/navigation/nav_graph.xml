@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_homeFragment_to_vetFragment"
             app:destination="@id/vetFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_medicineFragment"
+            app:destination="@id/medicineFragment" />
     </fragment>
     <fragment
         android:id="@+id/inboxFragment"
@@ -90,5 +93,10 @@
             android:id="@+id/action_vetFragment_to_doctorsFragment"
             app:destination="@id/doctorsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/medicineFragment"
+        android:name="com.example.scooby.scooby.ui.MedicineFragment"
+        android:label="fragment_medicine"
+        tools:layout="@layout/fragment_medicine" />
 
 </navigation>
