@@ -94,6 +94,10 @@ class HomeFragment : Fragment() {
         binding.servicesSeeMore.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
         }
+
+        binding.petFriendlyPlacesIcon.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
+        }
     }
 
     @SuppressLint("InflateParams")

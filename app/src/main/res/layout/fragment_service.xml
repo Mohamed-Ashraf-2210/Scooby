@@ -412,16 +412,19 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/outlinedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/white_BG"
+        android:layout_width="74dp"
+        android:layout_height="36sp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="@string/filters"
         android:textSize="10sp"
+        app:cornerRadius="34dp"
         android:textColor="@color/black_font"
+        app:strokeColor="#99000000"
+        app:strokeWidth="0.5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/hor_scroll"
          />

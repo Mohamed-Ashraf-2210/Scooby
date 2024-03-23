@@ -82,4 +82,14 @@
         <item name="fontFamily">@font/roboto_medium</item>
     </style>
 
+
+    <style name="ShapeAppearanceOverlay.CardView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">82dp</item>
+        <item name="cornerSizeTopLeft">24dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomLeft">24dp</item>
+    </style>
+
+
 </resources>
