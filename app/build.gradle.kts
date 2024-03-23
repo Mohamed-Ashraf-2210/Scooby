@@ -104,6 +104,9 @@ dependencies {
     //  Image Slider
     implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
+    // Image Picker
+    implementation("com.github.dhaval2404:imagepicker:2.1")
+
     // Glide
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")

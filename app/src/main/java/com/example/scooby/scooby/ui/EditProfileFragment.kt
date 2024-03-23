@@ -1,15 +1,14 @@
 package com.example.scooby.scooby.ui
 
 import android.app.Activity
-import android.content.ContentResolver
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,10 +20,7 @@ import com.example.scooby.scooby.data.model.ProfileDetailsResponse
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import com.example.scooby.utils.Constant
 import com.example.scooby.utils.TokenManager
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.asRequestBody
+import com.github.dhaval2404.imagepicker.ImagePicker
 import java.io.File
 import java.io.FileOutputStream
 
@@ -48,31 +44,52 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun pickImage() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        startActivityForResult(intent, REQUEST_IMAGE_PICKER)
+        ImagePicker.with(this)
+            .crop()	    			//Crop image(Optional), Check Customization for more option
+            .compress(1024)			//Final image size will be less than 1 MB(Optional)
+            .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+            .galleryMimeTypes(  //Exclude gif images
+                mimeTypes = arrayOf(
+                    "image/png",
+                    "image/jpg",
+                    "image/jpeg"
+                )
+            )
+            .start()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
-            val imageUri = data?.data
-            if (imageUri != null) {
+    private val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+            if (resultCode == Activity.RESULT_OK) { // requestCode == REQUEST_IMAGE_PICKER &&
+                val imageUri = data?.data!!
+                binding.editImageProfile.setImageURI(imageUri)
                 val file = saveImageToFile(imageUri)
-//                val requestFile: RequestBody = file.asRequestBody("image/*".toMediaTypeOrNull())
-//                val profileImagePart = MultipartBody.Part.createFormData("profileImage", file.name, requestFile)
                 profileViewModel.apply {
-                    uploadImage(userId,file)
+                    uploadImage(userId, file)
                     profileResult.observe(viewLifecycleOwner) {
                         getUserData()
                     }
                 }
-            } else {
-                Log.e(Constant.MY_TAG, "imageUri is Null")
             }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
         }
-    }
+
+//    @Deprecated("Deprecated in Java")
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (resultCode == Activity.RESULT_OK) { // requestCode == REQUEST_IMAGE_PICKER &&
+//            val imageUri = data?.data!!
+//            binding.editImageProfile.setImageURI(imageUri)
+//            val file = saveImageToFile(imageUri)
+//            profileViewModel.apply {
+//                uploadImage(userId, file)
+//                profileResult.observe(viewLifecycleOwner) {
+//                    getUserData()
+//                }
+//            }
+//        }
+//    }
 
     private fun saveImageToFile(imageUri: Uri): File {
         val inputStream = imageUri.let { requireContext().contentResolver.openInputStream(it) }
