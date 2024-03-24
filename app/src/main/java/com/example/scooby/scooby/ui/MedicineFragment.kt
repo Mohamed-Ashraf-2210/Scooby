@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.scooby.R
@@ -55,6 +56,9 @@ class MedicineFragment : Fragment() {
         val randomNumber = (0..<sizeOfList!!).random()
         Glide.with(this).load(it.data[randomNumber].offerImage).into(binding.offerMedImage)
     }
-
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.hide()
+    }
 
 }
