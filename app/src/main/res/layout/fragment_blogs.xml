@@ -43,7 +43,11 @@
         android:id="@+id/Rv_Blogs"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_app_bar"
         tools:listitem="@layout/blog_item" />
 
@@ -51,7 +55,7 @@
         android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
