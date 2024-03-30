@@ -27,7 +27,6 @@ class EditProfileFragment : Fragment() {
     private lateinit var binding: FragmentEditProfileBinding
     private val profileViewModel by viewModels<ProfileViewModel>()
     private lateinit var userId: String
-    private val REQUEST_IMAGE_PICKER = 101
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,9 +42,12 @@ class EditProfileFragment : Fragment() {
 
     private fun pickImage() {
         ImagePicker.with(this)
-            .crop()	    			//Crop image(Optional), Check Customization for more option
-            .compress(1024)			//Final image size will be less than 1 MB(Optional)
-            .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+            .crop()                    //Crop image(Optional), Check Customization for more option
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
             .galleryMimeTypes(  //Exclude gif images
                 mimeTypes = arrayOf(
                     "image/png",
@@ -54,6 +56,8 @@ class EditProfileFragment : Fragment() {
                 )
             )
             .start()
+
+        startForProfileImageResult
     }
 
     private val startForProfileImageResult =
@@ -64,30 +68,15 @@ class EditProfileFragment : Fragment() {
                 val imageUri = data?.data!!
                 binding.editImageProfile.setImageURI(imageUri)
                 val file = saveImageToFile(imageUri)
-                profileViewModel.apply {
-                    uploadImage(userId, file)
-                    profileResult.observe(viewLifecycleOwner) {
-                        getUserData()
-                    }
-                }
+//                profileViewModel.apply {
+//                    uploadImage(userId, file)
+//                    profileResult.observe(viewLifecycleOwner) {
+//                        getUserData()
+//                    }
+//                }
             }
         }
 
-//    @Deprecated("Deprecated in Java")
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (resultCode == Activity.RESULT_OK) { // requestCode == REQUEST_IMAGE_PICKER &&
-//            val imageUri = data?.data!!
-//            binding.editImageProfile.setImageURI(imageUri)
-//            val file = saveImageToFile(imageUri)
-//            profileViewModel.apply {
-//                uploadImage(userId, file)
-//                profileResult.observe(viewLifecycleOwner) {
-//                    getUserData()
-//                }
-//            }
-//        }
-//    }
 
     private fun saveImageToFile(imageUri: Uri): File {
         val inputStream = imageUri.let { requireContext().contentResolver.openInputStream(it) }
