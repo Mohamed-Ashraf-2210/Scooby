@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.scooby.MainActivity
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.BlogHomeAdapter
@@ -146,6 +147,15 @@ class HomeFragment : Fragment() {
         blogsRV.adapter = BlogHomeAdapter(data!!, requireContext())
     }
     // endregion
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity).supportActionBar?.show()
+    }
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity).supportActionBar?.hide()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
