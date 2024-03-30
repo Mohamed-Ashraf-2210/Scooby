@@ -44,6 +44,7 @@ class ServiceFragment : Fragment() {
     private fun callBackButton() {
 
         binding.allBtn.setOnClickListener {
+            servicesViewModel.getServicesFilter("sdsdf")
 
         }
 
@@ -66,6 +67,12 @@ class ServiceFragment : Fragment() {
             getServices()
             servicesResult.observe(viewLifecycleOwner){
                 getServicesDataMain(it)
+            }
+        }
+
+        servicesViewModel.servicesResultByFilter.observe(viewLifecycleOwner){
+            it.let {
+                servicesAdapter
             }
         }
 

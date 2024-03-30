@@ -11,16 +11,11 @@ interface ServicesApi {
     suspend fun getServices(): Response<ServicesResponse>
     //Get all services
 
-    @GET("/scooby/api/services/getService")
+    @GET("/scooby/api/services/getService?{filter}")
     suspend fun getServicesByFilter(
         @Query("filter") filter:String
     ): Response<ServicesResponse>
     //getServicesByFilter
-
-
-
-
-
 
 
     companion object {
