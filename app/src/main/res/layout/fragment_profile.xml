@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_BG"
     android:orientation="vertical"
-    tools:context=".scooby.ui.ProfileFragment">
+    tools:context=".scooby.profileUser.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -100,7 +100,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/user_name" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <RelativeLayout
                 android:id="@+id/my_pets_layout"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
@@ -113,30 +113,23 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/my_pets_rv"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintHorizontal_weight="2"
+                    tools:itemCount="4"
                     android:orientation="horizontal"
+                    android:layout_alignParentStart="true"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    app:layout_constraintEnd_toStartOf="@+id/add_pet_card"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     tools:listitem="@layout/your_pets_item_home" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/add_pet_card"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:visibility="visible"
-                    app:layout_constraintHorizontal_weight="1"
                     app:cardCornerRadius="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     android:background="@color/white_BG"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/my_pets_rv"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_toEndOf="@id/my_pets_rv"
                     app:strokeWidth="0dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -168,7 +161,7 @@
                             app:layout_constraintTop_toBottomOf="@id/add_pet_icon" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
 
 
             <View
