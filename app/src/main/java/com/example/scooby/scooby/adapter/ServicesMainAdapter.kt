@@ -15,6 +15,15 @@ import com.example.scooby.scooby.data.model.ServicesResponse
 class ServicesMainAdapter(private var servicesList: ServicesResponse, private val context: Context) :
     RecyclerView.Adapter<ServicesMainAdapter.ServicesViewHolder>() {
 
+    private var servicessList: List<ServicesResponse> = listOf() // List to hold the services data
+
+    // Method to update the services list
+    fun updateServices(newServicesList: List<ServicesResponse>) {
+        servicessList = newServicesList
+        notifyDataSetChanged()
+    }
+
+
 
 
     class ServicesViewHolder(iteView: View) : RecyclerView.ViewHolder(iteView) {

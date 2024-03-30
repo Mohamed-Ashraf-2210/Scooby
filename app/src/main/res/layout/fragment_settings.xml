@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".scooby.ui.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <include  layout="@layout/item_medicine">
     </include>
 

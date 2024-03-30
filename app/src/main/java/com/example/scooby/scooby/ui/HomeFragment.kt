@@ -100,7 +100,6 @@ class HomeFragment : Fragment() {
         }
 
         binding.sittingIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_medicineFragment)
         }
     }
 

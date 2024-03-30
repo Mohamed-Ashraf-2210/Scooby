@@ -56,7 +56,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_settings -> {
                     // Navigate to the settings destination
-                    navController.navigate(R.id.settingsFragment)
+                }
+                R.id.toHomeFragment ->{
+                    navController.navigate(R.id.toHomeFragment)
                 }
                 // Add more cases for other menu items if needed
             }

@@ -44,8 +44,7 @@ class ServiceFragment : Fragment() {
     private fun callBackButton() {
 
         binding.allBtn.setOnClickListener {
-            servicesViewModel.getServicesFilter("sdsdf")
-
+            servicesViewModel.getServicesFilter("Hotel")
         }
 
     }
@@ -70,9 +69,9 @@ class ServiceFragment : Fragment() {
             }
         }
 
-        servicesViewModel.servicesResultByFilter.observe(viewLifecycleOwner){
-            it.let {
-                servicesAdapter
+        servicesViewModel.apply {
+            servicesResult.observe(viewLifecycleOwner){
+                servicesResultByFilter
             }
         }
 
