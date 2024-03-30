@@ -120,4 +120,7 @@ dependencies {
     // Swipe Refresh
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
 
+    //spark Button
+    implementation("com.github.varunest:sparkbutton:1.0.6")
+
 }

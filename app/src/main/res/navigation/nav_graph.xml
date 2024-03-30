@@ -3,92 +3,96 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/toHomeFragment">
+    <navigation
+        android:id="@+id/toHomeFragment"
+        app:startDestination="@id/homeFragment2">
 
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.example.scooby.scooby.ui.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home">
-        <action
-            android:id="@+id/action_homeFragment_to_inboxFragment"
-            app:destination="@id/inboxFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_blogsFragment"
-            app:destination="@id/blogsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_servicesFragment"
-            app:destination="@id/servicesFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_settingsFragment"
-            app:destination="@id/settingsFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_vetFragment"
-            app:destination="@id/vetFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/inboxFragment"
-        android:name="com.example.scooby.scooby.ui.InboxFragment"
-        android:label="fragment_inbox"
-        tools:layout="@layout/fragment_inbox" />
-    <fragment
-        android:id="@+id/blogsFragment"
-        android:name="com.example.scooby.scooby.ui.BlogsFragment"
-        android:label="fragment_blogs"
-        tools:layout="@layout/fragment_blogs" />
-    <fragment
-        android:id="@+id/servicesFragment"
-        android:name="com.example.scooby.scooby.ui.ServiceFragment"
-        android:label="fragment_services"
-        tools:layout="@layout/fragment_service" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.scooby.scooby.profileUser.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile">
-        <action
-            android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_petProfileFragment"
-            app:destination="@id/petProfileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="com.example.scooby.scooby.profileUser.EditProfileFragment"
-        android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
-    <fragment
-        android:id="@+id/petProfileFragment"
-        android:name="com.example.scooby.scooby.profileUser.PetProfileFragment"
-        android:label="fragment_pet_profile"
-        tools:layout="@layout/fragment_pet_profile">
-        <!--suppress NavigationFile -->
-        <argument
-            android:name="pet_position"
-            app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.example.scooby.scooby.ui.SettingsFragment"
-        android:label="fragment_settings"
-        tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/doctorsFragment"
-        android:name="com.example.scooby.scooby.ui.DoctorsFragment"
-        android:label="fragment_doctors"
-        tools:layout="@layout/fragment_doctors" />
-    <fragment
-        android:id="@+id/vetFragment"
-        android:name="com.example.scooby.scooby.ui.VetFragment"
-        android:label="fragment_vet"
-        tools:layout="@layout/fragment_vet" >
-        <action
-            android:id="@+id/action_vetFragment_to_doctorsFragment"
-            app:destination="@id/doctorsFragment" />
-    </fragment>
+        <fragment
+            android:id="@+id/homeFragment2"
+            android:name="com.example.scooby.scooby.ui.HomeFragment"
+            android:label="fragment_home"
+            tools:layout="@layout/fragment_home">
+            <action
+                android:id="@+id/action_homeFragment_to_blogsFragment"
+                app:destination="@id/blogsFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_servicesFragment"
+                app:destination="@id/servicesFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_profileFragment"
+                app:destination="@id/profileFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_vetFragment"
+                app:destination="@id/vetFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_medicineFragment"
+                app:destination="@id/medicineFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/blogsFragment"
+            android:name="com.example.scooby.scooby.ui.BlogsFragment"
+            android:label="fragment_blogs"
+            tools:layout="@layout/fragment_blogs" />
+        <fragment
+            android:id="@+id/servicesFragment"
+            android:name="com.example.scooby.scooby.ui.ServiceFragment"
+            android:label="fragment_services"
+            tools:layout="@layout/fragment_service" />
+        <fragment
+            android:id="@+id/profileFragment"
+            android:name="com.example.scooby.scooby.ui.ProfileFragment"
+            android:label="fragment_profile"
+            tools:layout="@layout/fragment_profile">
+            <action
+                android:id="@+id/action_profileFragment_to_editProfileFragment"
+                app:destination="@id/editProfileFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_petProfileFragment"
+                app:destination="@id/petProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/editProfileFragment"
+            android:name="com.example.scooby.scooby.ui.EditProfileFragment"
+            android:label="fragment_edit_profile"
+            tools:layout="@layout/fragment_edit_profile" />
+        <fragment
+            android:id="@+id/petProfileFragment"
+            android:name="com.example.scooby.scooby.ui.PetProfileFragment"
+            android:label="fragment_pet_profile"
+            tools:layout="@layout/fragment_pet_profile">
+            <!--suppress NavigationFile -->
+            <argument
+                android:name="pet_position"
+                app:argType="integer" />
+        </fragment>
+        <fragment
+            android:id="@+id/doctorsFragment"
+            android:name="com.example.scooby.scooby.ui.DoctorsFragment"
+            android:label="fragment_doctors"
+            tools:layout="@layout/fragment_doctors" />
+        <fragment
+            android:id="@+id/vetFragment"
+            android:name="com.example.scooby.scooby.ui.VetFragment"
+            android:label="fragment_vet"
+            tools:layout="@layout/fragment_vet" >
+            <action
+                android:id="@+id/action_vetFragment_to_doctorsFragment"
+                app:destination="@id/doctorsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/medicineFragment"
+            android:name="com.example.scooby.scooby.ui.MedicineFragment"
+            android:label="fragment_medicine"
+            tools:layout="@layout/fragment_medicine" />
+
+    </navigation>
+
+    <navigation
+        android:id="@+id/toPawsFragment"
+        app:startDestination="">
+    </navigation>
+
+
 
 </navigation>

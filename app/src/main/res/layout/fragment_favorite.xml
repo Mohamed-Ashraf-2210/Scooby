@@ -6,14 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".scooby.ui.FavoriteFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white_tool_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Favorites"
+            android:textColor="@color/black_font"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/back_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/arrow_left_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="19dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_all"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="All"
+        android:textSize="10sp"
+        app:cornerRadius="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_app_bar"
+        app:strokeColor="#1A0F0F0F"
+        app:strokeWidth="0.5dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_adopt_Me"
+        android:layout_width="100sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="72dp"
+        android:backgroundTint="#FBFBFB"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Adopt me"
+        android:textColor="@color/black_95"
+        android:textSize="10sp"
+        app:cornerRadius="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_all"
+        app:layout_constraintTop_toBottomOf="@+id/top_app_bar"
+        app:strokeColor="#1A0F0F0F"
+        app:strokeWidth="0.5dp" />
+
+    <TextView
+        android:id="@+id/num_of_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="39dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="4"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_all" />
+
+    <TextView
+        android:id="@+id/tv_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:layout_marginStart="5dp"
+        android:text="Items"
+        android:textSize="12sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/num_of_item"
+        app:layout_constraintStart_toEndOf="@id/num_of_item" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/favorites"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_items"
+        app:layout_constraintStart_toEndOf="@id/tv_items"
+        android:drawableLeft="@drawable/ic_lock"
+        android:layout_marginStart="5dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/num_of_item"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="21dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/item_medicine"
+        app:spanCount="2"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
