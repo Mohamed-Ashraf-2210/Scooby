@@ -1,7 +1,6 @@
 package com.example.scooby
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -11,7 +10,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.scooby.databinding.ActivityMainBinding
-import com.example.scooby.utils.Constant
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,6 +52,7 @@ class MainActivity : AppCompatActivity() {
                     // Navigate to the profile destination
                     navController.navigate(R.id.profileFragment)
                 }
+
                 R.id.nav_settings -> {
                     // Navigate to the settings destination
                 }
@@ -78,9 +77,11 @@ class MainActivity : AppCompatActivity() {
                 binding.drawerLayout.openDrawer(GravityCompat.START)
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }
+
     override fun onBackPressed() {
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity() {
     fun hideBottomNavigationView() {
         binding.bottomNavigationView.visibility = View.GONE
     }
+
     fun showBottomNavigationView() {
         binding.bottomNavigationView.visibility = View.VISIBLE
     }

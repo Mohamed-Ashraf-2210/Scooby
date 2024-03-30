@@ -63,18 +63,13 @@ class BlogsFragment : Fragment() {
 
     private fun stopLoading() {
         binding.loading.visibility = View.GONE
+        binding.RvBlogs.visibility = View.VISIBLE
     }
-
-
-
-    private fun showLoading() {
-        binding.loading.visibility = View.VISIBLE
-    }
-
     private fun initGetBlog() {
         blogsViewModel.apply {
             getBlogs()
             blogResult.observe(viewLifecycleOwner) {
+                stopLoading()
                 getBlogsData(it)
             }
         }

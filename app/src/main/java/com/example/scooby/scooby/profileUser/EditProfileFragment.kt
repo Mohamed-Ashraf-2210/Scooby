@@ -1,7 +1,6 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.profileUser
 
 import android.app.Activity
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -135,13 +133,11 @@ class EditProfileFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.hide()
         (activity as MainActivity).hideBottomNavigationView()
     }
 
     override fun onStop() {
         super.onStop()
-        (activity as AppCompatActivity).supportActionBar?.show()
         (activity as MainActivity).showBottomNavigationView()
     }
 }
