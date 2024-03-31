@@ -6,10 +6,10 @@
     app:startDestination="@id/toHomeFragment">
     <navigation
         android:id="@+id/toHomeFragment"
-        app:startDestination="@id/homeFragment2">
+        app:startDestination="@id/homeFragment">
 
         <fragment
-            android:id="@+id/homeFragment2"
+            android:id="@+id/homeFragment"
             android:name="com.example.scooby.scooby.ui.HomeFragment"
             android:label="fragment_home"
             tools:layout="@layout/fragment_home">
@@ -41,7 +41,7 @@
             tools:layout="@layout/fragment_service" />
         <fragment
             android:id="@+id/profileFragment"
-            android:name="com.example.scooby.scooby.ui.ProfileFragment"
+            android:name="com.example.scooby.scooby.profileUser.ProfileFragment"
             android:label="fragment_profile"
             tools:layout="@layout/fragment_profile">
             <action
@@ -53,12 +53,12 @@
         </fragment>
         <fragment
             android:id="@+id/editProfileFragment"
-            android:name="com.example.scooby.scooby.ui.EditProfileFragment"
+            android:name="com.example.scooby.scooby.profileUser.EditProfileFragment"
             android:label="fragment_edit_profile"
             tools:layout="@layout/fragment_edit_profile" />
         <fragment
             android:id="@+id/petProfileFragment"
-            android:name="com.example.scooby.scooby.ui.PetProfileFragment"
+            android:name="com.example.scooby.scooby.profileUser.PetProfileFragment"
             android:label="fragment_pet_profile"
             tools:layout="@layout/fragment_pet_profile">
             <!--suppress NavigationFile -->
@@ -75,7 +75,7 @@
             android:id="@+id/vetFragment"
             android:name="com.example.scooby.scooby.ui.VetFragment"
             android:label="fragment_vet"
-            tools:layout="@layout/fragment_vet" >
+            tools:layout="@layout/fragment_vet">
             <action
                 android:id="@+id/action_vetFragment_to_doctorsFragment"
                 app:destination="@id/doctorsFragment" />
@@ -90,9 +90,34 @@
 
     <navigation
         android:id="@+id/toPawsFragment"
-        app:startDestination="">
+        app:startDestination="@id/pawsFragment">
+
+        <fragment
+            android:id="@+id/pawsFragment"
+            android:name="com.example.scooby.scooby.ui.PawsFragment"
+            android:label="fragment_paws"
+            tools:layout="@layout/fragment_paws" />
+
     </navigation>
 
+    <navigation
+        android:id="@+id/toBookingFragment"
+        app:startDestination="@id/bookingFragment">
+        <fragment
+            android:id="@+id/bookingFragment"
+            android:name="com.example.scooby.scooby.ui.BookingFragment"
+            android:label="fragment_booking"
+            tools:layout="@layout/fragment_booking" />
+    </navigation>
 
+    <navigation
+        android:id="@+id/toCommunityFragment"
+        app:startDestination="@id/communityFragment">
+        <fragment
+            android:id="@+id/communityFragment"
+            android:name="com.example.scooby.scooby.ui.CommunityFragment"
+            android:label="fragment_community"
+            tools:layout="@layout/fragment_community" />
+    </navigation>
 
 </navigation>

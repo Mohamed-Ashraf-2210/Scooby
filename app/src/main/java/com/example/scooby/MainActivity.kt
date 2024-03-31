@@ -27,6 +27,33 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView2) as NavHostFragment
         navController = navHostFragment.navController
 
+        binding.bottomNavigationView.setupWithNavController(navController)
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.toHomeFragment -> {
+                    navController.navigate(R.id.toHomeFragment)
+                    true
+                }
+
+                R.id.toPawsFragment -> {
+                    navController.navigate(R.id.toPawsFragment)
+                    true
+                }
+
+                R.id.toCommunityFragment -> {
+                    navController.navigate(R.id.toCommunityFragment)
+                    true
+                }
+
+                R.id.toBookingFragment -> {
+                    navController.navigate(R.id.toBookingFragment)
+                    true
+                }
+
+                else -> false
+            }
+        }
+
         binding.apply {
             val toggle = ActionBarDrawerToggle(
                 this@MainActivity,
@@ -55,9 +82,6 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.nav_settings -> {
                     // Navigate to the settings destination
-                }
-                R.id.toHomeFragment ->{
-                    navController.navigate(R.id.toHomeFragment)
                 }
                 // Add more cases for other menu items if needed
             }
