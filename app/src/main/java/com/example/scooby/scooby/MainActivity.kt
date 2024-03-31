@@ -1,4 +1,4 @@
-package com.example.scooby
+package com.example.scooby.scooby
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.scooby.R
 import com.example.scooby.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

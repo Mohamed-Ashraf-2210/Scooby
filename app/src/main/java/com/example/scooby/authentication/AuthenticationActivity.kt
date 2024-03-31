@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.fragment.NavHostFragment
-import com.example.scooby.MainActivity
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.R
 import com.example.scooby.databinding.ActivityAuthenticationBinding
 import com.example.data.Constant

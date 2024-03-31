@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.profileUser
+package com.example.scooby.scooby.userProfile.fragment
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -12,7 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.scooby.MainActivity
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.databinding.FragmentPetProfileBinding
 import com.example.domain.profile.ProfileDetailsResponse
 import com.example.scooby.scooby.viewmodel.ProfileViewModel

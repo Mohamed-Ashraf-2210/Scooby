@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
-import com.example.scooby.MainActivity
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentOnboardingBinding
 

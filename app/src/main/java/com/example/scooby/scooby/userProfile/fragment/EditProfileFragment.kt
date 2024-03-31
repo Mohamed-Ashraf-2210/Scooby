@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.profileUser
+package com.example.scooby.scooby.userProfile.fragment
 
 import android.app.Activity
 import android.net.Uri
@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.scooby.MainActivity
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.databinding.FragmentEditProfileBinding
 import com.example.domain.profile.ProfileDetailsResponse
 import com.example.scooby.scooby.viewmodel.ProfileViewModel

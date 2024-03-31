@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.adapter
+package com.example.scooby.scooby.userProfile
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.scooby.R
 import com.example.domain.profile.ProfileDetailsResponse
-import com.example.scooby.scooby.profileUser.ProfileFragmentDirections
 
 class MyPetsAdapter(private val myPetsList: ProfileDetailsResponse, private val context: Context) :
 RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>(){
@@ -23,7 +22,7 @@ RecyclerView.Adapter<MyPetsAdapter.MyPetsViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPetsViewHolder {
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.your_pets_item_home, parent, false)
-        return MyPetsAdapter.MyPetsViewHolder(itemView)
+        return MyPetsViewHolder(itemView)
     }
 
     override fun getItemCount() = myPetsList.data.data.pets.size

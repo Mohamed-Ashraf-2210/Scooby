@@ -38,7 +38,7 @@
             tools:layout="@layout/fragment_service" />
         <fragment
             android:id="@+id/profileFragment"
-            android:name="com.example.scooby.scooby.profileUser.ProfileFragment"
+            android:name="com.example.scooby.scooby.userProfile.fragment.ProfileFragment"
             android:label="fragment_profile"
             tools:layout="@layout/fragment_profile">
             <action
@@ -50,12 +50,12 @@
         </fragment>
         <fragment
             android:id="@+id/editProfileFragment"
-            android:name="com.example.scooby.scooby.profileUser.EditProfileFragment"
+            android:name="com.example.scooby.scooby.userProfile.fragment.EditProfileFragment"
             android:label="fragment_edit_profile"
             tools:layout="@layout/fragment_edit_profile" />
         <fragment
             android:id="@+id/petProfileFragment"
-            android:name="com.example.scooby.scooby.profileUser.PetProfileFragment"
+            android:name="com.example.scooby.scooby.userProfile.fragment.PetProfileFragment"
             android:label="fragment_pet_profile"
             tools:layout="@layout/fragment_pet_profile">
             <!--suppress NavigationFile -->
