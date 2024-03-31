@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -18,10 +17,10 @@ import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.PetsHomeAdapter
 import com.example.scooby.scooby.adapter.ServicesAdapter
-import com.example.domain.pet.AllPetsResponse
-import com.example.domain.blog.BlogResponse
-import com.example.domain.offer.OfferResponse
-import com.example.domain.services.ServicesResponse
+import com.example.scooby.scooby.data.model.AllPetsResponse
+import com.example.scooby.scooby.data.model.BlogResponse
+import com.example.scooby.scooby.data.model.OfferResponse
+import com.example.scooby.scooby.data.model.ServicesResponse
 import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.PetsViewModel
@@ -30,24 +29,21 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private var binding: FragmentHomeBinding? = null
     private val servicesViewModel by viewModels<ServicesViewModel>()
     private val blogsViewModel by viewModels<BlogViewModel>()
     private val petsViewModel by viewModels<PetsViewModel>()
     private val offerViewModel by viewModels<OfferViewModel>()
-    private lateinit var servicesRV: RecyclerView
-    private lateinit var blogsRV: RecyclerView
-    private lateinit var petsRV: RecyclerView
 
 
     @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         init()
-        return binding.root
+        return binding?.root
     }
 
     private fun init() {
@@ -60,64 +56,68 @@ class HomeFragment : Fragment() {
         servicesViewModel.apply {
             getServices()
             servicesResult.observe(viewLifecycleOwner) {
-                getServicesData(it)
+                if (it != null)
+                    getServicesData(it)
             }
         }
 
         petsViewModel.apply {
             getPets()
             petsResult.observe(viewLifecycleOwner) {
-                getPetsData(it)
+                if (it != null)
+                    getPetsData(it)
             }
         }
 
         blogsViewModel.apply {
             getBlogs()
             blogResult.observe(viewLifecycleOwner) {
-                getBlogsData(it)
+                if (it != null)
+                    getBlogsData(it)
             }
         }
 
         offerViewModel.apply {
             getOffer()
             offerResult.observe(viewLifecycleOwner) {
-                getOfferData(it)
+                if (it != null)
+                    getOfferData(it)
             }
         }
     }
 
     private fun seeMore() {
-        binding.blogsSeeMore.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_blogsFragment)
-        }
-        binding.servicesSeeMore.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
-        }
-
-        binding.petFriendlyPlacesIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
-        }
-
-        binding.sittingIcon.setOnClickListener {
+        binding?.apply {
+            blogsSeeMore.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_blogsFragment)
+            }
+            servicesSeeMore.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
+            }
+            petFriendlyPlacesIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
+            }
         }
     }
 
     @SuppressLint("InflateParams")
     private fun requestsSection() {
-        binding.vetIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
-        }
-        binding.boardingIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-        }
-        binding.moreIcon.setOnClickListener {
-            val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet, null)
-            val dialog = BottomSheetDialog(
-                requireContext(),
-                com.google.android.material.R.style.Theme_Material3_Light_BottomSheetDialog
-            )
-            dialog.setContentView(dialogView)
-            dialog.show()
+        binding?.apply {
+            vetIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
+            }
+            boardingIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+            }
+            moreIcon.setOnClickListener {
+                val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet, null)
+                val dialog = BottomSheetDialog(
+                    requireContext(),
+                    com.google.android.material.R.style.Theme_Material3_Light_BottomSheetDialog
+                )
+                dialog.setContentView(dialogView)
+                dialog.show()
+            }
         }
     }
 
@@ -129,23 +129,20 @@ class HomeFragment : Fragment() {
         for (i in 0..<sizeOfList!!) {
             imgList.add(SlideModel(data.data[i].offerImage))
         }
-        binding.imageSlider.setImageList(imgList, ScaleTypes.CENTER_CROP)
-        binding.imageSlider.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
+        binding?.imageSlider?.setImageList(imgList, ScaleTypes.FIT)
+        binding?.imageSlider?.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
     }
 
     private fun getServicesData(data: ServicesResponse?) {
-        servicesRV = binding.servicesRv
-        servicesRV.adapter = ServicesAdapter(data!!, requireContext())
+        binding?.servicesRv?.adapter = ServicesAdapter(data!!, requireContext())
     }
 
     private fun getPetsData(data: AllPetsResponse?) {
-        petsRV = binding.petsRv
-        petsRV.adapter = PetsHomeAdapter(data!!, requireContext())
+        binding?.petsRv?.adapter = PetsHomeAdapter(data!!, requireContext())
     }
 
     private fun getBlogsData(data: BlogResponse?) {
-        blogsRV = binding.blogsRv
-        blogsRV.adapter = BlogHomeAdapter(data!!, requireContext())
+        binding?.blogsRv?.adapter = BlogHomeAdapter(data!!, requireContext())
     }
     // endregion
 
@@ -153,6 +150,7 @@ class HomeFragment : Fragment() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.show()
     }
+
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity).supportActionBar?.hide()
@@ -160,8 +158,10 @@ class HomeFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.servicesRv.adapter = null
-        binding.petsRv.adapter = null
-        binding.petsRv.adapter = null
+        binding?.apply {
+            servicesRv.adapter = null
+            petsRv.adapter = null
+            petsRv.adapter = null
+        }
     }
 }
