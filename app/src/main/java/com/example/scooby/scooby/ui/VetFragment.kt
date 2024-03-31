@@ -10,11 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.domain.offer.OfferResponse
+import com.example.domain.vet.VetResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentVetBinding
 import com.example.scooby.scooby.adapter.VetAdapter
-import com.example.scooby.scooby.data.model.OfferResponse
-import com.example.scooby.scooby.data.model.VetResponse
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.VetViewModel
 
