@@ -25,9 +25,6 @@
             <action
                 android:id="@+id/action_homeFragment_to_vetFragment"
                 app:destination="@id/vetFragment" />
-            <action
-                android:id="@+id/action_homeFragment_to_medicineFragment"
-                app:destination="@id/medicineFragment" />
         </fragment>
         <fragment
             android:id="@+id/blogsFragment"
@@ -79,6 +76,9 @@
             <action
                 android:id="@+id/action_vetFragment_to_doctorsFragment"
                 app:destination="@id/doctorsFragment" />
+            <action
+                android:id="@+id/action_vetFragment_to_medicineFragment"
+                app:destination="@id/medicineFragment" />
         </fragment>
         <fragment
             android:id="@+id/medicineFragment"
