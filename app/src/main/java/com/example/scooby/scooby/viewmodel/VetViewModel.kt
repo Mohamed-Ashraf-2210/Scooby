@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.scooby.scooby.data.model.DoctorsResponse
-import com.example.scooby.scooby.data.model.VetResponse
-import com.example.scooby.scooby.repository.VetRepo
-import com.example.scooby.utils.Constant
+import com.example.domain.doctors.DoctorsResponse
+import com.example.domain.vet.VetResponse
+import com.example.data.repository.VetRepo
+import com.example.data.Constant
 import kotlinx.coroutines.launch
 
 class VetViewModel : ViewModel()  {

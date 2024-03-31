@@ -10,7 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.scooby.R
-import com.example.scooby.scooby.data.model.ProfileDetailsResponse
+import com.example.domain.profile.ProfileDetailsResponse
 import com.example.scooby.scooby.profileUser.ProfileFragmentDirections
 
 class MyPetsAdapter(private val myPetsList: ProfileDetailsResponse, private val context: Context) :

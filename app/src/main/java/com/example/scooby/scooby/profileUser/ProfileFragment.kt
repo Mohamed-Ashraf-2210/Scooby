@@ -13,10 +13,10 @@ import com.example.scooby.MainActivity
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentProfileBinding
 import com.example.scooby.scooby.adapter.MyPetsAdapter
-import com.example.scooby.scooby.data.model.ProfileDetailsResponse
+import com.example.domain.profile.ProfileDetailsResponse
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
-import com.example.scooby.utils.Constant
-import com.example.scooby.utils.TokenManager
+import com.example.data.Constant
+import com.example.scooby.TokenManager
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding

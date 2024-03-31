@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.example.scooby.R
 import com.example.scooby.databinding.FragmentMedicineBinding
-import com.example.scooby.databinding.FragmentServiceBinding
-import com.example.scooby.scooby.data.model.OfferResponse
+import com.example.domain.offer.OfferResponse
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 
 class MedicineFragment : Fragment() {

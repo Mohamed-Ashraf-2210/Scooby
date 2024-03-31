@@ -6,9 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.scooby.scooby.data.model.OfferResponse
-import com.example.scooby.scooby.repository.OfferRepo
-import com.example.scooby.utils.Constant
+import com.example.domain.offer.OfferResponse
+import com.example.data.repository.OfferRepo
+import com.example.data.Constant
 import kotlinx.coroutines.launch
 
 class OfferViewModel (application: Application) : AndroidViewModel(application) {

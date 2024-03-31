@@ -13,7 +13,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.scooby.R
 import com.example.scooby.utils.BaseResponse
-import com.example.scooby.authentication.data.model.ForgotPasswordResponse
+import com.example.domain.authentication.ForgotPasswordResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentForgotPasswordBinding
 

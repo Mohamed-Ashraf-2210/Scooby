@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.scooby.R
-import com.example.scooby.scooby.data.model.BlogResponse
+import com.example.domain.blog.BlogResponse
 
 class BlogHomeAdapter(private val blogList: BlogResponse, private val context: Context) :
     RecyclerView.Adapter<BlogHomeAdapter.BlogHomeViewHolder>() {

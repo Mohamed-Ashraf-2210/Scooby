@@ -14,10 +14,10 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.scooby.MainActivity
 import com.example.scooby.databinding.FragmentPetProfileBinding
-import com.example.scooby.scooby.data.model.ProfileDetailsResponse
+import com.example.domain.profile.ProfileDetailsResponse
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
-import com.example.scooby.utils.Constant
-import com.example.scooby.utils.TokenManager
+import com.example.data.Constant
+import com.example.scooby.TokenManager
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date

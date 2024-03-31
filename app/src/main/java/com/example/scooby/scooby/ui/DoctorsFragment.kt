@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scooby.databinding.FragmentDoctorsBinding
 import com.example.scooby.scooby.adapter.DoctorAdapter
-import com.example.scooby.scooby.data.model.DoctorsResponse
+import com.example.domain.doctors.DoctorsResponse
 import com.example.scooby.scooby.viewmodel.VetViewModel
 
 

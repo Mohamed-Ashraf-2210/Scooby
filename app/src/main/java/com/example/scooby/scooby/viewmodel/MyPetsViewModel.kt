@@ -6,9 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.scooby.scooby.data.model.MyPetsResponse
-import com.example.scooby.scooby.repository.MyPetsRepo
-import com.example.scooby.utils.Constant
+import com.example.domain.pet.MyPetsResponse
+import com.example.data.repository.MyPetsRepo
+import com.example.data.Constant
 import kotlinx.coroutines.launch
 
 class MyPetsViewModel (application: Application) : AndroidViewModel(application) {

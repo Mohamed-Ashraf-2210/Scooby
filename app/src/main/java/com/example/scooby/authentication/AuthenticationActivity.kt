@@ -10,8 +10,8 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.scooby.MainActivity
 import com.example.scooby.R
 import com.example.scooby.databinding.ActivityAuthenticationBinding
-import com.example.scooby.utils.Constant
-import com.example.scooby.utils.TokenManager
+import com.example.data.Constant
+import com.example.scooby.TokenManager
 
 class AuthenticationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthenticationBinding

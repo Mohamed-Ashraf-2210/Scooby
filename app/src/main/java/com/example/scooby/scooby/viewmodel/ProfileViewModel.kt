@@ -5,12 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.scooby.scooby.data.model.ProfileDetailsResponse
-import com.example.scooby.scooby.data.model.UpdateUseResponse
-import com.example.scooby.scooby.repository.ProfileRepo
-import com.example.scooby.utils.Constant
+import com.example.domain.profile.ProfileDetailsResponse
+import com.example.domain.profile.UpdateUseResponse
+import com.example.data.repository.ProfileRepo
+import com.example.data.Constant
 import kotlinx.coroutines.launch
-import okhttp3.MultipartBody
 import java.io.File
 
 class ProfileViewModel: ViewModel() {

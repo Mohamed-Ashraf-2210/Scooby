@@ -2,21 +2,17 @@ package com.example.scooby.scooby.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.example.scooby.R
 import com.example.scooby.databinding.FragmentServiceBinding
 import com.example.scooby.scooby.adapter.ServicesAdapter
 import com.example.scooby.scooby.adapter.ServicesMainAdapter
-import com.example.scooby.scooby.data.model.ServicesResponse
+import com.example.domain.services.ServicesResponse
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
-import com.example.scooby.utils.Constant
 
 @SuppressLint("InflateParams")
 

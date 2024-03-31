@@ -6,11 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.scooby.scooby.data.model.BlogResponse
-import com.example.scooby.scooby.data.model.ServicesResponse
-import com.example.scooby.scooby.repository.BlogRepo
-import com.example.scooby.utils.BaseResponse
-import com.example.scooby.utils.Constant
+import com.example.domain.blog.BlogResponse
+import com.example.data.repository.BlogRepo
+import com.example.data.Constant
 import kotlinx.coroutines.launch
 
 class BlogViewModel (application: Application) : AndroidViewModel(application) {

@@ -13,12 +13,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.example.scooby.MainActivity
 import com.example.scooby.R
-import com.example.scooby.authentication.data.model.UserResponse
+import com.example.domain.profile.UserResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentSignupBinding
 import com.example.scooby.utils.BaseResponse
-import com.example.scooby.utils.Constant
-import com.example.scooby.utils.TokenManager
+import com.example.data.Constant
+import com.example.scooby.TokenManager
 
 
 class SignupFragment : Fragment() {

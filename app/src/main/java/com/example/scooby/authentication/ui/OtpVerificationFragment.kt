@@ -11,10 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.utils.BaseResponse
-import com.example.scooby.authentication.data.model.CheckCodeResponse
+import com.example.domain.authentication.CheckCodeResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentOtpVerificationBinding
-import com.example.scooby.utils.Constant
 
 class OtpVerificationFragment : Fragment() {
 

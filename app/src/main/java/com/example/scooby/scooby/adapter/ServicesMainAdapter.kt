@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.scooby.R
-import com.example.scooby.scooby.data.model.ServicesResponse
+import com.example.domain.services.ServicesResponse
 
 class ServicesMainAdapter(private var servicesList: ServicesResponse, private val context: Context) :
     RecyclerView.Adapter<ServicesMainAdapter.ServicesViewHolder>() {

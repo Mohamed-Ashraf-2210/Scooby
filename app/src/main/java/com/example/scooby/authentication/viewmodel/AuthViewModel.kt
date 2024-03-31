@@ -5,16 +5,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.scooby.utils.BaseResponse
-import com.example.scooby.authentication.data.model.CheckCodeRequest
-import com.example.scooby.authentication.data.model.CheckCodeResponse
-import com.example.scooby.authentication.data.model.ForgotPasswordRequest
-import com.example.scooby.authentication.data.model.ForgotPasswordResponse
-import com.example.scooby.authentication.data.model.LoginRequest
-import com.example.scooby.authentication.data.model.ResetPasswordRequest
-import com.example.scooby.authentication.data.model.ResetPasswordResponse
-import com.example.scooby.authentication.data.model.SignUpRequest
-import com.example.scooby.authentication.data.model.UserResponse
-import com.example.scooby.authentication.repository.UserRepository
+import com.example.domain.authentication.CheckCodeRequest
+import com.example.domain.authentication.CheckCodeResponse
+import com.example.domain.authentication.ForgotPasswordRequest
+import com.example.domain.authentication.ForgotPasswordResponse
+import com.example.domain.authentication.LoginRequest
+import com.example.domain.authentication.ResetPasswordRequest
+import com.example.domain.authentication.ResetPasswordResponse
+import com.example.domain.authentication.SignUpRequest
+import com.example.domain.profile.UserResponse
+import com.example.data.repository.UserRepository
 import kotlinx.coroutines.launch
 
 class AuthViewModel (application: Application) : AndroidViewModel(application) {

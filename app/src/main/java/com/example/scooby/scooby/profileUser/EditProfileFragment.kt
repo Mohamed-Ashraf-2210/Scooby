@@ -14,10 +14,10 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.scooby.MainActivity
 import com.example.scooby.databinding.FragmentEditProfileBinding
-import com.example.scooby.scooby.data.model.ProfileDetailsResponse
+import com.example.domain.profile.ProfileDetailsResponse
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
-import com.example.scooby.utils.Constant
-import com.example.scooby.utils.TokenManager
+import com.example.data.Constant
+import com.example.scooby.TokenManager
 import com.github.dhaval2404.imagepicker.ImagePicker
 import java.io.File
 import java.io.FileOutputStream

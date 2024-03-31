@@ -9,15 +9,12 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentBlogsBinding
 import com.example.scooby.scooby.adapter.BlogAdapter
-import com.example.scooby.scooby.data.model.BlogResponse
+import com.example.domain.blog.BlogResponse
 import com.example.scooby.scooby.viewmodel.BlogViewModel
-import com.example.scooby.utils.BaseResponse
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -47,6 +44,7 @@ class BlogsFragment : Fragment() {
         //(activity as AppCompatActivity).supportActionBar?.hide()
         val navBar : BottomNavigationView = (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.GONE
+        getString(R.string.app_name)
 
         val appBar : Toolbar = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
         appBar.visibility = View.GONE
@@ -75,7 +73,7 @@ class BlogsFragment : Fragment() {
         }
     }
 
-    private fun getBlogsData(data:BlogResponse?) {
+    private fun getBlogsData(data: BlogResponse?) {
         blogRV = binding.RvBlogs
         blogRV.adapter = BlogAdapter(data!!,requireContext())
     }
