@@ -6,15 +6,17 @@ import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.example.scooby.scooby.MainActivity
-import com.example.scooby.R
-import com.example.scooby.databinding.ActivityAuthenticationBinding
 import com.example.data.Constant
+import com.example.scooby.R
 import com.example.scooby.TokenManager
+import com.example.scooby.databinding.ActivityAuthenticationBinding
+import com.example.scooby.scooby.MainActivity
 
 class AuthenticationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAuthenticationBinding
+    private lateinit var navController: NavController
 
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +30,11 @@ class AuthenticationActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+
         val navHost =
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
+        navController = navHost.navController
+
         val token = TokenManager.getAuth(this, Constant.USER_TOKEN)
         if (!token.isNullOrBlank()) {
             goToHome()

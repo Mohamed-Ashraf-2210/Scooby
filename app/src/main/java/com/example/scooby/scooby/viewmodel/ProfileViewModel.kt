@@ -5,14 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.data.Constant
+import com.example.data.repository.ProfileRepo
 import com.example.domain.profile.ProfileDetailsResponse
 import com.example.domain.profile.UpdateUseResponse
-import com.example.data.repository.ProfileRepo
-import com.example.data.Constant
 import kotlinx.coroutines.launch
 import java.io.File
 
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
     private val profileRepo = ProfileRepo()
 
     // region Get user
@@ -43,7 +43,7 @@ class ProfileViewModel: ViewModel() {
     fun uploadImage(userId: String, profileImagePart: File) {
         viewModelScope.launch {
             try {
-                val response = profileRepo.uploadImageProfile(userId,profileImagePart)
+                val response = profileRepo.uploadImageProfile(userId, profileImagePart)
                 if (response != null && response.isSuccessful) {
                     _uploadImageResult.value = response.body()
                 }

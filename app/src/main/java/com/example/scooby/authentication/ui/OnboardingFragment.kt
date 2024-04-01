@@ -12,24 +12,29 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentOnboardingBinding
 
 class OnboardingFragment : Fragment() {
-    private lateinit var binding: FragmentOnboardingBinding
+    private var binding: FragmentOnboardingBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentOnboardingBinding.inflate(inflater)
 
-        binding.signUpBtn.setOnClickListener { nav ->
-            Navigation.findNavController(nav).navigate(R.id.action_onboardingFragment_to_signupFragment)
+        binding?.apply {
+            signUpBtn.setOnClickListener { nav ->
+                Navigation.findNavController(nav)
+                    .navigate(R.id.action_onboardingFragment_to_signupFragment)
+            }
+            loginBtn.setOnClickListener { nav ->
+                Navigation.findNavController(nav)
+                    .navigate(R.id.action_onboardingFragment_to_loginFragment)
+            }
+            exploreTextView.setOnClickListener {
+                goToHome()
+            }
         }
-        binding.loginBtn.setOnClickListener { nav ->
-            Navigation.findNavController(nav).navigate(R.id.action_onboardingFragment_to_loginFragment)
-        }
-        binding.exploreTextView.setOnClickListener {
-            goToHome()
-        }
-        return binding.root
+
+        return binding?.root
     }
 
     private fun goToHome() {

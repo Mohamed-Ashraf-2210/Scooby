@@ -11,14 +11,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.scooby.scooby.MainActivity
-import com.example.scooby.R
+import com.example.data.Constant
 import com.example.domain.profile.UserResponse
+import com.example.scooby.R
+import com.example.scooby.TokenManager
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentSignupBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.BaseResponse
-import com.example.data.Constant
-import com.example.scooby.TokenManager
 
 
 class SignupFragment : Fragment() {

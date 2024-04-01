@@ -1,5 +1,7 @@
 package com.example.scooby.authentication.ui
 
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -10,14 +12,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
-import com.example.scooby.R
+import com.example.data.Constant
 import com.example.domain.profile.UserResponse
+import com.example.scooby.R
+import com.example.scooby.TokenManager
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentLoginBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.BaseResponse
-import com.example.data.Constant
-import com.example.scooby.TokenManager
 
 
 class LoginFragment : Fragment() {
@@ -146,14 +148,10 @@ class LoginFragment : Fragment() {
     }
 
     private fun goToHome() {
-        findNavController().apply {
-            popBackStack()
-            navigate(R.id.fragmentContainerView2)
-        }
-//        val intent = Intent(requireContext(), MainActivity::class.java)
-//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-//        intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
-//        startActivity(intent)
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
+        startActivity(intent)
     }
 
 }

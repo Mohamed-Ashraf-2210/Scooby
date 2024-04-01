@@ -10,6 +10,8 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.scooby.R
 import com.example.domain.doctors.DoctorsResponse
 
@@ -37,7 +39,7 @@ class DoctorAdapter(private var doctorList: DoctorsResponse, private val context
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DoctorViewHolder, position: Int) {
         val currentItem = doctorList.data
-        Glide.with(context).load(currentItem[position].doctorImage).into(holder.doctorImage)
+        Glide.with(context).load(currentItem[position].doctorImage).transform(CenterCrop()).into(holder.doctorImage)
         holder.doctorName.text = currentItem[position].name
         holder.doctorRate.text = currentItem[position].rate.toString()
         holder.doctorRateBar.rating = currentItem[position].rate.toFloat()

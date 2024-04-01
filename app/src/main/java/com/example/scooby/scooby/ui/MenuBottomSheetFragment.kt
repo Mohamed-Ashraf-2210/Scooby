@@ -19,8 +19,8 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
         binding = MenuBottomSheetBinding.inflate(inflater)
 
         binding?.apply {
-            sittingIcon.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
+            vetIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_menuBottomSheetFragment_to_vetFragment)
             }
         }
         return binding?.root

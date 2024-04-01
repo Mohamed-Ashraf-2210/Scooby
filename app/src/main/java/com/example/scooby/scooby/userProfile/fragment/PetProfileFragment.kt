@@ -1,37 +1,32 @@
 package com.example.scooby.scooby.userProfile.fragment
 
-import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.scooby.scooby.MainActivity
-import com.example.scooby.databinding.FragmentPetProfileBinding
-import com.example.domain.profile.ProfileDetailsResponse
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import com.example.data.Constant
+import com.example.domain.profile.ProfileDetailsResponse
 import com.example.scooby.TokenManager
+import com.example.scooby.databinding.FragmentPetProfileBinding
+import com.example.scooby.scooby.MainActivity
+import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-
 class PetProfileFragment : Fragment() {
     private lateinit var binding: FragmentPetProfileBinding
     private val profileViewModel by viewModels<ProfileViewModel>()
-    private val args : PetProfileFragmentArgs by navArgs()
+    private val args: PetProfileFragmentArgs by navArgs()
     private lateinit var userId: String
 
-
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,69 +36,62 @@ class PetProfileFragment : Fragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.swipeRefreshLayout.apply {
-            setOnRefreshListener {
-                init()
-                isRefreshing = false
-            }
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            init()
+            binding.swipeRefreshLayout.isRefreshing = false
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun init() {
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
-        profileViewModel.apply {
-            getUser(userId)
-            profileResult.observe(viewLifecycleOwner) {
-                getPetProfileData(it)
-            }
-        }
-
+        observeProfileData()
         backOffFragment()
     }
 
-    private fun backOffFragment() {
-        binding.backProfile.setOnClickListener {
-            findNavController().popBackStack()
+    private fun observeProfileData() {
+        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        profileViewModel.getUser(userId)
+        profileViewModel.profileResult.observe(viewLifecycleOwner) { result ->
+            stopLoading()
+            getPetProfileData(result)
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SetTextI18n")
-    private fun getPetProfileData(it: ProfileDetailsResponse?) {
-        val pet = it?.data?.data?.pets?.get(args.petPosition)
-        if (pet != null) {
-            Glide.with(this).load(pet.petImage).into(binding.imagePetProfile)
-            binding.namePet.text = pet.name
-            binding.adjPet.text = pet.type
-            binding.bioPet.text = pet.profileBio
-            binding.genderValueTv.text = pet.gender
-            binding.sizeValueTv.text = pet.size
-            binding.weightValueTv.text = "${pet.weight} kg"
+    private fun getPetProfileData(profileDetailsResponse: ProfileDetailsResponse?) {
+        val pet = profileDetailsResponse?.data?.data?.pets?.get(args.petPosition)
+        pet?.let {
+            with(binding) {
+                Glide.with(this@PetProfileFragment).load(it.petImage).into(imagePetProfile)
+                namePet.text = it.name
+                adjPet.text = it.type
+                bioPet.text = it.profileBio
+                genderValueTv.text = it.gender
+                sizeValueTv.text = it.size
+                weightValueTv.text = "${it.weight} kg"
+                formatDate(binding.birthdayTv, it.birthday)
+                formatDate(binding.adoptionDayTv, it.adoptionDay)
+                calculateAndSetAge(binding.oldYear, it.birthday)
+            }
+        } ?: showError()
+    }
 
-            val inputDateFormat = SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH)
-            val outputDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH)
+    private fun formatDate(view: TextView, dateString: String) {
+        val inputDateFormat = SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH)
+        val outputDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH)
+        val date: Date? = inputDateFormat.parse(dateString)
+        view.text = date?.let { outputDateFormat.format(it) } ?: "Unknown"
+    }
 
-            val dateBirthDay: Date? = inputDateFormat.parse(pet.birthday)
-            binding.birthdayTv.text = dateBirthDay?.let { outputDateFormat.format(it) } ?: "Unknown"
-            val dateAdoptionDay: Date? = inputDateFormat.parse(pet.adoptionDay)
-            binding.adoptionDayTv.text = dateAdoptionDay?.let { outputDateFormat.format(it) } ?: "Unknown"
-            // Calculate age
-            val yearsOld = dateBirthDay?.let { calculateAge(it) }
-            binding.oldYear.text = "${yearsOld?.toString() ?: "Unknown"} y.o"
-        } else {
-            // Handle the case where data is null
-            // For example, show a message or hide views
-        }
+    private fun calculateAndSetAge(view: TextView, birthDate: String) {
+        val date: Date? = SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH)
+            .parse(birthDate)
+        val age = date?.let { calculateAge(it) } ?: "Unknown"
+        view.text = "$age y.o"
     }
 
     private fun calculateAge(birthDate: Date): Int {
-        val birthCalendar = Calendar.getInstance()
-        birthCalendar.time = birthDate
+        val birthCalendar = Calendar.getInstance().apply { time = birthDate }
         val currentDate = Calendar.getInstance()
 
         var age = currentDate.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR)
@@ -113,16 +101,31 @@ class PetProfileFragment : Fragment() {
         return age
     }
 
+    private fun stopLoading() {
+        with(binding) {
+            loading.visibility = View.GONE
+            petProfileContent.visibility = View.VISIBLE
+        }
+    }
+
+    private fun backOffFragment() {
+        binding.backProfile.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun showError() {
+        // Handle the case where data is null
+        // For example, show a message or hide views
+    }
+
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).hideBottomNavigationView()
     }
+
     override fun onStop() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 }

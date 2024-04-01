@@ -25,6 +25,9 @@
             <action
                 android:id="@+id/action_homeFragment_to_vetFragment"
                 app:destination="@id/vetFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_menuBottomSheetFragment"
+                app:destination="@id/menuBottomSheetFragment" />
         </fragment>
         <fragment
             android:id="@+id/blogsFragment"
@@ -85,7 +88,15 @@
             android:name="com.example.scooby.scooby.ui.MedicineFragment"
             android:label="fragment_medicine"
             tools:layout="@layout/fragment_medicine" />
-
+        <dialog
+            android:id="@+id/menuBottomSheetFragment"
+            android:name="com.example.scooby.scooby.ui.MenuBottomSheetFragment"
+            android:label="menu_bottom_sheet"
+            tools:layout="@layout/menu_bottom_sheet" >
+            <action
+                android:id="@+id/action_menuBottomSheetFragment_to_vetFragment"
+                app:destination="@id/vetFragment" />
+        </dialog>
     </navigation>
 
     <navigation
@@ -119,5 +130,6 @@
             android:label="fragment_community"
             tools:layout="@layout/fragment_community" />
     </navigation>
+
 
 </navigation>

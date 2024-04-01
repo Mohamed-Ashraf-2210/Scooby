@@ -10,6 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.domain.offer.OfferResponse
 import com.example.domain.vet.VetResponse
 import com.example.scooby.R
@@ -75,7 +77,7 @@ class VetFragment : Fragment() {
         private fun getOneOfferData(it: OfferResponse?) {
         val sizeOfList = it?.data?.size
         val randomNumber = (0..<sizeOfList!!).random()
-        Glide.with(this).load(it.data[randomNumber].offerImage).into(binding.offerVetImage)
+        Glide.with(this).load(it.data[randomNumber].offerImage).transform(CenterCrop(), RoundedCorners(24)).into(binding.offerVetImage)
     }
 
     private fun getVetData(it: VetResponse?) {

@@ -14,6 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+
+
         <com.denzcoskun.imageslider.ImageSlider
             android:id="@+id/image_slider"
             android:layout_width="match_parent"
@@ -21,9 +29,9 @@
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="25dp"
             app:iss_auto_cycle="true"
-            app:iss_corner_radius="24"
+            app:iss_corner_radius="70"
             app:iss_delay="0"
-            app:iss_period="1500"
+            app:iss_period="2500"
             app:iss_selected_dot="@drawable/selected_icon"
             app:iss_unselected_dot="@drawable/not_selected_icon"
             app:layout_constraintEnd_toEndOf="parent"
@@ -468,6 +476,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/Blogs_title"
             tools:listitem="@layout/blogs_item_home" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginTop="400dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

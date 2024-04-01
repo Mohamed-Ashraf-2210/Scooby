@@ -56,8 +56,10 @@ class HomeFragment : Fragment() {
         servicesViewModel.apply {
             getServices()
             servicesResult.observe(viewLifecycleOwner) {
-                if (it != null)
+                if (it != null) {
+                    stopLoading()
                     getServicesData(it)
+                }
             }
         }
 
@@ -110,13 +112,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
             }
             moreIcon.setOnClickListener {
-                val dialogView = layoutInflater.inflate(R.layout.menu_bottom_sheet, null)
-                val dialog = BottomSheetDialog(
-                    requireContext(),
-                    com.google.android.material.R.style.Theme_Material3_Light_BottomSheetDialog
-                )
-                dialog.setContentView(dialogView)
-                dialog.show()
+                findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
             }
         }
     }
@@ -130,7 +126,7 @@ class HomeFragment : Fragment() {
             imgList.add(SlideModel(data.data[i].offerImage))
         }
         binding?.imageSlider?.setImageList(imgList, ScaleTypes.FIT)
-        binding?.imageSlider?.setSlideAnimation(AnimationTypes.DEPTH_SLIDE)
+        binding?.imageSlider?.setSlideAnimation(AnimationTypes.ZOOM_OUT)
     }
 
     private fun getServicesData(data: ServicesResponse?) {
@@ -145,6 +141,13 @@ class HomeFragment : Fragment() {
         binding?.blogsRv?.adapter = BlogHomeAdapter(data!!, requireContext())
     }
     // endregion
+
+    private fun stopLoading() {
+        binding?.apply {
+            loading.visibility = View.GONE
+            homeContent.visibility = View.VISIBLE
+        }
+    }
 
     override fun onResume() {
         super.onResume()
