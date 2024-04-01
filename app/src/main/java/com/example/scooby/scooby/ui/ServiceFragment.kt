@@ -2,6 +2,7 @@ package com.example.scooby.scooby.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,13 +14,15 @@ import com.example.scooby.scooby.adapter.ServicesAdapter
 import com.example.scooby.scooby.adapter.ServicesMainAdapter
 import com.example.domain.services.ServicesResponse
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
+import java.util.Locale.filter
 
 @SuppressLint("InflateParams")
 
 class ServiceFragment : Fragment() {
+    lateinit var allServices : ServicesResponse
     private val servicesViewModel by viewModels<ServicesViewModel>()
     private lateinit var servicesRV: RecyclerView
-    lateinit var servicesAdapter: ServicesAdapter
+    private lateinit var servicesMainAdapter: ServicesMainAdapter
     private var _binding: FragmentServiceBinding? = null
     private val binding get() = _binding!!
 
@@ -40,7 +43,12 @@ class ServiceFragment : Fragment() {
     private fun callBackButton() {
 
         binding.allBtn.setOnClickListener {
-            servicesViewModel.getServicesFilter("Hotel")
+            servicesViewModel.apply {
+                val filterdServices = allServices.allServices.filter{
+                    it.serviceType == "Boarding"
+                }
+                getServicesDataMain(ServicesResponse(filterdServices))
+            }
         }
 
     }
@@ -52,11 +60,11 @@ class ServiceFragment : Fragment() {
         servicesViewModel.apply {
             getServices()
             servicesResult.observe(viewLifecycleOwner){
-                getServicesData(it)
+                getServicesDataMain(it)
+                allServices = it!!
             }
 
         }
-
         // Data For Services in ServicesFragment
         servicesViewModel.apply {
             getServices()
@@ -64,24 +72,11 @@ class ServiceFragment : Fragment() {
                 getServicesDataMain(it)
             }
         }
-
-        servicesViewModel.apply {
-            servicesResult.observe(viewLifecycleOwner){
-                servicesResultByFilter
-            }
-        }
-
     }
     private fun getServicesDataMain(data: ServicesResponse?) {
         servicesRV = binding.RvServicesContent
         servicesRV.adapter = ServicesMainAdapter(data!!, requireContext())
     }
-
-    private fun getServicesData(data: ServicesResponse?) {
-        servicesRV = binding.RvServicesContent
-        servicesRV.adapter = ServicesAdapter(data!!, requireContext())
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         binding.RvServicesContent.adapter = null
