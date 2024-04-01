@@ -107,11 +107,6 @@ class LoginFragment : Fragment() {
             }
             TokenManager.saveAuth(
                 this.requireContext(),
-                Constant.USER_NAME,
-                data?.data?.result?.name ?: ""
-            )
-            TokenManager.saveAuth(
-                this.requireContext(),
                 Constant.USER_ID,
                 data?.data?.result?.id ?: ""
             )
