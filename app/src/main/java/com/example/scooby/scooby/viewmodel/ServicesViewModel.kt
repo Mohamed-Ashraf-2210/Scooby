@@ -48,7 +48,6 @@ class ServicesViewModel() : ViewModel() {
                 Log.e("TEST_FILTER", "ERROR FETCHING URLS $e")
             }
 
-
         }
     }
 
