@@ -1,19 +1,21 @@
-package com.example.scooby.scooby.viewmodel
+package com.example.scooby.scooby.userProfile.viewModel
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
-import com.example.data.repository.ProfileRepo
+import com.example.data.repository.UserRepository
 import com.example.domain.profile.ProfileDetailsResponse
 import com.example.domain.profile.UpdateUseResponse
+import com.example.domain.profile.UpdateUserData
 import kotlinx.coroutines.launch
 import java.io.File
 
 class ProfileViewModel : ViewModel() {
-    private val profileRepo = ProfileRepo()
+    private val profileRepo = UserRepository()
 
     // region Get user
     private val _profileResult: MutableLiveData<ProfileDetailsResponse?> = MutableLiveData()
@@ -46,6 +48,24 @@ class ProfileViewModel : ViewModel() {
                 val response = profileRepo.uploadImageProfile(userId, profileImagePart)
                 if (response != null && response.isSuccessful) {
                     _uploadImageResult.value = response.body()
+                }
+            } catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+            }
+        }
+    }
+
+
+
+    private val _updateUserResult: MutableLiveData<UpdateUseResponse?> = MutableLiveData()
+    val updateUserResult: LiveData<UpdateUseResponse?>
+        get() = _updateUserResult
+    fun updateUser(userId: String, userData: UpdateUserData) {
+        viewModelScope.launch {
+            try {
+                val response = profileRepo.updateUser(userId, userData)
+                if (response != null && response.isSuccessful) {
+                    _updateUserResult.value = response.body()
                 }
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")

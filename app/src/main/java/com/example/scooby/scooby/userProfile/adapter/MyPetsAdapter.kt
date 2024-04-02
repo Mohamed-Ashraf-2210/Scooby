@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile
+package com.example.scooby.scooby.userProfile.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

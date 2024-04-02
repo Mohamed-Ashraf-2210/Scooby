@@ -6,18 +6,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.scooby.scooby.MainActivity
-import com.example.scooby.databinding.FragmentEditProfileBinding
-import com.example.domain.profile.ProfileDetailsResponse
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import com.example.data.Constant
+import com.example.domain.profile.ProfileDetailsResponse
+import com.example.domain.profile.UpdateUserData
 import com.example.scooby.TokenManager
+import com.example.scooby.databinding.FragmentEditProfileBinding
+import com.example.scooby.scooby.MainActivity
+import com.example.scooby.scooby.userProfile.viewModel.ProfileViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
 import java.io.File
 import java.io.FileOutputStream
@@ -36,6 +38,29 @@ class EditProfileFragment : Fragment() {
 
         binding.editImageProfile.setOnClickListener {
             pickImage()
+        }
+
+        binding.apply {
+            savaEditProfile.setOnClickListener {
+                val updatedUserData = UpdateUserData(
+                    nameEditText.text.toString(),
+                    emailEditText.text.toString(),
+                    phoneEditText.text.toString()
+                )
+                profileViewModel.apply {
+                    updateUser(userId,updatedUserData)
+                    profileResult.observe(viewLifecycleOwner) {
+                        if (it != null) {
+                            if (it.status == "success") {
+                                Toast.makeText(context, "Save is success", Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(context, "Try again", Toast.LENGTH_SHORT).show()
+                            }
+
+                        }
+                    }
+                }
+            }
         }
         return binding.root
     }

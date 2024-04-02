@@ -14,8 +14,8 @@ import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentProfileBinding
 import com.example.scooby.scooby.MainActivity
-import com.example.scooby.scooby.userProfile.MyPetsAdapter
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.scooby.userProfile.adapter.MyPetsAdapter
+import com.example.scooby.scooby.userProfile.viewModel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding

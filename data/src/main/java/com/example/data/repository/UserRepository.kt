@@ -10,7 +10,11 @@ import com.example.domain.authentication.ResetPasswordResponse
 import com.example.domain.authentication.SignUpRequest
 import com.example.domain.profile.UserResponse
 import com.example.data.remote.service.UserApi
+import com.example.domain.profile.ProfileDetailsResponse
+import com.example.domain.profile.UpdateUseResponse
+import com.example.domain.profile.UpdateUserData
 import retrofit2.Response
+import java.io.File
 
 class UserRepository {
     suspend fun loginUser(loginRequest: LoginRequest): Response<UserResponse>? {
@@ -31,5 +35,17 @@ class UserRepository {
 
     suspend fun resetPassword(resetPasswordRequest: ResetPasswordRequest): Response<ResetPasswordResponse>? {
         return  UserApi.getApi()?.resetPassword(resetPasswordRequest)
+    }
+
+    suspend fun getUser(userId: String): Response<ProfileDetailsResponse>? {
+        return UserApi.getApi()?.getUser(userId)
+    }
+
+    suspend fun uploadImageProfile(userId: String, profileImage: File): Response<UpdateUseResponse>? {
+        return  UserApi.getApi()?.uploadImageProfile(userId,profileImage)
+    }
+
+    suspend fun updateUser(userId: String, userData: UpdateUserData): Response<UpdateUseResponse>? {
+        return  UserApi.getApi()?.updateUser(userId,userData)
     }
 }

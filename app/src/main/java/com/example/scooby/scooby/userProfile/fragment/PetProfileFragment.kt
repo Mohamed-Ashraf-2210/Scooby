@@ -15,7 +15,7 @@ import com.example.domain.profile.ProfileDetailsResponse
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentPetProfileBinding
 import com.example.scooby.scooby.MainActivity
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.scooby.userProfile.viewModel.ProfileViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date

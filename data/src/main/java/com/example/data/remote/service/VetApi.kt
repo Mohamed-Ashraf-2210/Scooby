@@ -11,7 +11,7 @@ interface VetApi {
     @GET("/scooby/api/vet/getallvet")
     suspend fun getAllVet(): Response<VetResponse>
 
-    @GET("/sooby/api/doctors/getdoctors")
+    @GET("/scooby/api/doctors/getdoctors")
     suspend fun getDoctors(): Response<DoctorsResponse>
 
     companion object{

@@ -16,7 +16,7 @@ import com.example.scooby.scooby.viewmodel.VetViewModel
 
 
 class DoctorsFragment : Fragment() {
-    private lateinit var binding: FragmentDoctorsBinding
+    private var binding: FragmentDoctorsBinding? = null
     private val doctorViewModel by viewModels<VetViewModel>()
     private lateinit var doctorRV: RecyclerView
 
@@ -24,16 +24,16 @@ class DoctorsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentDoctorsBinding.inflate(inflater, container, false)
         init()
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.refreshDoctorLayout.apply {
+        binding?.refreshDoctorLayout?.apply {
             setOnRefreshListener {
                 init()
                 isRefreshing = false
@@ -56,16 +56,21 @@ class DoctorsFragment : Fragment() {
     }
 
     private fun getDoctorsData(it: DoctorsResponse?) {
-        doctorRV = binding.doctorCardRv
-        doctorRV.adapter = DoctorAdapter(it!!, requireContext())
+        binding?.doctorCardRv?.adapter = DoctorAdapter(it!!, requireContext())
     }
 
     private fun backOffFragment() {
-        binding.backDoctorIcon.setOnClickListener {
+        binding?.backDoctorIcon?.setOnClickListener {
             findNavController().popBackStack()
         }
     }
 
+    private fun stopLoading() {
+        binding?.apply {
+            loading.visibility = View.GONE
+            doctorContent.visibility = View.VISIBLE
+        }
+    }
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.hide()
@@ -77,7 +82,7 @@ class DoctorsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.doctorCardRv.adapter = null
+        binding?.doctorCardRv?.adapter = null
     }
 
 }

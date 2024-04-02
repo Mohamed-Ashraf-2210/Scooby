@@ -20,7 +20,7 @@ object ApiClient {
 
     val client: Retrofit?
         get() {
-            if(mRetrofit == null){
+            if (mRetrofit == null) {
                 mRetrofit = Retrofit.Builder()
                     .baseUrl(Constant.BASE_URL)
                     .client(mOkHttpClient)
