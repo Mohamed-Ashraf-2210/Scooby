@@ -1,6 +1,5 @@
 package com.example.scooby.scooby.ui
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -34,56 +33,19 @@ class HomeFragment : Fragment() {
     private val offerViewModel by viewModels<OfferViewModel>()
 
 
-    @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        init()
+        initView()
         return binding?.root
     }
 
-    private fun init() {
+    private fun initView() {
         observeViewModel()
         requestsSection()
         seeMore()
-    }
-
-    private fun observeViewModel() {
-        servicesViewModel.apply {
-            getServices()
-            servicesResult.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    stopLoading()
-                    getServicesData(it)
-                }
-            }
-        }
-
-        petsViewModel.apply {
-            getPets()
-            petsResult.observe(viewLifecycleOwner) {
-                if (it != null)
-                    getPetsData(it)
-            }
-        }
-
-        blogsViewModel.apply {
-            getBlogs()
-            blogResult.observe(viewLifecycleOwner) {
-                if (it != null)
-                    getBlogsData(it)
-            }
-        }
-
-        offerViewModel.apply {
-            getOffer()
-            offerResult.observe(viewLifecycleOwner) {
-                if (it != null)
-                    getOfferData(it)
-            }
-        }
     }
 
     private fun seeMore() {
@@ -94,13 +56,9 @@ class HomeFragment : Fragment() {
             servicesSeeMore.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
             }
-            petFriendlyPlacesIcon.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
-            }
         }
     }
 
-    @SuppressLint("InflateParams")
     private fun requestsSection() {
         binding?.apply {
             vetIcon.setOnClickListener {
@@ -113,8 +71,25 @@ class HomeFragment : Fragment() {
     }
 
 
-    // region Get Data
-    private fun getOfferData(data: OfferResponse?) {
+    private fun observeViewModel() {
+        observeOffers()
+        observeServices()
+        observePets()
+        observeBlogs()
+    }
+
+    // region Offers
+    private fun observeOffers() {
+        offerViewModel.apply {
+            getOffer()
+            offerResult.observe(viewLifecycleOwner) {
+                if (it != null)
+                    getOffersData(it)
+            }
+        }
+    }
+
+    private fun getOffersData(data: OfferResponse?) {
         val imgList = ArrayList<SlideModel>()
         val sizeOfList = data?.data?.size
         for (i in 0..<sizeOfList!!) {
@@ -123,19 +98,58 @@ class HomeFragment : Fragment() {
         binding?.imageSlider?.setImageList(imgList, ScaleTypes.FIT)
         binding?.imageSlider?.setSlideAnimation(AnimationTypes.ZOOM_OUT)
     }
+    // endregion
+
+    // region Services
+    private fun observeServices() {
+        servicesViewModel.apply {
+            getServices()
+            servicesResult.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    stopLoading()
+                    getServicesData(it)
+                }
+            }
+        }
+    }
 
     private fun getServicesData(data: ServicesResponse?) {
         binding?.servicesRv?.adapter = ServicesAdapter(data!!, requireContext())
     }
+    // endregion
+
+    // region Pets
+    private fun observePets() {
+        petsViewModel.apply {
+            getPets()
+            petsResult.observe(viewLifecycleOwner) {
+                if (it != null)
+                    getPetsData(it)
+            }
+        }
+    }
 
     private fun getPetsData(data: AllPetsResponse?) {
         binding?.petsRv?.adapter = PetsHomeAdapter(data!!, requireContext())
+    }
+    // endregion
+
+    // region Blogs
+    private fun observeBlogs() {
+        blogsViewModel.apply {
+            getBlogs()
+            blogResult.observe(viewLifecycleOwner) {
+                if (it != null)
+                    getBlogsData(it)
+            }
+        }
     }
 
     private fun getBlogsData(data: BlogResponse?) {
         binding?.blogsRv?.adapter = BlogHomeAdapter(data!!, requireContext())
     }
     // endregion
+
 
     private fun stopLoading() {
         binding?.apply {
