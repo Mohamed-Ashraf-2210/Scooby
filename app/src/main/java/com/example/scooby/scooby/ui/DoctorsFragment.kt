@@ -1,17 +1,16 @@
 package com.example.scooby.scooby.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.doctors.DoctorsResponse
 import com.example.scooby.databinding.FragmentDoctorsBinding
 import com.example.scooby.scooby.adapter.DoctorAdapter
-import com.example.domain.doctors.DoctorsResponse
 import com.example.scooby.scooby.viewmodel.VetViewModel
 
 
@@ -71,14 +70,7 @@ class DoctorsFragment : Fragment() {
             doctorContent.visibility = View.VISIBLE
         }
     }
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.hide()
-    }
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity).supportActionBar?.show()
-    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

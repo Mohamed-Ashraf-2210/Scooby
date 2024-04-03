@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -25,7 +24,6 @@ import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.PetsViewModel
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeFragment : Fragment() {
 
@@ -108,9 +106,6 @@ class HomeFragment : Fragment() {
             vetIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
             }
-            boardingIcon.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
-            }
             moreIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
             }
@@ -149,15 +144,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.show()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity).supportActionBar?.hide()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

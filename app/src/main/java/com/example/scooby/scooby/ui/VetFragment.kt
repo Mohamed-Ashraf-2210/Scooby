@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,7 +18,6 @@ import com.example.scooby.databinding.FragmentVetBinding
 import com.example.scooby.scooby.adapter.VetAdapter
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.VetViewModel
-
 
 
 class VetFragment : Fragment() {
@@ -74,10 +72,12 @@ class VetFragment : Fragment() {
             }
         }
     }
-        private fun getOneOfferData(it: OfferResponse?) {
+
+    private fun getOneOfferData(it: OfferResponse?) {
         val sizeOfList = it?.data?.size
         val randomNumber = (0..<sizeOfList!!).random()
-        Glide.with(this).load(it.data[randomNumber].offerImage).transform(CenterCrop(), RoundedCorners(24)).into(binding.offerVetImage)
+        Glide.with(this).load(it.data[randomNumber].offerImage)
+            .transform(CenterCrop(), RoundedCorners(24)).into(binding.offerVetImage)
     }
 
     private fun getVetData(it: VetResponse?) {
@@ -102,15 +102,6 @@ class VetFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as AppCompatActivity).supportActionBar?.hide()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        (activity as AppCompatActivity).supportActionBar?.show()
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
