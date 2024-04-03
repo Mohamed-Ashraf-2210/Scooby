@@ -82,9 +82,9 @@
         </fragment>
         <fragment
             android:id="@+id/medicineFragment"
-            android:name="com.example.scooby.scooby.ui.MedicineFragment"
+            android:name="com.example.scooby.scooby.ui.ShopFragment"
             android:label="fragment_medicine"
-            tools:layout="@layout/fragment_medicine" />
+            tools:layout="@layout/fragment_shop" />
 
     </navigation>
 
