@@ -22,7 +22,7 @@ class BlogsFragment : Fragment() {
     private val blogsViewModel by viewModels<BlogViewModel>()
     private var _binding: FragmentBlogsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var blogRV:RecyclerView
+    private lateinit var blogRV: RecyclerView
     private lateinit var mContext: Context
 
 
@@ -30,29 +30,29 @@ class BlogsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentBlogsBinding.inflate(inflater,container,false)
-         mContext = requireContext()
-//         var toolbar = activity?.findViewById<Toolbar>(R.id.app_bar)
-//         toolbar?.visibility = View.GONE
-         initGetBlog()
-
+        _binding = FragmentBlogsBinding.inflate(inflater, container, false)
+        mContext = requireContext()
+        initGetBlog()
         return binding.root
     }
 
     override fun onResume() {
         super.onResume()
         //(activity as AppCompatActivity).supportActionBar?.hide()
-        val navBar : BottomNavigationView = (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
+        val navBar: BottomNavigationView =
+            (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.GONE
         getString(R.string.app_name)
 
-        val appBar : Toolbar = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
+        val appBar: Toolbar = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
         appBar.visibility = View.GONE
     }
+
     override fun onStop() {
         super.onStop()
         (activity as AppCompatActivity).supportActionBar?.show()
-        val navBar : BottomNavigationView = (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
+        val navBar: BottomNavigationView =
+            (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.VISIBLE
 
 //        val appBar : AppBarLayout = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
@@ -63,6 +63,7 @@ class BlogsFragment : Fragment() {
         binding.loading.visibility = View.GONE
         binding.RvBlogs.visibility = View.VISIBLE
     }
+
     private fun initGetBlog() {
         blogsViewModel.apply {
             getBlogs()
@@ -75,7 +76,7 @@ class BlogsFragment : Fragment() {
 
     private fun getBlogsData(data: BlogResponse?) {
         blogRV = binding.RvBlogs
-        blogRV.adapter = BlogAdapter(data!!,requireContext())
+        blogRV.adapter = BlogAdapter(data!!, requireContext())
     }
 
 }
