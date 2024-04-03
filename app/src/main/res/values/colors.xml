@@ -10,6 +10,7 @@
     <color name="black_clear">#000000</color>
     <color name="black_font">#F20F0F0F</color>
     <color name="black_edit_text">#0F0F0F</color>
+    <color name="white_type_pet">#F0E9E9</color>
     <color name="white_BG">#F5F3F3</color>
     <color name="white">#FCF5F5</color>
     <color name="white_card">#F5F3F3</color>
@@ -31,6 +32,7 @@
     <color name="top_app_bar_bg">#0FE384FF</color>
     <color name="dark_gray">#49454F</color>
     <color name="gray_font">#555151</color>
+    <color name="gray_light_font">#B6B2BE</color>
     <color name="gray_font_hint">#800F0F0F</color>
     <color name="gray_font_second">#8F8F8F</color>
     <color name="gray_line_divider">#338F8F8F</color>
@@ -46,4 +48,5 @@
     <color name="white_btn_booking">#FBFBFB</color>
     <color name="Light_purple">#CC513973</color>
     <color name="black_50">#80000000</color>
+
 </resources>

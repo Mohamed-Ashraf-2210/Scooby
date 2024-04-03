@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:background="@color/primary_90">
+        android:background="@drawable/gradient_bg_profile">
 
         <TextView
             android:layout_width="wrap_content"
@@ -59,12 +59,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/white_BG"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <View
+                    android:id="@+id/view_top"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:background="@color/primary_90"
+                    android:layout_height="104dp"
+                    android:background="@drawable/gradient_bg_profile"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -73,10 +74,10 @@
                     android:id="@+id/profile_image"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginStart="23dp"
+                    android:layout_marginTop="5dp"
                     app:civ_border_color="@color/white_BG"
                     app:civ_border_width="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -84,15 +85,65 @@
                     android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="7dp"
                     android:fontFamily="@font/roboto"
                     android:text="@string/user_name"
-                    android:textColor="@color/black_font"
+                    android:textColor="@color/white_BG"
                     android:textFontWeight="600"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/profile_image" />
+                    app:layout_constraintStart_toEndOf="@id/profile_image"
+                    app:layout_constraintTop_toTopOf="@id/profile_image" />
+
+                <TextView
+                    android:id="@+id/number_followers_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/white_BG"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/profile_image"
+                    app:layout_constraintTop_toBottomOf="@id/user_name"
+                    tools:text="8" />
+
+                <TextView
+                    android:id="@+id/followers_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text=" followers"
+                    android:textColor="@color/gray_light_font"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/number_followers_tv"
+                    app:layout_constraintTop_toBottomOf="@id/user_name" />
+
+                <TextView
+                    android:id="@+id/number_following_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/white_BG"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/followers_tv"
+                    app:layout_constraintTop_toBottomOf="@id/user_name"
+                    tools:text="10" />
+
+                <TextView
+                    android:id="@+id/following_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text=" following"
+                    android:textColor="@color/gray_light_font"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@id/number_following_tv"
+                    app:layout_constraintTop_toBottomOf="@id/user_name" />
 
                 <TextView
                     android:id="@+id/My_pets"
@@ -105,7 +156,7 @@
                     android:textColor="@color/black_font"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/user_name" />
+                    app:layout_constraintTop_toBottomOf="@id/view_top" />
 
                 <RelativeLayout
                     android:id="@+id/my_pets_layout"

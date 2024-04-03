@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/toHomeFragment"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/home_icon"
         android:title="@string/home" />
     <item
         android:id="@+id/toPawsFragment"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/paws_icon"
         android:title="@string/paws" />
     <item
         android:id="@+id/toCommunityFragment"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/community_icon"
         android:title="@string/community" />
     <item
         android:id="@+id/toBookingFragment"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/bookings_icon"
         android:title="@string/booking" />
 </menu>
