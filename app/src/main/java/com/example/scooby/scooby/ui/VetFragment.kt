@@ -44,7 +44,7 @@ class VetFragment : Fragment() {
 
     private fun btnPharmacy() {
         binding.btnPharmacy.setOnClickListener {
-            findNavController().navigate(R.id.action_vetFragment_to_medicineFragment)
+            findNavController().navigate(R.id.action_vetFragment_to_productFragment)
         }
     }
 

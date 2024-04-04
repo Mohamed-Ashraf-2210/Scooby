@@ -121,7 +121,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="21dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/item_medicine"
+        tools:listitem="@layout/item_product"
         app:spanCount="2"
         />
 

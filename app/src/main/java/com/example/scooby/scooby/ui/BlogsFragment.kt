@@ -2,17 +2,18 @@ package com.example.scooby.scooby.ui
 
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.blog.BlogResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentBlogsBinding
 import com.example.scooby.scooby.adapter.BlogAdapter
+import com.example.domain.blog.BlogResponse
 import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -31,9 +32,7 @@ class BlogsFragment : Fragment() {
     ): View {
         _binding = FragmentBlogsBinding.inflate(inflater, container, false)
         mContext = requireContext()
-
         initGetBlog()
-
         return binding.root
     }
 
@@ -45,6 +44,8 @@ class BlogsFragment : Fragment() {
         navBar.visibility = View.GONE
         getString(R.string.app_name)
 
+        val appBar: Toolbar = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
+        appBar.visibility = View.GONE
     }
 
     override fun onStop() {
@@ -54,6 +55,8 @@ class BlogsFragment : Fragment() {
             (activity as AppCompatActivity).findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.VISIBLE
 
+//        val appBar : AppBarLayout = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
+//        appBar.visibility = View.VISIBLE
     }
 
     private fun stopLoading() {

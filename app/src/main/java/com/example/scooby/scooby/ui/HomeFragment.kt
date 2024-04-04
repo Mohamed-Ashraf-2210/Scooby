@@ -67,6 +67,8 @@ class HomeFragment : Fragment() {
             moreIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
             }
+            suppliesIcon.setOnClickListener {
+            }
         }
     }
 

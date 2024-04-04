@@ -10,19 +10,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scooby.databinding.FragmentServiceBinding
-import com.example.scooby.scooby.adapter.ServicesAdapter
 import com.example.scooby.scooby.adapter.ServicesMainAdapter
 import com.example.domain.services.ServicesResponse
 import com.example.scooby.scooby.viewmodel.ServicesViewModel
-import java.util.Locale.filter
 
 @SuppressLint("InflateParams")
 
 class ServiceFragment : Fragment() {
-    lateinit var allServices : ServicesResponse
+    private lateinit var allServices: ServicesResponse
     private val servicesViewModel by viewModels<ServicesViewModel>()
     private lateinit var servicesRV: RecyclerView
-    private lateinit var servicesMainAdapter: ServicesMainAdapter
     private var _binding: FragmentServiceBinding? = null
     private val binding get() = _binding!!
 
@@ -30,24 +27,121 @@ class ServiceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-            _binding = FragmentServiceBinding.inflate(inflater,container,false)
-            init()
+        _binding = FragmentServiceBinding.inflate(inflater, container, false)
+        init()
         return binding.root
     }
 
-    private fun init() {
-        callBackButton()
-        observeViewModel()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.refreshServicesLayout.apply {
+            setOnRefreshListener {
+                init()
+                isRefreshing = false
+            }
+        }
     }
 
-    private fun callBackButton() {
+    private fun init() {
+//        callBackButton()
+        observeViewModel()
+        callBackButton2()
+    }
 
+    private fun callBackButton2() {
+        binding.allBtn.setOnClickListener {
+            servicesViewModel.servicesResult.observe(viewLifecycleOwner) {
+                getServicesDataMain(it)
+            }
+        }
+        binding.btnVet.setOnClickListener { filterServices("Hotel") }
+        binding.btnBoarding.setOnClickListener { filterServices("Boarding") }
+        binding.btnGrooming.setOnClickListener { filterServices("Grooming") }
+        binding.btnTraining.setOnClickListener { filterServices("Training") }
+        binding.btnWalking.setOnClickListener { filterServices("Walking") }
+    }
+
+    private fun filterServices(serviceType: String) {
+        servicesViewModel.apply {
+            val filteredServices = allServices.allServices.filter { it.serviceType == serviceType }
+            getServicesDataMain(ServicesResponse(filteredServices))
+        }
+    }
+
+
+    // Here we Filter The Services Fragment by type of selected services
+    private fun callBackButton() {
         binding.allBtn.setOnClickListener {
             servicesViewModel.apply {
-                val filterdServices = allServices.allServices.filter{
+                servicesResult.observe(viewLifecycleOwner) {
+                    getServicesDataMain(it)
+                }
+            }
+        }
+
+        binding.btnVet.setOnClickListener {
+            servicesViewModel.apply {
+                val filteredServices = allServices.allServices.filter {
+                    it.serviceType == "Hotel"
+                }
+                getServicesDataMain(ServicesResponse(filteredServices))
+            }
+        }
+        binding.btnBoarding.setOnClickListener {
+            servicesViewModel.apply {
+                val filteredServices = allServices.allServices.filter {
                     it.serviceType == "Boarding"
                 }
-                getServicesDataMain(ServicesResponse(filterdServices))
+                getServicesDataMain(ServicesResponse(filteredServices))
+            }
+        }
+        binding.btnGrooming.setOnClickListener {
+            servicesViewModel.apply {
+                val filteredServices = allServices.allServices.filter {
+                    it.serviceType == "Grooming"
+                }
+                getServicesDataMain(ServicesResponse(filteredServices))
+            }
+        }
+        binding.btnGrooming.setOnClickListener {
+            servicesViewModel.apply {
+                val filteredServices = allServices.allServices.filter {
+                    it.serviceType == "Training"
+                }
+                getServicesDataMain(ServicesResponse(filteredServices))
+            }
+        }
+        binding.btnGrooming.setOnClickListener {
+            servicesViewModel.apply {
+                val filteredServices = allServices.allServices.filter {
+                    it.serviceType == "Walking"
+                }
+                getServicesDataMain(ServicesResponse(filteredServices))
+            }
+        }
+        binding.btnGrooming.setOnClickListener {
+            servicesViewModel.apply {
+                val filteredServices = allServices.allServices.filter {
+                    it.serviceType == "Taxi"
+                }
+                getServicesDataMain(ServicesResponse(filteredServices))
+            }
+        }
+        binding.btnGrooming.setOnClickListener {
+            servicesViewModel.apply {
+                val filteredServices = allServices.allServices.filter {
+                    it.serviceType == "Sitting"
+                }
+                getServicesDataMain(ServicesResponse(filteredServices))
+            }
+        }
+        binding.btnGrooming.setOnClickListener {
+            servicesViewModel.apply {
+                val filteredServices = allServices.allServices.filter {
+                    it.serviceType == "Supplies"
+                }
+                getServicesDataMain(ServicesResponse(filteredServices))
             }
         }
 
@@ -56,30 +150,31 @@ class ServiceFragment : Fragment() {
 
     private fun observeViewModel() {
 
-        // Data For Services in home
+        // Data For Services in ServicesFragment
         servicesViewModel.apply {
             getServices()
-            servicesResult.observe(viewLifecycleOwner){
+            servicesResult.observe(viewLifecycleOwner) {
+                stopLoading()
                 getServicesDataMain(it)
                 allServices = it!!
             }
 
         }
-        // Data For Services in ServicesFragment
-        servicesViewModel.apply {
-            getServices()
-            servicesResult.observe(viewLifecycleOwner){
-                getServicesDataMain(it)
-            }
-        }
     }
+
     private fun getServicesDataMain(data: ServicesResponse?) {
         servicesRV = binding.RvServicesContent
         servicesRV.adapter = ServicesMainAdapter(data!!, requireContext())
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding.RvServicesContent.adapter = null
+    }
+
+    private fun stopLoading() {
+        binding.loading.visibility = View.GONE
+        binding.RvServicesContent.visibility = View.VISIBLE
     }
 
 }
