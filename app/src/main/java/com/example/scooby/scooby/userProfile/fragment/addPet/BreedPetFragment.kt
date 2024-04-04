@@ -27,8 +27,6 @@ class BreedPetFragment : Fragment() {
     private fun initView() {
         clickToBack()
         clickToNext()
-
-//        binding?.nextBtn?.text = args.petType
     }
 
     private fun clickToNext() {

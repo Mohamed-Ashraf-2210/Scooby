@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentTypePetBinding
 import com.example.scooby.scooby.MainActivity
 
@@ -29,28 +31,25 @@ class TypePetFragment : Fragment() {
     private fun initView() {
         clickToBack()
         clickToNext()
-//        binding?.apply {
-//            catCard.setOnLongClickListener {
-//                if (typePet != "cat") {
-//                    typePet = "cat"
-//                    catCard.setBackgroundColor(Color.YELLOW)
-//                } else {
-//                    typePet = null
-//                    catCard.setBackgroundColor(Color.WHITE)
-//                }
-//                true
-//            }
-//            dogCard.setOnLongClickListener {
-//                if (typePet != "dog") {
-//                    typePet = "dog"
-//                    dogCard.setBackgroundColor(Color.YELLOW)
-//                } else {
-//                    typePet = null
-//                    dogCard.setBackgroundColor(Color.WHITE)
-//                }
-//                true
-//            }
-//        }
+        binding?.apply {
+            catCard.setOnClickListener {
+                val cardColor = ContextCompat.getColor(requireContext(), R.color.primary)
+                if (typePet != "cat") {
+                    typePet = "cat"
+                    catCard.setCardBackgroundColor(cardColor)
+                } else {
+                    typePet = null
+                }
+            }
+            dogCard.setOnClickListener {
+                if (typePet != "dog") {
+                    typePet = "dog"
+
+                } else {
+                    typePet = null
+                }
+            }
+        }
     }
 
     private fun clickToNext() {
