@@ -18,6 +18,6 @@
         android:title="@string/booking" />
     <item
         android:id="@+id/toProfileFragment"
-        android:icon="@drawable/bookings_icon"
+        android:icon="@drawable/profile_icon"
         android:title="@string/profile" />
 </menu>

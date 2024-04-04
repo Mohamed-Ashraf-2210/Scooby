@@ -117,6 +117,9 @@
             <action
                 android:id="@+id/action_profileFragment_to_petProfileFragment"
                 app:destination="@id/petProfileFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_myPetsFragment"
+                app:destination="@id/myPetsFragment" />
         </fragment>
 
         <fragment
@@ -134,6 +137,22 @@
                 android:name="pet_position"
                 app:argType="integer" />
         </fragment>
+
+        <fragment
+            android:id="@+id/myPetsFragment"
+            android:name="com.example.scooby.scooby.userProfile.fragment.MyPetsFragment"
+            android:label="fragment_my_pets"
+            tools:layout="@layout/fragment_my_pets" >
+            <action
+                android:id="@+id/action_myPetsFragment_to_addPetsFragment"
+                app:destination="@id/addPetsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/addPetsFragment"
+            android:name="com.example.scooby.scooby.userProfile.fragment.AddPetsFragment"
+            android:label="fragment_add_pets"
+            tools:layout="@layout/fragment_add_pets" />
     </navigation>
+
 
 </navigation>

@@ -10,7 +10,7 @@ import com.example.domain.authentication.ResetPasswordResponse
 import com.example.domain.authentication.SignUpRequest
 import com.example.domain.profile.UserResponse
 import com.example.data.remote.service.UserApi
-import com.example.domain.profile.ProfileDetailsResponse
+import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UpdateUserData
 import retrofit2.Response
@@ -37,7 +37,7 @@ class UserRepository {
         return  UserApi.getApi()?.resetPassword(resetPasswordRequest)
     }
 
-    suspend fun getUser(userId: String): Response<ProfileDetailsResponse>? {
+    suspend fun getUser(userId: String): Response<UserProfileResponse>? {
         return UserApi.getApi()?.getUser(userId)
     }
 

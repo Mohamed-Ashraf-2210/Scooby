@@ -3,7 +3,7 @@ package com.example.domain.profile
 
 import com.google.gson.annotations.SerializedName
 
-data class ProfileDetailsResponse(
+data class UserProfileResponse(
     @SerializedName("data")
     val `data`: Data,
     @SerializedName("status")
@@ -22,14 +22,24 @@ data class ProfileDetailsResponse(
             val followers: List<Any>,
             @SerializedName("following")
             val following: List<Any>,
-            @SerializedName("_id")
+            @SerializedName("id")
             val id: String,
             @SerializedName("name")
             val name: String,
+            @SerializedName("passwordResetCode")
+            val passwordResetCode: String,
+            @SerializedName("passwordResetExpires")
+            val passwordResetExpires: String,
+            @SerializedName("passwordResetVerified")
+            val passwordResetVerified: Boolean,
             @SerializedName("pets")
             val pets: List<Pet>,
             @SerializedName("profileImage")
             val profileImage: String,
+            @SerializedName("role")
+            val role: String,
+            @SerializedName("services_id")
+            val servicesId: List<String>,
             @SerializedName("updatedAt")
             val updatedAt: String,
             @SerializedName("__v")
@@ -38,6 +48,8 @@ data class ProfileDetailsResponse(
             data class Pet(
                 @SerializedName("adoptionDay")
                 val adoptionDay: String,
+                @SerializedName("availableForAdoption")
+                val availableForAdoption: Boolean,
                 @SerializedName("birthday")
                 val birthday: String,
                 @SerializedName("category")
@@ -59,29 +71,12 @@ data class ProfileDetailsResponse(
                 @SerializedName("type")
                 val type: String,
                 @SerializedName("user")
-                val user: User,
+                val user: String,
                 @SerializedName("vaccinations_id")
                 val vaccinationsId: List<Any>,
                 @SerializedName("weight")
                 val weight: Int
-            ) {
-                data class User(
-                    @SerializedName("followers")
-                    val followers: List<Any>,
-                    @SerializedName("following")
-                    val following: List<Any>,
-                    @SerializedName("_id")
-                    val id: String,
-                    @SerializedName("name")
-                    val name: String,
-                    @SerializedName("pets")
-                    val pets: List<String>,
-                    @SerializedName("profileImage")
-                    val profileImage: String,
-                    @SerializedName("services_id")
-                    val servicesId: List<String>
-                )
-            }
+            )
         }
     }
 }

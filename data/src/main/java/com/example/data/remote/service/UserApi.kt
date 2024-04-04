@@ -10,7 +10,7 @@ import com.example.domain.authentication.ResetPasswordRequest
 import com.example.domain.authentication.ResetPasswordResponse
 import com.example.domain.profile.UserResponse
 import com.example.domain.authentication.SignUpRequest
-import com.example.domain.profile.ProfileDetailsResponse
+import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UpdateUserData
 import retrofit2.Response
@@ -39,7 +39,7 @@ interface UserApi {
     suspend fun resetPassword(@Body resetPasswordRequest: ResetPasswordRequest): Response<ResetPasswordResponse>
 
     @GET("/scooby/api/user/getuser/{userId}")
-    suspend fun getUser(@Path("userId") userId: String): Response<ProfileDetailsResponse>
+    suspend fun getUser(@Path("userId") userId: String): Response<UserProfileResponse>
 
     @PATCH("/scooby/api/user/updateuser/{userId}")
     suspend fun uploadImageProfile(

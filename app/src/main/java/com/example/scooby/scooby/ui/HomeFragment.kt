@@ -12,7 +12,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.domain.blog.BlogResponse
 import com.example.domain.offer.OfferResponse
-import com.example.domain.pet.AllPetsResponse
+import com.example.domain.pet.PetsResponse
 import com.example.domain.services.ServicesResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentHomeBinding
@@ -129,7 +129,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getPetsData(data: AllPetsResponse?) {
+    private fun getPetsData(data: PetsResponse?) {
         binding?.petsRv?.adapter = PetsHomeAdapter(data!!, requireContext())
     }
     // endregion

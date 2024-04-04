@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.data.Constant
-import com.example.domain.profile.ProfileDetailsResponse
+import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentPetProfileBinding
 import com.example.scooby.scooby.MainActivity
@@ -58,8 +58,8 @@ class PetProfileFragment : Fragment() {
         }
     }
 
-    private fun getPetProfileData(profileDetailsResponse: ProfileDetailsResponse?) {
-        val pet = profileDetailsResponse?.data?.data?.pets?.get(args.petPosition)
+    private fun getPetProfileData(userProfileResponse: UserProfileResponse?) {
+        val pet = userProfileResponse?.data?.data?.pets?.get(args.petPosition)
         pet?.let {
             with(binding) {
                 Glide.with(this@PetProfileFragment).load(it.petImage).into(imagePetProfile)

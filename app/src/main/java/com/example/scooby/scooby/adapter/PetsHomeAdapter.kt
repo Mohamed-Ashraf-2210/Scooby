@@ -9,9 +9,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.scooby.R
-import com.example.domain.pet.AllPetsResponse
+import com.example.domain.pet.PetsResponse
 
-class PetsHomeAdapter(private val petsList: AllPetsResponse, private val context: Context) :
+class PetsHomeAdapter(private val petsList: PetsResponse, private val context: Context) :
     RecyclerView.Adapter<PetsHomeAdapter.PetsHomeViewHolder>() {
 
     class PetsHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

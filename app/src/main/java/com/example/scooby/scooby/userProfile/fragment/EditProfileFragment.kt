@@ -14,7 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.data.Constant
-import com.example.domain.profile.ProfileDetailsResponse
+import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UpdateUserData
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentEditProfileBinding
@@ -132,7 +132,7 @@ class EditProfileFragment : Fragment() {
         }
     }
 
-    private fun getProfileData(it: ProfileDetailsResponse?) {
+    private fun getProfileData(it: UserProfileResponse?) {
         val data = it?.data?.data
         Glide.with(this).load(data?.profileImage).into(binding.profileImage)
         binding.nameEditText.setText(data?.name)

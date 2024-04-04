@@ -4,7 +4,7 @@ package com.example.domain.pet
 import com.google.gson.annotations.SerializedName
 
 
-data class AllPetsResponse(
+data class PetsResponse(
     @SerializedName("data")
     val `data`: List<Data>,
     @SerializedName("status")
@@ -13,13 +13,15 @@ data class AllPetsResponse(
     data class Data(
         @SerializedName("adoptionDay")
         val adoptionDay: String,
+        @SerializedName("availableForAdoption")
+        val availableForAdoption: Boolean,
         @SerializedName("birthday")
         val birthday: String,
         @SerializedName("category")
         val category: String,
         @SerializedName("gender")
         val gender: String,
-        @SerializedName("_id")
+        @SerializedName("id")
         val id: String,
         @SerializedName("name")
         val name: String,
@@ -34,23 +36,10 @@ data class AllPetsResponse(
         @SerializedName("type")
         val type: String,
         @SerializedName("user")
-        val user: User,
+        val user: String,
         @SerializedName("vaccinations_id")
         val vaccinationsId: List<Any>,
-        @SerializedName("weigth")
-        val weigth: Int
-    ) {
-        data class User(
-            @SerializedName("_id")
-            val id: String,
-            @SerializedName("name")
-            val name: String,
-            @SerializedName("pets")
-            val pets: List<String>,
-            @SerializedName("profileImage")
-            val profileImage: String,
-            @SerializedName("services_id")
-            val servicesId: List<String>
-        )
-    }
+        @SerializedName("weight")
+        val weight: Int
+    )
 }

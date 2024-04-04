@@ -12,8 +12,6 @@ data class ServicesResponse(
         val carImage: String,
         @SerializedName("city")
         val city: String,
-        @SerializedName("country")
-        val country: String,
         @SerializedName("createdAt")
         val createdAt: String,
         @SerializedName("gender")
@@ -30,8 +28,10 @@ data class ServicesResponse(
         val phone: Int,
         @SerializedName("price")
         val price: Int,
+        @SerializedName("pricePer")
+        val pricePer: String,
         @SerializedName("rate")
-        val rate: Int,
+        val rate: Double,
         @SerializedName("serviceImage")
         val serviceImage: String,
         @SerializedName("serviceType")

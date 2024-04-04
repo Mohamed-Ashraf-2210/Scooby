@@ -7,13 +7,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
 import com.example.data.repository.AllPetsRepo
-import com.example.domain.pet.AllPetsResponse
+import com.example.domain.pet.PetsResponse
 import kotlinx.coroutines.launch
 
 class PetsViewModel : ViewModel() {
     private val allPetsRepo = AllPetsRepo()
-    private val _petsResult: MutableLiveData<AllPetsResponse?> = MutableLiveData()
-    val petsResult: LiveData<AllPetsResponse?>
+    private val _petsResult: MutableLiveData<PetsResponse?> = MutableLiveData()
+    val petsResult: LiveData<PetsResponse?>
         get() = _petsResult
 
     fun getPets() {

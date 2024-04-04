@@ -137,5 +137,8 @@ again."</string>
     <string name="ears">Ears</string>
     <string name="injury">Injury</string>
     <string name="stomach">Stomach</string>
+    <string name="image_pet">Image pet</string>
+    <string name="tap_here_to_add_pet">tap here to add pet</string>
+    <string name="back">back</string>
 
 </resources>

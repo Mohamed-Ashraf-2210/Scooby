@@ -1,14 +1,13 @@
 package com.example.scooby.scooby.userProfile.viewModel
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
 import com.example.data.repository.UserRepository
-import com.example.domain.profile.ProfileDetailsResponse
+import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UpdateUserData
 import kotlinx.coroutines.launch
@@ -18,8 +17,8 @@ class ProfileViewModel : ViewModel() {
     private val profileRepo = UserRepository()
 
     // region Get user
-    private val _profileResult: MutableLiveData<ProfileDetailsResponse?> = MutableLiveData()
-    val profileResult: LiveData<ProfileDetailsResponse?>
+    private val _profileResult: MutableLiveData<UserProfileResponse?> = MutableLiveData()
+    val profileResult: LiveData<UserProfileResponse?>
         get() = _profileResult
 
     fun getUser(userId: String) {
