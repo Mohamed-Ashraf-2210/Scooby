@@ -140,5 +140,11 @@ again."</string>
     <string name="image_pet">Image pet</string>
     <string name="tap_here_to_add_pet">tap here to add pet</string>
     <string name="back">back</string>
+    <string name="what_is_your_pet_name">What is your pet name?</string>
+    <string name="next">Next</string>
+    <string name="cat">Cat</string>
+    <string name="dog">Dog</string>
+    <string name="what_is_your_pet_size">What is your pet size?</string>
+    <string name="what_is_your_pet_breed">What is your pet breed?</string>
 
 </resources>

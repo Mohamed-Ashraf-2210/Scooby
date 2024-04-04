@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment
+package com.example.scooby.scooby.userProfile.fragment.addPet
 
 import android.os.Bundle
 import android.view.LayoutInflater

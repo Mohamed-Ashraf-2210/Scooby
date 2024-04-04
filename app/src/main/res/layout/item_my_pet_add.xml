@@ -47,8 +47,10 @@
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_pet_my_pets"
-            tools:text="Cat" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="4dp"
+            tools:text="Cat"
+            tools:ignore="SmallSp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
