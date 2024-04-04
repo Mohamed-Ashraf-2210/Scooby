@@ -44,7 +44,7 @@ class BlogsFragment : Fragment() {
         navBar.visibility = View.GONE
         getString(R.string.app_name)
 
-        val appBar: Toolbar = (activity as AppCompatActivity).findViewById(R.id.tool_bar)
+        val appBar: Toolbar = (activity as AppCompatActivity).findViewById(R.id.top_app_bar)
         appBar.visibility = View.GONE
     }
 
