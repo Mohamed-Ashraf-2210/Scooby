@@ -118,6 +118,9 @@ class HomeFragment : Fragment() {
                 dialog.setContentView(dialogView)
                 dialog.show()
             }
+            suppliesIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_productFragment)
+            }
         }
     }
 

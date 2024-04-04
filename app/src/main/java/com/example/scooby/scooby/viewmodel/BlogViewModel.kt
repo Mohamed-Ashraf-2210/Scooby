@@ -12,7 +12,7 @@ import com.example.data.Constant
 import kotlinx.coroutines.launch
 
 class BlogViewModel (application: Application) : AndroidViewModel(application) {
-    private val blogRepo = BlogRepo()
+     private val blogRepo = BlogRepo()
      private val _blogResult : MutableLiveData<BlogResponse?> = MutableLiveData()
     val blogResult:LiveData<BlogResponse?>
         get() = _blogResult

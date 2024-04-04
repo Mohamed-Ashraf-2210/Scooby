@@ -25,6 +25,9 @@
             <action
                 android:id="@+id/action_homeFragment_to_vetFragment"
                 app:destination="@id/vetFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_productFragment"
+                app:destination="@id/productFragment" />
         </fragment>
         <fragment
             android:id="@+id/blogsFragment"
@@ -77,14 +80,15 @@
                 android:id="@+id/action_vetFragment_to_doctorsFragment"
                 app:destination="@id/doctorsFragment" />
             <action
-                android:id="@+id/action_vetFragment_to_medicineFragment"
-                app:destination="@id/medicineFragment" />
+                android:id="@+id/action_vetFragment_to_productFragment"
+                app:destination="@id/productFragment" />
+
         </fragment>
         <fragment
-            android:id="@+id/medicineFragment"
-            android:name="com.example.scooby.scooby.ui.ShopFragment"
-            android:label="fragment_medicine"
-            tools:layout="@layout/fragment_shop" />
+            android:id="@+id/productFragment"
+            android:name="com.example.scooby.scooby.ui.ProductFragment"
+            android:label="fragment_product"
+            tools:layout="@layout/fragment_product" />
 
     </navigation>
 
@@ -119,5 +123,6 @@
             android:label="fragment_community"
             tools:layout="@layout/fragment_community" />
     </navigation>
+
 
 </navigation>

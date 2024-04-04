@@ -1,27 +1,33 @@
 package com.example.scooby.scooby.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
-import com.example.domain.offer.OfferResponse
-import com.example.scooby.databinding.FragmentShopBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.product.ProductResponse
+import com.example.scooby.databinding.FragmentProductBinding
+import com.example.scooby.scooby.adapter.ProductAdapter
 import com.example.scooby.scooby.viewmodel.OfferViewModel
+import com.example.scooby.scooby.viewmodel.ProductViewModel
 
-class ShopFragment : Fragment() {
-    private val offerViewModel by viewModels<OfferViewModel>()
+class ProductFragment : Fragment() {
+    private lateinit var allProduct : ProductResponse
+    private val productViewModel by viewModels<ProductViewModel>()
 
-    private var _binding: FragmentShopBinding? = null
+    private var _binding: FragmentProductBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var productRv : RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentShopBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentProductBinding.inflate(layoutInflater,container,false)
         init()
         observeOfferViewModel()
         return binding.root
@@ -36,24 +42,26 @@ class ShopFragment : Fragment() {
         }
     }
     private fun observeOfferViewModel() {
-        offerViewModel.apply {
-            getOffer()
-            offerResult.observe(viewLifecycleOwner){
-//                getOneOfferData(it)
+        productViewModel.apply {
+            getProduct()
+            productResult.observe(viewLifecycleOwner){
+                getProductData(it)
+                allProduct = it!!
+                Log.d("my_Tagg",it.data.toString())
+
             }
         }
+
     }
 
     private fun init() {
 
     }
 
-
-//    private fun getOneOfferData(it: OfferResponse?) {
-//        val sizeOfList = it?.data?.size
-//        val randomNumber = (0..<sizeOfList!!).random()
-//        Glide.with(this).load(it.data[randomNumber].offerImage).into(binding.offerMedImage)
-//    }
+    private fun getProductData(data : ProductResponse?){
+        productRv = binding.productRv
+        productRv.adapter = ProductAdapter(data!!,requireContext())
+    }
     override fun onResume() {
         super.onResume()
         (activity as AppCompatActivity).supportActionBar?.hide()

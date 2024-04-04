@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".scooby.ui.ShopFragment">
+    tools:context=".scooby.ui.ProductFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -298,7 +298,7 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/medicine_card_rv"
+                    android:id="@+id/product_rv"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="12dp"
@@ -311,7 +311,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/hor_linear_lay"
                     app:spanCount="2"
-                    tools:listitem="@layout/item_medicine" />
+                    tools:listitem="@layout/item_product" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
