@@ -6,10 +6,6 @@ import com.google.gson.annotations.SerializedName
 data class ProductResponse(
     @SerializedName("data")
     val `data`: List<Data>,
-    @SerializedName("results")
-    val results: Int?,
-    @SerializedName("status")
-    val status: String?
 ) {
     data class Data(
         @SerializedName("category")

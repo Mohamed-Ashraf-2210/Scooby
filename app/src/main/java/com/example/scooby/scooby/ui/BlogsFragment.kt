@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentBlogsBinding
@@ -33,6 +34,7 @@ class BlogsFragment : Fragment() {
         _binding = FragmentBlogsBinding.inflate(inflater, container, false)
         mContext = requireContext()
         initGetBlog()
+        backOffFragment()
         return binding.root
     }
 
@@ -44,8 +46,6 @@ class BlogsFragment : Fragment() {
         navBar.visibility = View.GONE
         getString(R.string.app_name)
 
-        val appBar: Toolbar = (activity as AppCompatActivity).findViewById(R.id.top_app_bar)
-        appBar.visibility = View.GONE
     }
 
     override fun onStop() {
@@ -77,6 +77,11 @@ class BlogsFragment : Fragment() {
     private fun getBlogsData(data: BlogResponse?) {
         blogRV = binding.RvBlogs
         blogRV.adapter = BlogAdapter(data!!, requireContext())
+    }
+    private fun backOffFragment() {
+        binding?.icBack?.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 }

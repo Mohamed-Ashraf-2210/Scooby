@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/back_profile"
+                android:id="@+id/ic_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -70,6 +70,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:orientation="horizontal"
+                    android:background="@color/white_BG"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -96,13 +97,14 @@
                                 <ImageView
                                     android:layout_width="50dp"
                                     android:layout_height="50dp"
+                                    android:clickable="true"
                                     android:src="@drawable/item_circle" />
 
                                 <ImageView
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/veterinarian" />
+                                    android:src="@drawable/med" />
                             </FrameLayout>
 
                             <TextView
@@ -146,7 +148,7 @@
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/veterinarian" />
+                                    android:src="@drawable/food" />
                             </FrameLayout>
 
                             <TextView
@@ -191,7 +193,7 @@
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/world_animal" />
+                                    android:src="@drawable/toys" />
                             </FrameLayout>
 
                             <TextView
@@ -235,7 +237,7 @@
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/grooming" />
+                                    android:src="@drawable/acsses" />
                             </FrameLayout>
 
                             <TextView
@@ -279,7 +281,7 @@
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/dog_training" />
+                                    android:src="@drawable/salon" />
                             </FrameLayout>
 
                             <TextView
@@ -313,6 +315,15 @@
                     app:spanCount="2"
                     tools:listitem="@layout/item_product" />
 
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/product_rv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hor_linear_lay" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

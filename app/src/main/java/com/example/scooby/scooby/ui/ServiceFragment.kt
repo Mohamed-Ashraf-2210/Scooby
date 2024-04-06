@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scooby.databinding.FragmentServiceBinding
 import com.example.scooby.scooby.adapter.ServicesMainAdapter
@@ -45,6 +46,7 @@ class ServiceFragment : Fragment() {
 
     private fun init() {
 //        callBackButton()
+        backOffFragment()
         observeViewModel()
         callBackButton2()
     }
@@ -175,6 +177,11 @@ class ServiceFragment : Fragment() {
     private fun stopLoading() {
         binding.loading.visibility = View.GONE
         binding.RvServicesContent.visibility = View.VISIBLE
+    }
+    private fun backOffFragment() {
+        binding?.icBack?.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
 }
