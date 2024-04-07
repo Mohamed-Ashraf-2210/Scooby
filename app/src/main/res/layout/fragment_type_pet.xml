@@ -62,7 +62,6 @@
             android:layout_height="150dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="130dp"
-            android:backgroundTint="@color/white_BG"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
@@ -71,6 +70,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeWidth="0dp">
+
+            <View
+                android:id="@+id/cat_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white_BG" />
 
             <ImageView
                 android:layout_width="match_parent"
@@ -95,7 +100,6 @@
             android:layout_height="150dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="130dp"
-            android:backgroundTint="@color/white_BG"
             android:checkable="true"
             android:clickable="true"
             android:focusable="true"
@@ -104,6 +108,12 @@
             app:layout_constraintStart_toEndOf="@id/cat_card"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeWidth="0dp">
+
+            <View
+                android:id="@+id/dog_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white_BG" />
 
             <ImageView
                 android:layout_width="match_parent"

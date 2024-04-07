@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_BG"
-    tools:context=".scooby.ui.VetFragment">
+    tools:context=".scooby.vet.fragment.VetFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+
                 android:src="@drawable/arrow_left_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -132,19 +133,17 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_book_doctor_vet"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_width="72dp"
+                            android:layout_height="30dp"
                             android:layout_marginEnd="20dp"
-                            android:layout_marginBottom="14dp"
+                            android:layout_marginBottom="15dp"
                             android:backgroundTint="@color/primary"
                             android:fontFamily="@font/roboto_medium"
+                            android:padding="0dp"
                             android:text="@string/book_now"
                             android:textSize="8sp"
-                            app:cornerRadius="91dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/bio_doctor_vet_tv"
                             tools:ignore="SmallSp" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -207,21 +206,20 @@
                             app:layout_constraintTop_toBottomOf="@id/pharmacy_tv"
                             tools:ignore="SmallSp" />
 
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_pharmacy"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_marginEnd="20dp"
+                            android:layout_width="75dp"
+                            android:layout_height="30dp"
+                            android:layout_marginEnd="19dp"
                             android:layout_marginBottom="14dp"
                             android:backgroundTint="@color/primary"
                             android:fontFamily="@font/roboto_medium"
+                            android:padding="0dp"
                             android:text="@string/order_now"
                             android:textSize="8sp"
-                            app:cornerRadius="91dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/bio_pharmacy_tv"
                             tools:ignore="SmallSp" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>

@@ -20,6 +20,8 @@ data class OfferResponse(
         val id: String,
         @SerializedName("name")
         val name: String,
+        @SerializedName("type")
+        val type: String,
         @SerializedName("offerImage")
         val offerImage: String,
         @SerializedName("updatedAt")

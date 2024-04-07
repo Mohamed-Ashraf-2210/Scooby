@@ -50,7 +50,7 @@ interface UserApi {
     @PATCH("/scooby/api/user/updateuser/{userId}")
     suspend fun updateUser(
         @Path("userId") userId: String,
-        @Body userData: UpdateUserData
+        @Part userData: UpdateUserData
     ): Response<UpdateUseResponse>
 
     companion object {

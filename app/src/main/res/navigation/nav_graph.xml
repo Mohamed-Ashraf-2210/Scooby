@@ -44,7 +44,7 @@
             tools:layout="@layout/fragment_doctors" />
         <fragment
             android:id="@+id/vetFragment"
-            android:name="com.example.scooby.scooby.ui.VetFragment"
+            android:name="com.example.scooby.scooby.vet.fragment.VetFragment"
             android:label="fragment_vet"
             tools:layout="@layout/fragment_vet">
             <action
@@ -189,7 +189,7 @@
             android:id="@+id/sizePetFragment"
             android:name="com.example.scooby.scooby.userProfile.fragment.addPet.SizePetFragment"
             android:label="fragment_size_pet"
-            tools:layout="@layout/fragment_size_pet" >
+            tools:layout="@layout/fragment_size_pet">
             <argument
                 android:name="pet_name"
                 app:argType="string" />
@@ -199,9 +199,96 @@
             <argument
                 android:name="pet_breed"
                 app:argType="string" />
+            <action
+                android:id="@+id/action_sizePetFragment_to_birthdayPetFragment"
+                app:destination="@id/birthdayPetFragment" />
+
+        </fragment>
+        <fragment
+            android:id="@+id/birthdayPetFragment"
+            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.BirthdayPetFragment"
+            android:label="fragment_birthday_pet"
+            tools:layout="@layout/fragment_birthday_pet">
+            <argument
+                android:name="pet_name"
+                app:argType="string" />
+            <argument
+                android:name="pet_type"
+                app:argType="string" />
+            <argument
+                android:name="pet_breed"
+                app:argType="string" />
+            <argument
+                android:name="pet_size"
+                app:argType="string" />
+            <argument
+                android:name="pet_gender"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_birthdayPetFragment_to_infoPetFragment"
+                app:destination="@id/infoPetFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/infoPetFragment"
+            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.InfoPetFragment"
+            android:label="fragment_info_pet"
+            tools:layout="@layout/fragment_info_pet" >
+            <action
+                android:id="@+id/action_infoPetFragment_to_submitPetFragment"
+                app:destination="@id/submitPetFragment" />
+            <argument
+                android:name="pet_name"
+                app:argType="string" />
+            <argument
+                android:name="pet_type"
+                app:argType="string" />
+            <argument
+                android:name="pet_breed"
+                app:argType="string" />
+            <argument
+                android:name="pet_size"
+                app:argType="string" />
+            <argument
+                android:name="pet_gender"
+                app:argType="string" />
+            <argument
+                android:name="pet_birthday"
+                app:argType="string" />
+            <argument
+                android:name="pet_adoption"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/submitPetFragment"
+            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.SubmitPetFragment"
+            android:label="fragment_submit_pet"
+            tools:layout="@layout/fragment_submit_pet" >
+            <argument
+                android:name="pet_name"
+                app:argType="string" />
+            <argument
+                android:name="pet_type"
+                app:argType="string" />
+            <argument
+                android:name="pet_breed"
+                app:argType="string" />
+            <argument
+                android:name="pet_size"
+                app:argType="string" />
+            <argument
+                android:name="pet_gender"
+                app:argType="string" />
+            <argument
+                android:name="pet_birthday"
+                app:argType="string" />
+            <argument
+                android:name="pet_adoption"
+                app:argType="string" />
+            <argument
+                android:name="pet_info"
+                app:argType="boolean[]" />
         </fragment>
     </navigation>
-
 
 
 </navigation>

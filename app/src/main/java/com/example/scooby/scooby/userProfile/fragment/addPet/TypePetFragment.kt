@@ -1,11 +1,9 @@
 package com.example.scooby.scooby.userProfile.fragment.addPet
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -31,22 +29,29 @@ class TypePetFragment : Fragment() {
     private fun initView() {
         clickToBack()
         clickToNext()
+        selectType()
+    }
+
+    private fun selectType() {
         binding?.apply {
             catCard.setOnClickListener {
-                val cardColor = ContextCompat.getColor(requireContext(), R.color.primary)
                 if (typePet != "cat") {
                     typePet = "cat"
-                    catCard.setCardBackgroundColor(cardColor)
+                    catView.setBackgroundResource(R.color.magenta)
+                    dogView.setBackgroundResource(R.color.white_BG)
                 } else {
                     typePet = null
+                    catView.setBackgroundResource(R.color.white_BG)
                 }
             }
             dogCard.setOnClickListener {
                 if (typePet != "dog") {
                     typePet = "dog"
-
+                    dogView.setBackgroundResource(R.color.magenta)
+                    catView.setBackgroundResource(R.color.white_BG)
                 } else {
                     typePet = null
+                    dogView.setBackgroundResource(R.color.white_BG)
                 }
             }
         }

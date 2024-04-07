@@ -146,5 +146,7 @@ again."</string>
     <string name="dog">Dog</string>
     <string name="what_is_your_pet_size">What is your pet size?</string>
     <string name="what_is_your_pet_breed">What is your pet breed?</string>
+    <string name="directions">Directions</string>
+    <string name="call">Call</string>
 
 </resources>

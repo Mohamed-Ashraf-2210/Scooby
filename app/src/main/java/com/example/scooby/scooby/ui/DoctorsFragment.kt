@@ -7,17 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.doctors.DoctorsResponse
 import com.example.scooby.databinding.FragmentDoctorsBinding
 import com.example.scooby.scooby.adapter.DoctorAdapter
-import com.example.scooby.scooby.viewmodel.VetViewModel
+import com.example.scooby.scooby.vet.viewModel.VetViewModel
 
 
 class DoctorsFragment : Fragment() {
     private var binding: FragmentDoctorsBinding? = null
     private val doctorViewModel by viewModels<VetViewModel>()
-    private lateinit var doctorRV: RecyclerView
 
 
     override fun onCreateView(
