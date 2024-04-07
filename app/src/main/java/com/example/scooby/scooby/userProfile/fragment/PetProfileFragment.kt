@@ -59,7 +59,7 @@ class PetProfileFragment : Fragment() {
     }
 
     private fun getPetProfileData(userProfileResponse: UserProfileResponse?) {
-        val pet = userProfileResponse?.data?.data?.pets?.get(args.petPosition)
+        val pet = userProfileResponse?.data?.data?.pet?.get(args.petPosition)
         pet?.let {
             with(binding) {
                 Glide.with(this@PetProfileFragment).load(it.petImage).into(imagePetProfile)

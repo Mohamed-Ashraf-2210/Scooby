@@ -41,6 +41,7 @@ class DoctorsFragment : Fragment() {
     private fun init() {
         observeViewModel()
         backOffFragment()
+        stopLoading()
     }
 
     private fun observeViewModel() {
