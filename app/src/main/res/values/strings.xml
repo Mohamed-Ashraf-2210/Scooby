@@ -148,5 +148,10 @@ again."</string>
     <string name="what_is_your_pet_breed">What is your pet breed?</string>
     <string name="directions">Directions</string>
     <string name="call">Call</string>
+    <string name="free_pet_shelters">Free pet shelters</string>
+    <string name="top_collections">Top collections</string>
+    <string name="popular_cat_breads">Popular cat breads</string>
+    <string name="cutest_dog_breads">Cutest dog breads</string>
+    <string name="adopt_me">Adopt me</string>
 
 </resources>
