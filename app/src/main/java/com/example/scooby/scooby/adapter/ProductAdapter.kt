@@ -3,12 +3,15 @@ package com.example.scooby.scooby.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.DiffUtil.DiffResult
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.product.ProductResponse
 import com.example.scooby.databinding.ItemProductBinding
 import com.example.scooby.utils.loadUrl
 
 class ProductAdapter(private val productList : ProductResponse, private val context: Context) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+    var oldProductList  = emptyList<ProductResponse.Data>()
     inner class ProductViewHolder(private val itemProductBinding: ItemProductBinding) :
         RecyclerView.ViewHolder(itemProductBinding.root) {
             fun bind(product : ProductResponse.Data){
@@ -29,5 +32,12 @@ class ProductAdapter(private val productList : ProductResponse, private val cont
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         holder.bind(productList.data[position])
+    }
+
+    fun setData(newProductList : List<ProductResponse.Data>){
+        val diffUtil = ProductDiffUtilCallBack(oldProductList,newProductList)
+        val diffResult = DiffUtil.calculateDiff(diffUtil)
+        oldProductList = newProductList
+        diffResult.dispatchUpdatesTo(this)
     }
 }
