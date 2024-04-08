@@ -30,7 +30,7 @@ class MyPetsHomeAdapter(private val myPetsList: UserProfileResponse, private val
     override fun getItemCount() = myPetsList.data.data.pets.size
 
     override fun onBindViewHolder(holder: MyPetsViewHolder, position: Int) {
-        val currentItem = myPetsList.data.data.pets
+        val currentItem = myPetsList.data.data.pet
         Glide.with(context).load(currentItem[position].petImage).transform(CenterCrop())
             .into(holder.myPetImage)
         holder.myPetName.text = currentItem[position].name
