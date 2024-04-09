@@ -19,7 +19,7 @@ class PawsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPawsBinding.inflate(inflater,container,false)
+        binding = FragmentPawsBinding.inflate(inflater, container, false)
         addFragment(adaptionFragment)
         initButtonCallBack()
         return binding.root

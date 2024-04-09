@@ -22,11 +22,11 @@ import com.example.scooby.scooby.viewmodel.PawsViewModel
 
 class AdaptionFragment : Fragment() {
     private val pawsViewModel by viewModels<PawsViewModel>()
-    private lateinit var binding : FragmentAdaptionBinding
-    private lateinit var rvTopCol : RecyclerView
-    private lateinit var rvCats : RecyclerView
-    private lateinit var rvDogs : RecyclerView
-    private lateinit var rvAdoptMe : RecyclerView
+    private lateinit var binding: FragmentAdaptionBinding
+    private lateinit var rvTopCol: RecyclerView
+    private lateinit var rvCats: RecyclerView
+    private lateinit var rvDogs: RecyclerView
+    private lateinit var rvAdoptMe: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class AdaptionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding =FragmentAdaptionBinding.inflate(inflater,container,false)
+        binding = FragmentAdaptionBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
         init()
         return binding.root
@@ -52,7 +52,7 @@ class AdaptionFragment : Fragment() {
         //For Top Collection of dogs and cat Adapter in Adaption Fragment
         pawsViewModel.apply {
             getTopCollection()
-            topCollectionRes.observe(viewLifecycleOwner){
+            topCollectionRes.observe(viewLifecycleOwner) {
                 stopLoading()
                 getDataTopCollection(it)
                 Log.d("TOP_COL_RES", it.data.toString())
@@ -61,7 +61,7 @@ class AdaptionFragment : Fragment() {
         //For Cats Adapter in Adaption Fragment
         pawsViewModel.apply {
             getCats()
-            catsResult.observe(viewLifecycleOwner){
+            catsResult.observe(viewLifecycleOwner) {
                 stopLoading()
                 getCatsData(it)
                 Log.d("CATS_RES", it.data.toString())
@@ -71,7 +71,7 @@ class AdaptionFragment : Fragment() {
         //For Dogs Adapter in Adaption Fragment
         pawsViewModel.apply {
             getDogs()
-            dogResult.observe(viewLifecycleOwner){
+            dogResult.observe(viewLifecycleOwner) {
                 stopLoading()
                 getDogsData(it)
                 Log.d("Dogs_RES", it.data.toString())
@@ -81,7 +81,7 @@ class AdaptionFragment : Fragment() {
         //For Adopt me Adapter in Adaption Fragment
         pawsViewModel.apply {
             getAdoptMe()
-            adoptMeResult.observe(viewLifecycleOwner){
+            adoptMeResult.observe(viewLifecycleOwner) {
                 stopLoading()
                 getAdoptMeData(it)
                 Log.d("AdoptMe_RES", it.data.toString())
@@ -90,20 +90,22 @@ class AdaptionFragment : Fragment() {
 
     }
 
-    private fun getDataTopCollection(data : AdaptionResponse){
+    private fun getDataTopCollection(data: AdaptionResponse) {
         rvTopCol = binding.rvTopCol
         rvTopCol.adapter = PawsTopColAdapter(data)
     }
 
-    private fun getCatsData(data : AdaptionCatsResponse){
+    private fun getCatsData(data: AdaptionCatsResponse) {
         rvCats = binding.rvCats
         rvCats.adapter = AdaptionCatsAdapter(data)
     }
-    private fun getDogsData(data : AdaptionDogsResponse){
+
+    private fun getDogsData(data: AdaptionDogsResponse) {
         rvDogs = binding.rvDogs
         rvDogs.adapter = AdaptionDogsAdapter(data)
     }
-    private fun getAdoptMeData(data : AdaptionAdoptMeResponse){
+
+    private fun getAdoptMeData(data: AdaptionAdoptMeResponse) {
         rvAdoptMe = binding.rvAdoptMe
         rvAdoptMe.adapter = AdaptionAdoptMeAdapter(data)
     }
@@ -113,7 +115,6 @@ class AdaptionFragment : Fragment() {
             loading.visibility = View.GONE
         }
     }
-
 
 
 }
