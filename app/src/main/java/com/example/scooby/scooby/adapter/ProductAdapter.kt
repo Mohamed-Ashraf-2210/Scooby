@@ -10,7 +10,7 @@ import com.example.domain.product.ProductResponse
 import com.example.scooby.databinding.ItemProductBinding
 import com.example.scooby.utils.loadUrl
 
-class ProductAdapter(private val productList : ProductResponse, private val context: Context) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(private val productList : ProductResponse,val context: Context) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     var oldProductList  = emptyList<ProductResponse.Data>()
     inner class ProductViewHolder(private val itemProductBinding: ItemProductBinding) :
         RecyclerView.ViewHolder(itemProductBinding.root) {

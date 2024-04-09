@@ -20,6 +20,7 @@ class PawsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPawsBinding.inflate(inflater,container,false)
+        addFragment(adaptionFragment)
         initButtonCallBack()
         return binding.root
     }
@@ -38,9 +39,19 @@ class PawsFragment : Fragment() {
 
     private fun replaceFragment(fragment: Fragment){
          childFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container_paws,fragment)
-            commit()
+             replace(R.id.fragment_container_paws,fragment.javaClass ,null)
+             setReorderingAllowed(true)
+             addToBackStack("name")
+             commit()
          }
+    }
+    private fun addFragment(fragment: Fragment){
+        childFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container_paws,fragment.javaClass ,null)
+            setReorderingAllowed(true)
+            addToBackStack("name")
+            commit()
+        }
     }
 
 }

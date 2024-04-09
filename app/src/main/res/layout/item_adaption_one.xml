@@ -12,6 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/img_item"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="37dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/offer" />
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,20 +39,11 @@
                 android:layout_gravity="center"
                 app:sparkbutton_activeImage="@drawable/favorite_fill_paws"
                 app:sparkbutton_animationSpeed="1.5"
-                app:sparkbutton_iconSize="20dp"
+                app:sparkbutton_iconSize="15dp"
                 app:sparkbutton_inActiveImage="@drawable/favorite_not_fill_paws"
                 app:sparkbutton_primaryColor="@color/primary"
                 app:sparkbutton_secondaryColor="@color/yellow" />
         </FrameLayout>
-
-        <ImageView
-            android:id="@+id/img_item"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="37dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/offer" />
-
         <TextView
             android:id="@+id/name_item"
             android:layout_width="wrap_content"
@@ -60,6 +58,7 @@
             tools:text="Biscuit" />
 
         <TextView
+            android:id="@+id/title_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"

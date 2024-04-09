@@ -21,7 +21,6 @@ interface PetsApi {
         @Path("userId") userId: String,
         @Part petData: AddPetData
     )
-
     companion object{
         fun getApi(): PetsApi? {
             return ApiClient.client?.create(PetsApi::class.java)
