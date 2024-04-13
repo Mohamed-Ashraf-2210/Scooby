@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment
+package com.example.scooby.scooby.userProfile
 
 import android.app.Activity
 import android.net.Uri
@@ -19,7 +19,7 @@ import com.example.domain.profile.UpdateUserData
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentEditProfileBinding
 import com.example.scooby.scooby.MainActivity
-import com.example.scooby.scooby.userProfile.viewModel.ProfileViewModel
+import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
 import java.io.File
 import java.io.FileOutputStream

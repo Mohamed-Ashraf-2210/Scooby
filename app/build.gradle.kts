@@ -55,6 +55,7 @@ dependencies {
 
     implementation("androidx.fragment:fragment-ktx:1.6.2")
     implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("com.google.android.gms:play-services-location:21.2.0")
 
 
     testImplementation("junit:junit:4.13.2")
@@ -102,7 +103,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:21.0.0")
 
     // PinView Provides a widget for enter PIN/OTP/password etc on Android
-    implementation ("io.github.chaosleung:pinview:1.4.4")
+    implementation("io.github.chaosleung:pinview:1.4.4")
 
     //  Image Slider
     implementation("com.github.denzcoskun:ImageSlideshow:0.1.2")
@@ -126,4 +127,6 @@ dependencies {
     //spark Button
     implementation("com.github.varunest:sparkbutton:1.0.6")
 
+    // Google Play services
+    implementation("com.google.android.gms:play-services-location:21.2.0")
 }

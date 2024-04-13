@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment
+package com.example.scooby.scooby.userProfile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,8 +13,8 @@ import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentProfileBinding
-import com.example.scooby.scooby.userProfile.adapter.MyPetsHomeAdapter
-import com.example.scooby.scooby.userProfile.viewModel.ProfileViewModel
+import com.example.scooby.scooby.adapter.MyPetsHomeAdapter
+import com.example.scooby.scooby.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -52,8 +52,12 @@ class ProfileFragment : Fragment() {
     private fun getProfileData(it: UserProfileResponse?) {
         val data = it?.data?.data
         Glide.with(this).load(data?.profileImage).into(binding.profileImage)
-        binding.userName.text = data?.name
-        binding.myPetsRv.adapter = MyPetsHomeAdapter(it!!, requireContext())
+        binding.apply {
+            userName.text = data?.name
+            numberFollowersTv.text = data?.followers?.size.toString()
+            numberFollowingTv.text = data?.following?.size.toString()
+            myPetsRv.adapter = MyPetsHomeAdapter(it!!, requireContext())
+        }
     }
 
     private fun clickToBack() {

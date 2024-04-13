@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment.addPet
+package com.example.scooby.scooby.addPet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -24,11 +24,14 @@ class NamePetFragment : Fragment() {
     }
 
     private fun initView() {
-        clickToBack()
-        clickToNext()
+        binding?.apply {
+            backScreen.setOnClickListener { findNavController().popBackStack() }
+            nextBtn.setOnClickListener { onClickNext() }
+        }
     }
 
-    private fun clickToNext() {
+
+    private fun onClickNext() {
         binding?.apply {
             nextBtn.setOnClickListener {
                 val petName = namePetEditText.text.toString()
@@ -41,11 +44,6 @@ class NamePetFragment : Fragment() {
         }
     }
 
-    private fun clickToBack() {
-        binding?.backProfile?.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 
     override fun onResume() {
         super.onResume()
@@ -55,5 +53,10 @@ class NamePetFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

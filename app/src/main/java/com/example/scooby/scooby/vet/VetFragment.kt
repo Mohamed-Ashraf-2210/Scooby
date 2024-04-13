@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.vet.fragment
+package com.example.scooby.scooby.vet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,8 +14,8 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.example.domain.offer.OfferResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentVetBinding
-import com.example.scooby.scooby.vet.adapter.VetAdapter
-import com.example.scooby.scooby.vet.viewModel.VetViewModel
+import com.example.scooby.scooby.adapter.VetAdapter
+import com.example.scooby.scooby.viewmodel.VetViewModel
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 
 class VetFragment : Fragment() {

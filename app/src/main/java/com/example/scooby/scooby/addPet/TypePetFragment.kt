@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment.addPet
+package com.example.scooby.scooby.addPet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,13 +23,15 @@ class TypePetFragment : Fragment() {
     ): View? {
         binding = FragmentTypePetBinding.inflate(inflater, container, false)
         initView()
+        selectType()
         return binding?.root
     }
 
     private fun initView() {
-        clickToBack()
-        clickToNext()
-        selectType()
+        binding?.apply {
+            backScreen.setOnClickListener { findNavController().popBackStack() }
+            nextBtn.setOnClickListener { onClickNext() }
+        }
     }
 
     private fun selectType() {
@@ -57,14 +59,16 @@ class TypePetFragment : Fragment() {
         }
     }
 
-    private fun clickToNext() {
+    private fun onClickNext() {
         binding?.apply {
             nextBtn.setOnClickListener {
-                val petName = args.petName
                 if (typePet != null) {
-                    val action = TypePetFragmentDirections.actionTypePetFragmentToBreedFragment(
-                        petName,
+                    val listOfData = arrayOf(
+                        args.petName,
                         typePet!!
+                    )
+                    val action = TypePetFragmentDirections.actionTypePetFragmentToBreedFragment(
+                        listOfData
                     )
                     findNavController().navigate(action)
                 }
@@ -73,11 +77,6 @@ class TypePetFragment : Fragment() {
         }
     }
 
-    private fun clickToBack() {
-        binding?.backProfile?.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 
     override fun onResume() {
         super.onResume()
@@ -87,5 +86,10 @@ class TypePetFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.adapter
+package com.example.scooby.scooby.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,10 +9,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.example.domain.profile.UserProfileResponse
+import com.example.domain.pet.MyPetsResponse
 import com.example.scooby.R
 
-class MyPetsAddAdapter(private val myPetsList: UserProfileResponse, private val context: Context) :
+class MyPetsAddAdapter(private val myPetsList: MyPetsResponse, private val context: Context) :
     RecyclerView.Adapter<MyPetsAddAdapter.MyPetsViewHolder>() {
     class MyPetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val myPetImage: ImageView = itemView.findViewById(R.id.pet_image_my_pets)
@@ -26,10 +26,10 @@ class MyPetsAddAdapter(private val myPetsList: UserProfileResponse, private val 
         return MyPetsViewHolder(itemView)
     }
 
-    override fun getItemCount() = myPetsList.data.data.pets.size
+    override fun getItemCount() = myPetsList.data.size
 
     override fun onBindViewHolder(holder: MyPetsViewHolder, position: Int) {
-        val currentItem = myPetsList.data.data.pet
+        val currentItem = myPetsList.data
         Glide.with(context).load(currentItem[position].petImage).transform(CenterCrop())
             .into(holder.myPetImage)
         holder.myPetName.text = currentItem[position].name

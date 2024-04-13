@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment.addPet
+package com.example.scooby.scooby.addPet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,35 +15,49 @@ import com.example.scooby.scooby.MainActivity
 class InfoPetFragment : Fragment() {
     private var binding: FragmentInfoPetBinding? = null
     private val args: InfoPetFragmentArgs by navArgs()
-    private val booleanArray = BooleanArray(12) { false }
+    private val info = BooleanArray(12) { false }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentInfoPetBinding.inflate(inflater, container, false)
+        selectInfo()
         initView()
         return binding?.root
     }
 
     private fun initView() {
-        clickToBack()
-        clickToNext()
-        selectInfo()
+        binding?.apply {
+            backScreen.setOnClickListener { findNavController().popBackStack() }
+            nextBtn.setOnClickListener { onClickNext() }
+        }
     }
 
-    private fun clickToNext() {
+    private fun onClickNext() {
         binding?.apply {
             nextBtn.setOnClickListener {
 
+                var bio = ""
+                val array = arrayOf(
+                    "Vaccinated, ",
+                    "Friendly with cats, ",
+                    "Microchipped, ",
+                    "Has any anxiety, ",
+                    "Has hygiene issues, ",
+                    "Full medical records, ",
+                    "Aggressive, ",
+                    "Has any disease, ",
+                    "Spayed, ",
+                    "Full medical records, ",
+                    "Friendly with dogs, ",
+                    "Friendly with kids, "
+                )
+                for (i in 0..11) {
+                    if (info[i]) bio += array[i]
+                }
+
                 val action = InfoPetFragmentDirections.actionInfoPetFragmentToSubmitPetFragment(
-                    args.petName,
-                    args.petType,
-                    args.petBreed,
-                    args.petSize,
-                    args.petGender,
-                    args.petBirthday,
-                    args.petAdoption,
-                    booleanArray
+                    args.listOfData?.plus(bio)
                 )
                 findNavController().navigate(action)
             }
@@ -53,111 +67,111 @@ class InfoPetFragment : Fragment() {
     private fun selectInfo() {
         binding?.apply {
             vaccinatedCard.setOnClickListener {
-                if (!booleanArray[0]) {
-                    booleanArray[0] = true
+                if (!info[0]) {
+                    info[0] = true
                     vaccinatedView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[0] = false
+                    info[0] = false
                     vaccinatedView.setBackgroundResource(R.color.app_background)
                 }
             }
             friendlyWithCatsCard.setOnClickListener {
-                if (!booleanArray[1]) {
-                    booleanArray[1] = true
+                if (!info[1]) {
+                    info[1] = true
                     friendlyWithCatsView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[1] = false
+                    info[1] = false
                     friendlyWithCatsView.setBackgroundResource(R.color.app_background)
                 }
             }
             microCard.setOnClickListener {
-                if (!booleanArray[2]) {
-                    booleanArray[2] = true
+                if (!info[2]) {
+                    info[2] = true
                     microView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[2] = false
+                    info[2] = false
                     microView.setBackgroundResource(R.color.app_background)
                 }
             }
             anxietyCard.setOnClickListener {
-                if (!booleanArray[3]) {
-                    booleanArray[3] = true
+                if (!info[3]) {
+                    info[3] = true
                     anxietyView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[3] = false
+                    info[3] = false
                     anxietyView.setBackgroundResource(R.color.app_background)
                 }
             }
             hygieneCard.setOnClickListener {
-                if (!booleanArray[4]) {
-                    booleanArray[4] = true
+                if (!info[4]) {
+                    info[4] = true
                     hygieneView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[4] = false
+                    info[4] = false
                     hygieneView.setBackgroundResource(R.color.app_background)
                 }
             }
             medicalCard.setOnClickListener {
-                if (!booleanArray[5]) {
-                    booleanArray[5] = true
+                if (!info[5]) {
+                    info[5] = true
                     medicalView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[5] = false
+                    info[5] = false
                     medicalView.setBackgroundResource(R.color.app_background)
                 }
             }
 
             aggressiveCard.setOnClickListener {
-                if (!booleanArray[6]) {
-                    booleanArray[6] = true
+                if (!info[6]) {
+                    info[6] = true
                     aggressiveView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[6] = false
+                    info[6] = false
                     aggressiveView.setBackgroundResource(R.color.app_background)
                 }
             }
             diseaseCard.setOnClickListener {
-                if (!booleanArray[7]) {
-                    booleanArray[7] = true
+                if (!info[7]) {
+                    info[7] = true
                     diseaseView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[7] = false
+                    info[7] = false
                     diseaseView.setBackgroundResource(R.color.app_background)
                 }
             }
             SpayedCard.setOnClickListener {
-                if (!booleanArray[8]) {
-                    booleanArray[8] = true
+                if (!info[8]) {
+                    info[8] = true
                     SpayedView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[8] = false
+                    info[8] = false
                     SpayedView.setBackgroundResource(R.color.app_background)
                 }
             }
             fullMedicalCard.setOnClickListener {
-                if (!booleanArray[9]) {
-                    booleanArray[9] = true
+                if (!info[9]) {
+                    info[9] = true
                     fullMedicalView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[9] = false
+                    info[9] = false
                     fullMedicalView.setBackgroundResource(R.color.app_background)
                 }
             }
             friendlyWithDogsCard.setOnClickListener {
-                if (!booleanArray[10]) {
-                    booleanArray[10] = true
+                if (!info[10]) {
+                    info[10] = true
                     friendlyWithDogsView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[10] = false
+                    info[10] = false
                     friendlyWithDogsView.setBackgroundResource(R.color.app_background)
                 }
             }
             friendlyWithKidsCard.setOnClickListener {
-                if (!booleanArray[11]) {
-                    booleanArray[11] = true
+                if (!info[11]) {
+                    info[11] = true
                     friendlyWithKidsView.setBackgroundResource(R.color.magenta)
                 } else {
-                    booleanArray[11] = false
+                    info[11] = false
                     friendlyWithKidsView.setBackgroundResource(R.color.app_background)
                 }
             }
@@ -165,11 +179,6 @@ class InfoPetFragment : Fragment() {
         }
     }
 
-    private fun clickToBack() {
-        binding?.backProfile?.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 
     override fun onResume() {
         super.onResume()
@@ -181,4 +190,8 @@ class InfoPetFragment : Fragment() {
         (activity as MainActivity).showBottomNavigationView()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

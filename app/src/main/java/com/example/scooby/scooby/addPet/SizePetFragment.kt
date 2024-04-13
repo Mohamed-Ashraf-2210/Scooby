@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment.addPet
+package com.example.scooby.scooby.addPet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,14 +25,16 @@ class SizePetFragment : Fragment() {
     ): View? {
         binding = FragmentSizePetBinding.inflate(inflater, container, false)
         initView()
+        selectSize()
+        selectGender()
         return binding?.root
     }
 
     private fun initView() {
-        clickToNext()
-        clickToBack()
-        selectSize()
-        selectGender()
+        binding?.apply {
+            backScreen.setOnClickListener { findNavController().popBackStack() }
+            nextBtn.setOnClickListener { onClickNext() }
+        }
     }
 
     private fun selectSize() {
@@ -126,30 +128,27 @@ class SizePetFragment : Fragment() {
         }
     }
 
-    private fun clickToNext() {
+    private fun onClickNext() {
         binding?.apply {
             nextBtn.setOnClickListener {
                 if (sizePet != null && genderPet != null) {
+                    val listOfData = arrayOf(
+                        args.listOfData[0],
+                        args.listOfData[1],
+                        args.listOfData[2],
+                        sizePet!!,
+                        genderPet!!
+                    )
                     val action =
                         SizePetFragmentDirections.actionSizePetFragmentToBirthdayPetFragment(
-                            args.petName,
-                            args.petType,
-                            args.petBreed,
-                            sizePet!!,
-                            genderPet!!
+                            listOfData
                         )
                     findNavController().navigate(action)
                 }
-
             }
         }
     }
 
-    private fun clickToBack() {
-        binding?.backProfile?.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 
     override fun onResume() {
         super.onResume()
@@ -159,5 +158,10 @@ class SizePetFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
