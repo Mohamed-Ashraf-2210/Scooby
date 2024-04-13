@@ -1,13 +1,13 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.paws.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentPawsBinding
-
 
 class PawsFragment : Fragment() {
     private val adaptionFragment = AdaptionFragment()
@@ -20,9 +20,14 @@ class PawsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPawsBinding.inflate(inflater, container, false)
-        addFragment(adaptionFragment)
         initButtonCallBack()
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        childFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        addFragment(adaptionFragment)
     }
 
     private fun initButtonCallBack() {
@@ -41,7 +46,7 @@ class PawsFragment : Fragment() {
          childFragmentManager.beginTransaction().apply {
              replace(R.id.fragment_container_paws,fragment.javaClass ,null)
              setReorderingAllowed(true)
-             addToBackStack("name")
+             addToBackStack(null)
              commit()
          }
     }

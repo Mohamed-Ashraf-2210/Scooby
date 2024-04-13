@@ -1,10 +1,9 @@
-package com.example.scooby.scooby.adapter
+package com.example.scooby.scooby.product.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.DiffUtil.DiffResult
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.product.ProductResponse
 import com.example.scooby.databinding.ItemProductBinding

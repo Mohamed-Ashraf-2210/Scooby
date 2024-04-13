@@ -1,11 +1,11 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.paws.fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.paws.AdaptionAdoptMeResponse
@@ -13,12 +13,11 @@ import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
 import com.example.scooby.databinding.FragmentAdaptionBinding
-import com.example.scooby.scooby.adapter.AdaptionAdoptMeAdapter
-import com.example.scooby.scooby.adapter.AdaptionCatsAdapter
-import com.example.scooby.scooby.adapter.AdaptionDogsAdapter
-import com.example.scooby.scooby.adapter.PawsTopColAdapter
-import com.example.scooby.scooby.viewmodel.PawsViewModel
-
+import com.example.scooby.scooby.paws.adapter.AdaptionAdoptMeAdapter
+import com.example.scooby.scooby.paws.adapter.AdaptionCatsAdapter
+import com.example.scooby.scooby.paws.adapter.AdaptionDogsAdapter
+import com.example.scooby.scooby.paws.adapter.PawsTopColAdapter
+import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 
 class AdaptionFragment : Fragment() {
     private val pawsViewModel by viewModels<PawsViewModel>()
@@ -111,7 +110,7 @@ class AdaptionFragment : Fragment() {
     }
 
     private fun stopLoading() {
-        binding?.apply {
+        binding.apply {
             loading.visibility = View.GONE
         }
     }

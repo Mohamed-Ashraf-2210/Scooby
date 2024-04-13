@@ -1,8 +1,7 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.services.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.scooby.databinding.FragmentServiceBinding
-import com.example.scooby.scooby.adapter.ServicesMainAdapter
+import com.example.scooby.scooby.services.adapter.ServicesMainAdapter
 import com.example.domain.services.ServicesResponse
-import com.example.scooby.scooby.viewmodel.ServicesViewModel
+import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
 
 @SuppressLint("InflateParams")
 

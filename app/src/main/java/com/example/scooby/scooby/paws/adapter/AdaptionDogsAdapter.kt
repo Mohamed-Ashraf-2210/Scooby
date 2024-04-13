@@ -1,9 +1,8 @@
-package com.example.scooby.scooby.adapter
+package com.example.scooby.scooby.paws.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
 import com.example.scooby.databinding.ItemAdaptionTwoBinding
 import com.example.scooby.utils.loadUrl

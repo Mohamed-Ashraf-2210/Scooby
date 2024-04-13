@@ -5,6 +5,8 @@ import com.example.domain.paws.AdaptionAdoptMeResponse
 import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
+import com.example.domain.paws.rescue.PetsShelterResponse
+import com.example.domain.paws.rescue.ShelterResponse
 import retrofit2.Response
 
 
@@ -20,5 +22,13 @@ class PawsRepo {
     }
     suspend fun getAdoptMe(): Response<AdaptionAdoptMeResponse>? {
         return PawsApi.getApi()?.getAdoptMe()
+    }
+
+    suspend fun getAllShelter(): Response<ShelterResponse>? {
+        return PawsApi.getApi()?.getAllShelter()
+    }
+
+    suspend fun getAllPetsShelter(): Response<PetsShelterResponse>? {
+        return PawsApi.getApi()?.getAllPetsShelter()
     }
 }

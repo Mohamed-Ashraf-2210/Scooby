@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.viewmodel
+package com.example.scooby.scooby.product.viewmodel
 
 import android.app.Application
 import android.util.Log

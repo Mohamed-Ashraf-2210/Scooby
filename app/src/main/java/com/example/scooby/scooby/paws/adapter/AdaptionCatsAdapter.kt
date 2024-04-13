@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.adapter
+package com.example.scooby.scooby.paws.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

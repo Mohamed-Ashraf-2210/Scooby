@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scooby.ui.PawsFragment">
+    tools:context=".scooby.paws.fragment.PawsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_app_bar"

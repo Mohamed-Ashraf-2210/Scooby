@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="190dp"
     android:backgroundTint="#FCF5F5"
-    app:strokeWidth="1dp">
+    android:layout_marginBottom="16dp"
+    app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

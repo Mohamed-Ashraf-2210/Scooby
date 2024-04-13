@@ -51,5 +51,6 @@
     <color name="Light_purple">#CC513973</color>
     <color name="black_50">#80000000</color>
     <color name="black_81">#CF0F0F0F</color>
+    <color name="black_15">#260F0F0F</color>
 
 </resources>
