@@ -191,5 +191,10 @@ again."</string>
     <string name="friendly_with_dogs">Friendly with dogs</string>
     <string name="friendly_with_kids">Friendly with kids</string>
     <string name="upload_some_lovely_photos_of_your_pet">Upload some lovely photos of your pet</string>
+    <string name="followers">followers</string>
+    <string name="following">following</string>
+    <string name="arrow_right_black">arrow right black</string>
+    <string name="add">add</string>
+    <string name="edit_image_profile">edit image profile</string>
 
 </resources>

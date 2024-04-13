@@ -11,67 +11,77 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.data.Constant
-import com.example.domain.profile.UserProfileResponse
+import com.example.domain.pet.MyPetsResponse
+import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentPetProfileBinding
 import com.example.scooby.scooby.MainActivity
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.scooby.viewmodel.MyPetsViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
 class PetProfileFragment : Fragment() {
-    private lateinit var binding: FragmentPetProfileBinding
-    private val profileViewModel by viewModels<ProfileViewModel>()
+    private var binding: FragmentPetProfileBinding? = null
+    private val profileViewModel by viewModels<MyPetsViewModel>()
     private val args: PetProfileFragmentArgs by navArgs()
     private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentPetProfileBinding.inflate(inflater, container, false)
         init()
-        return binding.root
+        observeProfileData()
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.swipeRefreshLayout.setOnRefreshListener {
-            init()
-            binding.swipeRefreshLayout.isRefreshing = false
+        binding?.apply {
+            swipeRefreshLayout.setOnRefreshListener {
+                observeProfileData()
+                swipeRefreshLayout.isRefreshing = false
+            }
         }
     }
 
     private fun init() {
-        observeProfileData()
-        backOffFragment()
+        binding?.apply {
+            backProfile.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            editProfile.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
+            }
+        }
     }
 
     private fun observeProfileData() {
         userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
-        profileViewModel.getUser(userId)
-        profileViewModel.profileResult.observe(viewLifecycleOwner) { result ->
+        profileViewModel.getMyPets(userId)
+        profileViewModel.myPetsResult.observe(viewLifecycleOwner) { result ->
             stopLoading()
             getPetProfileData(result)
         }
     }
 
-    private fun getPetProfileData(userProfileResponse: UserProfileResponse?) {
-        val pet = userProfileResponse?.data?.data?.pet?.get(args.petPosition)
+    private fun getPetProfileData(myPetsResponse: MyPetsResponse?) {
+        val pet = myPetsResponse?.data?.get(args.petPosition)
         pet?.let {
-            with(binding) {
+            binding?.apply {
                 Glide.with(this@PetProfileFragment).load(it.petImage).into(imagePetProfile)
                 namePet.text = it.name
                 adjPet.text = it.type
                 bioPet.text = it.profileBio
                 genderValueTv.text = it.gender
                 sizeValueTv.text = it.size
-                weightValueTv.text = "${it.weight} kg"
-                formatDate(binding.birthdayTv, it.birthday)
-                formatDate(binding.adoptionDayTv, it.adoptionDay)
-                calculateAndSetAge(binding.oldYear, it.birthday)
+                "${it.weight} kg".also { weightValueTv.text = it }
+                formatDate(birthdayTv, it.birthday)
+                formatDate(adoptionDayTv, it.adoptionDay)
+                calculateAndSetAge(oldYear, it.birthday)
             }
         } ?: showError()
     }
@@ -87,7 +97,7 @@ class PetProfileFragment : Fragment() {
         val date: Date? = SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH)
             .parse(birthDate)
         val age = date?.let { calculateAge(it) } ?: "Unknown"
-        view.text = "$age y.o"
+        "$age y.o".also { view.text = it }
     }
 
     private fun calculateAge(birthDate: Date): Int {
@@ -102,17 +112,12 @@ class PetProfileFragment : Fragment() {
     }
 
     private fun stopLoading() {
-        with(binding) {
+        binding?.apply {
             loading.visibility = View.GONE
             petProfileContent.visibility = View.VISIBLE
         }
     }
 
-    private fun backOffFragment() {
-        binding.backProfile.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 
     private fun showError() {
         // Handle the case where data is null
@@ -127,5 +132,10 @@ class PetProfileFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
