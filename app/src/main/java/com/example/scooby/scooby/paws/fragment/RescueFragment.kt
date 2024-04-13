@@ -63,6 +63,19 @@ class RescueFragment : Fragment() {
             }
         }
 
+
+        // not work
+//        pawsViewModel.apply {
+//            getPetsShelters()
+//            petsShelterResult.observe(viewLifecycleOwner) { petsData ->
+//                shelterResult.observe(viewLifecycleOwner){shelterName->
+//                    stopLoading()
+//                    getPetsShelterData(petsData,shelterName)
+//                }
+//
+//            }
+//        }
+
     }
 
     private fun getShelterData(data: ShelterResponse) {
@@ -74,6 +87,12 @@ class RescueFragment : Fragment() {
         rvPetsShelter = binding.rvPetsInShelter
         rvPetsShelter.adapter = PetsShelterAdapter(data)
     }
+
+
+//    private fun getPetsShelterData(data: PetsShelterResponse,data2 : ShelterResponse) {
+//        rvPetsShelter = binding.rvPetsInShelter
+//        rvPetsShelter.adapter = PetsShelterAdapter(data,data2)
+//    }
 
     private fun stopLoading() {
         binding?.apply {

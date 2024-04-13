@@ -7,12 +7,16 @@ import com.example.domain.paws.rescue.PetsShelterResponse
 import com.example.scooby.databinding.ItemPetShelterBinding
 import com.example.scooby.utils.loadUrl
 
+
+//second para : shelterData : ShelterResponse
 class PetsShelterAdapter(private val petsShelterData: PetsShelterResponse) : RecyclerView.Adapter<PetsShelterAdapter.PetsShelterViewHolder>() {
     inner class PetsShelterViewHolder(private val itemPetShelterBinding: ItemPetShelterBinding) :
         RecyclerView.ViewHolder(itemPetShelterBinding.root) {
+        //second para : shelterData : ShelterResponse
         fun bind(itemPet : PetsShelterResponse.PetsInShelter){
             itemPet.petImage?.let {itemPetShelterBinding.petImage.loadUrl(it)}
             itemPetShelterBinding.petTitle.text = itemPet.name
+            //itemShelterBinding.petTitle.text = itemPet.shelterName
         }
 
     }
@@ -25,5 +29,6 @@ class PetsShelterAdapter(private val petsShelterData: PetsShelterResponse) : Rec
 
     override fun onBindViewHolder(holder: PetsShelterViewHolder, position: Int) {
         holder.bind(petsShelterData.petsInShelters[position])
+        //second para : shelterData : ShelterResponse
     }
 }
