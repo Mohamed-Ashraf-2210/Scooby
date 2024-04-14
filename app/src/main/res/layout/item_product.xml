@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="206dp"
     android:layout_margin="8dp"
-    android:backgroundTint="@color/white_BG"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,12 +76,14 @@
 
         <TextView
             android:id="@+id/med_description"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
             android:textSize="9sp"
             android:lines="1"
-            android:maxLines="1"
             app:layout_constraintStart_toStartOf="@+id/med_title"
             app:layout_constraintTop_toBottomOf="@id/med_title"
             tools:text="Revolutions For Cats Blue" />
@@ -135,11 +136,24 @@
             android:layout_marginStart="3dp"
             android:layout_marginTop="2dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="17%"
+            android:text="17"
             android:textColor="@color/yellow_price"
             android:textSize="8sp"
             app:layout_constraintBaseline_toBaselineOf="@id/med_discounted_price"
             app:layout_constraintStart_toEndOf="@id/med_real_price"
+            app:layout_constraintTop_toBottomOf="@id/med_description" />
+        <TextView
+            android:id="@+id/percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="%"
+            android:textColor="@color/yellow_price"
+            android:textSize="8sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/med_discounted_price"
+            app:layout_constraintStart_toEndOf="@id/med_offer_percent"
             app:layout_constraintTop_toBottomOf="@id/med_description" />
 
         <TextView
@@ -153,7 +167,7 @@
             android:textColor="@color/yellow_price"
             android:textSize="8sp"
             app:layout_constraintBaseline_toBaselineOf="@id/med_discounted_price"
-            app:layout_constraintStart_toEndOf="@id/med_offer_percent"
+            app:layout_constraintStart_toEndOf="@id/percent"
             app:layout_constraintTop_toBottomOf="@id/med_description" />
 
         <com.varunest.sparkbutton.SparkButton

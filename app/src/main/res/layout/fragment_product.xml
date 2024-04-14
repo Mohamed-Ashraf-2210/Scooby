@@ -56,11 +56,10 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white_BG"
-                >
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:id="@+id/hor_linear_lay"
@@ -70,7 +69,6 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:orientation="horizontal"
-                    android:background="@color/white_BG"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -79,7 +77,6 @@
                         android:id="@+id/btn_Medicine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white_BG"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
                         app:strokeWidth="0dp">
@@ -122,7 +119,6 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/btn_Food"
-                        android:backgroundTint="@color/white_BG"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
@@ -167,7 +163,6 @@
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/btn_Toys"
                         android:layout_width="wrap_content"
-                        android:backgroundTint="@color/white_BG"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
@@ -213,7 +208,6 @@
                         android:id="@+id/btn_Accessories"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white_BG"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
                         app:strokeWidth="0dp">
@@ -257,7 +251,6 @@
                         android:id="@+id/btn_Grooming"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:backgroundTint="@color/white_BG"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
                         app:strokeWidth="0dp">
@@ -290,7 +283,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="8dp"
                                 android:fontFamily="@font/roboto_medium"
-                                android:text="Grooming"
+                                android:text="@string/grooming"
                                 android:textColor="#800F0F0F"
                                 android:textSize="10sp" />
 
@@ -317,13 +310,12 @@
 
                 <ProgressBar
                     android:id="@+id/progressBar"
-                    style="?android:attr/progressBarStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="@id/product_rv"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hor_linear_lay" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
