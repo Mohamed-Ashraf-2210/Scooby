@@ -11,17 +11,6 @@ class PetsRepo {
     suspend fun getMyPets(userId: String) = PetsApi.getApi()?.getMyPets(userId)
 
     suspend fun addPet(userId: String, petData: AddPetData): Response<AddPetResponse>? {
-        return PetsApi.getApi()?.addPet(
-            userId,
-            petData.petImage,
-            petData.name,
-            petData.type,
-            petData.birthday,
-            petData.breed,
-            petData.gender,
-            petData.profileBio,
-            petData.adoptionDay,
-            petData.size
-        )
+        return PetsApi.getApi()?.addPet(userId, petData)
     }
 }
