@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.adapter
+package com.example.scooby.scooby.product.adapter
 
 import android.util.Log
 import androidx.recyclerview.widget.DiffUtil

@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.adapter
+package com.example.scooby.scooby.services.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,10 +12,8 @@ import com.bumptech.glide.Glide
 import com.example.scooby.R
 import com.example.domain.services.ServicesResponse
 
-class ServicesAdapter(private var servicesList: ServicesResponse, private val context: Context) :
-    RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>() {
-
-
+class ServicesMainAdapter(private var servicesList: ServicesResponse, private val context: Context) :
+    RecyclerView.Adapter<ServicesMainAdapter.ServicesViewHolder>() {
 
     class ServicesViewHolder(iteView: View) : RecyclerView.ViewHolder(iteView) {
         val serviceImage: ImageView = iteView.findViewById(R.id.service_image)
@@ -27,7 +25,7 @@ class ServicesAdapter(private var servicesList: ServicesResponse, private val co
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesViewHolder {
         val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.services_item_home, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_services, parent, false)
         return ServicesViewHolder(itemView)
     }
 

@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.viewmodel
+package com.example.scooby.scooby.services.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

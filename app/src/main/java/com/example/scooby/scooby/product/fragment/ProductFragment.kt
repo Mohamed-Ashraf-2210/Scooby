@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.product.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -12,9 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.product.ProductResponse
 import com.example.scooby.databinding.FragmentProductBinding
-import com.example.scooby.scooby.adapter.ProductAdapter
-import com.example.scooby.scooby.viewmodel.OfferViewModel
-import com.example.scooby.scooby.viewmodel.ProductViewModel
+import com.example.scooby.scooby.product.adapter.ProductAdapter
+import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 
 class ProductFragment : Fragment() {
     private lateinit var allProduct: ProductResponse

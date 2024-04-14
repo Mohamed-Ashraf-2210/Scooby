@@ -1,13 +1,13 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.paws.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentPawsBinding
-
 
 class PawsFragment : Fragment() {
     private val adaptionFragment = AdaptionFragment()
@@ -19,9 +19,15 @@ class PawsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentPawsBinding.inflate(inflater,container,false)
+        binding = FragmentPawsBinding.inflate(inflater, container, false)
         initButtonCallBack()
         return binding.root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        childFragmentManager.popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        addFragment(adaptionFragment)
     }
 
     private fun initButtonCallBack() {
@@ -38,9 +44,19 @@ class PawsFragment : Fragment() {
 
     private fun replaceFragment(fragment: Fragment){
          childFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container_paws,fragment)
-            commit()
+             replace(R.id.fragment_container_paws,fragment.javaClass ,null)
+             setReorderingAllowed(true)
+             addToBackStack(null)
+             commit()
          }
+    }
+    private fun addFragment(fragment: Fragment){
+        childFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container_paws,fragment.javaClass ,null)
+            setReorderingAllowed(true)
+            addToBackStack("name")
+            commit()
+        }
     }
 
 }

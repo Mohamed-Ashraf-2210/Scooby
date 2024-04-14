@@ -18,11 +18,11 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.PetsHomeAdapter
-import com.example.scooby.scooby.adapter.ServicesAdapter
+import com.example.scooby.scooby.services.adapter.ServicesAdapter
 import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.PetsViewModel
-import com.example.scooby.scooby.viewmodel.ServicesViewModel
+import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
 
 class HomeFragment : Fragment() {
 

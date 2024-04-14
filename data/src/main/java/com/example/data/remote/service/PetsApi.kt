@@ -23,6 +23,9 @@ interface PetsApi {
     @POST("/scooby/api/Pets/addpet/{userId}")
     suspend fun addPet(
         @Path("userId") userId: String,
+        @Part petData: AddPetData
+    )
+    companion object{
         @Part("petImage") petImage: MultipartBody.Part,
         @Part("name") name: String,
         @Part("type") type: String,

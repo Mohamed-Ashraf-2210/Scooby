@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".scooby.ui.AdaptionFragment">
+    tools:context=".scooby.paws.fragment.AdaptionFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -76,10 +76,11 @@
             app:layout_constraintTop_toBottomOf="@id/image" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_item_one"
+            android:id="@+id/rv_top_col"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="141dp"
             android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,13 +96,14 @@
             android:text="@string/popular_cat_breads"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_item_one" />
+            app:layout_constraintTop_toBottomOf="@id/rv_top_col" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_item_two"
+            android:id="@+id/rv_cats"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="105dp"
             android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -117,13 +119,14 @@
             android:text="@string/cutest_dog_breads"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_item_two" />
+            app:layout_constraintTop_toBottomOf="@id/rv_cats" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_item_three"
+            android:id="@+id/rv_dogs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="105dp"
             android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,20 +142,31 @@
             android:text="@string/adopt_me"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_item_three" />
+            app:layout_constraintTop_toBottomOf="@id/rv_dogs" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_item_four"
+            android:id="@+id/rv_adopt_me"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_adopt_me"
             tools:listitem="@layout/item_adaption_adopt" />
 
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="400dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.core.widget.NestedScrollView>
