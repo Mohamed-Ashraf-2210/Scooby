@@ -11,7 +11,7 @@ import com.example.domain.paws.AdaptionAdoptMeResponse
 import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
-import com.example.domain.paws.rescue.PetsShelterResponse
+import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import kotlinx.coroutines.launch
 
@@ -37,8 +37,8 @@ class PawsViewModel() : ViewModel() {
         get() = _shelterResult
 
 
-    private val _petsShelterResult: MutableLiveData<PetsShelterResponse> = MutableLiveData()
-    val petsShelterResult :LiveData<PetsShelterResponse>
+    private val _petsShelterResult: MutableLiveData<PetsInShelterResponse> = MutableLiveData()
+    val petsShelterResult :LiveData<PetsInShelterResponse>
         get() = _petsShelterResult
 
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.paws.rescue.PetsShelterResponse
+import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import com.example.scooby.databinding.FragmentRescueBinding
 import com.example.scooby.scooby.paws.adapter.MarginBetweenDecoration
@@ -83,7 +83,7 @@ class RescueFragment : Fragment() {
         rvShelters.adapter = ShelterAdapter(data)
     }
 
-    private fun getPetsShelterData(data: PetsShelterResponse) {
+    private fun getPetsShelterData(data: PetsInShelterResponse) {
         rvPetsShelter = binding.rvPetsInShelter
         rvPetsShelter.adapter = PetsShelterAdapter(data)
     }
