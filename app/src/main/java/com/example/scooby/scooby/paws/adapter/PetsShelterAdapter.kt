@@ -3,20 +3,19 @@ package com.example.scooby.scooby.paws.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.paws.rescue.PetsShelterResponse
+import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.scooby.databinding.ItemPetShelterBinding
 import com.example.scooby.utils.loadUrl
 
 
 //second para : shelterData : ShelterResponse
-class PetsShelterAdapter(private val petsShelterData: PetsShelterResponse) : RecyclerView.Adapter<PetsShelterAdapter.PetsShelterViewHolder>() {
+class PetsShelterAdapter(private val petsShelterData: PetsInShelterResponse) : RecyclerView.Adapter<PetsShelterAdapter.PetsShelterViewHolder>() {
     inner class PetsShelterViewHolder(private val itemPetShelterBinding: ItemPetShelterBinding) :
         RecyclerView.ViewHolder(itemPetShelterBinding.root) {
         //second para : shelterData : ShelterResponse
-        fun bind(itemPet : PetsShelterResponse.PetsInShelter){
+        fun bind(itemPet : PetsInShelterResponse.PetsInShelter){
             itemPet.petImage?.let {itemPetShelterBinding.petImage.loadUrl(it)}
-            itemPetShelterBinding.petTitle.text = itemPet.name
-            //itemShelterBinding.petTitle.text = itemPet.shelterName
+            itemPetShelterBinding.petTitle.text = itemPet.shelterInfo?.shelterName
         }
 
     }

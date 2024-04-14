@@ -5,7 +5,7 @@ import com.example.domain.paws.AdaptionAdoptMeResponse
 import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
-import com.example.domain.paws.rescue.PetsShelterResponse
+import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import retrofit2.Response
 import retrofit2.http.GET
@@ -28,7 +28,7 @@ interface PawsApi {
     suspend fun getAllShelter() : Response<ShelterResponse>
 
     @GET("/scooby/api/shelters/petsInShelters")
-    suspend fun getAllPetsShelter() : Response<PetsShelterResponse>
+    suspend fun getAllPetsShelter() : Response<PetsInShelterResponse>
 
     companion object{
         fun getApi(): PawsApi? {
