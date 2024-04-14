@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white_BG"
     android:orientation="vertical"
-    tools:context=".scooby.userProfile.fragment.ProfileFragment">
+    tools:context=".scooby.userProfile.ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="7dp"
+            android:contentDescription="@string/back"
             android:src="@drawable/arrow_left_white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -41,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@string/edit_profile"
             android:src="@drawable/pen__edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/white_BG"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <View
                     android:id="@+id/view_top"
@@ -93,7 +95,8 @@
                     android:textFontWeight="600"
                     android:textSize="16sp"
                     app:layout_constraintStart_toEndOf="@id/profile_image"
-                    app:layout_constraintTop_toTopOf="@id/profile_image" />
+                    app:layout_constraintTop_toTopOf="@id/profile_image"
+                    tools:ignore="UnusedAttribute" />
 
                 <TextView
                     android:id="@+id/number_followers_tv"
@@ -112,9 +115,10 @@
                     android:id="@+id/followers_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text=" followers"
+                    android:text="@string/followers"
                     android:textColor="@color/gray_light_font"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@id/number_followers_tv"
@@ -137,9 +141,10 @@
                     android:id="@+id/following_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text=" following"
+                    android:text="@string/following"
                     android:textColor="@color/gray_light_font"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@id/number_following_tv"
@@ -174,6 +179,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentBottom="true"
+                        android:maxWidth="300dp"
                         android:orientation="horizontal"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -184,6 +192,9 @@
                         android:id="@+id/add_pet_card"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
                         android:layout_toEndOf="@id/my_pets_rv"
                         android:backgroundTint="@color/white_BG"
                         android:visibility="visible"
@@ -243,6 +254,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/favorites"
                         android:src="@drawable/favorite_icon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -262,6 +274,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="7dp"
+                        android:contentDescription="@string/arrow_right_black"
                         android:src="@drawable/arrow_right_black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -287,6 +300,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/reminders"
                         android:src="@drawable/reminders_icon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -306,6 +320,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="7dp"
+                        android:contentDescription="@string/arrow_right_black"
                         android:src="@drawable/arrow_right_black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -331,6 +346,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/notifications"
                         android:src="@drawable/notifications_icon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -350,6 +366,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="7dp"
+                        android:contentDescription="@string/arrow_right_black"
                         android:src="@drawable/arrow_right_black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -375,6 +392,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/balance"
                         android:src="@drawable/balance_icon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -394,6 +412,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="7dp"
+                        android:contentDescription="@string/arrow_right_black"
                         android:src="@drawable/arrow_right_black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -419,6 +438,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/settings"
                         android:src="@drawable/settings_icon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -438,6 +458,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="7dp"
+                        android:contentDescription="@string/arrow_right_black"
                         android:src="@drawable/arrow_right_black"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />

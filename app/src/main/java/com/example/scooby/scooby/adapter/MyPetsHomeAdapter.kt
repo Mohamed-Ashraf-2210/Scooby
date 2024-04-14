@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.adapter
+package com.example.scooby.scooby.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
-import com.example.scooby.scooby.userProfile.fragment.ProfileFragmentDirections
+import com.example.scooby.scooby.userProfile.ProfileFragmentDirections
 
 class MyPetsHomeAdapter(private val myPetsList: UserProfileResponse, private val context: Context) :
     RecyclerView.Adapter<MyPetsHomeAdapter.MyPetsViewHolder>() {

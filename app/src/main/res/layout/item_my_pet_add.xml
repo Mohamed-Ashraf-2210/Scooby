@@ -42,15 +42,27 @@
             android:id="@+id/type_pet_my_pets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:fontFamily="@font/noto_sans"
             android:textColor="@color/gray"
             android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SmallSp"
+            tools:text="Cat" />
+
+        <ImageView
+            android:id="@+id/check_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="11dp"
+            android:contentDescription="@string/check_selected"
+            android:src="@drawable/ic_check_circle_48"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="4dp"
-            tools:text="Cat"
-            tools:ignore="SmallSp" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

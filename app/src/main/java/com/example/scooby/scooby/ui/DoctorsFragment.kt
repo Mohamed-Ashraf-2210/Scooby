@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.domain.doctors.DoctorsResponse
 import com.example.scooby.databinding.FragmentDoctorsBinding
 import com.example.scooby.scooby.adapter.DoctorAdapter
-import com.example.scooby.scooby.vet.viewModel.VetViewModel
+import com.example.scooby.scooby.viewmodel.VetViewModel
 
 
 class DoctorsFragment : Fragment() {

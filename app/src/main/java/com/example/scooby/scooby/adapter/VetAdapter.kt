@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.vet.adapter
+package com.example.scooby.scooby.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context

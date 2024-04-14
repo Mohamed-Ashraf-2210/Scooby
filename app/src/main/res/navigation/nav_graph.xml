@@ -26,6 +26,9 @@
             <action
                 android:id="@+id/action_homeFragment_to_menuBottomSheetFragment"
                 app:destination="@id/menuBottomSheetFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_selectPetFragment"
+                app:destination="@id/selectPetFragment" />
         </fragment>
         <fragment
             android:id="@+id/blogsFragment"
@@ -44,7 +47,7 @@
             tools:layout="@layout/fragment_doctors" />
         <fragment
             android:id="@+id/vetFragment"
-            android:name="com.example.scooby.scooby.vet.fragment.VetFragment"
+            android:name="com.example.scooby.scooby.vet.VetFragment"
             android:label="fragment_vet"
             tools:layout="@layout/fragment_vet">
             <action
@@ -68,7 +71,83 @@
             <action
                 android:id="@+id/action_menuBottomSheetFragment_to_vetFragment"
                 app:destination="@id/vetFragment" />
+            <action
+                android:id="@+id/action_menuBottomSheetFragment_to_selectPetFragment"
+                app:destination="@id/selectPetFragment" />
         </dialog>
+        <fragment
+            android:id="@+id/selectPetFragment"
+            android:name="com.example.scooby.scooby.request.SelectPetFragment"
+            android:label="fragment_select_pet"
+            tools:layout="@layout/fragment_select_pet">
+            <argument
+                android:name="request_name"
+                app:argType="string" />
+            <action
+                android:id="@+id/action_selectPetFragment_to_dateRequestFragment"
+                app:destination="@id/dateRequestFragment" />
+        </fragment>
+
+
+        <fragment
+            android:id="@+id/dateRequestFragment"
+            android:name="com.example.scooby.scooby.request.DateRequestFragment"
+            android:label="fragment_date_request"
+            tools:layout="@layout/fragment_date_request">
+            <action
+                android:id="@+id/action_dateRequestFragment_to_durationRequestFragment"
+                app:destination="@id/durationRequestFragment" />
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="request_name"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/durationRequestFragment"
+            android:name="com.example.scooby.scooby.request.DurationRequestFragment"
+            android:label="fragment_duration_request"
+            tools:layout="@layout/fragment_duration_request">
+
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="listOfData"
+                app:argType="string[]" />
+            <action
+                android:id="@+id/action_durationRequestFragment_to_locationRequestFragment"
+                app:destination="@id/locationRequestFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/noteFragment"
+            android:name="com.example.scooby.scooby.request.NoteFragment"
+            android:label="fragment_note"
+            tools:layout="@layout/fragment_note">
+
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="listOfData"
+                app:argType="string[]" />
+        </fragment>
+        <fragment
+            android:id="@+id/locationRequestFragment"
+            android:name="com.example.scooby.scooby.request.LocationRequestFragment"
+            android:label="fragment_location_request"
+            tools:layout="@layout/fragment_location_request">
+            <action
+                android:id="@+id/action_locationRequestFragment2_to_noteFragment"
+                app:destination="@id/noteFragment" />
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="listOfData"
+                app:argType="string[]" />
+        </fragment>
     </navigation>
 
     <navigation
@@ -109,7 +188,7 @@
 
         <fragment
             android:id="@+id/profileFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.ProfileFragment"
+            android:name="com.example.scooby.scooby.userProfile.ProfileFragment"
             android:label="fragment_profile"
             tools:layout="@layout/fragment_profile">
             <action
@@ -125,12 +204,12 @@
 
         <fragment
             android:id="@+id/editProfileFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.EditProfileFragment"
+            android:name="com.example.scooby.scooby.userProfile.EditProfileFragment"
             android:label="fragment_edit_profile"
             tools:layout="@layout/fragment_edit_profile" />
         <fragment
             android:id="@+id/petProfileFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.PetProfileFragment"
+            android:name="com.example.scooby.scooby.userProfile.PetProfileFragment"
             android:label="fragment_pet_profile"
             tools:layout="@layout/fragment_pet_profile">
             <!--suppress NavigationFile -->
@@ -141,16 +220,20 @@
 
         <fragment
             android:id="@+id/myPetsFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.MyPetsFragment"
+            android:name="com.example.scooby.scooby.addPet.MyPetsFragment"
             android:label="fragment_my_pets"
             tools:layout="@layout/fragment_my_pets">
             <action
                 android:id="@+id/action_myPetsFragment_to_addPetsFragment"
-                app:destination="@id/addPetsFragment" />
+                app:destination="@id/addPetsFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         </fragment>
         <fragment
             android:id="@+id/addPetsFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.NamePetFragment"
+            android:name="com.example.scooby.scooby.addPet.NamePetFragment"
             android:label="fragment_add_pets"
             tools:layout="@layout/fragment_name_pet">
             <action
@@ -160,7 +243,7 @@
 
         <fragment
             android:id="@+id/typePetFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.TypePetFragment"
+            android:name="com.example.scooby.scooby.addPet.TypePetFragment"
             android:label="fragment_type_pet"
             tools:layout="@layout/fragment_type_pet">
             <argument
@@ -172,33 +255,24 @@
         </fragment>
         <fragment
             android:id="@+id/breedFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.BreedPetFragment"
+            android:name="com.example.scooby.scooby.addPet.BreedPetFragment"
             android:label="fragment_breed"
             tools:layout="@layout/fragment_breed_pet">
             <argument
-                android:name="pet_name"
-                app:argType="string" />
-            <argument
-                android:name="pet_type"
-                app:argType="string" />
+                android:name="listOfData"
+                app:argType="string[]" />
             <action
                 android:id="@+id/action_breedFragment_to_sizePetFragment"
                 app:destination="@id/sizePetFragment" />
         </fragment>
         <fragment
             android:id="@+id/sizePetFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.SizePetFragment"
+            android:name="com.example.scooby.scooby.addPet.SizePetFragment"
             android:label="fragment_size_pet"
             tools:layout="@layout/fragment_size_pet">
             <argument
-                android:name="pet_name"
-                app:argType="string" />
-            <argument
-                android:name="pet_type"
-                app:argType="string" />
-            <argument
-                android:name="pet_breed"
-                app:argType="string" />
+                android:name="listOfData"
+                app:argType="string[]" />
             <action
                 android:id="@+id/action_sizePetFragment_to_birthdayPetFragment"
                 app:destination="@id/birthdayPetFragment" />
@@ -206,87 +280,41 @@
         </fragment>
         <fragment
             android:id="@+id/birthdayPetFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.BirthdayPetFragment"
+            android:name="com.example.scooby.scooby.addPet.BirthdayPetFragment"
             android:label="fragment_birthday_pet"
             tools:layout="@layout/fragment_birthday_pet">
             <argument
-                android:name="pet_name"
-                app:argType="string" />
-            <argument
-                android:name="pet_type"
-                app:argType="string" />
-            <argument
-                android:name="pet_breed"
-                app:argType="string" />
-            <argument
-                android:name="pet_size"
-                app:argType="string" />
-            <argument
-                android:name="pet_gender"
-                app:argType="string" />
+                android:name="listOfData"
+                app:argType="string[]" />
             <action
                 android:id="@+id/action_birthdayPetFragment_to_infoPetFragment"
                 app:destination="@id/infoPetFragment" />
         </fragment>
         <fragment
             android:id="@+id/infoPetFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.InfoPetFragment"
+            android:name="com.example.scooby.scooby.addPet.InfoPetFragment"
             android:label="fragment_info_pet"
-            tools:layout="@layout/fragment_info_pet" >
+            tools:layout="@layout/fragment_info_pet">
             <action
                 android:id="@+id/action_infoPetFragment_to_submitPetFragment"
-                app:destination="@id/submitPetFragment" />
+                app:destination="@id/submitPetFragment"
+                app:popUpTo="@id/myPetsFragment"
+                app:popUpToInclusive="true" />
             <argument
-                android:name="pet_name"
-                app:argType="string" />
-            <argument
-                android:name="pet_type"
-                app:argType="string" />
-            <argument
-                android:name="pet_breed"
-                app:argType="string" />
-            <argument
-                android:name="pet_size"
-                app:argType="string" />
-            <argument
-                android:name="pet_gender"
-                app:argType="string" />
-            <argument
-                android:name="pet_birthday"
-                app:argType="string" />
-            <argument
-                android:name="pet_adoption"
-                app:argType="string" />
+                android:name="listOfData"
+                app:argType="string[]"
+                app:nullable="true" />
         </fragment>
         <fragment
             android:id="@+id/submitPetFragment"
-            android:name="com.example.scooby.scooby.userProfile.fragment.addPet.SubmitPetFragment"
+            android:name="com.example.scooby.scooby.addPet.SubmitPetFragment"
             android:label="fragment_submit_pet"
-            tools:layout="@layout/fragment_submit_pet" >
+            tools:layout="@layout/fragment_submit_pet">
             <argument
-                android:name="pet_name"
-                app:argType="string" />
-            <argument
-                android:name="pet_type"
-                app:argType="string" />
-            <argument
-                android:name="pet_breed"
-                app:argType="string" />
-            <argument
-                android:name="pet_size"
-                app:argType="string" />
-            <argument
-                android:name="pet_gender"
-                app:argType="string" />
-            <argument
-                android:name="pet_birthday"
-                app:argType="string" />
-            <argument
-                android:name="pet_adoption"
-                app:argType="string" />
-            <argument
-                android:name="pet_info"
-                app:argType="boolean[]" />
+                android:name="listOfData"
+                app:argType="string[]"
+                app:nullable="true" />
+
         </fragment>
     </navigation>
 

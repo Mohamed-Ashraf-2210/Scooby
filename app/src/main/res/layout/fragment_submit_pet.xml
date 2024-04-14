@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_BG"
-    tools:context=".scooby.userProfile.fragment.addPet.SubmitPetFragment">
+    tools:context=".scooby.addPet.SubmitPetFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/back_profile"
+            android:id="@+id/back_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -47,7 +47,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="82dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Upload some lovely photos of your pet"
+        android:text="@string/upload_some_lovely_photos_of_your_pet"
         android:textColor="@color/black_font"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/plus_icon" />
+            android:src="@drawable/plus_icon"
+            tools:ignore="ContentDescription" />
     </com.google.android.material.card.MaterialCardView>
 
 

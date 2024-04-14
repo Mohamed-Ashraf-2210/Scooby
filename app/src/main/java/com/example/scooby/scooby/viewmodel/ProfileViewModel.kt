@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.viewModel
+package com.example.scooby.scooby.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData

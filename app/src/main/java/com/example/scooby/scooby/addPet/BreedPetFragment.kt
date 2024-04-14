@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment.addPet
+package com.example.scooby.scooby.addPet
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,19 +25,24 @@ class BreedPetFragment : Fragment() {
     }
 
     private fun initView() {
-        clickToBack()
-        clickToNext()
+        binding?.apply {
+            backScreen.setOnClickListener { findNavController().popBackStack() }
+            nextBtn.setOnClickListener { onClickNext() }
+        }
     }
 
-    private fun clickToNext() {
+    private fun onClickNext() {
         binding?.apply {
             nextBtn.setOnClickListener {
                 val petBreed = breedPetEditText.text.toString()
                 if (petBreed.isNotEmpty()) {
-                    val action = BreedPetFragmentDirections.actionBreedFragmentToSizePetFragment(
-                        args.petName,
-                        args.petType,
+                    val listOfData = arrayOf(
+                        args.listOfData[0],
+                        args.listOfData[1],
                         petBreed
+                    )
+                    val action = BreedPetFragmentDirections.actionBreedFragmentToSizePetFragment(
+                        listOfData
                     )
                     findNavController().navigate(action)
                 }
@@ -45,11 +50,6 @@ class BreedPetFragment : Fragment() {
         }
     }
 
-    private fun clickToBack() {
-        binding?.backProfile?.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 
     override fun onResume() {
         super.onResume()
@@ -61,4 +61,8 @@ class BreedPetFragment : Fragment() {
         (activity as MainActivity).showBottomNavigationView()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

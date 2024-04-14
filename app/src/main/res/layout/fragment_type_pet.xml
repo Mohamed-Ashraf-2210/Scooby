@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_BG"
-    tools:context=".scooby.userProfile.fragment.addPet.TypePetFragment">
+    tools:context=".scooby.addPet.TypePetFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="My Pets"
+                android:text="@string/my_pets"
                 android:textColor="@color/black_font"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -34,11 +34,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/back_profile"
+                android:id="@+id/back_screen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+                android:contentDescription="@string/back"
                 android:src="@drawable/arrow_left_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +51,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="82dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="What is your pet type?"
+            android:text="@string/what_is_your_pet_type"
             android:textColor="@color/black_font"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@color/white_type_pet"
+                android:contentDescription="@string/cat"
                 android:src="@drawable/cat_icon_type" />
 
             <TextView
@@ -119,6 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@color/white_type_pet"
+                android:contentDescription="@string/dog"
                 android:src="@drawable/dog_icon_type" />
 
             <TextView
