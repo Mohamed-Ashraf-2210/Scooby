@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment.addPet
+package com.example.scooby.scooby.addPet
 
 import android.app.Activity
 import android.content.Intent
@@ -9,18 +9,31 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.data.Constant
+import com.example.domain.pet.AddPetData
+import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentSubmitPetBinding
 import com.example.scooby.scooby.MainActivity
+import com.example.scooby.scooby.viewmodel.PetsViewModel
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
 
 
 class SubmitPetFragment : Fragment() {
     private var binding: FragmentSubmitPetBinding? = null
+    private val petsViewModel by viewModels<PetsViewModel>()
     private val args: SubmitPetFragmentArgs by navArgs()
+    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,11 +44,11 @@ class SubmitPetFragment : Fragment() {
         return binding?.root
     }
 
+    private fun getUserId() {
+        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+    }
 
-
-    // constant to compare
-    // the activity result code
-    private val SELECT_PICTURE = 200
+    private var imagePet: Bitmap? = null
 
     private val launchSomeActivity =
         registerForActivityResult(
@@ -54,12 +67,29 @@ class SubmitPetFragment : Fragment() {
                                 selectedImageUri
                             )
                         binding?.imagePet?.setImageBitmap(selectedImageBitmap)
+                        imagePet = selectedImageBitmap
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }
                 }
             }
         }
+
+    private fun prepareImagePart(bitmap: Bitmap?): MultipartBody.Part {
+        val file = bitmapToFile(bitmap)
+        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
+        return MultipartBody.Part.createFormData("petImage", file.name, requestFile)
+    }
+
+    private fun bitmapToFile(bitmap: Bitmap?): File {
+        val file = File(requireActivity().cacheDir, "temp_image.jpg")
+        file.createNewFile()
+        val outputStream = FileOutputStream(file)
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+        outputStream.flush()
+        outputStream.close()
+        return file
+    }
 
     // this function is triggered when
     // the Select Image Button is clicked
@@ -74,22 +104,41 @@ class SubmitPetFragment : Fragment() {
     }
 
     private fun initView() {
-        clickToBack()
-        clickToSubmit()
-        binding?.addImageCard?.setOnClickListener {
-            imageChooser()
+        getUserId()
+        binding?.apply {
+            addImageCard.setOnClickListener {
+                imageChooser()
+            }
+            submitBtn.setOnClickListener {
+                clickToSubmit()
+            }
+            backScreen.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
+
 
     private fun clickToSubmit() {
-
-    }
-
-    private fun clickToBack() {
-        binding?.backProfile?.setOnClickListener {
+        if (imagePet != null) {
+            val petData = AddPetData(
+                petImage = prepareImagePart(imagePet),
+                name = args.listOfData?.get(0) ?: "",
+                type = args.listOfData?.get(1) ?: "",
+                birthday = args.listOfData?.get(5) ?: "",
+                breed = args.listOfData?.get(2) ?: "",
+                adoptionDay = args.listOfData?.get(6) ?: "",
+                size = args.listOfData?.get(3) ?: "",
+                gender = args.listOfData?.get(4) ?: "",
+                profileBio = args.listOfData?.get(7) ?: ""
+            )
+            petsViewModel.addPet(userId, petData)
+            Toast.makeText(requireContext(), "Save is success", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }
+
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -100,5 +149,8 @@ class SubmitPetFragment : Fragment() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_BG"
-    tools:context=".scooby.userProfile.fragment.addPet.InfoPetFragment">
+    tools:context=".scooby.addPet.InfoPetFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/back_profile"
+            android:id="@+id/back_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -46,7 +46,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="82dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Tell us more about your pet"
+        android:text="@string/tell_us_more_about_your_pet"
         android:textColor="@color/black_font"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +55,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
         android:fontFamily="@font/roboto_medium"
-        android:text=" (optional)"
+        android:text="@string/optional"
         android:textColor="@color/gray_font_hint"
         android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@id/about_your_pet_tv"
@@ -88,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Vaccinated"
+            android:text="@string/vaccinated"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -119,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Friendly with cats"
+            android:text="@string/friendly_with_cats"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -150,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Microchipped"
+            android:text="@string/microchipped"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -180,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Has any anxiety"
+            android:text="@string/has_any_anxiety"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -211,7 +212,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Has hygiene issues"
+            android:text="@string/has_hygiene_issues"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -241,9 +242,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Full medical records"
+            android:text="@string/full_medical_records"
             android:textColor="@color/black_font"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            tools:ignore="HardcodedText" />
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
@@ -272,7 +274,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Aggressive"
+            android:text="@string/aggressive"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -302,7 +304,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Has any disease"
+            android:text="@string/has_any_disease"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -333,7 +335,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Spayed"
+            android:text="@string/spayed"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -363,7 +365,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Full medical records"
+            android:text="@string/full_medical_records"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -394,7 +396,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Friendly with dogs"
+            android:text="@string/friendly_with_dogs"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>
@@ -424,7 +426,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/roboto_medium"
-            android:text="Friendly with kids"
+            android:text="@string/friendly_with_kids"
             android:textColor="@color/black_font"
             android:textSize="12sp" />
     </com.google.android.material.card.MaterialCardView>

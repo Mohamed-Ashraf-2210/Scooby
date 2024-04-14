@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment
+package com.example.scooby.scooby.userProfile
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,30 +13,38 @@ import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentProfileBinding
-import com.example.scooby.scooby.userProfile.adapter.MyPetsHomeAdapter
-import com.example.scooby.scooby.userProfile.viewModel.ProfileViewModel
+import com.example.scooby.scooby.adapter.MyPetsHomeAdapter
+import com.example.scooby.scooby.viewmodel.ProfileViewModel
 
 class ProfileFragment : Fragment() {
-    private lateinit var binding: FragmentProfileBinding
+    private var binding: FragmentProfileBinding? = null
     private val profileViewModel by viewModels<ProfileViewModel>()
     private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         getUserId()
         initView()
-        return binding.root
+        observeViewModel()
+        return binding?.root
     }
 
 
     private fun initView() {
-        observeViewModel()
-        clickToBack()
-        clickToEdit()
-        clickToAddPet()
+        binding?.apply {
+            backProfile.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            editProfile.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
+            }
+            addPetIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_profileFragment_to_myPetsFragment)
+            }
+        }
     }
 
     private fun observeViewModel() {
@@ -51,26 +59,12 @@ class ProfileFragment : Fragment() {
 
     private fun getProfileData(it: UserProfileResponse?) {
         val data = it?.data?.data
-        Glide.with(this).load(data?.profileImage).into(binding.profileImage)
-        binding.userName.text = data?.name
-        binding.myPetsRv.adapter = MyPetsHomeAdapter(it!!, requireContext())
-    }
-
-    private fun clickToBack() {
-        binding.backProfile.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
-
-    private fun clickToEdit() {
-        binding.editProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
-        }
-    }
-
-    private fun clickToAddPet() {
-        binding.addPetIcon.setOnClickListener {
-            findNavController().navigate(R.id.action_profileFragment_to_myPetsFragment)
+        Glide.with(this).load(data?.profileImage).into(binding!!.profileImage)
+        binding?.apply {
+            userName.text = data?.name
+            numberFollowersTv.text = data?.followers?.size.toString()
+            numberFollowingTv.text = data?.following?.size.toString()
+            myPetsRv.adapter = MyPetsHomeAdapter(it!!, requireContext())
         }
     }
 
@@ -79,13 +73,16 @@ class ProfileFragment : Fragment() {
     }
 
     private fun stopLoading() {
-        binding.loading.visibility = View.GONE
-        binding.userProfileContent.visibility = View.VISIBLE
+        binding?.apply {
+            loading.visibility = View.GONE
+            userProfileContent.visibility = View.VISIBLE
+        }
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.myPetsRv.adapter = null
+        binding?.myPetsRv?.adapter = null
+        binding = null
     }
 }

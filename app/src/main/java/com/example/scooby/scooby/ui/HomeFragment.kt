@@ -64,10 +64,37 @@ class HomeFragment : Fragment() {
             vetIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
             }
-            moreIcon.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
+            boardingIcon.setOnClickListener {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Boarding")
+                findNavController().navigate(action)
+            }
+            sittingIcon.setOnClickListener {
+                val action = HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Sitting")
+                findNavController().navigate(action)
+            }
+            petFriendlyPlacesIcon.setOnClickListener {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Pet Friendly Places")
+                findNavController().navigate(action)
+            }
+            groomingIcon.setOnClickListener {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Grooming")
+                findNavController().navigate(action)
+            }
+            trainingIcon.setOnClickListener {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Training")
+                findNavController().navigate(action)
             }
             suppliesIcon.setOnClickListener {
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Supplies")
+                findNavController().navigate(action)
+            }
+            moreIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
             }
         }
     }

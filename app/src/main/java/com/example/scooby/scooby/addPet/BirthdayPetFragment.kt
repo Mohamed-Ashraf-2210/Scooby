@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.userProfile.fragment.addPet
+package com.example.scooby.scooby.addPet
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -24,30 +24,34 @@ class BirthdayPetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBirthdayPetBinding.inflate(inflater, container, false)
+        clickToSelectBirthday()
+        clickToSelectAdoptionDate()
         initView()
         return binding?.root
     }
 
     private fun initView() {
-        clickToSelectBirthday()
-        clickToSelectAdoptionDate()
-        clickToBack()
-        clickToNext()
+        binding?.apply {
+            backScreen.setOnClickListener { findNavController().popBackStack() }
+            nextBtn.setOnClickListener { onClickNext() }
+        }
     }
 
-    private fun clickToNext() {
+    private fun onClickNext() {
         binding?.apply {
             nextBtn.setOnClickListener {
-
+                val listOfData = arrayOf(
+                    args.listOfData[0],
+                    args.listOfData[1],
+                    args.listOfData[2],
+                    args.listOfData[3],
+                    args.listOfData[4],
+                    selectDateTv.toString(),
+                    selectAdoptionDateTv.toString()
+                )
                 val action =
                     BirthdayPetFragmentDirections.actionBirthdayPetFragmentToInfoPetFragment(
-                        args.petName,
-                        args.petType,
-                        args.petBreed,
-                        args.petSize,
-                        args.petGender,
-                        selectDateTv.text.toString(),
-                        selectAdoptionDateTv.text.toString()
+                        listOfData
                     )
                 findNavController().navigate(action)
             }
@@ -100,11 +104,6 @@ class BirthdayPetFragment : Fragment() {
         datePickerDialog.show()
     }
 
-    private fun clickToBack() {
-        binding?.backProfile?.setOnClickListener {
-            findNavController().popBackStack()
-        }
-    }
 
     override fun onResume() {
         super.onResume()
@@ -114,5 +113,10 @@ class BirthdayPetFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }

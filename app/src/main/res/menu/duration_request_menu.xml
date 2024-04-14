@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/full_day_item"
+        android:title="@string/full_day" />
+    <item
+        android:id="@+id/half_day_item"
+        android:title="@string/half_day" />
+    <item
+        android:id="@+id/more_than_day_item"
+        android:title="@string/more_than_1_day" />
+</menu>

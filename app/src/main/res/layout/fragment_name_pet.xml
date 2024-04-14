@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_BG"
-    tools:context=".scooby.userProfile.fragment.addPet.NamePetFragment">
+    tools:context=".scooby.addPet.NamePetFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/back_profile"
+                android:id="@+id/back_screen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

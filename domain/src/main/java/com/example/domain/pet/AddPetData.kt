@@ -4,13 +4,12 @@ import okhttp3.MultipartBody
 
 data class AddPetData(
     val petImage: MultipartBody.Part,
-    val name:String? = null,
-    val type:String? = null,
-    val birthday:String? = null,
-    val category:String? = null,
-    val gender:String? = null,
-    val profileBio:String? = null,
-    val weight:String? = null,
-    val adoptionDay:String? = null,
-    val size:String? = null,
-    )
+    val name: String,
+    val type: String,
+    val birthday: String,
+    val breed: String,
+    val gender: String,
+    val profileBio: String,
+    val adoptionDay: String,
+    val size: String,
+)

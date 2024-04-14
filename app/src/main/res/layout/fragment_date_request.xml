@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_BG"
-    tools:context=".scooby.addPet.BirthdayPetFragment">
+    tools:context=".scooby.request.DateRequestFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,18 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/my_pets"
-            android:textColor="@color/black_font"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/back_screen"
@@ -37,92 +25,84 @@
             android:src="@drawable/arrow_left_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar_horizontal"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="false"
+            android:max="100"
+            android:minWidth="200dp"
+            android:minHeight="50dp"
+            android:progress="25"
+            android:progressBackgroundTint="@android:color/darker_gray"
+            android:progressTint="@color/primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/exit_section"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/exit"
+            android:src="@drawable/exit_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/birthday_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="83dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/what_is_your_pet_birthday"
+        android:text="@string/please_select_date_and_time_of_your_service"
         android:textColor="@color/black_font"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:paddingHorizontal="4dp"
-        android:text="@string/optional"
-        android:textColor="@color/gray_font_hint"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/birthday_tv"
-        app:layout_constraintTop_toTopOf="@id/birthday_tv" />
-
-    <TextView
         android:id="@+id/select_date_tv"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="123dp"
         android:background="@drawable/edit_text_bg"
+        android:drawableStart="@drawable/date_icon"
         android:drawablePadding="4dp"
         android:gravity="center_vertical"
         android:paddingHorizontal="10dp"
         android:text="@string/select_date"
         android:textColor="@color/gray_font_hint"
         android:textSize="10sp"
-        app:drawableStartCompat="@drawable/date_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SmallSp" />
 
     <TextView
-        android:id="@+id/adoption_date_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/what_is_your_pet_adoption_date"
-        android:textColor="@color/black_font"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/select_date_tv" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:paddingHorizontal="4dp"
-        android:text="@string/optional"
-        android:textColor="@color/gray_font_hint"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/adoption_date_tv"
-        app:layout_constraintTop_toTopOf="@id/adoption_date_tv" />
-
-    <TextView
-        android:id="@+id/select_adoption_date_tv"
+        android:id="@+id/select_time_tv"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_bg"
+        android:drawableStart="@drawable/basil_clock_outline"
+        android:drawableEnd="@drawable/mingcute_down_line"
         android:drawablePadding="4dp"
         android:gravity="center_vertical"
         android:paddingHorizontal="10dp"
-        android:text="@string/select_date"
+        android:text="@string/select_time"
         android:textColor="@color/gray_font_hint"
         android:textSize="10sp"
-        app:drawableStartCompat="@drawable/date_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/adoption_date_tv"
+        app:layout_constraintTop_toBottomOf="@id/select_date_tv"
         tools:ignore="SmallSp" />
 
     <TextView
@@ -134,7 +114,6 @@
         android:gravity="center"
         android:text="@string/next"
         android:textColor="@color/white_BG"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
