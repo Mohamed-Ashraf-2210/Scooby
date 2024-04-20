@@ -8,4 +8,8 @@ class ProductRepo {
     suspend fun getAllProduct():Response<ProductResponse>?{
         return ProductApi.getApi()?.getAllProduct()
     }
+
+    suspend fun addToProductToFav(){
+
+    }
 }
