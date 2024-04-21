@@ -13,6 +13,7 @@ import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
+import com.example.domain.product.ProductResponse
 import kotlinx.coroutines.launch
 
 class PawsViewModel() : ViewModel() {
@@ -40,6 +41,11 @@ class PawsViewModel() : ViewModel() {
     private val _petsShelterResult: MutableLiveData<PetsInShelterResponse> = MutableLiveData()
     val petsShelterResult :LiveData<PetsInShelterResponse>
         get() = _petsShelterResult
+
+
+    private val _favoritePetsResult: MutableLiveData<AdaptionAdoptMeResponse> = MutableLiveData()
+    val favoriteProductResult :LiveData<AdaptionAdoptMeResponse>
+        get() = _favoritePetsResult
 
 
 
@@ -126,6 +132,20 @@ class PawsViewModel() : ViewModel() {
                 }
             }catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS petsShelterResult Adaption $e")
+            }
+        }
+    }
+
+    fun getFavoritePets(userId:String){
+        viewModelScope.launch {
+            try {
+                val response = pawsRepo.getFavoritePets(userId)
+                response?.body().let {
+                    _favoritePetsResult.value = response?.body()
+                }
+
+            }catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS favoritePets $e")
             }
         }
     }

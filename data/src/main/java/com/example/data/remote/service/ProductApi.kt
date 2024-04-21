@@ -14,13 +14,20 @@ interface ProductApi {
     @GET("/scooby/api/product/getallproduct")
     suspend fun getAllProduct(): Response<ProductResponse>
 
-    @POST("/scooby/api/fav/addfav/{id}/productId")
-    suspend fun addProductToFavorite(
-        @Query("id")
-        id :String,
-        @Body
-        productId : PostString
-    )
+//    @POST("/scooby/api/fav/addfav/{id}/productId")
+//    suspend fun addProductToFavorite(
+//        @Query("id") id: String,
+//        @Body
+//        productId : PostString
+//    )
+
+        @POST("/scooby/api/fav/addfav/{id}")
+        suspend fun addToProductToFav(
+            @Query("id") id: String,
+            @Query("productId") productId: String
+        )
+
+
 
 
     companion object{

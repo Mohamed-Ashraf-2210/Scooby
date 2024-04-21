@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.product.ProductResponse
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentProductBinding
 import com.example.scooby.scooby.product.adapter.ProductAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
@@ -63,6 +64,9 @@ class ProductFragment : Fragment() {
         }
         binding.btnGrooming.setOnClickListener {
             filterProduct("grooming")
+        }
+        binding.cart.setOnClickListener {
+            findNavController().navigate(R.id.action_productFragment_to_favoriteFragment)
         }
     }
 

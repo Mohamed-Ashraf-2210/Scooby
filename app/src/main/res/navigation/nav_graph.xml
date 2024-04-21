@@ -61,7 +61,11 @@
             android:id="@+id/productFragment"
             android:name="com.example.scooby.scooby.product.fragment.ProductFragment"
             android:label="fragment_product"
-            tools:layout="@layout/fragment_product" />
+            tools:layout="@layout/fragment_product" >
+            <action
+                android:id="@+id/action_productFragment_to_favoriteFragment"
+                app:destination="@id/favoriteFragment" />
+        </fragment>
 
         <dialog
             android:id="@+id/menuBottomSheetFragment"
@@ -148,6 +152,11 @@
                 android:name="listOfData"
                 app:argType="string[]" />
         </fragment>
+        <fragment
+            android:id="@+id/favoriteFragment"
+            android:name="com.example.scooby.scooby.FavoriteFragment"
+            android:label="fragment_favorite"
+            tools:layout="@layout/fragment_favorite" />
     </navigation>
 
     <navigation
@@ -317,6 +326,7 @@
 
         </fragment>
     </navigation>
+
 
 
 </navigation>
