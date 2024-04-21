@@ -27,58 +27,90 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
                 findNavController().navigate(R.id.action_menuBottomSheetFragment_to_vetFragment)
             }
             boardingIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Boarding",
+                    "20"
+                )
                 val action =
                     MenuBottomSheetFragmentDirections.actionMenuBottomSheetFragmentToSelectPetFragment(
-                        "Boarding"
+                        requestName
                     )
                 findNavController().navigate(action)
             }
             sittingIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Sitting",
+                    "20"
+                )
                 val action =
                     MenuBottomSheetFragmentDirections.actionMenuBottomSheetFragmentToSelectPetFragment(
-                        "Sitting"
+                        requestName
                     )
                 findNavController().navigate(action)
             }
             petFriendlyPlacesIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Pet Friendly Places",
+                    "20"
+                )
                 val action =
                     MenuBottomSheetFragmentDirections.actionMenuBottomSheetFragmentToSelectPetFragment(
-                        "Pet Friendly Places"
+                        requestName
                     )
                 findNavController().navigate(action)
             }
             groomingIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Grooming",
+                    "20"
+                )
                 val action =
                     MenuBottomSheetFragmentDirections.actionMenuBottomSheetFragmentToSelectPetFragment(
-                        "Grooming"
+                        requestName
                     )
                 findNavController().navigate(action)
             }
             trainingIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Training",
+                    "20"
+                )
                 val action =
                     MenuBottomSheetFragmentDirections.actionMenuBottomSheetFragmentToSelectPetFragment(
-                        "Training"
+                        requestName
                     )
                 findNavController().navigate(action)
             }
             suppliesIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Supplies",
+                    "20"
+                )
                 val action =
                     MenuBottomSheetFragmentDirections.actionMenuBottomSheetFragmentToSelectPetFragment(
-                        "Supplies"
+                        requestName
                     )
                 findNavController().navigate(action)
             }
             petTaxiIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Pet Taxi",
+                    "20"
+                )
                 val action =
                     MenuBottomSheetFragmentDirections.actionMenuBottomSheetFragmentToSelectPetFragment(
-                        "Pet Taxi"
+                        requestName
                     )
                 findNavController().navigate(action)
             }
             walkingIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Walking",
+                    "20"
+                )
                 val action =
                     MenuBottomSheetFragmentDirections.actionMenuBottomSheetFragmentToSelectPetFragment(
-                        "Walking"
+                        requestName
                     )
                 findNavController().navigate(action)
             }

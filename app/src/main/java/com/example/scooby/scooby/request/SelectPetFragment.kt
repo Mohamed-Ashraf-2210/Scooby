@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.request
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,11 +39,12 @@ class SelectPetFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
-            exitSection.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
+            nextBtn.text = "Next (\$${args.requestName[1]} /night)"
         }
     }
 

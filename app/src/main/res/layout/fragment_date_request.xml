@@ -7,58 +7,99 @@
     android:background="@color/white_BG"
     tools:context=".scooby.request.DateRequestFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ImageView
+        android:id="@+id/back_screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:contentDescription="@string/back"
+        android:src="@drawable/arrow_left_black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view2"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/white_tool_bar"
+        android:layout_height="2dp"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/line_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/back_screen"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:contentDescription="@string/back"
-            android:src="@drawable/arrow_left_black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/check_circle_yellow"
+        android:src="@drawable/check_circle_yellow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_screen" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar_horizontal"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="false"
-            android:max="100"
-            android:minWidth="200dp"
-            android:minHeight="50dp"
-            android:progress="25"
-            android:progressBackgroundTint="@android:color/darker_gray"
-            android:progressTint="@color/primary"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/add_details"
+        android:textColor="@color/yellow_request"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_screen" />
 
-        <ImageView
-            android:id="@+id/exit_section"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="@string/exit"
-            android:src="@drawable/exit_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/check_circle_gray"
+        android:src="@drawable/check_circle_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_screen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/summery"
+        android:textColor="@color/gray_request"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_screen" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="45dp"
+        android:contentDescription="@string/check_circle_gray"
+        android:src="@drawable/check_circle_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_screen" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/payment"
+        android:textColor="@color/gray_request"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/back_screen" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="83dp"
+        android:layout_marginTop="146dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/please_select_date_and_time_of_your_service"
         android:textColor="@color/black_font"
@@ -71,9 +112,8 @@
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="123dp"
+        android:layout_marginTop="186dp"
         android:background="@drawable/edit_text_bg"
-        android:drawableStart="@drawable/date_icon"
         android:drawablePadding="4dp"
         android:gravity="center_vertical"
         android:paddingHorizontal="10dp"
@@ -83,7 +123,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SmallSp" />
+        tools:ignore="SmallSp"
+        app:drawableStartCompat="@drawable/date_icon" />
 
     <TextView
         android:id="@+id/select_time_tv"
@@ -92,8 +133,6 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/edit_text_bg"
-        android:drawableStart="@drawable/basil_clock_outline"
-        android:drawableEnd="@drawable/mingcute_down_line"
         android:drawablePadding="4dp"
         android:gravity="center_vertical"
         android:paddingHorizontal="10dp"
@@ -103,17 +142,101 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/select_date_tv"
-        tools:ignore="SmallSp" />
+        tools:ignore="SmallSp"
+        app:drawableEndCompat="@drawable/mingcute_down_line"
+        app:drawableStartCompat="@drawable/basil_clock_outline" />
 
     <TextView
-        android:id="@+id/next_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/please_select_duration_of_your_service"
+        android:textColor="@color/black_font"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/select_time_tv" />
+
+
+    <TextView
+        android:id="@+id/option_et"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="4dp"
-        android:background="@color/primary"
-        android:gravity="center"
-        android:text="@string/next"
-        android:textColor="@color/white_BG"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/edit_text_bg"
+        android:fontFamily="@font/roboto"
+        android:padding="14dp"
+        android:text="@string/select_an_option"
+        android:textColor="@color/black_60"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SmallSp"
+        app:layout_constraintTop_toBottomOf="@id/select_time_tv"
+        app:drawableEndCompat="@drawable/mingcute_down_line" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/where_do_you_need_your_service"
+        android:textColor="@color/black_font"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/option_et" />
+
+
+    <TextView
+        android:id="@+id/location_tv"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/edit_text_bg"
+        android:drawablePadding="4dp"
+        android:fontFamily="@font/roboto"
+        android:padding="14dp"
+        android:text="@string/enter_your_location"
+        android:textColor="@color/black_60"
+        android:textSize="10sp"
+        app:drawableStartCompat="@drawable/location_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/option_et"
+        tools:ignore="SmallSp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/exit_btn"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/gray_btn"
+            android:padding="0dp"
+            app:cornerRadius="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/next_btn"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="3"
+            android:padding="0dp"
+            android:text="@string/next"
+            app:cornerRadius="4dp" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

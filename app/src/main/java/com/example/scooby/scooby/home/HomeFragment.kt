@@ -70,32 +70,57 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
             }
             boardingIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Boarding",
+                    "20"
+                )
                 val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Boarding")
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
             sittingIcon.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Sitting")
+                val requestName = arrayOf(
+                    "Sitting",
+                    "20"
+                )
+                val action =
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
             petFriendlyPlacesIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Pet Friendly Places",
+                    "20"
+                )
                 val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Pet Friendly Places")
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
             groomingIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Grooming",
+                    "20"
+                )
                 val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Grooming")
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
             trainingIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Training",
+                    "20"
+                )
                 val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Training")
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
             suppliesIcon.setOnClickListener {
+                val requestName = arrayOf(
+                    "Supplies",
+                    "20"
+                )
                 val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment("Supplies")
+                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
             moreIcon.setOnClickListener {

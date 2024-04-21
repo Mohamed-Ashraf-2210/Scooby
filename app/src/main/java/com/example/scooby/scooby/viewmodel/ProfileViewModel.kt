@@ -71,7 +71,7 @@ class ProfileViewModel : ViewModel() {
                 val requestFile = RequestBody.create("multipart/form-data".toMediaTypeOrNull(), imageFile)
                 val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, requestFile)
 
-                val response = profileRepo.updateUser(userId,imagePart, userData)
+                val response = profileRepo.updateUser(userId,imagePart, userData.name, userData.email)
                 if (response != null && response.isSuccessful) {
                     _updateUserResult.value = response.body()
                 }

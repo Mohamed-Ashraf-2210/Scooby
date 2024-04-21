@@ -199,5 +199,10 @@ again."</string>
     <string name="add">add</string>
     <string name="edit_image_profile">edit image profile</string>
     <string name="chat">chat</string>
+    <string name="check_circle_yellow">check circle yellow</string>
+    <string name="add_details">Add details</string>
+    <string name="summery">summery</string>
+    <string name="check_circle_gray">check circle gray</string>
+    <string name="payment">Payment</string>
 
 </resources>

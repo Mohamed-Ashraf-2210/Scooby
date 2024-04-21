@@ -32,7 +32,10 @@
     <color name="blue_icon">#1A73E9</color>
     <color name="red">#D50000</color>
     <color name="gray">#7E7E7E</color>
+    <color name="gray_btn">#F0E7E7</color>
+    <color name="line_gray">#EEE7E7</color>
     <color name="light_gray">#B8B6BB</color>
+    <color name="gray_request">#B8B2B2</color>
     <color name="top_app_bar_bg">#0FE384FF</color>
     <color name="dark_gray">#49454F</color>
     <color name="gray_font">#555151</color>
@@ -45,6 +48,7 @@
     <color name="yellow">#FFA33C</color>
     <color name="yellow_bg">#FFEEC6</color>
     <color name="yellow_rate">#FFCC01</color>
+    <color name="yellow_request">#FAC32E</color>
     <color name="yellow_price">#FDCA25</color>
     <color name="orange_bg">#FFEADB</color>
     <color name="red_bg">#FEDEDE</color>

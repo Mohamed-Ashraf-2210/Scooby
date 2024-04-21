@@ -84,7 +84,7 @@
             tools:layout="@layout/fragment_select_pet">
             <argument
                 android:name="request_name"
-                app:argType="string" />
+                app:argType="string[]" />
             <action
                 android:id="@+id/action_selectPetFragment_to_dateRequestFragment"
                 app:destination="@id/dateRequestFragment" />
@@ -94,58 +94,11 @@
             android:name="com.example.scooby.scooby.request.DateRequestFragment"
             android:label="fragment_date_request"
             tools:layout="@layout/fragment_date_request">
-            <action
-                android:id="@+id/action_dateRequestFragment_to_durationRequestFragment"
-                app:destination="@id/durationRequestFragment" />
             <argument
                 android:name="id_pets"
                 app:argType="string[]" />
             <argument
                 android:name="request_name"
-                app:argType="string" />
-        </fragment>
-        <fragment
-            android:id="@+id/durationRequestFragment"
-            android:name="com.example.scooby.scooby.request.DurationRequestFragment"
-            android:label="fragment_duration_request"
-            tools:layout="@layout/fragment_duration_request">
-
-            <argument
-                android:name="id_pets"
-                app:argType="string[]" />
-            <argument
-                android:name="listOfData"
-                app:argType="string[]" />
-            <action
-                android:id="@+id/action_durationRequestFragment_to_locationRequestFragment"
-                app:destination="@id/locationRequestFragment" />
-        </fragment>
-        <fragment
-            android:id="@+id/noteFragment"
-            android:name="com.example.scooby.scooby.request.NoteFragment"
-            android:label="fragment_note"
-            tools:layout="@layout/fragment_note">
-
-            <argument
-                android:name="id_pets"
-                app:argType="string[]" />
-            <argument
-                android:name="listOfData"
-                app:argType="string[]" />
-        </fragment>
-        <fragment
-            android:id="@+id/locationRequestFragment"
-            android:name="com.example.scooby.scooby.request.LocationRequestFragment"
-            android:label="fragment_location_request"
-            tools:layout="@layout/fragment_location_request">
-            <action
-                android:id="@+id/action_locationRequestFragment2_to_noteFragment"
-                app:destination="@id/noteFragment" />
-            <argument
-                android:name="id_pets"
-                app:argType="string[]" />
-            <argument
-                android:name="listOfData"
                 app:argType="string[]" />
         </fragment>
 

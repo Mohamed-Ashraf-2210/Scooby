@@ -8,14 +8,15 @@ import com.example.domain.authentication.ForgotPasswordResponse
 import com.example.domain.authentication.LoginRequest
 import com.example.domain.authentication.ResetPasswordRequest
 import com.example.domain.authentication.ResetPasswordResponse
-import com.example.domain.profile.UserResponse
 import com.example.domain.authentication.SignUpRequest
-import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UpdateUseResponse
-import com.example.domain.profile.UpdateUserData
+import com.example.domain.profile.UserProfileResponse
+import com.example.domain.profile.UserResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.PATCH
@@ -43,18 +44,14 @@ interface UserApi {
     @GET("/scooby/api/user/getuser/{userId}")
     suspend fun getUser(@Path("userId") userId: String): Response<UserProfileResponse>
 
-//    @PATCH("/scooby/api/user/updateuser/{userId}")
-//    suspend fun uploadImageProfile(
-//        @Path("userId") userId: String,
-//        @Part profileImage: File,
-//    ): Response<UpdateUseResponse>
 
     @Multipart
     @PATCH("/scooby/api/user/updateuser/{userId}")
     suspend fun updateUser(
         @Path("userId") userId: String,
-        @Part image: MultipartBody.Part,
-        @Part userData: UpdateUserData
+        @Part("profileImage") image: MultipartBody.Part,
+        @Field("name") name: String,
+        @Field("email") email: String
     ): Response<UpdateUseResponse>
 
     companion object {

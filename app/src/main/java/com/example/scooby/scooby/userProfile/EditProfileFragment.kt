@@ -2,10 +2,8 @@ package com.example.scooby.scooby.userProfile
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +13,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.data.Constant
+import com.example.domain.profile.UpdateUserData
 import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentEditProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
-import java.io.File
 import java.io.IOException
 
 
@@ -28,6 +26,7 @@ class EditProfileFragment : Fragment() {
     private var binding: FragmentEditProfileBinding? = null
     private val profileViewModel by viewModels<ProfileViewModel>()
     private lateinit var userId: String
+    private var selectedImg: Uri? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +48,26 @@ class EditProfileFragment : Fragment() {
             editImageProfile.setOnClickListener {
                 pickImage()
             }
+            savaEditProfile.setOnClickListener {
+                savaUpdate()
+            }
+        }
+    }
+
+    private fun savaUpdate() {
+        profileViewModel.apply {
+            val userData = UpdateUserData(
+                binding?.nameEditText?.text.toString(),
+                binding?.emailEditText?.text.toString()
+            )
+            selectedImg?.let { updateUser(userId, it, userData) }
+            updateUserResult.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    if (it.status == "success") {
+                        findNavController().popBackStack()
+                    }
+                }
+            }
         }
     }
 
@@ -68,14 +87,9 @@ class EditProfileFragment : Fragment() {
 
                 if (data != null && data.data != null) {
                     val selectedImageUri: Uri = data.data!!
-                    val selectedImageBitmap: Bitmap?
                     try {
-                        selectedImageBitmap =
-                            MediaStore.Images.Media.getBitmap(
-                                requireActivity().contentResolver,
-                                selectedImageUri
-                            )
-                        saveBitmapToFile(selectedImageBitmap)
+                        selectedImg = selectedImageUri
+                        binding?.profileImage?.setImageURI(selectedImageUri)
                     } catch (e: IOException) {
                         e.printStackTrace()
                     }
@@ -83,13 +97,6 @@ class EditProfileFragment : Fragment() {
             }
         }
 
-    private fun saveBitmapToFile(bitmap: Bitmap): File {
-        val file = File(requireContext().cacheDir, "image.png")
-        file.outputStream().use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-        }
-        return file
-    }
 
     private fun getUserData() {
         profileViewModel.apply {
@@ -100,6 +107,7 @@ class EditProfileFragment : Fragment() {
             }
         }
     }
+
     private fun getProfileData(it: UserProfileResponse?) {
         val data = it?.data?.data
         data.let {
@@ -110,12 +118,14 @@ class EditProfileFragment : Fragment() {
             }
         }
     }
+
     private fun stopLoading() {
         binding?.apply {
             loading.visibility = View.GONE
             editProfileContent.visibility = View.VISIBLE
         }
     }
+
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).hideBottomNavigationView()
