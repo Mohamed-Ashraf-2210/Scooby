@@ -1,9 +1,6 @@
 package com.example.domain.pet
 
-import okhttp3.MultipartBody
-
 data class AddPetData(
-    val petImage: MultipartBody.Part,
     val name: String,
     val type: String,
     val birthday: String,

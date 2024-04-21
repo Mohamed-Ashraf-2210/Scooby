@@ -21,9 +21,6 @@ import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentSubmitPetBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.PetsViewModel
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -75,11 +72,6 @@ class SubmitPetFragment : Fragment() {
             }
         }
 
-    private fun prepareImagePart(bitmap: Bitmap?): MultipartBody.Part {
-        val file = bitmapToFile(bitmap)
-        val requestFile = RequestBody.create("image/*".toMediaTypeOrNull(), file)
-        return MultipartBody.Part.createFormData("petImage", file.name, requestFile)
-    }
 
     private fun bitmapToFile(bitmap: Bitmap?): File {
         val file = File(requireActivity().cacheDir, "temp_image.jpg")
@@ -122,7 +114,6 @@ class SubmitPetFragment : Fragment() {
     private fun clickToSubmit() {
         if (imagePet != null) {
             val petData = AddPetData(
-                petImage = prepareImagePart(imagePet),
                 name = args.listOfData?.get(0) ?: "",
                 type = args.listOfData?.get(1) ?: "",
                 birthday = args.listOfData?.get(5) ?: "",
@@ -132,7 +123,8 @@ class SubmitPetFragment : Fragment() {
                 gender = args.listOfData?.get(4) ?: "",
                 profileBio = args.listOfData?.get(7) ?: ""
             )
-            petsViewModel.addPet(userId, petData)
+            val file = bitmapToFile(imagePet)
+            petsViewModel.addPet(userId, file, petData)
             Toast.makeText(requireContext(), "Save is success", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }
@@ -149,6 +141,7 @@ class SubmitPetFragment : Fragment() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null

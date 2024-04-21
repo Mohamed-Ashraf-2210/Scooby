@@ -24,18 +24,16 @@ class SizePetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSizePetBinding.inflate(inflater, container, false)
-        initView()
         selectSize()
         selectGender()
-        return binding?.root
-    }
 
-    private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
         }
+        return binding?.root
     }
+
 
     private fun selectSize() {
         binding?.apply {

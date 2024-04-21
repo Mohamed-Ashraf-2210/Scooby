@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentNamePetBinding
 import com.example.scooby.scooby.MainActivity
 
 
 class NamePetFragment : Fragment() {
     private var binding: FragmentNamePetBinding? = null
+    private var typePet: String? = null
 
 
     override fun onCreateView(
@@ -19,14 +21,38 @@ class NamePetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNamePetBinding.inflate(inflater, container, false)
-        initView()
-        return binding?.root
-    }
+        selectType()
 
-    private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
+        }
+        return binding?.root
+    }
+
+
+    private fun selectType() {
+        binding?.apply {
+            catCard.setOnClickListener {
+                if (typePet != "cat") {
+                    typePet = "cat"
+                    catView.setBackgroundResource(R.color.magenta)
+                    dogView.setBackgroundResource(R.color.white_BG)
+                } else {
+                    typePet = null
+                    catView.setBackgroundResource(R.color.white_BG)
+                }
+            }
+            dogCard.setOnClickListener {
+                if (typePet != "dog") {
+                    typePet = "dog"
+                    dogView.setBackgroundResource(R.color.magenta)
+                    catView.setBackgroundResource(R.color.white_BG)
+                } else {
+                    typePet = null
+                    dogView.setBackgroundResource(R.color.white_BG)
+                }
+            }
         }
     }
 
@@ -35,9 +61,15 @@ class NamePetFragment : Fragment() {
         binding?.apply {
             nextBtn.setOnClickListener {
                 val petName = namePetEditText.text.toString()
-                if (petName.isNotEmpty()) {
+                val petBreed = breedPetEditText.text.toString()
+                if (petName.isNotEmpty() && petBreed.isNotEmpty() && typePet != null) {
+                    val listOfData = arrayOf(
+                        petName,
+                        typePet!!,
+                        petBreed
+                    )
                     val action =
-                        NamePetFragmentDirections.actionAddPetsFragmentToTypePetFragment(petName)
+                        NamePetFragmentDirections.actionAddPetsFragmentToSizePetFragment(listOfData)
                     findNavController().navigate(action)
                 }
             }

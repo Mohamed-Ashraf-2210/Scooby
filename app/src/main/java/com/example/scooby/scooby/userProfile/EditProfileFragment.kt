@@ -1,9 +1,15 @@
 package com.example.scooby.scooby.userProfile
 
+import android.app.Activity
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -14,12 +20,15 @@ import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentEditProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import java.io.File
+import java.io.IOException
 
 
 class EditProfileFragment : Fragment() {
     private var binding: FragmentEditProfileBinding? = null
     private val profileViewModel by viewModels<ProfileViewModel>()
     private lateinit var userId: String
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,88 +40,55 @@ class EditProfileFragment : Fragment() {
         return binding?.root
     }
 
-//    private fun pickImage() {
-//        ImagePicker.with(this)
-//            .crop()                    //Crop image(Optional), Check Customization for more option
-//            .compress(1024)            //Final image size will be less than 1 MB(Optional)
-//            .maxResultSize(
-//                1080,
-//                1080
-//            )    //Final image resolution will be less than 1080 x 1080(Optional)
-//            .galleryMimeTypes(  //Exclude gif images
-//                mimeTypes = arrayOf(
-//                    "image/png",
-//                    "image/jpg",
-//                    "image/jpeg"
-//                )
-//            )
-//            .start()
-//
-//        startForProfileImageResult
-//    }
-
-//    private val startForProfileImageResult =
-//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-//            val resultCode = result.resultCode
-//            val data = result.data
-//            if (resultCode == Activity.RESULT_OK) { // requestCode == REQUEST_IMAGE_PICKER &&
-//                val imageUri = data?.data!!
-//                binding.editImageProfile.setImageURI(imageUri)
-//                val file = saveImageToFile(imageUri)
-////                profileViewModel.apply {
-////                    uploadImage(userId, file)
-////                    profileResult.observe(viewLifecycleOwner) {
-////                        getUserData()
-////                    }
-////                }
-//            }
-//        }
-
-
-//    private fun saveImageToFile(imageUri: Uri): File {
-//        val inputStream = imageUri.let { requireContext().contentResolver.openInputStream(it) }
-//        val file = File(context?.cacheDir, "selected_image.png")
-//        val outputStream = FileOutputStream(file)
-//
-//        inputStream?.use { input ->
-//            outputStream.use { output ->
-//                input.copyTo(output)
-//            }
-//        }
-//        return file
-//    }
-
 
     private fun init() {
         binding?.apply {
-//            savaEditProfile.setOnClickListener {
-//                val updatedUserData = UpdateUserData(
-//                    nameEditText.text.toString(),
-//                    emailEditText.text.toString(),
-//                    phoneEditText.text.toString()
-//                )
-//                profileViewModel.apply {
-//                    updateUser(userId, updatedUserData)
-//                    profileResult.observe(viewLifecycleOwner) {
-//                        if (it != null) {
-//                            if (it.status == "success") {
-//                                Toast.makeText(context, "Save is success", Toast.LENGTH_SHORT)
-//                                    .show()
-//                            } else {
-//                                Toast.makeText(context, "Try again", Toast.LENGTH_SHORT).show()
-//                            }
-//
-//                        }
-//                    }
-//                }
-//            }
             backProfile.setOnClickListener {
                 findNavController().popBackStack()
             }
             editImageProfile.setOnClickListener {
-                //pickImage()
+                pickImage()
             }
         }
+    }
+
+    private fun pickImage() {
+        val intent = Intent(Intent.ACTION_GET_CONTENT)
+        intent.type = "image/*"
+        launchSomeActivity.launch(Intent.createChooser(intent, "Select Picture"))
+    }
+
+
+    private val launchSomeActivity =
+        registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+
+                if (data != null && data.data != null) {
+                    val selectedImageUri: Uri = data.data!!
+                    val selectedImageBitmap: Bitmap?
+                    try {
+                        selectedImageBitmap =
+                            MediaStore.Images.Media.getBitmap(
+                                requireActivity().contentResolver,
+                                selectedImageUri
+                            )
+                        saveBitmapToFile(selectedImageBitmap)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+        }
+
+    private fun saveBitmapToFile(bitmap: Bitmap): File {
+        val file = File(requireContext().cacheDir, "image.png")
+        file.outputStream().use {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+        }
+        return file
     }
 
     private fun getUserData() {
@@ -124,7 +100,6 @@ class EditProfileFragment : Fragment() {
             }
         }
     }
-
     private fun getProfileData(it: UserProfileResponse?) {
         val data = it?.data?.data
         data.let {
@@ -135,7 +110,6 @@ class EditProfileFragment : Fragment() {
             }
         }
     }
-
     private fun stopLoading() {
         binding?.apply {
             loading.visibility = View.GONE

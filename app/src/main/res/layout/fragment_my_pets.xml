@@ -69,7 +69,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/add_pet_card"
-                android:layout_width="120dp"
+                android:layout_width="148dp"
                 android:layout_height="150dp"
                 android:layout_below="@id/Rv_my_pets_Content"
                 android:layout_marginEnd="32dp"

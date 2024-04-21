@@ -13,9 +13,11 @@ import com.example.domain.authentication.SignUpRequest
 import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UpdateUserData
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Part
@@ -41,15 +43,17 @@ interface UserApi {
     @GET("/scooby/api/user/getuser/{userId}")
     suspend fun getUser(@Path("userId") userId: String): Response<UserProfileResponse>
 
-    @PATCH("/scooby/api/user/updateuser/{userId}")
-    suspend fun uploadImageProfile(
-        @Path("userId") userId: String,
-        @Part profileImage: File,
-    ): Response<UpdateUseResponse>
+//    @PATCH("/scooby/api/user/updateuser/{userId}")
+//    suspend fun uploadImageProfile(
+//        @Path("userId") userId: String,
+//        @Part profileImage: File,
+//    ): Response<UpdateUseResponse>
 
+    @Multipart
     @PATCH("/scooby/api/user/updateuser/{userId}")
     suspend fun updateUser(
         @Path("userId") userId: String,
+        @Part image: MultipartBody.Part,
         @Part userData: UpdateUserData
     ): Response<UpdateUseResponse>
 
