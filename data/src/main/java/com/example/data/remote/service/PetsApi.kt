@@ -1,10 +1,11 @@
 package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
-import com.example.domain.pet.AddPetData
 import com.example.domain.pet.AddPetResponse
 import com.example.domain.pet.MyPetsResponse
 import com.example.domain.pet.PetsResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Multipart
@@ -23,7 +24,8 @@ interface PetsApi {
     @POST("/scooby/api/Pets/addpet/{userId}")
     suspend fun addPet(
         @Path("userId") userId: String,
-        @Part petData: AddPetData
+        @Part image: MultipartBody.Part,
+        @Part("petData") petData: RequestBody
     ): Response<AddPetResponse>
 
 

@@ -11,7 +11,7 @@
 
         <fragment
             android:id="@+id/homeFragment"
-            android:name="com.example.scooby.scooby.ui.HomeFragment"
+            android:name="com.example.scooby.scooby.home.HomeFragment"
             android:label="fragment_home"
             tools:layout="@layout/fragment_home">
             <action
@@ -29,6 +29,9 @@
             <action
                 android:id="@+id/action_homeFragment_to_selectPetFragment"
                 app:destination="@id/selectPetFragment" />
+            <action
+                android:id="@+id/action_homeFragment_to_profileFragment"
+                app:destination="@id/profileFragment" />
         </fragment>
         <fragment
             android:id="@+id/blogsFragment"
@@ -62,7 +65,6 @@
             android:name="com.example.scooby.scooby.product.fragment.ProductFragment"
             android:label="fragment_product"
             tools:layout="@layout/fragment_product" />
-
         <dialog
             android:id="@+id/menuBottomSheetFragment"
             android:name="com.example.scooby.scooby.ui.MenuBottomSheetFragment"
@@ -87,8 +89,6 @@
                 android:id="@+id/action_selectPetFragment_to_dateRequestFragment"
                 app:destination="@id/dateRequestFragment" />
         </fragment>
-
-
         <fragment
             android:id="@+id/dateRequestFragment"
             android:name="com.example.scooby.scooby.request.DateRequestFragment"
@@ -148,43 +148,7 @@
                 android:name="listOfData"
                 app:argType="string[]" />
         </fragment>
-    </navigation>
 
-    <navigation
-        android:id="@+id/toPawsFragment"
-        app:startDestination="@id/pawsFragment">
-
-        <fragment
-            android:id="@+id/pawsFragment"
-            android:name="com.example.scooby.scooby.paws.fragment.PawsFragment"
-            android:label="fragment_paws"
-            tools:layout="@layout/fragment_paws" />
-
-    </navigation>
-
-    <navigation
-        android:id="@+id/toBookingFragment"
-        app:startDestination="@id/bookingFragment">
-        <fragment
-            android:id="@+id/bookingFragment"
-            android:name="com.example.scooby.scooby.ui.BookingFragment"
-            android:label="fragment_booking"
-            tools:layout="@layout/fragment_booking" />
-    </navigation>
-
-    <navigation
-        android:id="@+id/toCommunityFragment"
-        app:startDestination="@id/communityFragment">
-        <fragment
-            android:id="@+id/communityFragment"
-            android:name="com.example.scooby.scooby.ui.CommunityFragment"
-            android:label="fragment_community"
-            tools:layout="@layout/fragment_community" />
-    </navigation>
-
-    <navigation
-        android:id="@+id/toProfileFragment"
-        app:startDestination="@id/profileFragment">
 
         <fragment
             android:id="@+id/profileFragment"
@@ -201,7 +165,6 @@
                 android:id="@+id/action_profileFragment_to_myPetsFragment"
                 app:destination="@id/myPetsFragment" />
         </fragment>
-
         <fragment
             android:id="@+id/editProfileFragment"
             android:name="com.example.scooby.scooby.userProfile.EditProfileFragment"
@@ -217,7 +180,6 @@
                 android:name="pet_position"
                 app:argType="integer" />
         </fragment>
-
         <fragment
             android:id="@+id/myPetsFragment"
             android:name="com.example.scooby.scooby.addPet.MyPetsFragment"
@@ -237,32 +199,7 @@
             android:label="fragment_add_pets"
             tools:layout="@layout/fragment_name_pet">
             <action
-                android:id="@+id/action_addPetsFragment_to_typePetFragment"
-                app:destination="@id/typePetFragment" />
-        </fragment>
-
-        <fragment
-            android:id="@+id/typePetFragment"
-            android:name="com.example.scooby.scooby.addPet.TypePetFragment"
-            android:label="fragment_type_pet"
-            tools:layout="@layout/fragment_type_pet">
-            <argument
-                android:name="pet_name"
-                app:argType="string" />
-            <action
-                android:id="@+id/action_typePetFragment_to_breedFragment"
-                app:destination="@id/breedFragment" />
-        </fragment>
-        <fragment
-            android:id="@+id/breedFragment"
-            android:name="com.example.scooby.scooby.addPet.BreedPetFragment"
-            android:label="fragment_breed"
-            tools:layout="@layout/fragment_breed_pet">
-            <argument
-                android:name="listOfData"
-                app:argType="string[]" />
-            <action
-                android:id="@+id/action_breedFragment_to_sizePetFragment"
+                android:id="@+id/action_addPetsFragment_to_sizePetFragment"
                 app:destination="@id/sizePetFragment" />
         </fragment>
         <fragment
@@ -314,9 +251,39 @@
                 android:name="listOfData"
                 app:argType="string[]"
                 app:nullable="true" />
-
         </fragment>
     </navigation>
 
+    <navigation
+        android:id="@+id/toPawsFragment"
+        app:startDestination="@id/pawsFragment">
+
+        <fragment
+            android:id="@+id/pawsFragment"
+            android:name="com.example.scooby.scooby.paws.fragment.PawsFragment"
+            android:label="fragment_paws"
+            tools:layout="@layout/fragment_paws" />
+
+    </navigation>
+
+    <navigation
+        android:id="@+id/toBookingFragment"
+        app:startDestination="@id/bookingFragment">
+        <fragment
+            android:id="@+id/bookingFragment"
+            android:name="com.example.scooby.scooby.ui.BookingFragment"
+            android:label="fragment_booking"
+            tools:layout="@layout/fragment_booking" />
+    </navigation>
+
+    <navigation
+        android:id="@+id/toCommunityFragment"
+        app:startDestination="@id/communityFragment">
+        <fragment
+            android:id="@+id/communityFragment"
+            android:name="com.example.scooby.scooby.ui.CommunityFragment"
+            android:label="fragment_community"
+            tools:layout="@layout/fragment_community" />
+    </navigation>
 
 </navigation>

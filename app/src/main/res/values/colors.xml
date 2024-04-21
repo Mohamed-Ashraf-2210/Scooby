@@ -11,6 +11,7 @@
     <color name="black_20">#330F0F0F</color>
     <color name="black_clear">#000000</color>
     <color name="black_font">#F20F0F0F</color>
+    <color name="black_user_name">#F21D1D1D</color>
     <color name="black_edit_text">#0F0F0F</color>
     <color name="white_type_pet">#F0E9E9</color>
     <color name="white_BG">#F5F3F3</color>

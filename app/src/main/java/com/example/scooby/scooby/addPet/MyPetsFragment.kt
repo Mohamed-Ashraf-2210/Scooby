@@ -12,7 +12,6 @@ import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentMyPetsBinding
 import com.example.scooby.scooby.adapter.MyPetsAddAdapter
-import com.example.scooby.scooby.adapter.MyPetsRequestAdapter
 import com.example.scooby.scooby.viewmodel.MyPetsViewModel
 
 

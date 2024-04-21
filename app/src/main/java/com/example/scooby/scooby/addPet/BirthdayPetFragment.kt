@@ -26,16 +26,13 @@ class BirthdayPetFragment : Fragment() {
         binding = FragmentBirthdayPetBinding.inflate(inflater, container, false)
         clickToSelectBirthday()
         clickToSelectAdoptionDate()
-        initView()
-        return binding?.root
-    }
-
-    private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
         }
+        return binding?.root
     }
+
 
     private fun onClickNext() {
         binding?.apply {

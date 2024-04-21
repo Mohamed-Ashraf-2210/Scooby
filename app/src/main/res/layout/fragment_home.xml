@@ -8,7 +8,7 @@
     android:backgroundTint="@color/white_BG"
     android:fitsSystemWindows="true"
     app:layout_behavior="com.google.android.material.search.SearchBar$ScrollingViewBehavior"
-    tools:context=".scooby.ui.HomeFragment">
+    tools:context=".scooby.home.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,64 @@
             android:id="@+id/home_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible">
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/top_bar_home"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/user_image"
+                    android:layout_width="39dp"
+                    android:layout_height="39dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:letterSpacing="0.05"
+                    android:textColor="@color/black_user_name"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/user_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Hi, Fatma" />
+
+                <ImageView
+                    android:id="@+id/notification_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/notifications"
+                    android:src="@drawable/clarity_notification_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/chat_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="13dp"
+                    android:contentDescription="@string/chat"
+                    android:src="@drawable/chat_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/notification_home"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <com.denzcoskun.imageslider.ImageSlider
@@ -26,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="124dp"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="16dp"
                 app:iss_auto_cycle="true"
                 app:iss_corner_radius="70"
                 app:iss_delay="0"
@@ -35,7 +92,7 @@
                 app:iss_unselected_dot="@drawable/not_selected_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/top_bar_home" />
 
             <TextView
                 android:id="@+id/text_1"

@@ -47,11 +47,6 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.toProfileFragment -> {
-                    navController.navigate(R.id.toProfileFragment)
-                    true
-                }
-
                 else -> false
             }
         }

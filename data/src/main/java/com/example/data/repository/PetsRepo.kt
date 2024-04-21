@@ -1,8 +1,9 @@
 package com.example.data.repository
 
 import com.example.data.remote.service.PetsApi
-import com.example.domain.pet.AddPetData
 import com.example.domain.pet.AddPetResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 class PetsRepo {
@@ -10,7 +11,11 @@ class PetsRepo {
 
     suspend fun getMyPets(userId: String) = PetsApi.getApi()?.getMyPets(userId)
 
-    suspend fun addPet(userId: String, petData: AddPetData): Response<AddPetResponse>? {
-        return PetsApi.getApi()?.addPet(userId, petData)
+    suspend fun addPet(
+        userId: String,
+        image: MultipartBody.Part,
+        requestBody: RequestBody
+    ): Response<AddPetResponse>? {
+        return PetsApi.getApi()?.addPet(userId, image, requestBody)
     }
 }

@@ -13,6 +13,7 @@ import com.example.data.remote.service.UserApi
 import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UpdateUserData
+import okhttp3.MultipartBody
 import retrofit2.Response
 import java.io.File
 
@@ -41,11 +42,9 @@ class UserRepository {
         return UserApi.getApi()?.getUser(userId)
     }
 
-    suspend fun uploadImageProfile(userId: String, profileImage: File): Response<UpdateUseResponse>? {
-        return  UserApi.getApi()?.uploadImageProfile(userId,profileImage)
-    }
+//    suspend fun uploadImageProfile(userId: String, profileImage: File): Response<UpdateUseResponse>? {
+//        return  UserApi.getApi()?.uploadImageProfile(userId,profileImage)
+//    }
 
-    suspend fun updateUser(userId: String, userData: UpdateUserData): Response<UpdateUseResponse>? {
-        return  UserApi.getApi()?.updateUser(userId,userData)
-    }
+    suspend fun updateUser(userId: String, image: MultipartBody.Part, userData: UpdateUserData) = UserApi.getApi()?.updateUser(userId, image, userData)
 }

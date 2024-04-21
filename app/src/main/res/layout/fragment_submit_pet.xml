@@ -45,11 +45,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="96dp"
         android:fontFamily="@font/roboto_medium"
         android:text="@string/upload_some_lovely_photos_of_your_pet"
         android:textColor="@color/black_font"
         android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,13 +59,14 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="192dp"
         android:backgroundTint="@color/white_BG"
         android:checkable="true"
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:strokeWidth="0dp">
@@ -78,16 +80,13 @@
             tools:ignore="ContentDescription" />
     </com.google.android.material.card.MaterialCardView>
 
-
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/submit_btn"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_marginBottom="4dp"
-        android:background="@color/primary"
-        android:gravity="center"
+        android:padding="0dp"
         android:text="@string/submit"
-        android:textColor="@color/white_BG"
+        app:cornerRadius="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

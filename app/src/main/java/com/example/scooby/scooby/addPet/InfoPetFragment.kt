@@ -22,16 +22,13 @@ class InfoPetFragment : Fragment() {
     ): View? {
         binding = FragmentInfoPetBinding.inflate(inflater, container, false)
         selectInfo()
-        initView()
-        return binding?.root
-    }
-
-    private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
         }
+        return binding?.root
     }
+
 
     private fun onClickNext() {
         binding?.apply {
