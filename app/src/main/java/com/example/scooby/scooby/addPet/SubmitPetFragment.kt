@@ -124,9 +124,19 @@ class SubmitPetFragment : Fragment() {
                 profileBio = args.listOfData?.get(7) ?: ""
             )
             val file = bitmapToFile(imagePet)
-            petsViewModel.addPet(userId, file, petData)
-            Toast.makeText(requireContext(), "Save is success", Toast.LENGTH_SHORT).show()
-            findNavController().popBackStack()
+            petsViewModel.apply {
+                addPet(userId, file, petData)
+                addPetsResult.observe(viewLifecycleOwner) {
+                    if (it?.status == "success") {
+                        Toast.makeText(requireContext(), "Save is success", Toast.LENGTH_SHORT)
+                            .show()
+                    }else{
+                        Toast.makeText(requireContext(), "Save is failed", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+            }
+//            findNavController().popBackStack()
         }
 
     }

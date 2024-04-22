@@ -1,6 +1,7 @@
 package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
+import com.example.domain.AddFavoriteResponse
 import com.example.domain.PostString
 import com.example.domain.product.ProductResponse
 import retrofit2.Response
@@ -21,11 +22,11 @@ interface ProductApi {
 //        productId : PostString
 //    )
 
-        @POST("/scooby/api/fav/addfav/{id}")
+        @POST("/scooby/api/fav/addfav/{userId}/{productId}")
         suspend fun addToProductToFav(
-            @Query("id") id: String,
+            @Query("userId") id: String,
             @Query("productId") productId: String
-        )
+        ) :Response<AddFavoriteResponse>
 
 
 
