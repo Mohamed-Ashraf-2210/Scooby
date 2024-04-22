@@ -8,6 +8,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ProductApi {
@@ -22,9 +23,9 @@ interface ProductApi {
 //        productId : PostString
 //    )
 
-        @POST("/scooby/api/fav/addfav/{userId}/{productId}")
+        @POST("/scooby/api/fav/addfav/{userId}}")
         suspend fun addToProductToFav(
-            @Query("userId") id: String,
+            @Path("userId") id: String,
             @Query("productId") productId: String
         ) :Response<AddFavoriteResponse>
 

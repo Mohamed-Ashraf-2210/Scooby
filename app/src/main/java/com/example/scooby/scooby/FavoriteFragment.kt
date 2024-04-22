@@ -38,8 +38,7 @@ class FavoriteFragment : Fragment() {
                 favoriteProductResult.observe(viewLifecycleOwner){
                     getFavoritePets("66138da36320a6b3105e2ad1")
                     getAdoptMeData(it)
-
-                    Log.d("FAV_RES", it.toString())
+                    Log.d("FAV_RES", it.status.toString())
                 }
             }
             binding.rvFavPets.visibility = View.VISIBLE
