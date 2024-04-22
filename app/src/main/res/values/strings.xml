@@ -205,5 +205,10 @@ again."</string>
     <string name="check_circle_gray">check circle gray</string>
     <string name="payment">Payment</string>
     <string name="des_services">While we would love to have our pets accompany us on vacation or on an out-of-town visit, there inevitably are times we must leave them behind. And if it’s your first time boarding pets, it may seem like an intimidating and overwhelming process so we’re here to help you make the best choice for your fur baby and for you to ensure that your pet stays healthy and happy while you’re away.</string>
+    <string name="write_any_other_things_we_need_to_know_needs_or_notes_of_your_pets">Write any other things we need to know, needs or notes of your pets. <font color="#800F0F0F">optional</font></string>
+    <string name="ex_my_pet_isn_t_kind_with_other_pets_its_aggressive_or_sensitive_has_any_health_problems">Ex. my pet isn\'t kind with other pets, its aggressive or sensitive, has any health problems</string>
+    <string name="do_you_need_pet_pickup_services">Do you need pet pickup services?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

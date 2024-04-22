@@ -1,7 +1,7 @@
 package com.example.scooby.scooby.request
 
-import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.data.Constant
+import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentSelectPetBinding
 import com.example.scooby.scooby.MainActivity
@@ -24,7 +25,6 @@ class SelectPetFragment : Fragment() {
     private val args: SelectPetFragmentArgs by navArgs()
     private lateinit var userId: String
     private lateinit var adapter: MyPetsRequestAdapter
-    private lateinit var listOfData: MutableList<String>
 
 
     override fun onCreateView(
@@ -33,37 +33,27 @@ class SelectPetFragment : Fragment() {
     ): View? {
         binding = FragmentSelectPetBinding.inflate(inflater, container, false)
         getUserId()
-        initView()
         observeMyPets()
-        return binding?.root
-    }
-
-
-    @SuppressLint("SetTextI18n")
-    private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
             nextBtn.text = "Next (\$${args.requestName[1]} /night)"
+            addPetCard.setOnClickListener { findNavController().navigate(R.id.action_selectPetFragment_to_addPetsFragment) }
         }
+
+        return binding?.root
     }
+
 
     private fun observeMyPets() {
         myPetsViewModel.apply {
+            Log.e(Constant.MY_TAG, "user id is ->>> $userId")
             getMyPets(userId)
-            myPetsResult.observe(viewLifecycleOwner) { myPetsResponse ->
+            myPetsResult.observe(viewLifecycleOwner) {
                 stopLoading()
-                myPetsResponse?.let {
-                    adapter = MyPetsRequestAdapter(it,requireContext())
-                    binding?.myPetsRv?.adapter = adapter
-                    if (it.data.isEmpty()) {
-                        Toast.makeText(
-                            requireContext().applicationContext,
-                            "Not have Pets",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
+
+                adapter = MyPetsRequestAdapter(it!!, requireContext())
+                binding?.myPetsRv?.adapter = adapter
             }
         }
     }
@@ -74,13 +64,13 @@ class SelectPetFragment : Fragment() {
 
 
     private fun onClickNext() {
-        listOfData = adapter.getItemSelected()
-        if (listOfData.isEmpty()) {
+        val listOfPetsData = adapter.getItemSelected().toTypedArray()
+        if (listOfPetsData.isEmpty()) {
             Toast.makeText(requireContext(), "Not selected pet yet", Toast.LENGTH_LONG).show()
         } else {
             val action =
                 SelectPetFragmentDirections.actionSelectPetFragmentToDateRequestFragment(
-                    listOfData.toTypedArray(),
+                    listOfPetsData,
                     args.requestName
                 )
             findNavController().navigate(action)

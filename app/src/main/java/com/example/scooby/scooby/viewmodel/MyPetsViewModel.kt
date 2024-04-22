@@ -20,16 +20,15 @@ class MyPetsViewModel : ViewModel() {
     fun getMyPets(userId: String) {
         viewModelScope.launch {
             try {
-                val response = petsRepo.getMyPets(userId)
-                if (response != null) {
-                    if (response.body() != null && response.isSuccessful) {
-                        _myPetsResult.value = response.body()
+                petsRepo.getMyPets(userId).apply {
+                    if (this != null && this.isSuccessful) {
+                        _myPetsResult.value = this.body()
                     } else {
-                        Log.e(Constant.MY_TAG, "Network error: ${response.code()}")
+                        Log.e(Constant.MY_TAG, "Network error: (getMyPets) ->>> ${this?.code()}")
                     }
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS (getMyPets) ->>> $e")
             }
         }
     }
