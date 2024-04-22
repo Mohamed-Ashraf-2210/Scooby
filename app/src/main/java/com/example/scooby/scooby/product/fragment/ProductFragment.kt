@@ -66,7 +66,7 @@ class ProductFragment : Fragment() {
             filterProduct("grooming")
         }
         binding.cart.setOnClickListener {
-            findNavController().navigate(R.id.action_productFragment_to_favoriteFragment)
+
         }
     }
 
