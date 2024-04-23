@@ -122,16 +122,86 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/my_pets_rv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:spanCount="2"
-                tools:listitem="@layout/item_my_pet_add" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintTop_toBottomOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/my_pets_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_my_pet_add" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/add_pet_card"
+                    android:layout_width="148dp"
+                    android:layout_height="150dp"
+                    android:layout_below="@id/my_pets_rv"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:backgroundTint="@color/app_background"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="0dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <FrameLayout
+                            android:id="@+id/add_pet_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:background="@color/white_type_pet"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="@string/image_pet"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/plus_icon" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/noto_sans"
+                            android:text="@string/add_pet"
+                            android:textColor="@color/primary"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/add_pet_image" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/noto_sans"
+                            android:text="@string/tap_here_to_add_pet"
+                            android:textColor="@color/gray"
+                            android:textSize="10sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:ignore="SmallSp" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </RelativeLayout>
         </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
@@ -139,7 +209,8 @@
             android:layout_height="44dp"
             android:layout_marginHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/exit_btn"
@@ -148,8 +219,10 @@
                 android:layout_marginEnd="16dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/gray_btn"
-                android:padding="0dp"
-                app:cornerRadius="4dp" />
+                app:cornerRadius="4dp"
+                app:icon="@drawable/exit_icon"
+                app:iconSize="48dp"
+                app:iconTint="@color/black_clear" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/next_btn"
@@ -157,8 +230,8 @@
                 android:layout_height="44dp"
                 android:layout_weight="3"
                 android:padding="0dp"
-                android:text="@string/next"
-                app:cornerRadius="4dp" />
+                app:cornerRadius="4dp"
+                tools:text="@string/next" />
         </LinearLayout>
 
 
