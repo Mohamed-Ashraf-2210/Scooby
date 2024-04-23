@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_BG"
+    tools:context=".scooby.request.SummaryRequestFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/arrow_left_black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/progress_bar_top"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back_screen">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="60dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/line_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/check_circle_yellow"
+                android:src="@drawable/check_circle_purple"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/add_details"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/check_circle_gray"
+                android:src="@drawable/check_circle_yellow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/summery"
+                android:textColor="@color/yellow_request"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="45dp"
+                android:contentDescription="@string/check_circle_gray"
+                android:src="@drawable/check_circle_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/payment"
+                android:textColor="@color/gray_request"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/select_your_pets"
+            android:textColor="@color/black_font"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_bar_top" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/my_pets_rv"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="50dp"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progress_bar_top"
+            tools:listitem="@layout/item_select_pet_summary_request" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/date_and_time_of_your_service"
+            android:textColor="@color/black_font"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/my_pets_rv" />
+
+        <TextView
+            android:id="@+id/select_date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="10dp"
+            android:text="@string/select_date"
+            android:textColor="@color/gray_font_hint"
+            android:textSize="10sp"
+            app:drawableStartCompat="@drawable/date_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/my_pets_rv"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/select_time_tv"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="4dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="10dp"
+            android:text="@string/select_time"
+            android:textColor="@color/gray_font_hint"
+            android:textSize="10sp"
+            app:drawableEndCompat="@drawable/mingcute_down_line"
+            app:drawableStartCompat="@drawable/basil_clock_outline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_date_tv"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/duration_of_your_service"
+            android:textColor="@color/black_font"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_time_tv" />
+
+        <TextView
+            android:id="@+id/option_tv"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/roboto"
+            android:padding="14dp"
+            android:text="@string/select_an_option"
+            android:textColor="@color/black_60"
+            android:textSize="10sp"
+            app:drawableEndCompat="@drawable/mingcute_down_line"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_time_tv"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/your_location"
+            android:textColor="@color/black_font"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/option_tv" />
+
+        <TextView
+            android:id="@+id/location_tv"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="72dp"
+            android:background="@drawable/edit_text_bg"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/roboto"
+            android:padding="14dp"
+            android:text="@string/enter_your_location"
+            android:textColor="@color/black_60"
+            android:textSize="10sp"
+            app:drawableStartCompat="@drawable/location_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/option_tv"
+            tools:ignore="SmallSp" />
+
+        <EditText
+            android:id="@+id/notes_et"
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/roboto"
+            android:gravity="top"
+            android:hint="@string/ex_my_pet_isn_t_kind_with_other_pets_its_aggressive_or_sensitive_has_any_health_problems"
+            android:inputType="textMultiLine"
+            android:maxLength="300"
+            android:padding="16dp"
+            android:text=""
+            android:textColor="@color/black_font"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location_tv"
+            tools:ignore="Autofill,SmallSp" />
+
+        <TextView
+            android:id="@+id/pickup_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/do_you_need_pet_pickup_services"
+            android:textColor="@color/black_font"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notes_et" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/yes_card"
+            android:layout_width="150dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/app_background"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pickup_tv"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="63dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/yes"
+                    android:textColor="@color/black_font"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/yes_checked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/check_selected"
+                    android:src="@drawable/ic_check_circle_12"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/no_card"
+            android:layout_width="150dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/app_background"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp"
+            app:layout_constraintStart_toEndOf="@id/yes_card"
+            app:layout_constraintTop_toBottomOf="@id/pickup_tv"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="63dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/no"
+                    android:textColor="@color/black_font"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/no_checked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/check_selected"
+                    android:src="@drawable/ic_check_circle_12"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="134dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/yes_card">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/exit_btn"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="16dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/gray_btn"
+                app:cornerRadius="4dp"
+                app:icon="@drawable/exit_icon"
+                app:iconSize="48dp"
+                app:iconTint="@color/black_clear" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/next_btn"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="3"
+                android:padding="0dp"
+                android:text="@string/next"
+                app:cornerRadius="4dp" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

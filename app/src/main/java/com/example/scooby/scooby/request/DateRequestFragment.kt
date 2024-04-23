@@ -28,12 +28,12 @@ import java.util.Locale
 
 
 class DateRequestFragment : Fragment() {
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var binding: FragmentDateRequestBinding? = null
     private val args: DateRequestFragmentArgs by navArgs()
     private val calendar = Calendar.getInstance()
-    private var flag = false
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var userLocation: String? = null
+    private var flag = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

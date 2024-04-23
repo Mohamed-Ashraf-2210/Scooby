@@ -47,7 +47,6 @@ class SelectPetFragment : Fragment() {
 
     private fun observeMyPets() {
         myPetsViewModel.apply {
-            Log.e(Constant.MY_TAG, "user id is ->>> $userId")
             getMyPets(userId)
             myPetsResult.observe(viewLifecycleOwner) {
                 stopLoading()

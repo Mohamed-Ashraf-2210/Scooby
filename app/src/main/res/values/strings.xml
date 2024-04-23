@@ -210,5 +210,8 @@ again."</string>
     <string name="do_you_need_pet_pickup_services">Do you need pet pickup services?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="date_and_time_of_your_service">Date and time of your service.</string>
+    <string name="duration_of_your_service">Duration of your service.</string>
+    <string name="your_location">Your Location</string>
 
 </resources>
