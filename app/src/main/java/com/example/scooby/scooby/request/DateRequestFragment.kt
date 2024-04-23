@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -29,18 +28,19 @@ import java.util.Locale
 
 
 class DateRequestFragment : Fragment() {
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var binding: FragmentDateRequestBinding? = null
     private val args: DateRequestFragmentArgs by navArgs()
     private val calendar = Calendar.getInstance()
+    private var userLocation: String? = null
     private var flag = false
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var location: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDateRequestBinding.inflate(inflater, container, false)
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
         initView()
         return binding?.root
     }
@@ -49,7 +49,6 @@ class DateRequestFragment : Fragment() {
     private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
-            nextBtn.setOnClickListener { onClickNext() }
             selectDateTv.setOnClickListener {
                 showDatePickerSelectDate()
             }
@@ -59,11 +58,49 @@ class DateRequestFragment : Fragment() {
             optionEt.setOnClickListener {
                 showPopup(it)
             }
-            locationTv.setOnClickListener { takeUserLocation() }
-
+            locationTv.setOnClickListener { checkLocationPermission() }
+            nextBtn.setOnClickListener { onClickNext() }
         }
     }
 
+    // region Pick date
+    private fun showDatePickerSelectDate() {
+        val datePickerDialog = DatePickerDialog(
+            requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(year, monthOfYear, dayOfMonth)
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val formattedDate = dateFormat.format(selectedDate.time)
+                binding?.selectDateTv?.text = formattedDate.toString()
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+
+        datePickerDialog.show()
+    }
+
+    // endregion
+    // region Pick time
+    @SuppressLint("SimpleDateFormat")
+    private fun showTimePickerSelectDate() {
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
+            calendar.set(Calendar.HOUR_OF_DAY, hour)
+            calendar.set(Calendar.MINUTE, minute)
+            binding?.selectTimeTv?.text = SimpleDateFormat("HH:mm").format(calendar.time).toString()
+        }
+        TimePickerDialog(
+            requireContext(),
+            timeSetListener,
+            calendar.get(Calendar.HOUR_OF_DAY),
+            calendar.get(Calendar.MINUTE),
+            true
+        ).show()
+    }
+
+    // endregion
+    // region Popup menu
     @SuppressLint("SetTextI18n")
     private fun showPopup(view: View) {
         val popupMenu = PopupMenu(requireContext(), view)
@@ -94,43 +131,40 @@ class DateRequestFragment : Fragment() {
         }
     }
 
-    private fun takeUserLocation() {
-        // Check for location permission
-        if (ContextCompat.checkSelfPermission(
+    // endregion
+    // region Location
+    private fun checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            // Request location permission
             ActivityCompat.requestPermissions(
                 requireActivity(),
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                DateRequestFragment.LOCATION_PERMISSION_REQUEST_CODE
+                101
             )
         } else {
-            // Permission already granted, get location
             getLocation()
         }
     }
 
+
     @SuppressLint("MissingPermission")
     private fun getLocation() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
-        // Get last known location
+
         fusedLocationClient.lastLocation
-            .addOnSuccessListener { location ->
-                // Got last known location. In some rare situations this can be null.
-                if (location != null) {
-                    // Handle location
-                    val latitude = location.latitude
-                    val longitude = location.longitude
-                    this.location = "Latitude: $latitude, Longitude: $longitude"
+            .addOnSuccessListener {
+                if (it != null) {
+                    val latitude = it.latitude
+                    val longitude = it.longitude
+                    userLocation = "Latitude: $latitude, Longitude: $longitude"
                     Toast.makeText(
                         requireContext(),
-                        this.location,
+                        userLocation,
                         Toast.LENGTH_SHORT
                     ).show()
-                    binding?.locationTv?.text = location.provider
+                    binding?.locationTv?.text = it.provider
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -140,7 +174,6 @@ class DateRequestFragment : Fragment() {
                 }
             }
             .addOnFailureListener { e ->
-                // Handle failure
                 Toast.makeText(
                     requireContext(),
                     "Failed to get location: ${e.message}",
@@ -148,31 +181,8 @@ class DateRequestFragment : Fragment() {
                 ).show()
             }
     }
+    // endregion
 
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == DateRequestFragment.LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Location permission granted
-                Toast.makeText(
-                    requireContext(),
-                    "Location permission granted.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Location permission denied.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-    }
 
     private fun onClickNext() {
         binding?.apply {
@@ -184,13 +194,13 @@ class DateRequestFragment : Fragment() {
                     locationTv.text.toString()
                 )
                 Log.e(Constant.MY_TAG, listOfData.joinToString())
-//                val action =
-//                    DateRequestFragmentDirections.actionDateRequestFragmentToDurationRequestFragment(
-//                        args.idPets,
-//                        listOfData,
-//                        args.requestName
-//                    )
-//                findNavController().navigate(action)
+                val action =
+                    DateRequestFragmentDirections.actionDateRequestFragmentToNotesRequestFragment(
+                        args.idPets,
+                        args.requestName,
+                        listOfData
+                    )
+                findNavController().navigate(action)
             } else if (selectDateTv.text == "Select Date") {
                 Toast.makeText(requireContext(), "Not selected date yet", Toast.LENGTH_LONG)
                     .show()
@@ -199,39 +209,6 @@ class DateRequestFragment : Fragment() {
                     .show()
             }
         }
-    }
-
-    private fun showDatePickerSelectDate() {
-        val datePickerDialog = DatePickerDialog(
-            requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
-                val selectedDate = Calendar.getInstance()
-                selectedDate.set(year, monthOfYear, dayOfMonth)
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-                val formattedDate = dateFormat.format(selectedDate.time)
-                binding?.selectDateTv?.text = formattedDate.toString()
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
-
-        datePickerDialog.show()
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    private fun showTimePickerSelectDate() {
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-            calendar.set(Calendar.HOUR_OF_DAY, hour)
-            calendar.set(Calendar.MINUTE, minute)
-            binding?.selectTimeTv?.text = SimpleDateFormat("HH:mm").format(calendar.time).toString()
-        }
-        TimePickerDialog(
-            requireContext(),
-            timeSetListener,
-            calendar.get(Calendar.HOUR_OF_DAY),
-            calendar.get(Calendar.MINUTE),
-            true
-        ).show()
     }
 
 
@@ -250,8 +227,5 @@ class DateRequestFragment : Fragment() {
         binding = null
     }
 
-    companion object {
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 1
-    }
 
 }

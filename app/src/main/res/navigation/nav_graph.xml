@@ -88,6 +88,9 @@
             <action
                 android:id="@+id/action_selectPetFragment_to_dateRequestFragment"
                 app:destination="@id/dateRequestFragment" />
+            <action
+                android:id="@+id/action_selectPetFragment_to_addPetsFragment"
+                app:destination="@id/addPetsFragment" />
         </fragment>
         <fragment
             android:id="@+id/dateRequestFragment"
@@ -100,6 +103,9 @@
             <argument
                 android:name="request_name"
                 app:argType="string[]" />
+            <action
+                android:id="@+id/action_dateRequestFragment_to_notesRequestFragment"
+                app:destination="@id/notesRequestFragment" />
         </fragment>
 
 
@@ -204,6 +210,61 @@
                 android:name="listOfData"
                 app:argType="string[]"
                 app:nullable="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/notesRequestFragment"
+            android:name="com.example.scooby.scooby.request.NotesRequestFragment"
+            android:label="fragment_notes_request"
+            tools:layout="@layout/fragment_notes_request">
+
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="request_name"
+                app:argType="string[]" />
+            <argument
+                android:name="listOfData"
+                app:argType="string[]" />
+            <action
+                android:id="@+id/action_notesRequestFragment_to_summaryRequestFragment"
+                app:destination="@id/summaryRequestFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/summaryRequestFragment"
+            android:name="com.example.scooby.scooby.request.SummaryRequestFragment"
+            android:label="fragment_summary_request"
+            tools:layout="@layout/fragment_summary_request">
+
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="request_name"
+                app:argType="string[]" />
+            <argument
+                android:name="listOfData"
+                app:argType="string[]" />
+            <action
+                android:id="@+id/action_summaryRequestFragment_to_paymentMethodsFragment"
+                app:destination="@id/paymentMethodsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/paymentMethodsFragment"
+            android:name="com.example.scooby.scooby.request.PaymentMethodsFragment"
+            android:label="fragment_payment_methods"
+            tools:layout="@layout/fragment_payment_methods" >
+
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="request_name"
+                app:argType="string[]" />
+            <argument
+                android:name="listOfData"
+                app:argType="string[]" />
+
         </fragment>
     </navigation>
 

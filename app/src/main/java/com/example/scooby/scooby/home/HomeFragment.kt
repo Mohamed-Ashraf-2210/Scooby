@@ -7,14 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.data.Constant
 import com.example.domain.blog.BlogResponse
 import com.example.domain.offer.OfferResponse
 import com.example.domain.pet.PetsResponse
 import com.example.domain.services.ServicesResponse
 import com.example.scooby.R
+import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.PetsHomeAdapter
@@ -23,6 +26,7 @@ import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
 import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.PetsViewModel
+import com.example.scooby.scooby.viewmodel.ProfileViewModel
 
 class HomeFragment : Fragment() {
 
@@ -31,13 +35,15 @@ class HomeFragment : Fragment() {
     private val blogsViewModel by viewModels<BlogViewModel>()
     private val petsViewModel by viewModels<PetsViewModel>()
     private val offerViewModel by viewModels<OfferViewModel>()
-
+    private val profileViewModel by viewModels<ProfileViewModel>()
+    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        getUserId()
         initView()
         return binding?.root
     }
@@ -51,6 +57,10 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
             }
         }
+    }
+
+    private fun getUserId() {
+        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
     }
 
     private fun seeMore() {
@@ -136,6 +146,21 @@ class HomeFragment : Fragment() {
         observeServices()
         observePets()
         observeBlogs()
+        observeUserProfile()
+    }
+
+    private fun observeUserProfile() {
+        profileViewModel.apply {
+            getUser(userId)
+            profileResult.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    binding?.apply {
+                        userName.text = "Hi, ${it.data.data.name}"
+                        Glide.with(requireContext()).load(it.data.data.profileImage).into(userImage)
+                    }
+                }
+            }
+        }
     }
 
     // region Offers

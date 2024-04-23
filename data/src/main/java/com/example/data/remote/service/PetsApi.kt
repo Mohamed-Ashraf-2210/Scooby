@@ -17,7 +17,7 @@ interface PetsApi {
     @GET("/scooby/api/Pets/getallpets")
     suspend fun getAllPets(): Response<PetsResponse>
 
-    @GET("/scooby/api/Pets/getmypets/{userId}}")
+    @GET("/scooby/api/Pets/getmypets/{userId}")
     suspend fun getMyPets(@Path("userId") userId: String): Response<MyPetsResponse>
 
     @Multipart
