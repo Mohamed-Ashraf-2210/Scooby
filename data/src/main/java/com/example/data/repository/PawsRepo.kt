@@ -1,14 +1,12 @@
 package com.example.data.repository
 
 import com.example.data.remote.service.PawsApi
-import com.example.data.remote.service.ProductApi
 import com.example.domain.paws.AdaptionAdoptMeResponse
 import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
-import com.example.domain.product.ProductResponse
 import retrofit2.Response
 
 
@@ -34,7 +32,5 @@ class PawsRepo {
         return PawsApi.getApi()?.getAllPetsShelter()
     }
 
-    suspend fun getFavoritePets(userId : String) :Response<AdaptionAdoptMeResponse>?{
-        return PawsApi.getApi()?.getFavoritePets(userId)
-    }
+
 }

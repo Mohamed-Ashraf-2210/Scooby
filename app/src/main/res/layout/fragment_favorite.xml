@@ -116,29 +116,29 @@
         android:layout_marginStart="5dp"
         />
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_added_product"
+        android:id="@+id/rv_fav_product"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/num_of_item"
         android:layout_marginStart="8dp"
         android:layout_marginTop="21dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/item_product"
         app:spanCount="2"
         />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_fav_pets"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/num_of_item"
-        android:layout_marginTop="21dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        tools:listitem="@layout/item_adaption_one"
-        app:spanCount="2"
-        />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/rv_fav_pets"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/num_of_item"-->
+<!--        android:layout_marginTop="21dp"-->
+<!--        android:visibility="visible"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+<!--        tools:listitem="@layout/item_adaption_one"-->
+<!--        app:spanCount="2"-->
+<!--        />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.data.Constant
 import com.example.domain.product.ProductResponse
 import com.example.scooby.R
+import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentProductBinding
 import com.example.scooby.scooby.product.adapter.ProductAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
@@ -20,6 +22,7 @@ class ProductFragment : Fragment() {
     private lateinit var allProduct: ProductResponse
     private val productViewModel by viewModels<ProductViewModel>()
     private lateinit var productAdapter : ProductAdapter
+    private lateinit var userId: String
 
     private var _binding: FragmentProductBinding? = null
     private val binding get() = _binding!!
@@ -30,6 +33,7 @@ class ProductFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentProductBinding.inflate(layoutInflater, container, false)
+        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
         init()
         return binding.root
     }
@@ -66,7 +70,7 @@ class ProductFragment : Fragment() {
             filterProduct("grooming")
         }
         binding.cart.setOnClickListener {
-
+            findNavController().navigate(R.id.action_productFragment_to_favoriteFragment)
         }
     }
 
@@ -87,10 +91,9 @@ class ProductFragment : Fragment() {
                 stopLoading()
                 getProductData(it)
                 allProduct = it!!
-                setData(it.data)
                 Log.d("my_Tagg", it.data.toString())
-
             }
+
         }
 
     }
@@ -98,7 +101,7 @@ class ProductFragment : Fragment() {
 
     private fun getProductData(data: ProductResponse?) {
         productRv = binding.productRv
-        productRv.adapter = ProductAdapter(data!!, requireContext())
+        productRv.adapter = ProductAdapter(productViewModel, userId, data!!)
     }
     private fun setData(productListDiff:List<ProductResponse.Data>){
         productAdapter.setData(productListDiff)

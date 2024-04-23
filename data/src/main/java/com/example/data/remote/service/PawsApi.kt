@@ -7,10 +7,9 @@ import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
-import com.example.domain.product.ProductResponse
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Query
+
 
 interface PawsApi {
     @GET("/scooby/api/Pets/get-top-collection")
@@ -32,10 +31,7 @@ interface PawsApi {
     @GET("/scooby/api/shelters/petsInShelters")
     suspend fun getAllPetsShelter() : Response<PetsInShelterResponse>
 
-    @GET("/scooby/api/fav/getfav/{id}")
-    suspend fun getFavoritePets(
-        @Query("userId") id: String
-    ) : Response<AdaptionAdoptMeResponse>
+
 
     companion object{
         fun getApi(): PawsApi? {
