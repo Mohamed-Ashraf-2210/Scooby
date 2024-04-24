@@ -21,14 +21,11 @@ interface ProductApi {
 //        @Body
 //        productId : PostString
 //    )
-
         @POST("/scooby/api/fav/addfav/{userId}/{productId}")
         suspend fun addToProductToFav(
             @Query("userId") id: String,
             @Query("productId") productId: String
         ) :Response<AddFavoriteResponse>
-
-
 
 
     companion object{
