@@ -122,7 +122,7 @@
             app:layout_constraintTop_toBottomOf="@id/progress_bar_top" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/my_pets_rv"
+            android:id="@+id/pets_rv"
             android:layout_width="match_parent"
             android:layout_height="110dp"
             android:layout_marginStart="28dp"
@@ -144,10 +144,10 @@
             android:textColor="@color/black_font"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/my_pets_rv" />
+            app:layout_constraintTop_toBottomOf="@id/pets_rv" />
 
         <TextView
-            android:id="@+id/select_date_tv"
+            android:id="@+id/select_date"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginHorizontal="16dp"
@@ -162,11 +162,11 @@
             app:drawableStartCompat="@drawable/date_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/my_pets_rv"
+            app:layout_constraintTop_toBottomOf="@id/pets_rv"
             tools:ignore="SmallSp" />
 
         <TextView
-            android:id="@+id/select_time_tv"
+            android:id="@+id/select_time"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginHorizontal="16dp"
@@ -182,7 +182,7 @@
             app:drawableStartCompat="@drawable/basil_clock_outline"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/select_date_tv"
+            app:layout_constraintTop_toBottomOf="@id/select_date"
             tools:ignore="SmallSp" />
 
         <TextView
@@ -195,10 +195,10 @@
             android:textColor="@color/black_font"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/select_time_tv" />
+            app:layout_constraintTop_toBottomOf="@id/select_time" />
 
         <TextView
-            android:id="@+id/option_tv"
+            android:id="@+id/option_service_tv"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginHorizontal="16dp"
@@ -212,7 +212,7 @@
             app:drawableEndCompat="@drawable/mingcute_down_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/select_time_tv"
+            app:layout_constraintTop_toBottomOf="@id/select_time"
             tools:ignore="SmallSp" />
 
         <TextView
@@ -225,10 +225,10 @@
             android:textColor="@color/black_font"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/option_tv" />
+            app:layout_constraintTop_toBottomOf="@id/option_service_tv" />
 
         <TextView
-            android:id="@+id/location_tv"
+            android:id="@+id/your_location_tv"
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginHorizontal="16dp"
@@ -243,11 +243,11 @@
             app:drawableStartCompat="@drawable/location_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/option_tv"
+            app:layout_constraintTop_toBottomOf="@id/option_service_tv"
             tools:ignore="SmallSp" />
 
         <EditText
-            android:id="@+id/notes_et"
+            android:id="@+id/your_notes_et"
             android:layout_width="match_parent"
             android:layout_height="87dp"
             android:layout_marginHorizontal="16dp"
@@ -264,11 +264,11 @@
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/location_tv"
+            app:layout_constraintTop_toBottomOf="@id/your_location_tv"
             tools:ignore="Autofill,SmallSp" />
 
         <TextView
-            android:id="@+id/pickup_tv"
+            android:id="@+id/pickup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -278,7 +278,7 @@
             android:textColor="@color/black_font"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/notes_et" />
+            app:layout_constraintTop_toBottomOf="@id/your_notes_et" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/yes_card"
@@ -293,7 +293,7 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pickup_tv"
+            app:layout_constraintTop_toBottomOf="@id/pickup"
             app:strokeWidth="0dp">
 
             <LinearLayout
@@ -340,7 +340,7 @@
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp"
             app:layout_constraintStart_toEndOf="@id/yes_card"
-            app:layout_constraintTop_toBottomOf="@id/pickup_tv"
+            app:layout_constraintTop_toBottomOf="@id/pickup"
             app:strokeWidth="0dp">
 
             <LinearLayout

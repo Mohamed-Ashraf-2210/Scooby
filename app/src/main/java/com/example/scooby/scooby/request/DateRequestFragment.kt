@@ -4,8 +4,14 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
+import android.os.Looper
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +27,9 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentDateRequestBinding
 import com.example.scooby.scooby.MainActivity
 import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -32,7 +41,8 @@ class DateRequestFragment : Fragment() {
     private var binding: FragmentDateRequestBinding? = null
     private val args: DateRequestFragmentArgs by navArgs()
     private val calendar = Calendar.getInstance()
-    private var userLocation: String? = null
+    private var latitude: String = ""
+    private var longitude: String = ""
     private var flag = false
 
     override fun onCreateView(
@@ -58,7 +68,9 @@ class DateRequestFragment : Fragment() {
             optionEt.setOnClickListener {
                 showPopup(it)
             }
-            locationTv.setOnClickListener { checkLocationPermission() }
+            locationTv.setOnClickListener {
+                checkLocationPermission()
+            }
             nextBtn.setOnClickListener { onClickNext() }
         }
     }
@@ -135,51 +147,83 @@ class DateRequestFragment : Fragment() {
     // region Location
     private fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(
-                requireContext(),
+                requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
+            ) == PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
         ) {
+            getCurrentLocation()
+        } else {
             ActivityCompat.requestPermissions(
                 requireActivity(),
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-                101
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                100
             )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == 100 && grantResults.isNotEmpty() &&
+            grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED
+        ) {
+            getCurrentLocation()
         } else {
-            getLocation()
+            Toast.makeText(requireActivity(), "Permission denied", Toast.LENGTH_SHORT).show()
         }
     }
 
 
-    @SuppressLint("MissingPermission")
-    private fun getLocation() {
+    @SuppressLint("MissingPermission", "SetTextI18n")
+    private fun getCurrentLocation() {
 
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener {
-                if (it != null) {
-                    val latitude = it.latitude
-                    val longitude = it.longitude
-                    userLocation = "Latitude: $latitude, Longitude: $longitude"
-                    Toast.makeText(
-                        requireContext(),
-                        userLocation,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    binding?.locationTv?.text = it.provider
+        val locationManager =
+            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+            locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        ) {
+            fusedLocationClient.lastLocation.addOnCompleteListener { task ->
+                val location: Location? = task.result
+                if (location != null) {
+                    latitude = location.latitude.toString()
+                    longitude = location.longitude.toString()
+                    binding?.locationTv?.text = "Done"
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Location is null. Please try again later.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    val locationRequest = LocationRequest()
+                        .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                        .setInterval(10000)
+                        .setFastestInterval(1000)
+                        .setNumUpdates(1)
+
+                    val locationCallback = object : LocationCallback() {
+                        override fun onLocationResult(locationResult: LocationResult) {
+                            val location1 = locationResult.lastLocation
+                            latitude = location1?.latitude.toString()
+                            longitude = location1?.longitude.toString()
+                            binding?.locationTv?.text = "Done"
+                        }
+                    }
+                    fusedLocationClient.requestLocationUpdates(
+                        locationRequest,
+                        locationCallback,
+                        Looper.myLooper()
+                    )
                 }
             }
-            .addOnFailureListener { e ->
-                Toast.makeText(
-                    requireContext(),
-                    "Failed to get location: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
+        } else {
+            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+        }
     }
     // endregion
 
@@ -191,7 +235,8 @@ class DateRequestFragment : Fragment() {
                     selectDateTv.text.toString(),
                     selectTimeTv.text.toString(),
                     optionEt.text.toString(),
-                    locationTv.text.toString()
+                    latitude,
+                    longitude
                 )
                 Log.e(Constant.MY_TAG, listOfData.joinToString())
                 val action =

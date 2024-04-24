@@ -39,6 +39,7 @@
     <color name="top_app_bar_bg">#0FE384FF</color>
     <color name="dark_gray">#49454F</color>
     <color name="gray_font">#555151</color>
+    <color name="gray_payment">#898383</color>
     <color name="gray_light_font">#B6B2BE</color>
     <color name="gray_font_hint">#800F0F0F</color>
     <color name="gray_font_second">#8F8F8F</color>
