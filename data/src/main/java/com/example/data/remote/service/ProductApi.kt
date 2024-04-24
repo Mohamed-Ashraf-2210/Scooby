@@ -26,11 +26,7 @@ interface ProductApi {
         @Query("productId") productId: String
     ): Response<AddFavoriteResponse>
 
-    @PATCH("/scooby/api/fav/addfav/{userId}")
-    suspend fun addPetToFavorite(
-        @Path("userId") id: String,
-        @Query("petId") petId: String
-    ): Response<AddFavoriteResponse>
+
 
 
 

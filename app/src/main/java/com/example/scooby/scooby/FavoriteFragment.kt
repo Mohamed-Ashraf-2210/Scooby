@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.Constant
+import com.example.domain.product.ProductResponse
 
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentFavoriteBinding
@@ -19,6 +20,7 @@ import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 
 class FavoriteFragment : Fragment() {
 
+    private lateinit var productFavorite : ProductResponse
     private lateinit var binding: FragmentFavoriteBinding
     private val productViewModel by viewModels<ProductViewModel>()
     private lateinit var userId: String
@@ -42,6 +44,7 @@ class FavoriteFragment : Fragment() {
         productViewModel.favoriteProductResult.observe(viewLifecycleOwner){
             val adapter = FavoriteProductAdapter(it,productViewModel,userId)
             binding.rvFavProduct.adapter = adapter
+            binding.numOfItem.text = adapter.itemCount.toString()
         }
     }
 

@@ -1,17 +1,21 @@
 package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
+import com.example.domain.AddFavoriteResponse
 import com.example.domain.pet.AddPetResponse
 import com.example.domain.pet.MyPetsResponse
 import com.example.domain.pet.PetsResponse
+import com.example.domain.product.ProductResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Multipart
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PetsApi {
     @GET("/scooby/api/Pets/getallpets")
@@ -27,6 +31,16 @@ interface PetsApi {
         @Part image: MultipartBody.Part,
         @Part("petData") petData: RequestBody
     ): Response<AddPetResponse>
+
+    @GET("/scooby/api/fav/getfavpet/{userId}")
+    suspend fun getFavoritePet(
+        @Path("userId") id: String
+    ): Response<ProductResponse>
+    @PATCH("/scooby/api/fav/addfav/{userId}")
+    suspend fun addPetToFavorite(
+        @Path("userId") id: String,
+        @Query("petId") petId: String
+    ): Response<AddFavoriteResponse>
 
 
     companion object {
