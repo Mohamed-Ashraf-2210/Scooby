@@ -22,9 +22,9 @@ class PetsSummaryRequestAdapter(
 
 
     class MyPetsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val myPetImage: ImageView = itemView.findViewById(R.id.pet_image_my_pets)
-        val myPetName: TextView = itemView.findViewById(R.id.name_pet_my_pets)
-        val checkSelected: ImageView = itemView.findViewById(R.id.check_selected)
+        val myPetImage: ImageView = itemView.findViewById(R.id.pet_image_summary_request)
+        val myPetName: TextView = itemView.findViewById(R.id.name_pet_summary_request)
+        val checkSelected: ImageView = itemView.findViewById(R.id.check_selected_summary_request)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyPetsViewHolder {

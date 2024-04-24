@@ -253,7 +253,7 @@
             android:id="@+id/paymentMethodsFragment"
             android:name="com.example.scooby.scooby.request.PaymentMethodsFragment"
             android:label="fragment_payment_methods"
-            tools:layout="@layout/fragment_payment_methods" >
+            tools:layout="@layout/fragment_payment_methods">
 
             <argument
                 android:name="id_pets"
@@ -264,7 +264,25 @@
             <argument
                 android:name="listOfData"
                 app:argType="string[]" />
+            <action
+                android:id="@+id/action_paymentMethodsFragment_to_confirmServiceFragment"
+                app:destination="@id/confirmServiceFragment" />
 
+        </fragment>
+        <fragment
+            android:id="@+id/confirmServiceFragment"
+            android:name="com.example.scooby.scooby.request.ConfirmServiceFragment"
+            android:label="fragment_confirm_service"
+            tools:layout="@layout/fragment_confirm_service">
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="request_name"
+                app:argType="string[]" />
+            <argument
+                android:name="listOfData"
+                app:argType="string[]" />
         </fragment>
     </navigation>
 

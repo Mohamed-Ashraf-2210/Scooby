@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/pet_image_my_pets"
+            android:id="@+id/pet_image_summary_request"
             android:layout_width="match_parent"
             android:layout_height="66dp"
             android:contentDescription="@string/image_pet"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/name_pet_my_pets"
+            android:id="@+id/name_pet_summary_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -35,20 +35,20 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pet_image_my_pets"
+            app:layout_constraintTop_toBottomOf="@id/pet_image_summary_request"
             tools:text="Salah" />
 
         <ImageView
-            android:id="@+id/check_selected"
+            android:id="@+id/check_selected_summary_request"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginBottom="10dp"
             android:contentDescription="@string/check_selected"
             android:src="@drawable/ic_check_circle_48"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pet_image_summary_request" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
