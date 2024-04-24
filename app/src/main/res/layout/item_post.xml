@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="339dp"
+    android:layout_marginBottom="24dp"
+    android:backgroundTint="@color/white_tool_bar"
+    app:cardCornerRadius="8dp"
+    app:strokeColor="@color/gray_stroke_post"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_post_image"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/user_default_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/user_post_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="11dp"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/black_font"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@id/user_post_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lama" />
+
+        <TextView
+            android:id="@+id/time_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/gray_font_hint"
+            android:textSize="8sp"
+            app:layout_constraintStart_toEndOf="@id/user_post_image"
+            app:layout_constraintTop_toBottomOf="@id/user_post_name"
+            tools:ignore="SmallSp"
+            tools:text="4m" />
+
+        <ImageView
+            android:id="@+id/more_fill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:contentDescription="@string/more"
+            android:src="@drawable/more_fill_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/user_post_name" />
+
+        <TextView
+            android:id="@+id/description_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/black_font"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_post_image"
+            tools:text="We’re very glad to have poster at home" />
+
+        <ImageView
+            android:id="@+id/post_image"
+            android:layout_width="match_parent"
+            android:layout_height="206dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/description_post"
+            android:src="@drawable/daycare_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/description_post" />
+
+        <ImageView
+            android:id="@+id/love_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/love"
+            android:src="@drawable/heart_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/post_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/love"
+            android:textColor="@color/black_font"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/love_icon"
+            app:layout_constraintStart_toEndOf="@id/love_icon"
+            app:layout_constraintTop_toTopOf="@id/love_icon"
+            tools:ignore="SmallSp" />
+
+        <ImageView
+            android:id="@+id/replay_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="33dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/replay"
+            android:src="@drawable/comment_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/post_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/replay"
+            android:textColor="@color/black_font"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/replay_icon"
+            app:layout_constraintStart_toEndOf="@id/replay_icon"
+            app:layout_constraintTop_toTopOf="@id/replay_icon"
+            tools:ignore="SmallSp" />
+
+        <ImageView
+            android:id="@+id/share_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="43dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/share"
+            android:src="@drawable/share_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/post_image" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/share"
+            android:textColor="@color/black_font"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/share_icon"
+            app:layout_constraintStart_toEndOf="@id/share_icon"
+            app:layout_constraintTop_toTopOf="@id/share_icon"
+            tools:ignore="SmallSp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
