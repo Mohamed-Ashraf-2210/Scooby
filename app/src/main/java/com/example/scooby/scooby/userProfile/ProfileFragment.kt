@@ -13,6 +13,7 @@ import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentProfileBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.MyPetsHomeAdapter
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
 
@@ -26,7 +27,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        getUserId()
+        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
         initView()
         observeViewModel()
         return binding?.root
@@ -68,9 +69,6 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun getUserId() {
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
-    }
 
     private fun stopLoading() {
         binding?.apply {
@@ -79,6 +77,15 @@ class ProfileFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

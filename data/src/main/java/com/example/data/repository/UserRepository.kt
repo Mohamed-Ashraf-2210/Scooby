@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import com.example.data.remote.service.UserApi
 import com.example.domain.authentication.CheckCodeRequest
 import com.example.domain.authentication.CheckCodeResponse
 import com.example.domain.authentication.ForgotPasswordRequest
@@ -8,14 +9,12 @@ import com.example.domain.authentication.LoginRequest
 import com.example.domain.authentication.ResetPasswordRequest
 import com.example.domain.authentication.ResetPasswordResponse
 import com.example.domain.authentication.SignUpRequest
-import com.example.domain.profile.UserResponse
-import com.example.data.remote.service.UserApi
 import com.example.domain.profile.UserProfileResponse
-import com.example.domain.profile.UpdateUseResponse
-import com.example.domain.profile.UpdateUserData
+import com.example.domain.profile.UserResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import retrofit2.Response
-import retrofit2.http.Field
 import java.io.File
 
 class UserRepository {
@@ -43,6 +42,16 @@ class UserRepository {
         return UserApi.getApi()?.getUser(userId)
     }
 
-    suspend fun updateUser(userId: String, image: MultipartBody.Part, name: String, email: String) =
-        UserApi.getApi()?.updateUser(userId, image, name, email)
+    suspend fun updateUser(
+        userId: String,
+        image: File
+    ) =
+        UserApi.getApi()?.updateUser(
+            userId,
+            image = MultipartBody.Part.createFormData(
+                "profileImage",
+                image.name,
+                image.asRequestBody()
+            )
+        )
 }

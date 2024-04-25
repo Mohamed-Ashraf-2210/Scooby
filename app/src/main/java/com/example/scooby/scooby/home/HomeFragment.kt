@@ -155,7 +155,13 @@ class HomeFragment : Fragment() {
             profileResult.observe(viewLifecycleOwner) {
                 if (it != null) {
                     binding?.apply {
-                        userName.text = "Hi, ${it.data.data.name}"
+                        val name = it.data.data.name
+                        for (i in name.indices) {
+                            if (name[i] == ' ') {
+                                userName.text = "Hi, ${name.substring(0, i)}"
+                                break
+                            }
+                        }
                         Glide.with(requireContext()).load(it.data.data.profileImage).into(userImage)
                     }
                 }

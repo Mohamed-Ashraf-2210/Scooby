@@ -60,193 +60,183 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/edit_profile_content"
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:visibility="gone">
+                android:layout_height="64dp"
+                android:background="@color/primary_90"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:background="@color/primary_90"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="18dp"
+                app:civ_border_color="@color/white_BG"
+                app:civ_border_width="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="18dp"
-                    app:civ_border_color="@color/white_BG"
-                    app:civ_border_width="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/edit_image_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/edit_image_profile"
+                android:src="@drawable/fluent_camera"
+                app:layout_constraintBottom_toBottomOf="@id/profile_image"
+                app:layout_constraintEnd_toEndOf="@id/profile_image"
+                app:layout_constraintStart_toStartOf="@id/profile_image"
+                app:layout_constraintTop_toTopOf="@id/profile_image" />
 
-                <ImageView
-                    android:id="@+id/edit_image_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/edit_image_profile"
-                    android:src="@drawable/fluent_camera"
-                    app:layout_constraintBottom_toBottomOf="@id/profile_image"
-                    app:layout_constraintEnd_toEndOf="@id/profile_image"
-                    app:layout_constraintStart_toStartOf="@id/profile_image"
-                    app:layout_constraintTop_toTopOf="@id/profile_image" />
+            <TextView
+                android:id="@+id/name_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="43dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/name"
+                android:textColor="@color/gray_font_hint"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_image" />
 
-                <TextView
-                    android:id="@+id/name_hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="43dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/name"
-                    android:textColor="@color/gray_font_hint"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/profile_image" />
+            <EditText
+                android:id="@+id/name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/gray_line_divider"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black_edit_text"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_hint"
+                tools:ignore="Autofill,LabelFor" />
 
-                <EditText
-                    android:id="@+id/name_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:backgroundTint="@color/gray_line_divider"
-                    android:fontFamily="@font/roboto"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textColor="@color/black_edit_text"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/name_hint"
-                    tools:ignore="Autofill,LabelFor" />
+            <TextView
+                android:id="@+id/bio_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/bio"
+                android:textColor="@color/gray_font_hint"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name_edit_text" />
 
-                <TextView
-                    android:id="@+id/bio_hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/bio"
-                    android:textColor="@color/gray_font_hint"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/name_edit_text" />
+            <EditText
+                android:id="@+id/bio_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/gray_line_divider"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black_edit_text"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bio_hint"
+                tools:ignore="Autofill,LabelFor" />
 
-                <EditText
-                    android:id="@+id/bio_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:backgroundTint="@color/gray_line_divider"
-                    android:fontFamily="@font/roboto"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textColor="@color/black_edit_text"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bio_hint"
-                    tools:ignore="Autofill,LabelFor" />
+            <TextView
+                android:id="@+id/location_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/location"
+                android:textColor="@color/gray_font_hint"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bio_edit_text" />
 
-                <TextView
-                    android:id="@+id/location_hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/location"
-                    android:textColor="@color/gray_font_hint"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bio_edit_text" />
-
-                <EditText
-                    android:id="@+id/location_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:backgroundTint="@color/gray_line_divider"
-                    android:fontFamily="@font/roboto"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textColor="@color/black_edit_text"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/location_hint"
-                    tools:ignore="Autofill,LabelFor" />
+            <EditText
+                android:id="@+id/location_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/gray_line_divider"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black_edit_text"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/location_hint"
+                tools:ignore="Autofill,LabelFor" />
 
 
-                <TextView
-                    android:id="@+id/email_hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/email"
-                    android:textColor="@color/gray_font_hint"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/location_edit_text" />
+            <TextView
+                android:id="@+id/email_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/email"
+                android:textColor="@color/gray_font_hint"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/location_edit_text" />
 
-                <EditText
-                    android:id="@+id/email_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:backgroundTint="@color/gray_line_divider"
-                    android:fontFamily="@font/roboto"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:textColor="@color/black_edit_text"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/email_hint"
-                    tools:ignore="Autofill,LabelFor,TextFields" />
+            <EditText
+                android:id="@+id/email_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/gray_line_divider"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black_edit_text"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_hint"
+                tools:ignore="Autofill,LabelFor,TextFields" />
 
 
-                <TextView
-                    android:id="@+id/phone_hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/phone"
-                    android:textColor="@color/gray_font_hint"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/email_edit_text" />
+            <TextView
+                android:id="@+id/phone_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/phone"
+                android:textColor="@color/gray_font_hint"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_edit_text" />
 
-                <EditText
-                    android:id="@+id/phone_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:backgroundTint="@color/gray_line_divider"
-                    android:fontFamily="@font/roboto"
-                    android:inputType="phone"
-                    android:maxLines="1"
-                    android:textColor="@color/black_edit_text"
-                    android:textColorHint="@color/gray_font_hint"
-                    android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/phone_hint"
-                    tools:ignore="Autofill,LabelFor" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
+            <EditText
+                android:id="@+id/phone_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:backgroundTint="@color/gray_line_divider"
+                android:fontFamily="@font/roboto"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:textColor="@color/black_edit_text"
+                android:textColorHint="@color/gray_font_hint"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone_hint"
+                tools:ignore="Autofill,LabelFor" />
 
             <ProgressBar
                 android:id="@+id/loading"
@@ -257,6 +247,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

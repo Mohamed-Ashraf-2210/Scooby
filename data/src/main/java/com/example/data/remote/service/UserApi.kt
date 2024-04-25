@@ -13,17 +13,15 @@ import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UserResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Part
 import retrofit2.http.Path
-import java.io.File
 
 interface UserApi {
     @POST("/scooby/api/users/login")
@@ -49,10 +47,8 @@ interface UserApi {
     @PATCH("/scooby/api/user/updateuser/{userId}")
     suspend fun updateUser(
         @Path("userId") userId: String,
-        @Part("profileImage") image: MultipartBody.Part,
-        @Field("name") name: String,
-        @Field("email") email: String
-    ): Response<UpdateUseResponse>
+        @Part image: MultipartBody.Part
+        ): Response<UpdateUseResponse>
 
     companion object {
         fun getApi(): UserApi? {
