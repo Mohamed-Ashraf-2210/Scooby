@@ -52,7 +52,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_all"
+        android:id="@+id/btn_Fav_Product"
         android:layout_width="100sp"
         android:layout_height="40sp"
         android:layout_marginStart="72dp"
@@ -68,7 +68,7 @@
         app:strokeWidth="0.5dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_adopt_Me"
+        android:id="@+id/btn_Fav_Pets"
         android:layout_width="100sp"
         android:layout_height="40sp"
         android:layout_marginTop="20dp"
@@ -80,7 +80,7 @@
         android:textSize="10sp"
         app:cornerRadius="100dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_all"
+        app:layout_constraintStart_toEndOf="@id/btn_Fav_Product"
         app:layout_constraintTop_toBottomOf="@+id/top_app_bar"
         app:strokeColor="#1A0F0F0F"
         app:strokeWidth="0.5dp" />
@@ -95,7 +95,7 @@
         android:text="4"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_all" />
+        app:layout_constraintTop_toBottomOf="@id/btn_Fav_Product" />
 
     <TextView
         android:id="@+id/tv_items"
@@ -122,23 +122,23 @@
         app:layout_constraintTop_toBottomOf="@id/num_of_item"
         android:layout_marginStart="8dp"
         android:layout_marginTop="21dp"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/item_product"
         app:spanCount="2"
         />
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/rv_fav_pets"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/num_of_item"-->
-<!--        android:layout_marginTop="21dp"-->
-<!--        android:visibility="visible"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--        tools:listitem="@layout/item_adaption_one"-->
-<!--        app:spanCount="2"-->
-<!--        />-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fav_pets"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/num_of_item"
+        android:layout_marginTop="21dp"
+        android:visibility="gone"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/item_favorite_pets"
+        app:spanCount="2"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

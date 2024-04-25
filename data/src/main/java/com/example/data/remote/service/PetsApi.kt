@@ -32,15 +32,7 @@ interface PetsApi {
         @Part("petData") petData: RequestBody
     ): Response<AddPetResponse>
 
-    @GET("/scooby/api/fav/getfavpet/{userId}")
-    suspend fun getFavoritePet(
-        @Path("userId") id: String
-    ): Response<ProductResponse>
-    @PATCH("/scooby/api/fav/addfav/{userId}")
-    suspend fun addPetToFavorite(
-        @Path("userId") id: String,
-        @Query("petId") petId: String
-    ): Response<AddFavoriteResponse>
+
 
 
     companion object {
