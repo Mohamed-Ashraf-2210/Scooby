@@ -45,6 +45,7 @@
                     android:src="@drawable/small_circle_shape" />
 
                 <com.varunest.sparkbutton.SparkButton
+                    android:id="@+id/heart_Icon_Id"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
@@ -72,6 +73,7 @@
             tools:text="Biscuit" />
 
         <TextView
+            android:id="@+id/pet_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"

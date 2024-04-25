@@ -33,8 +33,9 @@
                 android:src="@drawable/small_circle_shape" />
 
             <com.varunest.sparkbutton.SparkButton
+                android:id="@+id/heart_Icon_Id"
                 android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 app:sparkbutton_activeImage="@drawable/favorite_fill_paws"
                 app:sparkbutton_animationSpeed="1.5"
