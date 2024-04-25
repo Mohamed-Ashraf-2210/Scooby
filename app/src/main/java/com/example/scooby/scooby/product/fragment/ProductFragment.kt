@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.Constant
+import com.example.data.repository.ProductRepo
 import com.example.domain.product.ProductResponse
 import com.example.scooby.R
 import com.example.scooby.TokenManager
@@ -23,7 +25,6 @@ class ProductFragment : Fragment() {
     private val productViewModel by viewModels<ProductViewModel>()
     private lateinit var productAdapter : ProductAdapter
     private lateinit var userId: String
-
     private var _binding: FragmentProductBinding? = null
     private val binding get() = _binding!!
 
@@ -37,6 +38,8 @@ class ProductFragment : Fragment() {
         init()
         return binding.root
     }
+
+
 
     private fun filterProduct(productType: String) {
         productViewModel.apply {

@@ -92,7 +92,7 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="39dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="4"
+        android:text="0"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_Fav_Product" />

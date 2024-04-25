@@ -8,15 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.data.Constant
-import com.example.domain.paws.AdaptionAdoptMeResponse
-import com.example.domain.product.ProductResponse
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentFavoriteBinding
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.scooby.product.adapter.FavoritePetsAdapter
 import com.example.scooby.scooby.product.adapter.FavoriteProductAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
-import com.example.scooby.utils.BaseResponse
 
 
 class FavoriteFragment : Fragment() {
@@ -35,27 +32,11 @@ class FavoriteFragment : Fragment() {
         currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
 //        setupFavoriteViews()
         init()
-        return binding.root
-    }
-
-    private fun setupFavoriteViews() {
-        binding.rvFavProduct.setOnClickListener { toggleFavoriteView(true) }
-        binding.rvFavPets.setOnClickListener { toggleFavoriteView(false) }
-        observeFavoritePets()
         observeFavoriteProduct()
-    }
-
-    private fun toggleFavoriteView(showProduct: Boolean) {
-        binding.rvFavProduct.visibility = if (showProduct) View.VISIBLE else View.GONE
-        binding.rvFavPets.visibility = if (showProduct) View.GONE else View.VISIBLE
-    }
-
-    private fun observeFavoritePets() {
-        pawsViewModel.getFavoritePet(currentUserId)
-        pawsViewModel.favoritePetResult.observe(viewLifecycleOwner) { Log.d("petsResult", it.data.toString())
-            val adapter = FavoritePetsAdapter(it, pawsViewModel, currentUserId)
-            binding.rvFavPets.adapter = adapter
-            binding.numOfItem.text = adapter.itemCount.toString() }
+//        val repo = ProductRepo()
+//        val viewModelFactory = ProductViewModelFactory(repo)
+//        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
+        return binding.root
     }
 
     private fun observeFavoriteProduct() {
@@ -63,7 +44,19 @@ class FavoriteFragment : Fragment() {
         productViewModel.favoriteProductResult.observe(viewLifecycleOwner) { Log.d("productResult", it.data.toString())
             val adapter = FavoriteProductAdapter(it, productViewModel, currentUserId)
             binding.rvFavProduct.adapter = adapter
-            binding.numOfItem.text = adapter.itemCount.toString() }
+            binding.numOfItem.text = adapter.itemCount.toString()
+
+        }
+    }
+
+    private fun observeFavoritePets() {
+        pawsViewModel.getFavoritePet(currentUserId)
+        pawsViewModel.favoritePetResult.observe(viewLifecycleOwner) {
+            Log.d("petsResult", it.data.toString())
+            val adapter = FavoritePetsAdapter(it, pawsViewModel, currentUserId)
+            binding.rvFavPets.adapter = adapter
+            binding.numOfItem.text = adapter.itemCount.toString()
+        }
     }
 
 
@@ -73,13 +66,15 @@ class FavoriteFragment : Fragment() {
         binding.btnFavProduct.setOnClickListener {
             binding.rvFavPets.visibility = View.GONE
             binding.rvFavProduct.visibility = View.VISIBLE
+            binding.tvItems.text = "Items"
+            observeFavoriteProduct()
         }
         binding.btnFavPets.setOnClickListener {
             binding.rvFavProduct.visibility = View.GONE
             binding.rvFavPets.visibility = View.VISIBLE
+            binding.tvItems.text = "Babies"
+            observeFavoritePets()
         }
-        observeFavoritePets()
-        observeFavoriteProduct()
 
 
     }
