@@ -2,19 +2,48 @@ package com.example.scooby.scooby.paws.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.paws.AdaptionResponse
 import com.example.scooby.databinding.ItemAdaptionOneBinding
+import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.utils.loadUrl
+import com.varunest.sparkbutton.SparkEventListener
 
-class PawsTopColAdapter(private val adaptionTopResponse: AdaptionResponse) : RecyclerView.Adapter<PawsTopColAdapter.PawsTopColViewHolder>() {
+class PawsTopColAdapter(
+    private val adaptionTopResponse: AdaptionResponse,
+    val pawsViewModel: PawsViewModel,
+    private val userId: String?
+) : RecyclerView.Adapter<PawsTopColAdapter.PawsTopColViewHolder>() {
     inner class PawsTopColViewHolder(private val itemAdaptionOneBinding: ItemAdaptionOneBinding) :
         RecyclerView.ViewHolder(itemAdaptionOneBinding.root) {
             fun bind(item : AdaptionResponse.Data){
                 item.petImage?.let { itemAdaptionOneBinding.imgItem.loadUrl(it) }
                 itemAdaptionOneBinding.nameItem.text = item.name
                 itemAdaptionOneBinding.titleItem.text = item.category
+                setFavoritePet(item)
             }
+
+        private fun setFavoritePet(itemPet: AdaptionResponse.Data) {
+            itemAdaptionOneBinding.heartIconId.setEventListener(object : SparkEventListener {
+                override fun onEvent(button: ImageView, buttonState: Boolean) {
+                    buttonState.apply {
+                        if (userId != null) {
+                            itemPet.id?.let { pawsViewModel.addPetToFavorite(userId, it) }
+                        }
+                    }
+
+                }
+
+                override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {
+
+                }
+
+                override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {
+
+                }
+            })
+        }
 
     }
 

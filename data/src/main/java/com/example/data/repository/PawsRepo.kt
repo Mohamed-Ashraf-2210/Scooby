@@ -1,6 +1,7 @@
 package com.example.data.repository
 
 import com.example.data.remote.service.PawsApi
+import com.example.domain.AddFavoriteResponse
 import com.example.domain.paws.AdaptionAdoptMeResponse
 import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
@@ -30,6 +31,15 @@ class PawsRepo {
 
     suspend fun getAllPetsShelter(): Response<PetsInShelterResponse>? {
         return PawsApi.getApi()?.getAllPetsShelter()
+    }
+
+
+    suspend fun getFavoritePet(userId:String): Response<AdaptionAdoptMeResponse>? {
+        return PawsApi.getApi()?.getFavoritePet(userId)
+    }
+
+    suspend fun addPetToFavorite(userId:String, petId:String): Response<AddFavoriteResponse>? {
+        return PawsApi.getApi()?.addPetToFavorite(userId, petId)
     }
 
 

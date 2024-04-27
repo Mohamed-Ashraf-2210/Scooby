@@ -42,16 +42,14 @@ class PawsViewModel() : ViewModel() {
         get() = _petsShelterResult
 
 
-
-
-
-
-
-
-
     private val _adoptMeResult: MutableLiveData<AdaptionAdoptMeResponse> = MutableLiveData()
     val adoptMeResult :LiveData<AdaptionAdoptMeResponse>
         get() = _adoptMeResult
+
+
+    private val _favoritePetResult: MutableLiveData<AdaptionAdoptMeResponse> = MutableLiveData()
+    val favoritePetResult: LiveData<AdaptionAdoptMeResponse>
+        get() = _favoritePetResult
     fun getTopCollection(){
         viewModelScope.launch {
             try {
@@ -132,6 +130,32 @@ class PawsViewModel() : ViewModel() {
             }
         }
     }
+
+    fun getFavoritePet(userId: String) {
+        viewModelScope.launch {
+            try {
+                val response = pawsRepo.getFavoritePet(userId)
+                response?.body().let {
+                    _favoritePetResult.value = response?.body()
+                }
+
+            } catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS favoritePet $e")
+            }
+        }
+    }
+
+    fun addPetToFavorite(userId: String, petId: String) {
+        viewModelScope.launch {
+            try {
+                pawsRepo.addPetToFavorite(userId, petId)
+            } catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS favoritePet $e")
+            }
+        }
+    }
+
+
 
 
 }

@@ -22,6 +22,9 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
     val favoriteProductResult: LiveData<ProductResponse>
         get() = _favoriteProductResult
 
+
+
+
     fun getProduct(){
         viewModelScope.launch {
             try {
@@ -58,4 +61,8 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
             }
         }
     }
+
+
+
+
 }

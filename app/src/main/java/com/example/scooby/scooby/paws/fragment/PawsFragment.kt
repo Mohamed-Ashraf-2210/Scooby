@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
+import com.example.data.Constant
 import com.example.domain.paws.AdaptionAdoptMeResponse
 import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
+import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentPawsBinding
 import com.example.scooby.scooby.paws.adapter.AdaptionAdoptMeAdapter
 import com.example.scooby.scooby.paws.adapter.AdaptionCatsAdapter
@@ -27,6 +29,7 @@ import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 class PawsFragment : Fragment() {
     private val pawsViewModel by viewModels<PawsViewModel>()
     private lateinit var binding : FragmentPawsBinding
+    private lateinit var currentUserId: String
     private lateinit var rvTopCol: RecyclerView
     private lateinit var rvCats: RecyclerView
     private lateinit var rvDogs: RecyclerView
@@ -39,6 +42,7 @@ class PawsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPawsBinding.inflate(inflater, container, false)
+        currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
         initButtonCallBack()
         init()
         return binding.root
@@ -128,7 +132,7 @@ class PawsFragment : Fragment() {
 
     private fun getDataTopCollection(data: AdaptionResponse) {
         rvTopCol = binding.rvTopCol
-        rvTopCol.adapter = PawsTopColAdapter(data)
+        rvTopCol.adapter = PawsTopColAdapter(data,pawsViewModel,currentUserId)
     }
 
     private fun getCatsData(data: AdaptionCatsResponse) {
@@ -143,7 +147,7 @@ class PawsFragment : Fragment() {
 
     private fun getAdoptMeData(data: AdaptionAdoptMeResponse) {
         rvAdoptMe = binding.rvAdoptMe
-        rvAdoptMe.adapter = AdaptionAdoptMeAdapter(data)
+        rvAdoptMe.adapter = AdaptionAdoptMeAdapter(data,currentUserId,pawsViewModel)
     }
     private fun getShelterData(data: ShelterResponse) {
         rvShelters = binding.rvShelters
