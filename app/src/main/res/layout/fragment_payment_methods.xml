@@ -118,8 +118,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progress_bar_top" />
 
-    <RadioGroup
-        android:id="@+id/radio_group"
+    <LinearLayout
+        android:id="@+id/card_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="94dp"
@@ -140,7 +140,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -155,21 +156,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/roboto"
                     android:text="@string/visa"
                     android:textColor="@color/gray_payment"
                     android:textSize="13sp" />
-
-                <RadioButton
-                    android:id="@+id/visa_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:scaleX="0.7"
-                    android:scaleY="0.7" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -184,7 +174,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
+
 
                 <ImageView
                     android:layout_width="35dp"
@@ -199,20 +191,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="22dp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/roboto"
                     android:text="@string/master_card"
                     android:textColor="@color/gray_payment"
                     android:textSize="13sp" />
-
-                <RadioButton
-                    android:id="@+id/masterCard_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:gravity="center"
-                    android:scaleX="0.7"
-                    android:scaleY="0.7" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -227,7 +209,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="35dp"
@@ -242,20 +225,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="23dp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/roboto"
                     android:text="@string/local_cards"
                     android:textColor="@color/gray_payment"
                     android:textSize="13sp" />
-
-                <RadioButton
-                    android:id="@+id/localCards_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:gravity="center"
-                    android:scaleX="0.7"
-                    android:scaleY="0.7" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -270,7 +243,9 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
+
 
                 <ImageView
                     android:layout_width="25dp"
@@ -285,20 +260,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="25dp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/roboto"
                     android:text="@string/mobile_wallet"
                     android:textColor="@color/gray_payment"
                     android:textSize="13sp" />
-
-                <RadioButton
-                    android:id="@+id/mobileWallet_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:gravity="center"
-                    android:scaleX="0.7"
-                    android:scaleY="0.7" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -313,7 +278,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:layout_width="28dp"
@@ -328,25 +294,65 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="26dp"
-                    android:layout_weight="1"
                     android:fontFamily="@font/roboto"
                     android:text="@string/cash"
                     android:textColor="@color/gray_payment"
                     android:textSize="13sp" />
-
-                <RadioButton
-                    android:id="@+id/cash_btn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:gravity="center"
-                    android:scaleX="0.7"
-                    android:scaleY="0.7" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-    </RadioGroup>
+    </LinearLayout>
 
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="94dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_bar_top">
+
+        <RadioButton
+            android:id="@+id/visa_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:checked="true"
+            android:scaleX="0.7"
+            android:scaleY="0.7" />
+
+        <RadioButton
+            android:id="@+id/masterCard_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7" />
+
+        <RadioButton
+            android:id="@+id/localCards_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7" />
+
+        <RadioButton
+            android:id="@+id/mobileWallet_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginBottom="20dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7" />
+
+        <RadioButton
+            android:id="@+id/cash_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7" />
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"

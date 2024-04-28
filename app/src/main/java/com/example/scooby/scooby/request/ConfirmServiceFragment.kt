@@ -1,22 +1,29 @@
 package com.example.scooby.scooby.request
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.scooby.R
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+import com.example.scooby.databinding.FragmentConfirmServiceBinding
 
 
 class ConfirmServiceFragment : Fragment() {
-
+    private var binding: FragmentConfirmServiceBinding? = null
+    private val args: ConfirmServiceFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_confirm_service, container, false)
+        binding = FragmentConfirmServiceBinding.inflate(inflater, container, false)
+        init()
+        return binding?.root
+    }
+
+    private fun init() {
+
     }
 
 }

@@ -96,6 +96,7 @@
             app:layout_constraintTop_toBottomOf="@id/post_image" />
 
         <TextView
+            android:id="@+id/love_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
