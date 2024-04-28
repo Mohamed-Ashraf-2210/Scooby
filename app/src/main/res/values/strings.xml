@@ -227,5 +227,6 @@ again."</string>
     <string name="fab_content_desc">fab content desc</string>
     <string name="reviews">Reviews</string>
     <string name="book_now_cap">BOOK NOW</string>
+    <string name="error_loading">error load name</string>
 
 </resources>

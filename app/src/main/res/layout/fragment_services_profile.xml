@@ -397,6 +397,7 @@
                 app:layout_constraintTop_toBottomOf="@id/layout_cards"
                 >
                 <TextView
+                    android:id="@+id/tv_question1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
@@ -405,6 +406,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/tv_answar1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -415,6 +417,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_question2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
@@ -422,6 +425,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_answar2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -432,6 +436,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_question3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
@@ -439,6 +444,7 @@
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/tv_answar3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
