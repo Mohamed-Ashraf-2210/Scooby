@@ -1,31 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="false">
-        <shape
-            android:dither="true" android:shape="rectangle"
-            android:useLevel="false" android:visible="true">
-            <solid android:color="#FEF9F9" />
-            <corners android:radius="30dp" />
-            <size
-                android:width="129dp"
-                android:height="40dp" />
-        </shape>
-
-    </item>
-
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
-        <shape
-            android:dither="true" android:shape="rectangle"
-            android:useLevel="false" android:visible="true">
-            <solid android:color="#513973" />
+        <shape android:shape="rectangle">
+            <solid android:color="@color/primary" />
             <corners android:radius="30dp" />
-            <size
-                android:width="129dp"
-                android:height="40dp" />
+            <size android:width="129dp" android:height="40dp" />
         </shape>
-
     </item>
 
-
+    <item android:state_checked="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/primary" />
+            <corners android:radius="30dp" />
+            <size android:width="129dp" android:height="40dp" />
+        </shape>
+    </item>
 </selector>
