@@ -42,7 +42,21 @@
             android:id="@+id/servicesFragment"
             android:name="com.example.scooby.scooby.services.fragment.ServiceFragment"
             android:label="fragment_services"
-            tools:layout="@layout/fragment_service" />
+            tools:layout="@layout/fragment_service" >
+            <action
+                android:id="@+id/action_servicesFragment_to_servicesProfileFragment"
+                app:destination="@id/servicesProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/servicesProfileFragment"
+            android:name="com.example.scooby.scooby.services.fragment.ServicesProfileFragment"
+            android:label="ServicesProfileFragment"
+            tools:layout="@layout/fragment_services_profile"
+            >
+            <argument
+                android:name="ServiceId"
+                app:argType="string" />
+        </fragment>
         <fragment
             android:id="@+id/doctorsFragment"
             android:name="com.example.scooby.scooby.ui.DoctorsFragment"
@@ -111,8 +125,6 @@
                 android:id="@+id/action_dateRequestFragment_to_notesRequestFragment"
                 app:destination="@id/notesRequestFragment" />
         </fragment>
-
-
         <fragment
             android:id="@+id/profileFragment"
             android:name="com.example.scooby.scooby.userProfile.ProfileFragment"

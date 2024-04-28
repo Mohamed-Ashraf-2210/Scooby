@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.services.ServicesResponse
 import com.example.data.repository.ServicesRepo
 import com.example.data.Constant
+import com.example.domain.ServicesProfileResponse
 import kotlinx.coroutines.launch
 
 class ServicesViewModel() : ViewModel() {
@@ -16,9 +17,9 @@ class ServicesViewModel() : ViewModel() {
     val servicesResult: LiveData<ServicesResponse?>
         get() =_servicesResult
 
-    private val _servicesResultByFilter : MutableLiveData<ServicesResponse?> = MutableLiveData()
-    val servicesResultByFilter:LiveData<ServicesResponse?>
-        get() = _servicesResultByFilter
+    private val _servicesProfileResult : MutableLiveData<ServicesProfileResponse?> = MutableLiveData()
+    val servicesProfileResult:LiveData<ServicesProfileResponse?>
+        get() = _servicesProfileResult
 
 
 
@@ -35,12 +36,12 @@ class ServicesViewModel() : ViewModel() {
         }
     }
 
-    fun getServicesFilter(type:String){
+    fun getServicesProfile(servicesId:String){
         viewModelScope.launch {
-            val response = servicesRepo.getServicesByFilter(type)
+            val response = servicesRepo.getServicesProfileData(servicesId)
             try {
                 if (response != null && response.isSuccessful){
-                    _servicesResultByFilter.value = response.body()
+                    _servicesProfileResult.value = response.body()
                 }
                 Log.d("TEST_FILTER", "Response code: ${response?.code()}")
                 Log.d("TEST_FILTER", "Response body: ${response?.body()}")

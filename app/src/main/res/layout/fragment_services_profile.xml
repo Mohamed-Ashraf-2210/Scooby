@@ -13,7 +13,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_app_bar"
         app:layout_constraintTop_toTopOf="parent"
         android:background="#FEFBFB"
-        tools:context=".scooby.ServicesProfileFragment">
+        tools:context=".scooby.services.fragment.ServicesProfileFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="360dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/servicesimg"
+                tools:src="@drawable/servicesimg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="Pet Boarding service"
+                tools:text="Pet Boarding service"
                 android:textColor="@color/black_clear"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +66,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="20"
+                    tools:text="20"
                     android:textColor="@color/primary"
                     android:textSize="12sp" />
 
@@ -83,7 +83,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
-                    android:text="night"
+                    tools:text="night"
                     android:textColor="#605C5C"
                     android:textSize="12sp" />
 
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
-                    android:text="44"
+                    tools:text="44"
                     android:textColor="#605C5C"
                     android:textSize="10sp" />
 
@@ -176,7 +176,7 @@
                         android:layout_marginStart="9dp"
                         android:layout_marginTop="12dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/des_services"
+                        tools:text="@string/des_services"
                         android:textSize="12sp"
                         android:lineHeight="18sp"
                         android:paddingEnd="24sp"
@@ -366,7 +366,7 @@
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="99dp"
+                    android:layout_width="115dp"
                     android:layout_height="34dp"
                     app:cardCornerRadius="8dp"
                     app:strokeWidth="0dp"
@@ -401,7 +401,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Places your pet will sleep at night?"
+                    tools:text="Places your pet will sleep at night?"
                     android:textSize="14sp"
                     />
 
@@ -412,7 +412,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="14dp"
                     android:fontFamily="@font/roboto"
-                    android:text="Wherever they want"
+                    tools:text="Wherever they want"
                     android:textColor="@color/black_70"
                     android:textSize="14sp" />
 
@@ -421,7 +421,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Places your pet will sleep at night?"
+                    tools:text="Places your pet will sleep at night?"
                     android:textSize="14sp" />
 
                 <TextView
@@ -431,7 +431,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="14dp"
                     android:fontFamily="@font/roboto"
-                    android:text="Wherever they want"
+                    tools:text="Wherever they want"
                     android:textColor="@color/black_70"
                     android:textSize="14sp" />
 
@@ -440,7 +440,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Places your pet will sleep at night?"
+                    tools:text="Places your pet will sleep at night?"
                     android:textSize="14sp" />
 
                 <TextView
@@ -449,7 +449,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto"
-                    android:text="Wherever they want"
+                    tools:text="Wherever they want"
                     android:textColor="@color/black_70"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -686,7 +686,7 @@
                 android:layout_marginStart="27dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/roboto_medium"
-                android:text="pet Boarding"
+                tools:text="pet Boarding"
                 android:textColor="@color/white_BG"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -714,7 +714,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="20"
+                    tools:text="20"
                     android:textColor="@color/white_BG"
                     android:textSize="12sp" />
 
@@ -731,7 +731,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto"
-                    android:text="night"
+                    tools:text="night"
                     android:textColor="#80CCC2C2"
                     android:textSize="12sp" />
 

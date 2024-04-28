@@ -20,8 +20,11 @@ class ServiceFragment : Fragment() {
     private lateinit var allServices: ServicesResponse
     private val servicesViewModel by viewModels<ServicesViewModel>()
     private lateinit var servicesRV: RecyclerView
+
     private var _binding: FragmentServiceBinding? = null
     private val binding get() = _binding!!
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

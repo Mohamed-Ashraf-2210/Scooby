@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.services.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import com.example.scooby.databinding.ItemReviewBinding
 import com.example.scooby.utils.loadUrl
 
 class ReviewAdapter(
-    private val reviews: List<ServicesProfileResponse.Data.ReviewsOfService>
+    private val reviews: List<ServicesProfileResponse.Data.ReviewsOfService?>
 ) : RecyclerView.Adapter<ReviewAdapter.ReviewViewHolder>() {
     lateinit var allReviews: ServicesProfileResponse.Data.ReviewsOfService
 
@@ -32,6 +32,6 @@ class ReviewAdapter(
     override fun getItemCount(): Int = reviews.size
 
     override fun onBindViewHolder(holder: ReviewViewHolder, position: Int) {
-        holder.bind(reviews[position])
+        reviews[position]?.let { holder.bind(it) }
     }
 }

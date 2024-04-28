@@ -6,6 +6,7 @@
     android:layout_height="165dp"
     android:layout_marginStart="16dp"
     app:strokeWidth="0dp"
+    android:id="@+id/card_services"
     android:backgroundTint="@color/white_card_services"
     app:cardCornerRadius="8dp">
 

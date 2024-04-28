@@ -1,9 +1,11 @@
 package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
+import com.example.domain.ServicesProfileResponse
 import com.example.domain.services.ServicesResponse
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 import retrofit2.http.Query
 
@@ -18,6 +20,10 @@ interface ServicesApi {
     ): Response<ServicesResponse>
     //getServicesByFilter
 
+    @GET("/scooby/api/serviceProfile/get-serviceProfile/{serviceId}")
+    suspend fun getServicesProfileData(
+        @Path("serviceId") serviceId:String
+    ):Response<ServicesProfileResponse>
 
     companion object {
         fun getApi(): ServicesApi? {
