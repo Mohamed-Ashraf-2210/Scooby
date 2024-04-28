@@ -25,11 +25,11 @@ class CommunityViewModel : ViewModel() {
     fun getPublicPosts() {
         viewModelScope.launch {
             try {
-                val response = communityRepo.getPosts()
-                Log.e(Constant.MY_TAG, "RESPONSE: ${response?.code().toString()}")
-
-                if (response != null && response.isSuccessful) {
-                    _publicPostsResult.value = response.body()
+                communityRepo.getPosts()?.apply {
+                    Log.e(Constant.MY_TAG, "RESPONSE: ${this.code()}")
+                    if (isSuccessful) {
+                        _publicPostsResult.value = body()
+                    }
                 }
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS (communityRepo) $e")
@@ -40,9 +40,10 @@ class CommunityViewModel : ViewModel() {
     fun getMyMomentPosts(userId: String) {
         viewModelScope.launch {
             try {
-                val response = communityRepo.getMyMoments(userId)
-                if (response != null && response.isSuccessful) {
-                    _myMomentPostsResult.value = response.body()
+                communityRepo.getMyMoments(userId)?.apply {
+                    if (isSuccessful) {
+                        _myMomentPostsResult.value = body()
+                    }
                 }
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
