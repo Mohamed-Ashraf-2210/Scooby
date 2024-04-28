@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 
 data class ServicesProfileResponse(
     @SerializedName("updatedDoc")
-    val updatedDoc: UpdatedDoc?
+    val updatedDoc:Data ?
 ) {
-    data class UpdatedDoc(
+    data class Data(
         @SerializedName("about")
         val about: String?,
         @SerializedName("accepted_pet_sizes")
