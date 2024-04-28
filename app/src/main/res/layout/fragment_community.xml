@@ -57,7 +57,7 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:checked="true"
+            android:checked="false"
             android:theme="@style/Theme.AppCompat"
             android:thumb="@drawable/thumb_selector"
             app:switchMinWidth="140dp"
@@ -78,7 +78,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:text="@string/public_btn"
-                android:textColor="@color/primary"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
             <TextView
@@ -90,7 +90,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
                 android:text="@string/my_moments"
-                android:textColor="@color/white"
+                android:textColor="@color/primary"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -104,6 +104,22 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="24dp"
+        android:visibility="visible"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switch_btn"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_post" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/my_moment_post_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,8 +140,7 @@
             android:layout_margin="23dp"
             android:backgroundTint="@color/primary"
             android:contentDescription="@string/fab_content_desc"
-            android:tint="@color/white"
-            app:fabCustomSize="50dp"
+            android:theme="@style/ThemeOverlay.Material3.Button"
             app:srcCompat="@drawable/plus_white_icon" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

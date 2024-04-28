@@ -28,7 +28,6 @@ class CommunityFragment : Fragment() {
     ): View? {
         binding = FragmentCommunityBinding.inflate(inflater, container, false)
         userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
-        observePublicPosts()
 
         binding?.apply {
             switchOnOff.setOnCheckedChangeListener { _, checked ->
@@ -40,6 +39,9 @@ class CommunityFragment : Fragment() {
                         myMomentsBtn.apply {
                             setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
                         }
+                        observeMyMomentPosts()
+                        postRv.visibility = View.GONE
+                        myMomentPostRv.visibility = View.VISIBLE
                     }
 
                     else -> {
@@ -49,6 +51,9 @@ class CommunityFragment : Fragment() {
                         myMomentsBtn.apply {
                             setTextColor(ContextCompat.getColor(requireContext(), R.color.primary))
                         }
+                        observePublicPosts()
+                        postRv.visibility = View.VISIBLE
+                        myMomentPostRv.visibility = View.GONE
                     }
                 }
             }
@@ -72,7 +77,7 @@ class CommunityFragment : Fragment() {
             getMyMomentPosts(userId)
             myMomentPostsResult.observe(viewLifecycleOwner) {
                 if (it != null) {
-                    binding?.postRv?.adapter = MyMomentPostsAdapter(it, requireContext())
+                    binding?.myMomentPostRv?.adapter = MyMomentPostsAdapter(it, requireContext())
                 }
             }
         }

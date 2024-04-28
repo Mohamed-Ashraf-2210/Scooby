@@ -84,16 +84,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/description_post" />
 
-        <ImageView
+        <com.varunest.sparkbutton.SparkButton
             android:id="@+id/love_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            app:sparkbutton_activeImage="@drawable/favorite_fill_red"
+            app:sparkbutton_animationSpeed="1.5"
+            app:sparkbutton_iconSize="20dp"
+            app:sparkbutton_inActiveImage="@drawable/heart_icon"
+            app:sparkbutton_primaryColor="@color/primary"
+            app:sparkbutton_secondaryColor="@color/red"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
-            android:contentDescription="@string/love"
-            android:src="@drawable/heart_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/post_image" />
+
 
         <TextView
             android:id="@+id/love_tv"

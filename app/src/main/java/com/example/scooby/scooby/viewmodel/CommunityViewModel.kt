@@ -27,6 +27,7 @@ class CommunityViewModel : ViewModel() {
             try {
                 communityRepo.getPosts()?.apply {
                     Log.e(Constant.MY_TAG, "RESPONSE: ${this.code()}")
+                    Log.e(Constant.MY_TAG, "RESPONSE: ${this.message()}")
                     if (isSuccessful) {
                         _publicPostsResult.value = body()
                     }

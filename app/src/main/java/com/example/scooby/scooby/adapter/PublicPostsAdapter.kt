@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.domain.community.PublicPosts
 import com.example.scooby.R
+import com.varunest.sparkbutton.SparkButton
 
 class PublicPostsAdapter(private val postsList: PublicPosts, private val context: Context) :
     RecyclerView.Adapter<PublicPostsAdapter.PublicPostViewHolder>() {
@@ -20,7 +21,7 @@ class PublicPostsAdapter(private val postsList: PublicPosts, private val context
         val timePost: TextView = itemView.findViewById(R.id.time_post)
         val descriptionPost: TextView = itemView.findViewById(R.id.description_post)
         val postImage: ImageView = itemView.findViewById(R.id.post_image)
-        val loveIcon: ImageView = itemView.findViewById(R.id.love_icon)
+        val loveIcon: SparkButton = itemView.findViewById(R.id.love_icon)
         val loveText: TextView = itemView.findViewById(R.id.love_tv)
 
     }
