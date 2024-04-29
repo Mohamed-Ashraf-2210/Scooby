@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
 import com.example.scooby.databinding.FragmentShelterProfileBinding
 
 
 class ShelterProfileFragment : Fragment() {
     private lateinit var rvReviews: RecyclerView
+    private lateinit var rvPets: RecyclerView
     private lateinit var binding : FragmentShelterProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,11 @@ class ShelterProfileFragment : Fragment() {
     }
 
     private fun init() {
+        observeViewModel()
+    }
+
+    private fun observeViewModel() {
+
     }
 
     private fun setDataToViews(shelterProfileResponse:ShelterProfileResponse) {
@@ -59,5 +66,15 @@ class ShelterProfileFragment : Fragment() {
         rvReviews = binding.rvReview
         rvReviews.adapter = ReviewShelterAdapter(reviewData)
     }
-
+    fun getPetData(petsData : List<PetShelterProfileResponse.PetShelterProfileResponseItem>){
+        rvPets = binding.rvPets
+        rvPets.adapter = PetInShelterProfileAdapter(petsData)
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.apply {
+            rvReviews.adapter = null
+            rvPets.adapter = null
+        }
+    }
 }
