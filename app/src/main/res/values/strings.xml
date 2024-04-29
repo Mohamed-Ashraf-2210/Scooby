@@ -241,5 +241,9 @@ again."</string>
     <string name="confirm">Confirm</string>
     <string name="you_request_has_been_confirmed_let_s_confirm_your_phone_number_as_well">You Request has been confirmed! \nLet’s confirm your phone number as well.</string>
     <string name="don_t_worry_we_won_t_share_your_number_just_a_text_code_to_verify_your_phone_and_we_ll_only_reach_out_if_you_miss_an_email_or_app_message">Don\'t worry, we won\'t share your number! Just a text \ncode to verify your phone, and we\'ll only reach out \nif you miss an email or app message.</string>
+    <string name="can_t_adopt">Can\'t adopt?</string>
+    <string name="donate">Donate</string>
+    <string name="volunteer">volunteer</string>
+    <string name="lonely_hearts_looking_for_love">Lonely hearts looking for love</string>
 
 </resources>
