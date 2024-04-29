@@ -16,8 +16,8 @@ import com.varunest.sparkbutton.SparkEventListener
 class ProductAdapter(
     private val productViewModel: ProductViewModel,
     val userId: String?,
-    private val productList : ProductResponse,
-
+    private val productList: ProductResponse,
+    val favoriteProducts: ProductResponse,
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     private var oldProductList  = emptyList<ProductResponse.Data>()
     inner class ProductViewHolder(private val itemProductBinding: ItemProductBinding) :
@@ -29,6 +29,9 @@ class ProductAdapter(
                 itemProductBinding.medDiscountedPrice.text = product.priceAfterDiscount.toString()
                 itemProductBinding.medRealPrice.text = product.price.toString()
                 itemProductBinding.medOfferPercent.text = product.discount.toString()
+                if (favoriteProducts.data.contains(product)) {
+                    itemProductBinding.heartIconId.isChecked = true
+                }
                 setFavoriteProduct(product)
             }
 
@@ -51,17 +54,11 @@ class ProductAdapter(
                                 productViewModel.addProductToFavorite(userId, it)
                             }
                         }
-
                     }
                 }
 
-                override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {
-
-                }
-
-                override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {
-
-                }
+                override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {}
+                override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {}
             })
         }
     }

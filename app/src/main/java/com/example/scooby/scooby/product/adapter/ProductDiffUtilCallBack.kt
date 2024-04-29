@@ -17,47 +17,10 @@ class ProductDiffUtilCallBack(
     }
 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-        val oldItem = oldList[oldItemPosition]
-        val newItem = newList[newItemPosition]
-        Log.d("DiffUtil", "Comparing items: old (${oldItem.id}), new (${newItem.id})")
+        Log.d("DiffUtil", "Comparing items: old (${oldList[oldItemPosition].id}), new (${newList[newItemPosition].id})")
         return oldList[oldItemPosition].id == newList[newItemPosition].id
-
     }
 
-    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-
-        val areContentTheSame = when {
-            oldList[oldItemPosition].id != newList[newItemPosition].id -> {
-                false
-            }
-
-            oldList[oldItemPosition].name != newList[newItemPosition].name -> {
-                false
-            }
-
-            oldList[oldItemPosition].desc != newList[newItemPosition].desc -> {
-                false
-            }
-
-            oldList[oldItemPosition].price != newList[newItemPosition].price -> {
-                false
-            }
-
-            oldList[oldItemPosition].priceAfterDiscount != newList[newItemPosition].priceAfterDiscount -> {
-                false
-            }
-
-            oldList[oldItemPosition].productImage != newList[newItemPosition].productImage -> {
-                false
-            }
-
-            oldList[oldItemPosition].discount != newList[newItemPosition].discount -> {
-                false
-            }
-            else -> true
-
-        }
-        Log.d("DiffUtil", "Contents same: $areContentTheSame")
-        return  areContentTheSame
-    }
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+        oldList[oldItemPosition] == newList[newItemPosition]
 }
