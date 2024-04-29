@@ -41,6 +41,9 @@ data class ServicesResponse(
         @SerializedName("__v")
         val v: Int,
         @SerializedName("workplace")
-        val workplace: String
+        val workplace: String,
+        @SerializedName("serviceProfile")
+        val serviceProfile: String
+
     )
 }

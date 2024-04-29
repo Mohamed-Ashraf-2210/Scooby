@@ -1,24 +1,20 @@
 package com.example.scooby.scooby.request
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentPaymentMethodsBinding
-import com.example.scooby.databinding.FragmentSummaryRequestBinding
-import com.example.scooby.scooby.viewmodel.MyPetsViewModel
-import java.util.Calendar
 
 
 class PaymentMethodsFragment : Fragment() {
     private var binding: FragmentPaymentMethodsBinding? = null
     private val args: PaymentMethodsFragmentArgs by navArgs()
+    private var paymentMethod: String = "Visa"
 
     /*
         args.idPets,
@@ -32,6 +28,10 @@ class PaymentMethodsFragment : Fragment() {
         Notes
         pickUp
         paymentMethod
+        cardNumber
+        cardExpireDate
+        cardSecurityCode
+        saveCard
      */
 
     override fun onCreateView(
@@ -40,11 +40,35 @@ class PaymentMethodsFragment : Fragment() {
     ): View? {
         binding = FragmentPaymentMethodsBinding.inflate(inflater, container, false)
         initView()
+
         return binding?.root
     }
 
     private fun initView() {
         binding?.apply {
+            radioGroup.setOnCheckedChangeListener { _, checkedId ->
+                when (checkedId) {
+                    R.id.visa_btn -> {
+                        paymentMethod = "Visa"
+                    }
+
+                    R.id.masterCard_btn -> {
+                        paymentMethod = "Master Card"
+                    }
+
+                    R.id.localCards_btn -> {
+                        paymentMethod = "Local Cards"
+                    }
+
+                    R.id.mobileWallet_btn -> {
+                        paymentMethod = "Mobile Wallet"
+                    }
+
+                    R.id.cash_btn -> {
+                        paymentMethod = "Cash"
+                    }
+                }
+            }
             nextBtn.setOnClickListener {
                 val listOfData = arrayOf(
                     args.listOfData[0],
@@ -54,9 +78,8 @@ class PaymentMethodsFragment : Fragment() {
                     args.listOfData[4],
                     args.listOfData[5],
                     args.listOfData[6],
-                    radioGroup.checkedRadioButtonId.toString()
-                    )
-                Toast.makeText(requireActivity(), radioGroup.checkedRadioButtonId.toString(), Toast.LENGTH_SHORT).show()
+                    paymentMethod
+                )
 
                 findNavController().navigate(
                     PaymentMethodsFragmentDirections.actionPaymentMethodsFragmentToConfirmServiceFragment(
@@ -64,7 +87,8 @@ class PaymentMethodsFragment : Fragment() {
                         args.requestName,
                         listOfData
                     )
-                )}
+                )
+            }
         }
     }
 

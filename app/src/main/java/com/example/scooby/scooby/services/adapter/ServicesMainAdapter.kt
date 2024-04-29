@@ -2,42 +2,48 @@ package com.example.scooby.scooby.services.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RatingBar
-import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.scooby.R
 import com.example.domain.services.ServicesResponse
+import com.example.scooby.databinding.ItemServicesBinding
+import com.example.scooby.scooby.services.fragment.ServiceFragmentDirections
 
 class ServicesMainAdapter(private var servicesList: ServicesResponse, private val context: Context) :
     RecyclerView.Adapter<ServicesMainAdapter.ServicesViewHolder>() {
 
-    class ServicesViewHolder(iteView: View) : RecyclerView.ViewHolder(iteView) {
-        val serviceImage: ImageView = iteView.findViewById(R.id.service_image)
-        val serviceType: TextView = iteView.findViewById(R.id.service_type)
-        val city: TextView = iteView.findViewById(R.id.city)
-        val price: TextView = iteView.findViewById(R.id.price)
-        val rate: RatingBar = iteView.findViewById(R.id.rate)
+    inner class ServicesViewHolder(private val itemServicesBinding: ItemServicesBinding) :
+        RecyclerView.ViewHolder(itemServicesBinding.root) {
+        fun bind(service: ServicesResponse.AllService) {
+            Glide.with(itemView).load(service.serviceImage).into(itemServicesBinding.serviceImage)
+            itemServicesBinding.serviceType.text = service.serviceType
+            itemServicesBinding.city.text = service.city
+            itemServicesBinding.price.text = service.price.toString()
+            itemServicesBinding.rate.rating = service.rate.toFloat()
+            navigate2ServiceProfile(service)
+        }
+
+        private fun navigate2ServiceProfile(service: ServicesResponse.AllService){
+            itemServicesBinding.serviceImage.setOnClickListener {
+                val action = ServiceFragmentDirections.actionServicesFragmentToServicesProfileFragment(service.serviceProfile)
+                it.findNavController().navigate(action)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ServicesViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_services, parent, false)
-        return ServicesViewHolder(itemView)
+        return ServicesViewHolder(
+            ItemServicesBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false))
     }
 
     override fun getItemCount() = servicesList.allServices.size
 
     override fun onBindViewHolder(holder: ServicesViewHolder, position: Int) {
-        val currentItem = servicesList.allServices
-        Glide.with(context).load(currentItem[position].serviceImage).into(holder.serviceImage)
-        holder.serviceType.text = currentItem[position].serviceType
-        holder.city.text = currentItem[position].city
-        holder.price.text = currentItem[position].price.toString()
-        holder.rate.rating = currentItem[position].rate.toFloat()
+        holder.bind(servicesList.allServices[position])
     }
 
 }

@@ -35,6 +35,7 @@ class SummaryRequestFragment : Fragment() {
     /*
         args.idPets,
         args.requestName,
+
         selectDateTv
         selectTime
         optionEt
@@ -50,13 +51,13 @@ class SummaryRequestFragment : Fragment() {
     ): View? {
         binding = FragmentSummaryRequestBinding.inflate(inflater, container, false)
         getUserId()
-        pickUp = args.listOfData[5]
+        pickUp = args.listOfData[6]
         binding?.apply {
             selectDate.text = args.listOfData[0]
             selectTime.text = args.listOfData[1]
             optionServiceTv.text = args.listOfData[2]
             yourLocationTv.text = args.listOfData[3]
-            yourNotesEt.setText(args.listOfData[4])
+            yourNotesEt.setText(args.listOfData[5])
             yesChecked.visibility = if (pickUp == "yes") View.VISIBLE else View.GONE
             noChecked.visibility = if (pickUp == "no") View.VISIBLE else View.GONE
         }
