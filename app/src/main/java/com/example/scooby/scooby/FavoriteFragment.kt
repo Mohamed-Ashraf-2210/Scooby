@@ -30,7 +30,6 @@ class FavoriteFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentFavoriteBinding.inflate(layoutInflater,container,false)
         currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
-//        setupFavoriteViews()
         init()
         observeFavoriteProduct()
 //        val repo = ProductRepo()
