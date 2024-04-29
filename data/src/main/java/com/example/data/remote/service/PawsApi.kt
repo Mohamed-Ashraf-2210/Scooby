@@ -2,6 +2,8 @@ package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
 import com.example.domain.AddFavoriteResponse
+import com.example.domain.PetShelterProfileResponse
+import com.example.domain.ShelterProfileResponse
 import com.example.domain.paws.AdaptionAdoptMeResponse
 import com.example.domain.paws.AdaptionCatsResponse
 import com.example.domain.paws.AdaptionDogsResponse
@@ -45,6 +47,16 @@ interface PawsApi {
         @Path("userId") id: String,
         @Query("petId") petId: String
     ): Response<AddFavoriteResponse>
+
+    @GET("/scooby/api/shelters/getShelter/{shelterId}")
+    suspend fun getShelterProfile(
+        @Path("shelterId") shelterId: String
+    ): Response<ShelterProfileResponse>
+
+    @GET("/scooby/api/shelters/getShelter/{shelterId}")
+    suspend fun getPetShelterProfile(
+        @Path("shelterId") shelterId: String
+    ): Response<PetShelterProfileResponse.PetShelterProfileResponseItem>
 
 
 

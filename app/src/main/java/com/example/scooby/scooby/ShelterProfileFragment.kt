@@ -5,12 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.scooby.R
-
-
+import androidx.recyclerview.widget.RecyclerView
+import com.denzcoskun.imageslider.constants.AnimationTypes
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
+import com.example.domain.ShelterProfileResponse
+import com.example.scooby.databinding.FragmentShelterProfileBinding
 
 
 class ShelterProfileFragment : Fragment() {
+    private lateinit var rvReviews: RecyclerView
+    private lateinit var binding : FragmentShelterProfileBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -20,7 +25,39 @@ class ShelterProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shelter_profile, container, false)
+        binding = FragmentShelterProfileBinding.inflate(layoutInflater,container,false)
+        init()
+        return binding.root
     }
-    
+
+    private fun init() {
+    }
+
+    private fun setDataToViews(shelterProfileResponse:ShelterProfileResponse) {
+        binding.apply {
+            imageSlider(shelterProfileResponse)
+            tvShelterName.text = shelterProfileResponse.shelterName
+            rate.rating = shelterProfileResponse.rate!!.toFloat()
+            rateNumber.text = shelterProfileResponse.numberOfRates.toString()
+            tvLocation.text = shelterProfileResponse.locations?.address
+            tvDurationTime.text = shelterProfileResponse.description
+            tvAboutDescription.text = shelterProfileResponse.about
+        }
+    }
+    private fun imageSlider(shelterProfileResponse:ShelterProfileResponse){
+        val imgList = ArrayList<SlideModel>()
+        val size = shelterProfileResponse.shelterImages?.size
+        for (i in 0 until size!!){
+            imgList.add(SlideModel(shelterProfileResponse.shelterImages!![i]))
+        }
+        binding.shelterProfileImage.setImageList(imgList, ScaleTypes.CENTER_CROP)
+        binding.shelterProfileImage.setSlideAnimation(AnimationTypes.ZOOM_OUT)
+        binding.shelterProfileImage.stopSliding()
+    }
+
+    private fun getReviewsData(reviewData: List<ShelterProfileResponse.ReviewsOfShelter>){
+        rvReviews = binding.rvReview
+        rvReviews.adapter = ReviewShelterAdapter(reviewData)
+    }
+
 }
