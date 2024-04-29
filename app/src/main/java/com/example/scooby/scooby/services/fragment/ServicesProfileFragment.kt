@@ -9,6 +9,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
+import com.denzcoskun.imageslider.constants.AnimationTypes
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
 import com.example.domain.ServicesProfileResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentServicesProfileBinding
@@ -50,8 +53,7 @@ class ServicesProfileFragment : Fragment() {
 
     private fun setDataToViews(servicesDetails : ServicesProfileResponse){
         binding.apply {
-            servicesDetails.updatedDoc?.imagesProfile?.get(0)
-                ?.let { servicesProfileImage.loadUrl(it) }
+            imageSlider(servicesDetails)
             tvServiceName.text = servicesDetails.updatedDoc?.name ?: getString(R.string.error_loading)
             servicesPrice.text = servicesDetails.updatedDoc?.price.toString()
             servicesTime.text = servicesDetails.updatedDoc?.pricePer
@@ -80,12 +82,31 @@ class ServicesProfileFragment : Fragment() {
                 tvAnswar3.text = it
             }
         }
+
+
+
+    }
+    private fun imageSlider(servicesDetails : ServicesProfileResponse){
+        val imgList = ArrayList<SlideModel>()
+        val size = servicesDetails.updatedDoc?.imagesProfile?.size
+        for (i in 0 until size!!){
+            imgList.add(SlideModel(servicesDetails.updatedDoc!!.imagesProfile?.get(i)))
+        }
+        binding.servicesProfileImage.setImageList(imgList,ScaleTypes.CENTER_CROP)
+        binding.servicesProfileImage.setSlideAnimation(AnimationTypes.ZOOM_OUT)
+        binding.servicesProfileImage.stopSliding()
     }
 
 
     private fun getReviewsData(reviewData: List<ServicesProfileResponse.Data.ReviewsOfService?>?){
         rvReviews = binding.rvReview
         rvReviews.adapter = ReviewAdapter(reviewData!!)
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.apply {
+            rvReviews.adapter = null
+        }
     }
 
 }

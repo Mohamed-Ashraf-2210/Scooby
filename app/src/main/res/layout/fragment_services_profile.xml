@@ -19,17 +19,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
+            <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/services_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="360dp"
                 android:scaleType="centerCrop"
-                tools:src="@drawable/servicesimg"
+                app:iss_auto_cycle="true"
+                app:iss_delay="0"
+                app:iss_period="2500"
+                app:iss_selected_dot="@drawable/selected_icon"
+                app:iss_unselected_dot="@drawable/not_selected_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
 
             <TextView
                 android:id="@+id/tv_service_name"
