@@ -18,7 +18,7 @@
             android:layout_height="match_parent">
 
             <com.denzcoskun.imageslider.ImageSlider
-                android:id="@+id/services_profile_image"
+                android:id="@+id/shelter_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="360dp"
                 android:scaleType="centerCrop"
@@ -32,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_service_name"
+                android:id="@+id/tv_shelter_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
@@ -41,7 +41,7 @@
                 android:textColor="@color/black_clear"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/services_profile_image"
+                app:layout_constraintTop_toBottomOf="@id/shelter_profile_image"
                 tools:text="Pet Boarding service" />
 
             <RatingBar
@@ -59,7 +59,7 @@
                 android:scaleY=".9"
                 android:stepSize="0.5"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/services_profile_image" />
+                app:layout_constraintTop_toBottomOf="@id/shelter_profile_image" />
 
             <LinearLayout
                 android:id="@+id/rate_number_layout"
@@ -103,7 +103,7 @@
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_service_name">
+                app:layout_constraintTop_toBottomOf="@id/tv_shelter_name">
 
                 <TextView
                     android:id="@+id/tv_location"
@@ -222,7 +222,7 @@
                         android:layout_marginStart="9dp"
                         android:layout_marginTop="19dp"
                         android:fontFamily="@font/roboto_bold"
-                        android:text="About"
+                        android:text="@string/about"
                         android:textColor="@color/black_clear"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -248,7 +248,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/tv_accepted_pet_types"
+                android:id="@+id/can_not_adopt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
@@ -267,10 +267,9 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="16dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_accepted_pet_types"
+                app:layout_constraintTop_toBottomOf="@id/can_not_adopt"
                 >
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/pet_types_card"
                     android:layout_width="154dp"
                     android:layout_height="34dp"
                     android:backgroundTint="#FFFFFF"
@@ -322,7 +321,6 @@
                         android:src="@drawable/ic_volte" />
 
                     <TextView
-                        android:id="@+id/tv_cats"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
