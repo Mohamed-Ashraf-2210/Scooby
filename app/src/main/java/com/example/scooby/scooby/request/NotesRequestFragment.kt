@@ -68,6 +68,7 @@ class NotesRequestFragment : Fragment() {
                     args.listOfData[1],
                     args.listOfData[2],
                     args.listOfData[3],
+                    args.listOfData[4],
                     notesEt.text.toString(),
                     pickUp
                 )
