@@ -10,7 +10,6 @@ import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
-import com.example.domain.product.ProductResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.PATCH
@@ -53,10 +52,10 @@ interface PawsApi {
         @Path("shelterId") shelterId: String
     ): Response<ShelterProfileResponse>
 
-    @GET("/scooby/api/shelters/getShelter/{shelterId}")
+    @GET("/scooby/api/shelters/petsInShelter/{shelterId}")
     suspend fun getPetShelterProfile(
         @Path("shelterId") shelterId: String
-    ): Response<PetShelterProfileResponse.PetShelterProfileResponseItem>
+    ): Response<List<PetShelterProfileResponse.PetShelterProfileResponseItem>>
 
 
 

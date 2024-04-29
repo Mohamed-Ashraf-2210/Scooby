@@ -2,9 +2,11 @@ package com.example.scooby.scooby.paws.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.paws.rescue.ShelterResponse
 import com.example.scooby.databinding.ItemShelterBinding
+import com.example.scooby.scooby.paws.fragment.PawsFragmentDirections
 import com.example.scooby.utils.loadUrl
 
 class ShelterAdapter(private val shelterData: ShelterResponse):RecyclerView.Adapter<ShelterAdapter.ShelterViewHolder>() {
@@ -17,8 +19,24 @@ class ShelterAdapter(private val shelterData: ShelterResponse):RecyclerView.Adap
             itemShelterBinding.numLikeShelter.text = itemShelter.numberOfRates.toString()
             itemShelterBinding.shelterTiming.text = itemShelter.description
             itemShelterBinding.shelterAddress.text = itemShelter.locations?.address.toString()
+            navigate2ShelterProfile(itemShelter)
+        }
+
+        private fun navigate2ShelterProfile(shelterData: ShelterResponse.AllShelter){
+            itemShelterBinding.shelterImage.setOnClickListener {
+                val action = shelterData.id?.let { shelterInfo ->
+                    PawsFragmentDirections.actionPawsFragmentToShelterProfileFragment(
+                        shelterInfo
+                    )
+                }
+                if (action != null) {
+                    it.findNavController().navigate(action)
+                }
+
+            }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShelterViewHolder {
         return ShelterViewHolder(ItemShelterBinding.inflate(LayoutInflater.from(parent.context),parent,false))

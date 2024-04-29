@@ -315,7 +315,21 @@
             android:id="@+id/pawsFragment"
             android:name="com.example.scooby.scooby.paws.fragment.PawsFragment"
             android:label="fragment_paws"
-            tools:layout="@layout/fragment_paws" />
+            tools:layout="@layout/fragment_paws" >
+            <action
+                android:id="@+id/action_pawsFragment_to_shelterProfileFragment"
+                app:destination="@id/shelterProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/shelterProfileFragment"
+            android:name="com.example.scooby.scooby.ShelterProfileFragment"
+            android:label="ShelterProfileFragment"
+            tools:layout="@layout/fragment_shelter_profile"
+            >
+            <argument
+                android:name="shelterId"
+                app:argType="string" />
+        </fragment>
 
     </navigation>
 
@@ -338,6 +352,7 @@
             android:label="fragment_community"
             tools:layout="@layout/fragment_community" />
     </navigation>
+
 
 
 </navigation>

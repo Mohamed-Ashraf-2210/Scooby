@@ -87,7 +87,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
                 app:iss_auto_cycle="true"
-                app:iss_corner_radius="70"
+                app:iss_corner_radius="54"
                 app:iss_delay="0"
                 app:iss_period="2500"
                 app:iss_selected_dot="@drawable/selected_icon"

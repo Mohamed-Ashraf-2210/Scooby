@@ -8,7 +8,7 @@ import com.example.scooby.databinding.ItemReviewBinding
 import com.example.scooby.utils.loadUrl
 
 class ReviewShelterAdapter(
-    private val reviews: List<ShelterProfileResponse.ReviewsOfShelter>
+    private val reviews: List<ShelterProfileResponse.ReviewsOfShelter?>
 ) : RecyclerView.Adapter<ReviewShelterAdapter.ReviewShelterViewHolder>() {
 
     inner class ReviewShelterViewHolder(private val itemReviewBinding: ItemReviewBinding) :
@@ -31,6 +31,6 @@ class ReviewShelterAdapter(
     override fun getItemCount(): Int = reviews.size
 
     override fun onBindViewHolder(holder: ReviewShelterViewHolder, position: Int) {
-        holder.bind(reviews[position])
+        reviews[position]?.let { holder.bind(it) }
     }
 }

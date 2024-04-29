@@ -1,10 +1,13 @@
 package com.example.scooby.scooby
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -12,12 +15,15 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
 import com.example.scooby.databinding.FragmentShelterProfileBinding
+import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 
 
 class ShelterProfileFragment : Fragment() {
     private lateinit var rvReviews: RecyclerView
     private lateinit var rvPets: RecyclerView
     private lateinit var binding : FragmentShelterProfileBinding
+    private val pawsViewModel by viewModels<PawsViewModel>()
+    private val args: ShelterProfileFragmentArgs by navArgs()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -37,7 +43,16 @@ class ShelterProfileFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-
+        pawsViewModel.getShelterProfile(args.shelterId)
+        pawsViewModel.shelterProfileResult.observe(viewLifecycleOwner) {
+            setDataToViews(it)
+            getReviewsData(it.reviewsOfShelter)
+        }
+        pawsViewModel.getPetShelterProfile(args.shelterId)
+        pawsViewModel.petShelterProfileResult.observe(viewLifecycleOwner) {
+            getPetData(it)
+            Log.d("RESPONSE_PET_SHELTER", it.toString())
+        }
     }
 
     private fun setDataToViews(shelterProfileResponse:ShelterProfileResponse) {
@@ -62,11 +77,12 @@ class ShelterProfileFragment : Fragment() {
         binding.shelterProfileImage.stopSliding()
     }
 
-    private fun getReviewsData(reviewData: List<ShelterProfileResponse.ReviewsOfShelter>){
+    private fun getReviewsData(reviewData: List<ShelterProfileResponse.ReviewsOfShelter?>?) {
         rvReviews = binding.rvReview
-        rvReviews.adapter = ReviewShelterAdapter(reviewData)
+        rvReviews.adapter = reviewData?.let { ReviewShelterAdapter(it) }
     }
-    fun getPetData(petsData : List<PetShelterProfileResponse.PetShelterProfileResponseItem>){
+
+    private fun getPetData(petsData: List<PetShelterProfileResponse.PetShelterProfileResponseItem>) {
         rvPets = binding.rvPets
         rvPets.adapter = PetInShelterProfileAdapter(petsData)
     }

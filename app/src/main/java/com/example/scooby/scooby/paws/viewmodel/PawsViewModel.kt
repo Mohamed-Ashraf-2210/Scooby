@@ -58,8 +58,8 @@ class PawsViewModel : ViewModel() {
         get() = _shelterProfileResult
 
 
-    private val _petShelterProfileResult: MutableLiveData<PetShelterProfileResponse.PetShelterProfileResponseItem> = MutableLiveData()
-    val petShelterProfileResult: LiveData<PetShelterProfileResponse.PetShelterProfileResponseItem>
+    private val _petShelterProfileResult: MutableLiveData<List<PetShelterProfileResponse.PetShelterProfileResponseItem>> = MutableLiveData()
+    val petShelterProfileResult: LiveData<List<PetShelterProfileResponse.PetShelterProfileResponseItem>>
         get() = _petShelterProfileResult
 
 

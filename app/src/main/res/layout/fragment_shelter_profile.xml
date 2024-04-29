@@ -24,6 +24,7 @@
                 android:scaleType="centerCrop"
                 app:iss_auto_cycle="true"
                 app:iss_delay="0"
+                app:iss_corner_radius="8"
                 app:iss_period="2500"
                 app:iss_selected_dot="@drawable/selected_icon"
                 app:iss_unselected_dot="@drawable/not_selected_icon"
@@ -355,6 +356,8 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="24dp"
                 android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_pet"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/tv_lonely"
                 app:layout_constraintTop_toBottomOf="@id/tv_lonely" />

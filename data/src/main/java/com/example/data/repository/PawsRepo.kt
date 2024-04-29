@@ -47,7 +47,7 @@ class PawsRepo {
         return PawsApi.getApi()?.getShelterProfile(shelterId)
     }
 
-    suspend fun getPetShelterProfile(shelterId:String): Response<PetShelterProfileResponse.PetShelterProfileResponseItem>? {
+    suspend fun getPetShelterProfile(shelterId:String): Response<List<PetShelterProfileResponse.PetShelterProfileResponseItem>>? {
         return PawsApi.getApi()?.getPetShelterProfile(shelterId)
     }
 
