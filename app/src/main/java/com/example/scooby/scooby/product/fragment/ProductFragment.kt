@@ -8,11 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.Constant
-import com.example.data.repository.ProductRepo
 import com.example.domain.product.ProductResponse
 import com.example.scooby.R
 import com.example.scooby.TokenManager
@@ -22,6 +20,7 @@ import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 
 class ProductFragment : Fragment() {
     private lateinit var allProduct: ProductResponse
+    private lateinit var favoriteProducts: ProductResponse
     private val productViewModel by viewModels<ProductViewModel>()
     private lateinit var productAdapter : ProductAdapter
     private lateinit var userId: String
@@ -44,7 +43,7 @@ class ProductFragment : Fragment() {
     private fun filterProduct(productType: String) {
         productViewModel.apply {
             val filterProductByType = allProduct.data.filter { it.category == productType }
-            getProductData(ProductResponse(filterProductByType))
+            getProductData(ProductResponse(filterProductByType), favoriteProducts)
 
         }
 
@@ -90,21 +89,23 @@ class ProductFragment : Fragment() {
     private fun observeOfferViewModel() {
         productViewModel.apply {
             getProduct()
-            productResult.observe(viewLifecycleOwner) {
-                stopLoading()
-                getProductData(it)
-                allProduct = it!!
-                Log.d("my_Tagg", it.data.toString())
+            productResult.observe(viewLifecycleOwner) { products ->
+                getFavoriteProduct(userId)
+                favoriteProductResult.observe(viewLifecycleOwner) { _favoriteProducts ->
+                    favoriteProducts = _favoriteProducts
+                    stopLoading()
+                    getProductData(products, favoriteProducts)
+                    allProduct = products!!
+                    Log.d("my_Tagg", products.data.toString())
+                }
             }
-
         }
-
     }
 
 
-    private fun getProductData(data: ProductResponse?) {
+    private fun getProductData(data: ProductResponse?, favoriteProducts: ProductResponse) {
         productRv = binding.productRv
-        productRv.adapter = ProductAdapter(productViewModel, userId, data!!)
+        productRv.adapter = ProductAdapter(productViewModel, userId, data!!, favoriteProducts)
     }
     private fun setData(productListDiff:List<ProductResponse.Data>){
         productAdapter.setData(productListDiff)

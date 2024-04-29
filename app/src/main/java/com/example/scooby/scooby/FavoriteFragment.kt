@@ -30,21 +30,17 @@ class FavoriteFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentFavoriteBinding.inflate(layoutInflater,container,false)
         currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
-//        setupFavoriteViews()
         init()
-        observeFavoriteProduct()
-//        val repo = ProductRepo()
-//        val viewModelFactory = ProductViewModelFactory(repo)
-//        productViewModel = ViewModelProvider(this, viewModelFactory)[ProductViewModel::class.java]
         return binding.root
     }
 
     private fun observeFavoriteProduct() {
         productViewModel.getFavoriteProduct(currentUserId)
-        productViewModel.favoriteProductResult.observe(viewLifecycleOwner) { Log.d("productResult", it.data.toString())
+        productViewModel.favoriteProductResult.observe(viewLifecycleOwner) {
+            Log.d("productResult", it.data.toString())
             val adapter = FavoriteProductAdapter(it, productViewModel, currentUserId)
             binding.rvFavProduct.adapter = adapter
-            binding.numOfItem.text = adapter.itemCount.toString()
+            binding.numOfItem.text = it.data.size.toString()
 
         }
     }
@@ -59,10 +55,8 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-
-
     private fun init() {
-
+        observeFavoriteProduct()
         binding.btnFavProduct.setOnClickListener {
             binding.rvFavPets.visibility = View.GONE
             binding.rvFavProduct.visibility = View.VISIBLE
@@ -75,8 +69,5 @@ class FavoriteFragment : Fragment() {
             binding.tvItems.text = "Babies"
             observeFavoritePets()
         }
-
-
     }
-
 }
