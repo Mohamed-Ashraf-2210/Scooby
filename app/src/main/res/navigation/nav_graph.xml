@@ -322,7 +322,7 @@
         </fragment>
         <fragment
             android:id="@+id/shelterProfileFragment"
-            android:name="com.example.scooby.scooby.ShelterProfileFragment"
+            android:name="com.example.scooby.scooby.paws.fragment.ShelterProfileFragment"
             android:label="ShelterProfileFragment"
             tools:layout="@layout/fragment_shelter_profile"
             >

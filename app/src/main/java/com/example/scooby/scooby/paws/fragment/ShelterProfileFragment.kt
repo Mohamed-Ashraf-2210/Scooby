@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.paws.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +15,8 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
 import com.example.scooby.databinding.FragmentShelterProfileBinding
+import com.example.scooby.scooby.paws.adapter.PetInShelterProfileAdapter
+import com.example.scooby.scooby.paws.adapter.ReviewShelterAdapter
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 
 
