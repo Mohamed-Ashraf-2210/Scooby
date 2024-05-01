@@ -28,6 +28,7 @@ class CommunityFragment : Fragment() {
     ): View? {
         binding = FragmentCommunityBinding.inflate(inflater, container, false)
         userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        observePublicPosts()
 
         binding?.apply {
             switchOnOff.setOnCheckedChangeListener { _, checked ->
@@ -66,7 +67,8 @@ class CommunityFragment : Fragment() {
             getPublicPosts()
             publicPostsResult.observe(viewLifecycleOwner) {
                 if (it != null) {
-                    binding?.postRv?.adapter = PublicPostsAdapter(it, requireContext())
+                    binding?.postRv?.adapter =
+                        PublicPostsAdapter(this, it, requireContext(), userId)
                 }
             }
         }
@@ -77,7 +79,8 @@ class CommunityFragment : Fragment() {
             getMyMomentPosts(userId)
             myMomentPostsResult.observe(viewLifecycleOwner) {
                 if (it != null) {
-                    binding?.myMomentPostRv?.adapter = MyMomentPostsAdapter(it, requireContext())
+                    binding?.myMomentPostRv?.adapter =
+                        MyMomentPostsAdapter(this, it, requireContext(), userId)
                 }
             }
         }
