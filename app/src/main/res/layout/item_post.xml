@@ -91,6 +91,7 @@
             app:sparkbutton_activeImage="@drawable/favorite_fill_red"
             app:sparkbutton_animationSpeed="1.5"
             app:sparkbutton_iconSize="20dp"
+
             app:sparkbutton_inActiveImage="@drawable/heart_icon"
             app:sparkbutton_primaryColor="@color/primary"
             app:sparkbutton_secondaryColor="@color/red"

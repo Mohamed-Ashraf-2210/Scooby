@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
 import com.example.data.repository.CommunityRepo
+import com.example.domain.community.LikePostResponse
 import com.example.domain.community.MyMomentsPosts
 import com.example.domain.community.PublicPosts
 import kotlinx.coroutines.launch
@@ -21,6 +22,10 @@ class CommunityViewModel : ViewModel() {
     private val _myMomentPostsResult: MutableLiveData<MyMomentsPosts?> = MutableLiveData()
     val myMomentPostsResult: LiveData<MyMomentsPosts?>
         get() = _myMomentPostsResult
+
+    private val _likePostsResult: MutableLiveData<LikePostResponse?> = MutableLiveData()
+    val likePostsResult: LiveData<LikePostResponse?>
+        get() = _likePostsResult
 
     fun getPublicPosts() {
         viewModelScope.launch {
@@ -44,6 +49,20 @@ class CommunityViewModel : ViewModel() {
                 communityRepo.getMyMoments(userId)?.apply {
                     if (isSuccessful) {
                         _myMomentPostsResult.value = body()
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+            }
+        }
+    }
+
+    fun likePost(userId: String, postId: String) {
+        viewModelScope.launch {
+            try {
+                communityRepo.likePost(userId, postId)?.apply {
+                    if (isSuccessful) {
+                        _likePostsResult.value = body()
                     }
                 }
             } catch (e: Exception) {
