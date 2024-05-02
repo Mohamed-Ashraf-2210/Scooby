@@ -47,13 +47,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="74dp"
-        android:text="@string/you_request_has_been_confirmed_let_s_confirm_your_phone_number_as_well"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="16sp"
         android:fontFamily="@font/roboto_medium"
         android:lineHeight="24dp"
+        android:text="@string/you_request_has_been_confirmed_let_s_confirm_your_phone_number_as_well"
         android:textColor="@color/primary"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UnusedAttribute" />
 
     <TextView
@@ -61,14 +61,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="138dp"
-        android:text="@string/don_t_worry_we_won_t_share_your_number_just_a_text_code_to_verify_your_phone_and_we_ll_only_reach_out_if_you_miss_an_email_or_app_message"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="12sp"
         android:fontFamily="@font/roboto"
         android:lineHeight="16dp"
+        android:text="@string/don_t_worry_we_won_t_share_your_number_just_a_text_code_to_verify_your_phone_and_we_ll_only_reach_out_if_you_miss_an_email_or_app_message"
         android:textColor="@color/black_60"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="UnusedAttribute" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/next_btn"

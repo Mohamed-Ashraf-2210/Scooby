@@ -17,6 +17,7 @@ import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentSummaryRequestBinding
 import com.example.scooby.scooby.MainActivity
+import com.example.scooby.scooby.adapter.PetsSummaryRequestAdapter
 import com.example.scooby.scooby.viewmodel.MyPetsViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -41,6 +42,7 @@ class SummaryRequestFragment : Fragment() {
         optionEt
         latitude
         longitude
+        location
         Notes
         pickUp
      */
@@ -51,15 +53,16 @@ class SummaryRequestFragment : Fragment() {
     ): View? {
         binding = FragmentSummaryRequestBinding.inflate(inflater, container, false)
         getUserId()
-        pickUp = args.listOfData[6]
+        pickUp = args.listOfData[7]
         binding?.apply {
             selectDate.text = args.listOfData[0]
             selectTime.text = args.listOfData[1]
             optionServiceTv.text = args.listOfData[2]
-            yourLocationTv.text = args.listOfData[3]
-            yourNotesEt.setText(args.listOfData[5])
+            yourLocationTv.text = args.listOfData[5]
+            yourNotesEt.setText(args.listOfData[6])
             yesChecked.visibility = if (pickUp == "yes") View.VISIBLE else View.GONE
             noChecked.visibility = if (pickUp == "no") View.VISIBLE else View.GONE
+            nextBtn.text = "Next (\$${args.requestName[1]} /night)"
         }
         initView()
         observeMyPets()
@@ -93,11 +96,12 @@ class SummaryRequestFragment : Fragment() {
                 optionServiceTv.text.toString(),
                 args.listOfData[3],
                 args.listOfData[4],
+                args.listOfData[5],
                 yourNotesEt.text.toString(),
                 pickUp
             )
             val action =
-                SummaryRequestFragmentDirections.actionSummaryRequestFragmentToPaymentMethodsFragment(
+                SummaryRequestFragmentDirections.actionSummaryRequestFragmentToConfirmNumberFragment(
                     args.idPets,
                     args.requestName,
                     listOfData

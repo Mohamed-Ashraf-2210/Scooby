@@ -69,26 +69,26 @@ class PaymentMethodsFragment : Fragment() {
                     }
                 }
             }
-            nextBtn.setOnClickListener {
-                val listOfData = arrayOf(
-                    args.listOfData[0],
-                    args.listOfData[1],
-                    args.listOfData[2],
-                    args.listOfData[3],
-                    args.listOfData[4],
-                    args.listOfData[5],
-                    args.listOfData[6],
-                    paymentMethod
-                )
-
-                findNavController().navigate(
-                    PaymentMethodsFragmentDirections.actionPaymentMethodsFragmentToConfirmServiceFragment(
-                        args.idPets,
-                        args.requestName,
-                        listOfData
-                    )
-                )
-            }
+//            nextBtn.setOnClickListener {
+//                val listOfData = arrayOf(
+//                    args.listOfData[0],
+//                    args.listOfData[1],
+//                    args.listOfData[2],
+//                    args.listOfData[3],
+//                    args.listOfData[4],
+//                    args.listOfData[5],
+//                    args.listOfData[6],
+//                    paymentMethod
+//                )
+//
+//                findNavController().navigate(
+//                    PaymentMethodsFragmentDirections.actionPaymentMethodsFragmentToConfirmServiceFragment(
+//                        args.idPets,
+//                        args.requestName,
+//                        listOfData
+//                    )
+//                )
+//            }
         }
     }
 

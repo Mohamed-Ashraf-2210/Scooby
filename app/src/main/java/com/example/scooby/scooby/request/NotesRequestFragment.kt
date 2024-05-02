@@ -38,6 +38,7 @@ class NotesRequestFragment : Fragment() {
             noCard.setOnClickListener {
                 onClickNoCard()
             }
+            nextBtn.text = "Next (\$${args.requestName[1]} /night)"
         }
     }
 
@@ -69,6 +70,7 @@ class NotesRequestFragment : Fragment() {
                     args.listOfData[2],
                     args.listOfData[3],
                     args.listOfData[4],
+                    args.listOfData[5],
                     notesEt.text.toString(),
                     pickUp
                 )

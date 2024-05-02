@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.request
+package com.example.scooby.scooby.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

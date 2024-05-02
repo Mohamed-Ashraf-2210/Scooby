@@ -42,7 +42,7 @@
             android:id="@+id/servicesFragment"
             android:name="com.example.scooby.scooby.services.fragment.ServiceFragment"
             android:label="fragment_services"
-            tools:layout="@layout/fragment_service" >
+            tools:layout="@layout/fragment_service">
             <action
                 android:id="@+id/action_servicesFragment_to_servicesProfileFragment"
                 app:destination="@id/servicesProfileFragment" />
@@ -51,8 +51,7 @@
             android:id="@+id/servicesProfileFragment"
             android:name="com.example.scooby.scooby.services.fragment.ServicesProfileFragment"
             android:label="ServicesProfileFragment"
-            tools:layout="@layout/fragment_services_profile"
-            >
+            tools:layout="@layout/fragment_services_profile">
             <argument
                 android:name="ServiceId"
                 app:argType="string" />
@@ -78,7 +77,7 @@
             android:id="@+id/productFragment"
             android:name="com.example.scooby.scooby.product.fragment.ProductFragment"
             android:label="fragment_product"
-            tools:layout="@layout/fragment_product" >
+            tools:layout="@layout/fragment_product">
             <action
                 android:id="@+id/action_productFragment_to_favoriteFragment"
                 app:destination="@id/favoriteFragment" />
@@ -262,8 +261,8 @@
                 android:name="listOfData"
                 app:argType="string[]" />
             <action
-                android:id="@+id/action_summaryRequestFragment_to_paymentMethodsFragment"
-                app:destination="@id/paymentMethodsFragment" />
+                android:id="@+id/action_summaryRequestFragment_to_confirmNumberFragment"
+                app:destination="@id/confirmNumberFragment" />
         </fragment>
         <fragment
             android:id="@+id/paymentMethodsFragment"
@@ -280,9 +279,6 @@
             <argument
                 android:name="listOfData"
                 app:argType="string[]" />
-            <action
-                android:id="@+id/action_paymentMethodsFragment_to_confirmServiceFragment"
-                app:destination="@id/confirmServiceFragment" />
 
         </fragment>
         <fragment
@@ -299,12 +295,33 @@
             <argument
                 android:name="listOfData"
                 app:argType="string[]" />
+            <action
+                android:id="@+id/action_confirmServiceFragment_to_paymentMethodsFragment"
+                app:destination="@id/paymentMethodsFragment" />
         </fragment>
         <fragment
             android:id="@+id/favoriteFragment"
             android:name="com.example.scooby.scooby.FavoriteFragment"
             android:label="fragment_favorite"
             tools:layout="@layout/fragment_favorite" />
+        <fragment
+            android:id="@+id/confirmNumberFragment"
+            android:name="com.example.scooby.scooby.request.ConfirmNumberFragment"
+            android:label="fragment_confirm_number"
+            tools:layout="@layout/fragment_confirm_number">
+            <argument
+                android:name="id_pets"
+                app:argType="string[]" />
+            <argument
+                android:name="request_name"
+                app:argType="string[]" />
+            <argument
+                android:name="listOfData"
+                app:argType="string[]" />
+            <action
+                android:id="@+id/action_confirmNumberFragment_to_confirmServiceFragment"
+                app:destination="@id/confirmServiceFragment" />
+        </fragment>
     </navigation>
 
     <navigation
@@ -315,7 +332,7 @@
             android:id="@+id/pawsFragment"
             android:name="com.example.scooby.scooby.paws.fragment.PawsFragment"
             android:label="fragment_paws"
-            tools:layout="@layout/fragment_paws" >
+            tools:layout="@layout/fragment_paws">
             <action
                 android:id="@+id/action_pawsFragment_to_shelterProfileFragment"
                 app:destination="@id/shelterProfileFragment" />
@@ -324,8 +341,7 @@
             android:id="@+id/shelterProfileFragment"
             android:name="com.example.scooby.scooby.paws.fragment.ShelterProfileFragment"
             android:label="ShelterProfileFragment"
-            tools:layout="@layout/fragment_shelter_profile"
-            >
+            tools:layout="@layout/fragment_shelter_profile">
             <argument
                 android:name="shelterId"
                 app:argType="string" />
@@ -352,7 +368,6 @@
             android:label="fragment_community"
             tools:layout="@layout/fragment_community" />
     </navigation>
-
 
 
 </navigation>

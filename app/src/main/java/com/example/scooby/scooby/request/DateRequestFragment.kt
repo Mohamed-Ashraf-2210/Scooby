@@ -7,6 +7,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -31,6 +32,7 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -41,8 +43,9 @@ class DateRequestFragment : Fragment() {
     private var binding: FragmentDateRequestBinding? = null
     private val args: DateRequestFragmentArgs by navArgs()
     private val calendar = Calendar.getInstance()
-    private var latitude: String = ""
-    private var longitude: String = ""
+    private var latitude: Double = 0.0
+    private var longitude: Double = 0.0
+    private var userLocation: String = ""
     private var flag = false
 
     override fun onCreateView(
@@ -72,6 +75,7 @@ class DateRequestFragment : Fragment() {
                 checkLocationPermission()
             }
             nextBtn.setOnClickListener { onClickNext() }
+            nextBtn.text = "Next (\$${args.requestName[1]} /night)"
         }
     }
 
@@ -196,9 +200,10 @@ class DateRequestFragment : Fragment() {
             fusedLocationClient.lastLocation.addOnCompleteListener { task ->
                 val location: Location? = task.result
                 if (location != null) {
-                    latitude = location.latitude.toString()
-                    longitude = location.longitude.toString()
-                    binding?.locationTv?.text = "Done"
+                    latitude = location.latitude
+                    longitude = location.longitude
+                    userLocation = getCountryName()
+                    binding?.locationTv?.text = userLocation
                 } else {
                     val locationRequest = LocationRequest()
                         .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -209,9 +214,14 @@ class DateRequestFragment : Fragment() {
                     val locationCallback = object : LocationCallback() {
                         override fun onLocationResult(locationResult: LocationResult) {
                             val location1 = locationResult.lastLocation
-                            latitude = location1?.latitude.toString()
-                            longitude = location1?.longitude.toString()
-                            binding?.locationTv?.text = "Done"
+                            if (location1 != null) {
+                                latitude = location1.latitude
+                            }
+                            if (location1 != null) {
+                                longitude = location1.longitude
+                            }
+                            userLocation = getCountryName()
+                            binding?.locationTv?.text = userLocation
                         }
                     }
                     fusedLocationClient.requestLocationUpdates(
@@ -235,8 +245,9 @@ class DateRequestFragment : Fragment() {
                     selectDateTv.text.toString(),
                     selectTimeTv.text.toString(),
                     optionEt.text.toString(),
-                    latitude,
-                    longitude
+                    latitude.toString(),
+                    longitude.toString(),
+                    userLocation
                 )
                 Log.e(Constant.MY_TAG, listOfData.joinToString())
                 val action =
@@ -256,6 +267,23 @@ class DateRequestFragment : Fragment() {
         }
     }
 
+    private fun getCountryName(): String {
+        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+        var countryName = ""
+
+        try {
+            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
+            if (addresses != null) {
+                if (addresses.isNotEmpty()) {
+                    countryName = addresses[0].countryName
+                }
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return countryName
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -271,6 +299,4 @@ class DateRequestFragment : Fragment() {
         super.onDestroyView()
         binding = null
     }
-
-
 }
