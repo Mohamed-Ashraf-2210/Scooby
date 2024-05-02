@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#FEFBFB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".scooby.services.fragment.DoctorProfileFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/doctor_profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                android:scaleType="centerCrop"
+                app:iss_auto_cycle="true"
+                app:iss_delay="0"
+                app:iss_period="2500"
+                app:iss_selected_dot="@drawable/selected_icon"
+                app:iss_unselected_dot="@drawable/not_selected_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_doctor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="#0F0F0F"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/doctor_profile_image"
+                tools:text="Pet Boarding service" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/call_doctor_btn"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="62dp"
+                android:layout_height="35dp"
+                android:fontFamily="@font/roboto_medium"
+                android:padding="0dp"
+                android:paddingStart="4dp"
+                android:text="@string/call"
+                android:textAlignment="center"
+                android:textColor="@color/black_font"
+                android:textSize="10sp"
+                app:cornerRadius="54dp"
+                app:icon="@drawable/call_icon"
+                app:iconGravity="textStart"
+                app:iconSize="8dp"
+                app:iconTint="@color/blue_icon"
+                app:strokeColor="@color/black_30"
+                app:strokeWidth="0.5dp"
+                tools:ignore="SmallSp"
+                android:layout_marginTop="45dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/doctor_profile_image"
+                />
+
+
+
+            <LinearLayout
+                android:id="@+id/duration_location_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_doctor_name">
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black"
+                    android:textSize="8sp"
+                    tools:text="Second New Cairo" />
+
+                <TextView
+                    android:id="@+id/tv_duration_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="#605C5C"
+                    android:textSize="8sp"
+                    tools:text="Opens 24 hours." />
+            </LinearLayout>
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/doctor_profile_card"
+                android:layout_width="match_parent"
+                android:layout_height="225dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="32dp"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintTop_toBottomOf="@id/duration_location_layout"
+                app:strokeWidth="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tv_about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="19dp"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="About"
+                        android:textColor="@color/black_clear"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_about_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="9dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/roboto"
+                        android:lineHeight="18sp"
+                        android:paddingEnd="24sp"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_about"
+                        tools:text="@string/des_services" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tv_speaialized"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/specialized_ins"
+                android:textColor="@color/black_clear"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/doctor_profile_card" />
+            <LinearLayout
+                android:id="@+id/layout_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_accepted_pet_types"
+                app:layout_constraintTop_toBottomOf="@id/tv_speaialized">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="99dp"
+                        android:layout_height="34dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FFFFFF"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="1dp"
+                        app:layout_constraintStart_toEndOf="@id/layout_cards"
+                        app:layout_constraintTop_toBottomOf="@id/tv_accepted_pet_types"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:id="@+id/Specialized_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="10dp"
+                            tools:text="Animal welfare"
+                            android:textColor="@color/black_clear"
+                            android:textSize="12sp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="99dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FFFFFF"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="1dp"
+                        app:layout_constraintStart_toEndOf="@id/layout_cards"
+                        app:layout_constraintTop_toBottomOf="@id/tv_accepted_pet_types"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:id="@+id/Specialized_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="10dp"
+                            tools:text="Animal welfare"
+                            android:textColor="@color/black_clear"
+                            android:textSize="12sp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="99dp"
+                        android:layout_height="34dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FFFFFF"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="1dp"
+                        app:layout_constraintStart_toEndOf="@id/layout_cards"
+                        app:layout_constraintTop_toBottomOf="@id/tv_accepted_pet_types"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:id="@+id/Specialized_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="10dp"
+                            tools:text="Animal welfare"
+                            android:textColor="@color/black_clear"
+                            android:textSize="12sp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="99dp"
+                        android:layout_height="34dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#FFFFFF"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="1dp"
+                        app:layout_constraintStart_toEndOf="@id/layout_cards"
+                        app:layout_constraintTop_toBottomOf="@id/tv_accepted_pet_types"
+                        app:strokeWidth="0dp">
+
+                        <TextView
+                            android:id="@+id/Specialized_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_medium"
+                            android:layout_marginStart="10dp"
+                            tools:text="Animal welfare"
+                            android:textColor="@color/black_clear"
+                            android:textSize="12sp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                </LinearLayout>
+            </LinearLayout>
+            
+            <TextView
+                android:id="@+id/tv_accepted_pet_types"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="17dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Accepted pet sizes"
+                android:textColor="@color/black_clear"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_cards" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/pet_types_card"
+                android:layout_width="90dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="1dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_accepted_pet_types"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="18dp"
+                    android:src="@drawable/ic_dog_seat" />
+
+                <TextView
+                    android:id="@+id/tv_dogs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="18dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Dogs"
+                    android:textColor="@color/black_clear"
+                    android:textSize="12sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cat_card"
+                android:layout_width="90dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="1dp"
+                app:layout_constraintStart_toEndOf="@id/pet_types_card"
+                app:layout_constraintTop_toBottomOf="@id/tv_accepted_pet_types"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="23dp"
+                    android:src="@drawable/ic_cat_seat" />
+
+                <TextView
+                    android:id="@+id/tv_cats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="18dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Cats"
+                    android:textColor="@color/black_clear"
+                    android:textSize="12sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/line_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cat_card" />
+
+            <TextView
+                android:id="@+id/tv_Review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/reviews"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvReview"
+                android:layout_width="match_parent"
+                android:layout_height="284dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_Review"
+                tools:listitem="@layout/item_review" />
+
+            <View
+                android:id="@+id/line2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/line_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvReview" />
+
+
+            <TextView
+                android:id="@+id/tvPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/payment_methods"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line2" />
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/payment_card1"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="50dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPayment"
+                app:strokeWidth="0.5dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/visa_icon" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/payment_card2"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintStart_toEndOf="@id/payment_card1"
+                app:layout_constraintTop_toBottomOf="@id/tvPayment"
+                app:strokeWidth="0.5dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_meza" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/payment_card3"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintStart_toEndOf="@id/payment_card2"
+                app:layout_constraintTop_toBottomOf="@id/tvPayment"
+                app:strokeWidth="0.5dp">
+
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/mastercard_icon" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/payment_card4"
+                android:layout_width="45dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="#FFFFFF"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintStart_toEndOf="@id/payment_card3"
+                app:layout_constraintTop_toBottomOf="@id/tvPayment"
+                app:strokeWidth="0.5dp">
+
+                <ImageView
+                    android:layout_width="250dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_vodafone_cash" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="-15dp"
+                tools:layout_editor_absoluteY="1232dp">
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/small_circle_black_50" />
+
+            <ImageView
+                android:id="@+id/cart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_back" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/small_circle_black_50" />
+
+            <com.varunest.sparkbutton.SparkButton
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:sparkbutton_activeImage="@drawable/favorite_fill_services_profile"
+                app:sparkbutton_animationSpeed="1.5"
+                app:sparkbutton_iconSize="20dp"
+                app:sparkbutton_inActiveImage="@drawable/favorite_not_fill_ser_profile"
+                app:sparkbutton_primaryColor="@color/primary"
+                app:sparkbutton_secondaryColor="@color/yellow" />
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
