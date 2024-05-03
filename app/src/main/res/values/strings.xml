@@ -247,5 +247,7 @@ again."</string>
     <string name="lonely_hearts_looking_for_love">Lonely hearts looking for love</string>
     <string name="about">About</string>
     <string name="specialized_ins">Specialized in</string>
+    <string name="accepted_pet_sizes">Accepted pet sizes</string>
+    <string name="accepted_pet_types">Accepted pet types</string>
 
 </resources>

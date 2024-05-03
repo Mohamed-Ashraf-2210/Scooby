@@ -16,7 +16,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            >
 
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/services_profile_image"
@@ -148,7 +149,7 @@
                 android:layout_height="225dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="32dp"
-                android:background="#FFFFFF"
+                android:backgroundTint="#FFFFFF"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintTop_toBottomOf="@id/rate_number_layout"
                 app:strokeWidth="0dp">
@@ -195,10 +196,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="32dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Accepted pet types"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/accepted_pet_types"
                 android:textColor="@color/black_clear"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/services_profile_card" />
 
@@ -273,10 +274,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:layout_marginTop="32dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Accepted pet sizes"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/accepted_pet_sizes"
                 android:textColor="@color/black_clear"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/pet_types_card" />
 
@@ -368,7 +369,7 @@
                 </LinearLayout>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:layout_width="115dp"
+                    android:layout_width="109dp"
                     android:layout_height="34dp"
                     android:layout_marginTop="16dp"
                     android:backgroundTint="#FFFFFF"
@@ -415,7 +416,7 @@
                     android:layout_marginBottom="14dp"
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/black_70"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     tools:text="Wherever they want" />
 
                 <TextView
@@ -434,7 +435,7 @@
                     android:layout_marginBottom="14dp"
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/black_70"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     tools:text="Wherever they want" />
 
                 <TextView
@@ -452,7 +453,7 @@
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/roboto"
                     android:textColor="@color/black_70"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     tools:text="Wherever they want" />
             </LinearLayout>
 
@@ -522,6 +523,7 @@
                 android:layout_height="25dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
                 android:backgroundTint="#FFFFFF"
                 app:cardCornerRadius="8dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -581,6 +583,8 @@
                 android:layout_width="45dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="#FFFFFF"
                 app:cardCornerRadius="8dp"
@@ -598,8 +602,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:layout_editor_absoluteX="-15dp"
-                tools:layout_editor_absoluteY="1232dp">
+                >
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -674,8 +677,9 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/bottom_app_bar"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginTop="24dp"
+        android:layout_height="69dp"
+        style="@style/TopCornerCardview"
+        android:theme="@style/TopCornerCardview"
         android:backgroundTint="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
