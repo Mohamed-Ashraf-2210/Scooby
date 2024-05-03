@@ -26,6 +26,7 @@ class DoctorAdapter(private var doctorList: DoctorsResponse, private val context
         val doctorNumberOfRate: TextView = itemView.findViewById(R.id.number_of_rate_doctor_tv)
         val doctorDescription: TextView = itemView.findViewById(R.id.description_doctor_tv)
         val doctorReview: TextView = itemView.findViewById(R.id.review_doctor_tv)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {

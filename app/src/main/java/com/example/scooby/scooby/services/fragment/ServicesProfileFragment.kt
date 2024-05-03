@@ -46,7 +46,7 @@ class ServicesProfileFragment : Fragment() {
         servicesViewModel.servicesProfileResult.observe(viewLifecycleOwner){
             it?.let { setDataToViews(it) }
             getReviewsData(it?.updatedDoc?.reviewsOfService)
-            Log.d("Profile_Ser",it.toString())
+            Log.d("Doctor_Ser",it.toString())
         }
     }
 
