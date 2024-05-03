@@ -7,11 +7,11 @@ import com.example.domain.DoctorProfileResponse
 import com.example.scooby.databinding.ItemReviewBinding
 import com.example.scooby.utils.loadUrl
 
-class ReviewDoctorAdapter(private val reviews: List<DoctorProfileResponse.Data.ReviewsOfDoctor?>) :
+class ReviewDoctorAdapter(private val reviews: List<DoctorProfileResponse.UpdatedDoc.ReviewsOfDoctor?>) :
     RecyclerView.Adapter<ReviewDoctorAdapter.ReviewDoctorViewHolder>() {
     inner class ReviewDoctorViewHolder(private val itemReviewBinding: ItemReviewBinding) :
         RecyclerView.ViewHolder(itemReviewBinding.root) {
-        fun bind(item: DoctorProfileResponse.Data.ReviewsOfDoctor) {
+        fun bind(item: DoctorProfileResponse.UpdatedDoc.ReviewsOfDoctor) {
             item.user?.profileImage?.let { itemReviewBinding.civProfile.loadUrl(it) }
             itemReviewBinding.tvName.text = item.name.toString()
             itemReviewBinding.rate.rating = item.rating?.toFloat()!!
@@ -26,9 +26,13 @@ class ReviewDoctorAdapter(private val reviews: List<DoctorProfileResponse.Data.R
         )
     }
 
-    override fun getItemCount() = reviews.size
+    override fun getItemCount(): Int = reviews.size
 
     override fun onBindViewHolder(holder: ReviewDoctorViewHolder, position: Int) {
-        reviews[position]?.let { holder.bind(it) }
+        reviews[position].let {
+            if (it != null) {
+                holder.bind(it)
+            }
+        }
     }
 }

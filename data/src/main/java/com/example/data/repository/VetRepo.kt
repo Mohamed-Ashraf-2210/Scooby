@@ -1,9 +1,9 @@
 package com.example.data.repository
 
 import com.example.domain.vet.VetResponse
-import com.example.domain.doctors.DoctorsResponse
 import com.example.data.remote.service.VetApi
 import com.example.domain.DoctorProfileResponse
+import com.example.domain.doctors.DoctorsResponse
 import retrofit2.Response
 
 class VetRepo {

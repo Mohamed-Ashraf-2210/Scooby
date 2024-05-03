@@ -59,7 +59,7 @@ class VetViewModel : ViewModel() {
                     _doctorResult.value = response.body()
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Doctors List $e")
             }
         }
     }

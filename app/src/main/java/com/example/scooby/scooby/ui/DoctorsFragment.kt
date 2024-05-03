@@ -48,13 +48,15 @@ class DoctorsFragment : Fragment() {
         doctorViewModel.apply {
             getDoctors()
             doctorResult.observe(viewLifecycleOwner) {
-                getDoctorsData(it)
+                if (it != null) {
+                    getDoctorsData(it)
+                }
             }
         }
     }
 
-    private fun getDoctorsData(it: DoctorsResponse?) {
-        binding?.doctorCardRv?.adapter = DoctorAdapter(it!!, requireContext())
+    private fun getDoctorsData(it: DoctorsResponse) {
+        binding?.doctorCardRv?.adapter = DoctorAdapter(it)
     }
 
     private fun backOffFragment() {
