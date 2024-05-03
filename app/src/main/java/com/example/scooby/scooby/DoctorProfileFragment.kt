@@ -58,14 +58,14 @@ class DoctorProfileFragment : Fragment() {
             doctorResponse.updatedDoc?.specializedIn?.get(0).let {
                 Specialized1.text = it
             }
+            doctorResponse.updatedDoc?.specializedIn?.get(1).let {
+                Specialized1.text = it
+            }
             doctorResponse.updatedDoc?.specializedIn?.get(2).let {
                 Specialized2.text = it
             }
             doctorResponse.updatedDoc?.specializedIn?.get(3).let {
                 Specialized3.text = it
-            }
-            doctorResponse.updatedDoc?.specializedIn?.get(4).let {
-                Specialized4.text = it
             }
 
 
