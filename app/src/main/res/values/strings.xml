@@ -251,5 +251,10 @@ again."</string>
     <string name="accepted_pet_types">Accepted pet types</string>
     <string name="past">Past</string>
     <string name="upcoming">Upcoming</string>
+    <string name="cart">Cart</string>
+    <string name="you_have">You have</string>
+    <string name="items_in_your_car">items in your car</string>
+    <string name="free_delivery">Free Delivery</string>
+    <string name="egp">EGP</string>
 
 </resources>
