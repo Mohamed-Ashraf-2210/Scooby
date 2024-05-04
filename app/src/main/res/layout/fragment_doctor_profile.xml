@@ -43,7 +43,7 @@
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/doctor_profile_image"
-                tools:text="Pet Boarding service" />
+                tools:text="Dr Anas El Gazzar" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/call_doctor_btn"
@@ -110,6 +110,7 @@
                 android:id="@+id/doctor_profile_card"
                 android:layout_width="match_parent"
                 android:layout_height="225dp"
+                android:backgroundTint="#FFFFFF"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="32dp"
                 app:cardCornerRadius="10dp"
@@ -161,7 +162,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/specialized_ins"
                 android:textColor="@color/black_clear"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/doctor_profile_card" />
             <LinearLayout
@@ -186,6 +187,7 @@
                         android:layout_height="34dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FFFFFF"
+                        android:layout_marginBottom="12dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="1dp"
                         app:layout_constraintStart_toEndOf="@id/layout_cards"
@@ -211,6 +213,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_weight="1"
                         android:backgroundTint="#FFFFFF"
+                        android:layout_marginBottom="12dp"
                         app:cardCornerRadius="8dp"
                         app:cardElevation="1dp"
                         app:layout_constraintStart_toEndOf="@id/layout_cards"
@@ -389,6 +392,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/roboto_medium"
+                android:textSize="16sp"
                 android:text="@string/reviews"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"

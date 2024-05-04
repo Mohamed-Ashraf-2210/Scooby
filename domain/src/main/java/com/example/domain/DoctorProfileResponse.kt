@@ -1,13 +1,13 @@
-package com.example.domain.doctors
+package com.example.domain
 
 
 import com.google.gson.annotations.SerializedName
 
-data class DoctorsResponse(
-    @SerializedName("doctors")
-    val doctors: List<Doctor>
+data class DoctorProfileResponse(
+    @SerializedName("updatedDoc")
+    val updatedDoc: UpdatedDoc?
 ) {
-    data class Doctor(
+    data class UpdatedDoc(
         @SerializedName("about")
         val about: String?,
         @SerializedName("accepted_pet_types")

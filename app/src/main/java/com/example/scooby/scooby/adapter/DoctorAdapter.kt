@@ -1,50 +1,55 @@
 package com.example.scooby.scooby.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RatingBar
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.example.scooby.R
-import com.example.domain.doctors.DoctorsResponse
 
-class DoctorAdapter(private var doctorList: DoctorsResponse, private val context: Context) :
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.doctors.DoctorsResponse
+import com.example.scooby.databinding.DoctorsItemBinding
+import com.example.scooby.scooby.ui.DoctorsFragmentDirections
+import com.example.scooby.utils.loadUrl
+
+class DoctorAdapter(private val doctorList: DoctorsResponse) :
     RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder>() {
 
-    class DoctorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val doctorImage: ImageView = itemView.findViewById(R.id.image_doctor_vet)
-        val doctorName: TextView = itemView.findViewById(R.id.name_doctor_tv)
-        val doctorRate: TextView = itemView.findViewById(R.id.rate_doctor_tv)
-        val doctorRateBar: RatingBar = itemView.findViewById(R.id.rate_bar_veterinary)
-        val doctorNumberOfRate: TextView = itemView.findViewById(R.id.number_of_rate_doctor_tv)
-        val doctorDescription: TextView = itemView.findViewById(R.id.description_doctor_tv)
-        val doctorReview: TextView = itemView.findViewById(R.id.review_doctor_tv)
+    inner class DoctorViewHolder(private val itemDoctorsItemBinding: DoctorsItemBinding) :
+        RecyclerView.ViewHolder(itemDoctorsItemBinding.root) {
+        fun bind(doctorsResponse: DoctorsResponse.Doctor) {
+            doctorsResponse.doctorImage.let { itemDoctorsItemBinding.imageDoctorVet.loadUrl(it!!) }
+            itemDoctorsItemBinding.nameDoctorTv.text = doctorsResponse.name
+            itemDoctorsItemBinding.descriptionDoctorTv.text = doctorsResponse.description
+            itemDoctorsItemBinding.reviewDoctorTv.text = doctorsResponse.review
+            itemDoctorsItemBinding.numberOfRateDoctorTv.text = doctorsResponse.numberOfRate.toString()
+            itemDoctorsItemBinding.rateBarVeterinary.rating = doctorsResponse.rate?.toFloat()!!
+            itemDoctorsItemBinding.rateDoctorTv.text = doctorsResponse.rate.toString()
+            navigate2ShelterProfile(doctorsResponse)
+        }
+
+        private fun navigate2ShelterProfile(doctorsResponse: DoctorsResponse.Doctor){
+            itemDoctorsItemBinding.imageDoctorVet.setOnClickListener {
+                val action = doctorsResponse.id.let { doctorInfo ->
+                   DoctorsFragmentDirections.actionDoctorsFragmentToDoctorProfileFragment(doctorInfo!!)
+                }
+                    it.findNavController().navigate(action)
+
+            }
+        }
+
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DoctorViewHolder {
-        val itemView =
-            LayoutInflater.from(parent.context).inflate(R.layout.doctors_item, parent, false)
-        return DoctorViewHolder(itemView)
+        return DoctorViewHolder(
+            DoctorsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
-    override fun getItemCount() = doctorList.data.size
+    override fun getItemCount() = doctorList.doctors.size
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: DoctorViewHolder, position: Int) {
-        val currentItem = doctorList.data
-        Glide.with(context).load(currentItem[position].doctorImage).transform(CenterCrop()).into(holder.doctorImage)
-        holder.doctorName.text = currentItem[position].name
-        holder.doctorRate.text = currentItem[position].rate.toString()
-        holder.doctorRateBar.rating = currentItem[position].rate.toFloat()
-        holder.doctorNumberOfRate.text = "(${currentItem[position].numberOfRate})"
-        holder.doctorDescription.text = currentItem[position].description
-        holder.doctorReview.text = currentItem[position].review
+        doctorList.doctors[position].let { holder.bind(it) }
     }
 }

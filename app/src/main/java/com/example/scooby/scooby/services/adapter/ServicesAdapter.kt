@@ -21,11 +21,7 @@ class ServicesAdapter(private var servicesList: ServicesResponse, private val co
             servicesItemHomeBinding.city.text = service.city
             servicesItemHomeBinding.price.text = service.price.toString()
             servicesItemHomeBinding.rate.rating = service.rate.toFloat()
-
         }
-
-
-
     }
 
 

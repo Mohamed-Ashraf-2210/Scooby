@@ -14,14 +14,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/image_doctor_vet"
-            android:layout_width="118dp"
-            android:layout_height="105dp"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_doctor_vet"
+            android:layout_width="105dp"
+            android:layout_height="118dp"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="13dp"
+            app:strokeWidth="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/image_doctor_vet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="TODO" />
+
+
+        </com.google.android.material.card.MaterialCardView>
+
 
         <TextView
             android:id="@+id/name_doctor_tv"
@@ -32,7 +43,7 @@
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/primary"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
+            app:layout_constraintStart_toEndOf="@id/card_doctor_vet"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Dr Anas El Gazzar" />
 
@@ -45,7 +56,7 @@
             android:fontFamily="@font/roboto"
             android:textColor="@color/black_75"
             android:textSize="8sp"
-            app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
+            app:layout_constraintStart_toEndOf="@id/card_doctor_vet"
             app:layout_constraintTop_toBottomOf="@id/name_doctor_tv"
             tools:ignore="SmallSp"
             tools:text="4.1" />
@@ -63,7 +74,7 @@
             android:scaleX=".5"
             android:scaleY=".5"
             android:stepSize="0.5"
-            app:layout_constraintStart_toEndOf="@+id/image_doctor_vet"
+            app:layout_constraintStart_toEndOf="@+id/card_doctor_vet"
             app:layout_constraintTop_toBottomOf="@id/name_doctor_tv" />
 
         <TextView
@@ -93,7 +104,7 @@
             android:textColor="@color/black_95"
             android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
+            app:layout_constraintStart_toEndOf="@id/card_doctor_vet"
             app:layout_constraintTop_toBottomOf="@id/rate_doctor_tv"
             tools:ignore="SmallSp"
             tools:text="3+ years in business" />
@@ -104,7 +115,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:src="@drawable/man"
-            app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
+            app:layout_constraintStart_toEndOf="@id/card_doctor_vet"
             app:layout_constraintTop_toBottomOf="@id/description_doctor_tv" />
 
         <TextView
@@ -120,7 +131,7 @@
             android:textColor="@color/black_95"
             android:textSize="8sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
+            app:layout_constraintStart_toEndOf="@id/card_doctor_vet"
             app:layout_constraintTop_toBottomOf="@id/description_doctor_tv"
             tools:ignore="SmallSp"
             tools:text="3+ years in business" />

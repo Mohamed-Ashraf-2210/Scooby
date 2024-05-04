@@ -60,7 +60,21 @@
             android:id="@+id/doctorsFragment"
             android:name="com.example.scooby.scooby.ui.DoctorsFragment"
             android:label="fragment_doctors"
-            tools:layout="@layout/fragment_doctors" />
+            tools:layout="@layout/fragment_doctors" >
+            <action
+                android:id="@+id/action_doctorsFragment_to_doctorProfileFragment"
+                app:destination="@id/doctorProfileFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/doctorProfileFragment"
+            android:name="com.example.scooby.scooby.DoctorProfileFragment"
+            android:label="DoctorProfileFragment"
+            tools:layout="@layout/fragment_doctor_profile"
+            >
+            <argument
+                android:name="doctorId"
+                app:argType="string" />
+        </fragment>
         <fragment
             android:id="@+id/vetFragment"
             android:name="com.example.scooby.scooby.vet.VetFragment"

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
 import com.example.data.repository.VetRepo
+import com.example.domain.DoctorProfileResponse
 import com.example.domain.doctors.DoctorsResponse
 import com.example.domain.vet.VetResponse
 import kotlinx.coroutines.launch
@@ -21,6 +22,10 @@ class VetViewModel : ViewModel() {
     private val _error: MutableLiveData<String?> = MutableLiveData()
     val error: LiveData<String?>
         get() = _error
+
+    private val _doctorProfileResult : MutableLiveData<DoctorProfileResponse?> = MutableLiveData()
+    val doctorProfileResult : LiveData<DoctorProfileResponse?>
+        get() = _doctorProfileResult
 
 
     fun getVet() {
@@ -54,7 +59,20 @@ class VetViewModel : ViewModel() {
                     _doctorResult.value = response.body()
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Doctors List $e")
+            }
+        }
+    }
+
+    fun getDoctorProfile(doctorId : String){
+        viewModelScope.launch {
+            try {
+                val response = vetRepo.getDoctorProfile(doctorId)
+                response?.body().let {
+                    _doctorProfileResult.value = it
+                }
+            }catch( e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Doctor Profile $e")
             }
         }
     }
