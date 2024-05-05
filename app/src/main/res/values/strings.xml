@@ -264,5 +264,9 @@ again."</string>
     <string name="closed">)</string>
     <string name="shipping_fee">Shipping Fee</string>
     <string name="free">FREE</string>
+    <string name="checkout">CHECKOUT</string>
+    <string name="free_shipping">Free shipping</string>
+    <string name="todo">TODO</string>
+    <string name="inclusive_of_vat">Inclusive of VAT</string>
 
 </resources>
