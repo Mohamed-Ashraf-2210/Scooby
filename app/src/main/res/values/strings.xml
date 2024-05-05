@@ -256,5 +256,13 @@ again."</string>
     <string name="items_in_your_car">items in your car</string>
     <string name="free_delivery">Free Delivery</string>
     <string name="egp">EGP</string>
+    <string name="coupon_code">Coupon code</string>
+    <string name="apply">Apply</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="begin">(</string>
+    <string name="items">items</string>
+    <string name="closed">)</string>
+    <string name="shipping_fee">Shipping Fee</string>
+    <string name="free">FREE</string>
 
 </resources>
