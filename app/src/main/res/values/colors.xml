@@ -61,5 +61,8 @@
     <color name="black_81">#CF0F0F0F</color>
     <color name="black_15">#260F0F0F</color>
     <color name="black">#0F0F0F</color>
+    <color name="Yellow_Cart">#FAC32E</color>
+    <color name="gray_535353">#535353</color>
+    <color name="fefbfb">#FEFBFB</color>
 
 </resources>

@@ -251,5 +251,22 @@ again."</string>
     <string name="accepted_pet_types">Accepted pet types</string>
     <string name="past">Past</string>
     <string name="upcoming">Upcoming</string>
+    <string name="cart">Cart</string>
+    <string name="you_have">You have</string>
+    <string name="items_in_your_car">items in your car</string>
+    <string name="free_delivery">Free Delivery</string>
+    <string name="egp">EGP</string>
+    <string name="coupon_code">Coupon code</string>
+    <string name="apply">Apply</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="begin">(</string>
+    <string name="items">items</string>
+    <string name="closed">)</string>
+    <string name="shipping_fee">Shipping Fee</string>
+    <string name="free">FREE</string>
+    <string name="checkout">CHECKOUT</string>
+    <string name="free_shipping">Free shipping</string>
+    <string name="todo">TODO</string>
+    <string name="inclusive_of_vat">Inclusive of VAT</string>
 
 </resources>
