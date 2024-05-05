@@ -181,7 +181,7 @@ class ServiceFragment : Fragment() {
         binding.RvServicesContent.visibility = View.VISIBLE
     }
     private fun backOffFragment() {
-        binding?.icBack?.setOnClickListener {
+        binding.icBack.setOnClickListener {
             findNavController().popBackStack()
         }
     }
