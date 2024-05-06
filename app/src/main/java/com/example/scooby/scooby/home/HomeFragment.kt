@@ -205,7 +205,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getServicesData(data: ServicesResponse?) {
-        binding?.servicesRv?.adapter = ServicesAdapter(data!!, requireContext())
+        binding?.servicesRv?.adapter = ServicesAdapter(data!!)
     }
     // endregion
 
