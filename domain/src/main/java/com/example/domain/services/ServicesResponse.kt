@@ -4,46 +4,33 @@ package com.example.domain.services
 import com.google.gson.annotations.SerializedName
 
 data class ServicesResponse(
-    @SerializedName("allServices")
-    val allServices: List<AllService>
+    @SerializedName("length")
+    val length: Int?,
+    @SerializedName("shuffledServices")
+    val shuffledServices: List<ShuffledService>
 ) {
-    data class AllService(
-        @SerializedName("carImage")
-        val carImage: String,
+    data class ShuffledService(
         @SerializedName("city")
-        val city: String,
+        val city: String?,
         @SerializedName("createdAt")
-        val createdAt: String,
-        @SerializedName("gender")
-        val gender: String,
+        val createdAt: String?,
         @SerializedName("_id")
-        val id: String,
-        @SerializedName("licenseImage")
-        val licenseImage: String,
-        @SerializedName("nationalID")
-        val nationalID: String,
-        @SerializedName("personalID")
-        val personalID: String,
-        @SerializedName("phone")
-        val phone: Int,
+        val id: String?,
         @SerializedName("price")
-        val price: Int,
+        val price: Int?,
         @SerializedName("pricePer")
-        val pricePer: String,
+        val pricePer: String?,
         @SerializedName("rate")
-        val rate: Double,
+        val rate: Double?,
         @SerializedName("serviceImage")
-        val serviceImage: String,
-        @SerializedName("serviceType")
-        val serviceType: String,
-        @SerializedName("updatedAt")
-        val updatedAt: String,
-        @SerializedName("__v")
-        val v: Int,
-        @SerializedName("workplace")
-        val workplace: String,
+        val serviceImage: String?,
         @SerializedName("serviceProfile")
-        val serviceProfile: String
-
+        val serviceProfile: String?,
+        @SerializedName("serviceType")
+        val serviceType: String?,
+        @SerializedName("updatedAt")
+        val updatedAt: String?,
+        @SerializedName("__v")
+        val v: Int?
     )
 }

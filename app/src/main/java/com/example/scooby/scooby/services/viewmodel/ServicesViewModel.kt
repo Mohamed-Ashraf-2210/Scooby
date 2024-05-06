@@ -5,10 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.services.ServicesResponse
 import com.example.data.repository.ServicesRepo
 import com.example.data.Constant
 import com.example.domain.ServicesProfileResponse
+import com.example.domain.services.ServicesResponse
 import kotlinx.coroutines.launch
 
 class ServicesViewModel() : ViewModel() {

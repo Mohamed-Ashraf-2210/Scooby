@@ -10,24 +10,30 @@ import com.example.domain.services.ServicesResponse
 import com.example.scooby.databinding.ItemServicesBinding
 import com.example.scooby.scooby.services.fragment.ServiceFragmentDirections
 
-class ServicesMainAdapter(private var servicesList: ServicesResponse, private val context: Context) :
+class ServicesMainAdapter(private var servicesList: ServicesResponse) :
     RecyclerView.Adapter<ServicesMainAdapter.ServicesViewHolder>() {
 
     inner class ServicesViewHolder(private val itemServicesBinding: ItemServicesBinding) :
         RecyclerView.ViewHolder(itemServicesBinding.root) {
-        fun bind(service: ServicesResponse.AllService) {
+        fun bind(service: ServicesResponse.ShuffledService) {
             Glide.with(itemView).load(service.serviceImage).into(itemServicesBinding.serviceImage)
             itemServicesBinding.serviceType.text = service.serviceType
             itemServicesBinding.city.text = service.city
             itemServicesBinding.price.text = service.price.toString()
-            itemServicesBinding.rate.rating = service.rate.toFloat()
+            itemServicesBinding.rate.rating = service.rate?.toFloat()!!
             navigate2ServiceProfile(service)
         }
 
-        private fun navigate2ServiceProfile(service: ServicesResponse.AllService){
+        private fun navigate2ServiceProfile(service: ServicesResponse.ShuffledService){
             itemServicesBinding.serviceImage.setOnClickListener {
-                val action = ServiceFragmentDirections.actionServicesFragmentToServicesProfileFragment(service.serviceProfile)
-                it.findNavController().navigate(action)
+                val action = service.serviceProfile?.let { it1 ->
+                    ServiceFragmentDirections.actionServicesFragmentToServicesProfileFragment(
+                        it1
+                    )
+                }
+                if (action != null) {
+                    it.findNavController().navigate(action)
+                }
             }
         }
     }
@@ -40,10 +46,10 @@ class ServicesMainAdapter(private var servicesList: ServicesResponse, private va
                 false))
     }
 
-    override fun getItemCount() = servicesList.allServices.size
+    override fun getItemCount() = servicesList.shuffledServices.size
 
     override fun onBindViewHolder(holder: ServicesViewHolder, position: Int) {
-        holder.bind(servicesList.allServices[position])
+        holder.bind(servicesList.shuffledServices[position])
     }
 
 }
