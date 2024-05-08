@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
 import com.example.data.repository.ProductRepo
+import com.example.domain.CartProductResponse
 import com.example.domain.product.ProductResponse
 import kotlinx.coroutines.launch
 
@@ -23,8 +24,8 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
         get() = _favoriteProductResult
 
 
-    private val _userCartResult: MutableLiveData<ProductResponse> = MutableLiveData()
-    val userCartResult: LiveData<ProductResponse>
+    private val _userCartResult: MutableLiveData<CartProductResponse> = MutableLiveData()
+    val userCartResult: LiveData<CartProductResponse>
         get() = _userCartResult
 
 

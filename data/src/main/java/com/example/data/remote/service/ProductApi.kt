@@ -2,6 +2,7 @@ package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
 import com.example.domain.AddFavoriteResponse
+import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
 import com.example.domain.product.ProductResponse
 import retrofit2.Response
@@ -37,7 +38,7 @@ interface ProductApi {
     @GET("/scooby/api/cart/getcart/{userId}")
     suspend fun getCartUser(
         @Path("userId") id: String
-    ):Response<ProductResponse>
+    ):Response<CartProductResponse>
 
 
 

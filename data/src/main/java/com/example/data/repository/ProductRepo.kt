@@ -2,6 +2,7 @@ package com.example.data.repository
 
 import com.example.data.remote.service.ProductApi
 import com.example.domain.AddFavoriteResponse
+import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
 import com.example.domain.product.ProductResponse
 import retrofit2.Response
@@ -24,7 +25,7 @@ class ProductRepo {
         return ProductApi.getApi()?.addProductToCart(userId,productId)
     }
 
-    suspend fun getCartUser(userId: String) :Response<ProductResponse>?{
+    suspend fun getCartUser(userId: String) :Response<CartProductResponse>?{
         return ProductApi.getApi()?.getCartUser(userId)
     }
 

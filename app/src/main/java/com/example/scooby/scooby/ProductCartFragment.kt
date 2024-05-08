@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.data.Constant
+import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentProductCartBinding
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProductCartFragment : Fragment() {
     private val productViewModel by viewModels<ProductViewModel>()
@@ -34,14 +36,15 @@ class ProductCartFragment : Fragment() {
     private fun observeUserCart() {
         productViewModel.getCartUser(currentUserId)
         productViewModel.userCartResult.observe(viewLifecycleOwner){
-            val adapter =  ProductCartAdapter(it,currentUserId)
+            val adapter =  ProductCartAdapter(it.data.cartItems,currentUserId)
             binding.rvCart.adapter = adapter
             Log.d("Cart User", it.data.toString())
         }
     }
 
     private fun initRvCart() {
-
+        val navBar:BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
+        navBar.visibility = View.GONE
     }
 
 

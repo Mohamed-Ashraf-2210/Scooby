@@ -1,0 +1,70 @@
+package com.example.domain
+
+
+import com.google.gson.annotations.SerializedName
+
+data class CartProductResponse(
+    @SerializedName("data")
+    val `data`: Data,
+    @SerializedName("numOfCartItems")
+    val numOfCartItems: Int?,
+    @SerializedName("status")
+    val status: String?
+) {
+    data class Data(
+        @SerializedName("cartItems")
+            val cartItems: List<CartItem>,
+        @SerializedName("createdAt")
+        val createdAt: String?,
+        @SerializedName("_id")
+        val id: String?,
+        @SerializedName("totalCartPrice")
+        val totalCartPrice: Int?,
+        @SerializedName("updatedAt")
+        val updatedAt: String?,
+        @SerializedName("user")
+        val user: String?,
+        @SerializedName("__v")
+        val v: Int?
+    ) {
+        data class CartItem(
+            @SerializedName("_id")
+            val id: String?,
+            @SerializedName("price")
+            val price: Int?,
+            @SerializedName("product")
+            val product: Product,
+            @SerializedName("quantity")
+            val quantity: Int?
+        ) {
+            data class Product(
+                @SerializedName("category")
+                val category: String?,
+                @SerializedName("createdAt")
+                val createdAt: String?,
+                @SerializedName("desc")
+                val desc: String?,
+                @SerializedName("discount")
+                val discount: Int?,
+                @SerializedName("_id")
+                val id: String?,
+                @SerializedName("name")
+                val name: String?,
+                @SerializedName("price")
+                val price: Int?,
+                @SerializedName("priceAfterDiscount")
+                val priceAfterDiscount: Int?,
+                @SerializedName("productImage")
+                val productImage: String?,
+                @SerializedName("quantity")
+                val quantity: Int?,
+                @SerializedName("updatedAt")
+                val updatedAt: String?,
+                @SerializedName("user")
+                val user: String?,
+                @SerializedName("__v")
+                val v: Int?
+            )
+        }
+    }
+}
