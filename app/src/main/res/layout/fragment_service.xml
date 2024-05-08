@@ -151,6 +151,7 @@
                             android:layout_height="wrap_content">
 
                             <ImageView
+                                android:id="@+id/outlineCircle"
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:src="@drawable/item_circle" />
@@ -163,6 +164,7 @@
                         </FrameLayout>
 
                         <TextView
+                            android:id="@+id/tvPetCare"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
