@@ -93,8 +93,8 @@
             android:label="fragment_product"
             tools:layout="@layout/fragment_product">
             <action
-                android:id="@+id/action_productFragment_to_favoriteFragment"
-                app:destination="@id/favoriteFragment" />
+                android:id="@+id/action_productFragment_to_productCartFragment"
+                app:destination="@id/productCartFragment" />
         </fragment>
         <dialog
             android:id="@+id/menuBottomSheetFragment"
@@ -152,6 +152,9 @@
             <action
                 android:id="@+id/action_profileFragment_to_myPetsFragment"
                 app:destination="@id/myPetsFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_favoriteFragment"
+                app:destination="@id/favoriteFragment" />
         </fragment>
         <fragment
             android:id="@+id/editProfileFragment"
@@ -336,6 +339,12 @@
                 android:id="@+id/action_confirmNumberFragment_to_confirmServiceFragment"
                 app:destination="@id/confirmServiceFragment" />
         </fragment>
+        <fragment
+            android:id="@+id/productCartFragment"
+            android:name="com.example.scooby.scooby.ProductCartFragment"
+            android:label="ProductCartFragment"
+            tools:layout="@layout/fragment_product_cart"
+            />
     </navigation>
 
     <navigation
@@ -382,6 +391,7 @@
             android:label="fragment_community"
             tools:layout="@layout/fragment_community" />
     </navigation>
+
 
 
 </navigation>

@@ -1,15 +1,25 @@
 package com.example.scooby.scooby
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.example.data.Constant
+import com.example.domain.CartProductResponse
 import com.example.scooby.R
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.scooby.TokenManager
+import com.example.scooby.databinding.FragmentProductCartBinding
+import com.example.scooby.scooby.product.viewmodel.ProductViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProductCartFragment : Fragment() {
+    private lateinit var cartResponse : CartProductResponse
+    private val productViewModel by viewModels<ProductViewModel>()
+    private lateinit var binding: FragmentProductCartBinding
+    private lateinit var currentUserId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -17,9 +27,46 @@ class ProductCartFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_cart, container, false)
+    ): View {
+        binding = FragmentProductCartBinding.inflate(layoutInflater,container,false)
+        currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        hideNavBar()
+        observeUserCart()
+        return binding.root
+    }
+
+    private fun setData2Ui(cartProductResponse: CartProductResponse) {
+        binding.apply {
+            priceCheckout.text = cartProductResponse.data.totalCartPrice.toString()
+            priceSubtotal.text = cartProductResponse.data.totalCartPrice.toString()
+            priceTotal2.text = cartProductResponse.data.totalCartPrice.toString()
+        }
+    }
+
+    private fun observeUserCart() {
+        if(currentUserId != null){
+            productViewModel.getCartUser(currentUserId)
+            productViewModel.userCartResult.observe(viewLifecycleOwner){
+                initRecycleView(it,currentUserId)
+                setData2Ui(it)
+                Log.d("Cart User", it.data.toString())
+                binding.itemCardInfo.visibility = View.VISIBLE
+            }
+        }else{
+            Log.d("Cart User", "null")
+        }
+
+    }
+    private fun initRecycleView(data : CartProductResponse,currentUserId: String){
+        val adapter =  ProductCartAdapter(data.data.cartItems,currentUserId)
+        binding.rvCart.adapter = adapter
+        binding.itemQuantity.text = adapter.itemCount.toString()
+        binding.itemInCart.text = adapter.itemCount.toString()
+    }
+
+    private fun hideNavBar() {
+        val navBar:BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
+        navBar.visibility = View.GONE
     }
 
 
