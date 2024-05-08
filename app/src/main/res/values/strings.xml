@@ -270,5 +270,7 @@ again."</string>
     <string name="inclusive_of_vat">Inclusive of VAT</string>
     <string name="slash">/</string>
     <string name="dloar">$</string>
+    <string name="pet_care">Pet Care</string>
+    <string name="pet_hotel">Pet Hotel</string>
 
 </resources>

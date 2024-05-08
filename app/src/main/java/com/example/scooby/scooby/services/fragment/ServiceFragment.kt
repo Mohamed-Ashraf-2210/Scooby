@@ -77,6 +77,12 @@ class ServiceFragment : Fragment() {
             btnSitting.setOnClickListener{
                 filterServices("Pet Sitting")
             }
+            btnPetHotel.setOnClickListener{
+                filterServices("Pet Hotel")
+            }
+            btnPetCare.setOnClickListener{
+                filterServices("Pet Care")
+            }
         }
 
     }
