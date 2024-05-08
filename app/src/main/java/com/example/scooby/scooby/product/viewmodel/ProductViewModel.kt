@@ -62,6 +62,16 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun addProductToCart(userId: String, productId: String) {
+        viewModelScope.launch {
+            try {
+                productRepo.addProductToCart(userId, productId)
+            } catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS addProductToCart $e")
+            }
+        }
+    }
+
 
 
 

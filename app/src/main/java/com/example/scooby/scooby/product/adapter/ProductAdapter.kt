@@ -19,36 +19,43 @@ class ProductAdapter(
     private val productList: ProductResponse,
     val favoriteProducts: ProductResponse,
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
-    private var oldProductList  = emptyList<ProductResponse.Data>()
+    private var oldProductList = emptyList<ProductResponse.Data>()
+
     inner class ProductViewHolder(private val itemProductBinding: ItemProductBinding) :
         RecyclerView.ViewHolder(itemProductBinding.root) {
-            fun bind(product : ProductResponse.Data){
-                product.productImage?.let { itemProductBinding.medImage.loadUrl(it) }
-                itemProductBinding.medTitle.text = product.name
-                itemProductBinding.medDescription.text = product.desc
-                itemProductBinding.medDiscountedPrice.text = product.priceAfterDiscount.toString()
-                itemProductBinding.medRealPrice.text = product.price.toString()
-                itemProductBinding.medOfferPercent.text = product.discount.toString()
-                if (favoriteProducts.data.contains(product)) {
-                    itemProductBinding.heartIconId.isChecked = true
-                }
-                // itemProductBinding.heartIconId.isChecked = favoriteProducts.data.contains(product)
-                setFavoriteProduct(product)
+        fun bind(product: ProductResponse.Data) {
+            product.productImage?.let { itemProductBinding.medImage.loadUrl(it) }
+            itemProductBinding.medTitle.text = product.name
+            itemProductBinding.medDescription.text = product.desc
+            itemProductBinding.medDiscountedPrice.text = product.priceAfterDiscount.toString()
+            itemProductBinding.medRealPrice.text = product.price.toString()
+            itemProductBinding.medOfferPercent.text = product.discount.toString()
+            if (favoriteProducts.data.contains(product)) {
+                itemProductBinding.heartIconId.isChecked = true
             }
+            // itemProductBinding.heartIconId.isChecked = favoriteProducts.data.contains(product)
+            setFavoriteProduct(product)
+            setAddProduct(product)
+        }
 
-        private fun setFavoriteProduct(product: ProductResponse.Data){
+        private fun setFavoriteProduct(product: ProductResponse.Data) {
 
             itemProductBinding.heartIconId.setEventListener(object : SparkEventListener {
                 override fun onEvent(button: ImageView, buttonState: Boolean) {
                     if (buttonState) {
-                        Toast.makeText(itemView.context,"Added to favorite", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(itemView.context, "Added to favorite", Toast.LENGTH_SHORT)
+                            .show()
                         // Button is
                         if (userId != null) {
                             product.id?.let { productViewModel.addProductToFavorite(userId, it) }
                         }
 
                     } else {
-                        Toast.makeText(itemView.context,"removed from favorite", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            itemView.context,
+                            "removed from favorite",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         // Button is inactive
                         product.id?.let {
                             if (userId != null) {
@@ -62,10 +69,46 @@ class ProductAdapter(
                 override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {}
             })
         }
+
+        private fun setAddProduct(product: ProductResponse.Data) {
+            itemProductBinding.btnAdd.setEventListener(object : SparkEventListener {
+                override fun onEvent(button: ImageView?, buttonState: Boolean) {
+                    if (buttonState) {
+                        Toast.makeText(itemView.context, "Added to cart", Toast.LENGTH_SHORT).show()
+                        product.id?.let {
+                            if (userId != null) {
+                                productViewModel.addProductToCart(userId, it)
+                            }
+                        }
+                    } else {
+                        Toast.makeText(
+                            itemView.context,
+                            "removed from cart",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        product.id?.let {
+                            if (userId != null) {
+                                productViewModel.addProductToCart(userId, it)
+                            }
+                        }
+                    }
+                }
+
+                override fun onEventAnimationEnd(button: ImageView?, buttonState: Boolean) {}
+
+                override fun onEventAnimationStart(button: ImageView?, buttonState: Boolean) {}
+            })
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        return ProductViewHolder(ItemProductBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return ProductViewHolder(
+            ItemProductBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int = productList.data.size
@@ -74,8 +117,8 @@ class ProductAdapter(
         holder.bind(productList.data[position])
     }
 
-    fun setData(newProductList : List<ProductResponse.Data>){
-        val diffUtil = ProductDiffUtilCallBack(oldProductList,newProductList)
+    fun setData(newProductList: List<ProductResponse.Data>) {
+        val diffUtil = ProductDiffUtilCallBack(oldProductList, newProductList)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
         oldProductList = newProductList
         diffResult.dispatchUpdatesTo(this)
