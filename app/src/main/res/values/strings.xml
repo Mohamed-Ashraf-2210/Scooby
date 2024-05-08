@@ -268,5 +268,7 @@ again."</string>
     <string name="free_shipping">Free shipping</string>
     <string name="todo">TODO</string>
     <string name="inclusive_of_vat">Inclusive of VAT</string>
+    <string name="slash">/</string>
+    <string name="dloar">$</string>
 
 </resources>

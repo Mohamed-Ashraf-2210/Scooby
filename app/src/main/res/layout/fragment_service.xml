@@ -115,7 +115,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/pets" />
+                                android:src="@drawable/ic_pets_hand" />
                         </FrameLayout>
 
                         <TextView
@@ -126,48 +126,6 @@
                             android:layout_marginTop="8dp"
                             android:fontFamily="@font/roboto_medium"
                             android:text="All"
-                            android:textColor="#800F0F0F"
-                            android:textSize="10sp" />
-
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_vet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:strokeWidth="0dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/item_circle" />
-
-                            <ImageView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/veterinarian" />
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/roboto_medium"
-                            android:text="Vet"
                             android:textColor="#800F0F0F"
                             android:textSize="10sp" />
 
@@ -200,7 +158,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/world_animal" />
+                                android:src="@drawable/ic_boarding" />
                         </FrameLayout>
 
                         <TextView
@@ -242,7 +200,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/grooming" />
+                                android:src="@drawable/ic_groming" />
                         </FrameLayout>
 
                         <TextView
@@ -284,7 +242,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/dog_training" />
+                                android:src="@drawable/ic_traning" />
                         </FrameLayout>
 
                         <TextView
@@ -326,6 +284,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
+                                android:src="@drawable/ic_walking"
                                 />
                         </FrameLayout>
 
@@ -368,7 +327,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/pet_taxi" />
+                                android:src="@drawable/ic_taxi" />
                         </FrameLayout>
 
                         <TextView
@@ -410,7 +369,7 @@
                                 android:layout_width="35dp"
                                 android:layout_height="35dp"
                                 android:layout_gravity="center"
-                                android:src="@drawable/sitting_dog" />
+                                android:src="@drawable/ic_dog_sitting" />
                         </FrameLayout>
 
                         <TextView
@@ -425,49 +384,6 @@
 
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_supplies"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:strokeWidth="0dp">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/item_circle" />
-
-                            <ImageView
-                                android:layout_width="35dp"
-                                android:layout_height="35dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/pet_supplies" />
-                        </FrameLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/roboto_medium"
-                            android:text="Supplies"
-                            android:textColor="#800F0F0F"
-                            android:textSize="10sp" />
-
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
 
             </LinearLayout>
         </HorizontalScrollView>
@@ -495,6 +411,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/hor_scroll" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

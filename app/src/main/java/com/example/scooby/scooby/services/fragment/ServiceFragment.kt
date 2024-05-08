@@ -47,35 +47,45 @@ class ServiceFragment : Fragment() {
     }
 
     private fun init() {
-//        callBackButton()
         backOffFragment()
         observeViewModel()
-        callBackButton2()
+        callBackButton()
     }
 
-    private fun callBackButton2() {
-        binding.allBtn.setOnClickListener {
-            servicesViewModel.servicesResult.observe(viewLifecycleOwner) {
-                getServicesDataMain(it)
+    private fun callBackButton() {
+        binding.apply {
+            allBtn.setOnClickListener {
+                servicesViewModel.servicesResult.observe(viewLifecycleOwner) {
+                    getServicesDataMain(it)
+                }
+            }
+            btnBoarding.setOnClickListener{
+                filterServices("Pet Boarding")
+            }
+            btnGrooming.setOnClickListener{
+                filterServices("Pet Grooming")
+            }
+            btnTraining.setOnClickListener{
+                filterServices("Pet Training")
+            }
+            btnWalking.setOnClickListener{
+                filterServices("Pet Walking")
+            }
+            btnTaxi.setOnClickListener{
+                filterServices("Pet Taxi")
+            }
+            btnSitting.setOnClickListener{
+                filterServices("Pet Sitting")
             }
         }
-//        binding.btnVet.setOnClickListener { filterServices("Hotel") }
-//        binding.btnBoarding.setOnClickListener { filterServices("Boarding") }
-//        binding.btnGrooming.setOnClickListener { filterServices("Grooming") }
-//        binding.btnTraining.setOnClickListener { filterServices("Training") }
-//        binding.btnWalking.setOnClickListener { filterServices("Walking") }
+
     }
 
-//    private fun filterServices(serviceType: String) {
-//        servicesViewModel.apply {
-//            val filteredServices = allServices.shuffledServices.filter { it.serviceType == serviceType }
-//            getServicesDataMain(ServicesResponse(filteredServices))
-//        }
-//    }
-
-
+    private fun filterServices(type:String){
+        val filterResponse = allServices.shuffledServices.filter { it.serviceType == type }
+        getServicesDataMain(ServicesResponse(filterResponse))
+    }
     // Here we Filter The Services Fragment by type of selected services
-
 
     private fun observeViewModel() {
 

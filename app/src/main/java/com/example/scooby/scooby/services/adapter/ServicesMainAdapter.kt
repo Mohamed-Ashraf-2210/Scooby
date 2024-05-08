@@ -19,8 +19,9 @@ class ServicesMainAdapter(private var servicesList: ServicesResponse) :
             Glide.with(itemView).load(service.serviceImage).into(itemServicesBinding.serviceImage)
             itemServicesBinding.serviceType.text = service.serviceType
             itemServicesBinding.city.text = service.city
-            itemServicesBinding.price.text = service.price.toString()
+            itemServicesBinding.servicesPrice.text = service.price.toString()
             itemServicesBinding.rate.rating = service.rate?.toFloat()!!
+            itemServicesBinding.servicesTime.text = service.pricePer
             navigate2ServiceProfile(service)
         }
 
