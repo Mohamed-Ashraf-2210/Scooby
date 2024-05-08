@@ -2,6 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:backgroundTint="@color/fefbfb"
     android:layout_width="match_parent"
     android:layout_marginBottom="24dp"
     android:layout_height="94dp">
@@ -104,7 +105,7 @@
             android:id="@+id/layout_discount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@id/item_card_price"
             app:layout_constraintBottom_toBottomOf="@id/item_card_price"
             >

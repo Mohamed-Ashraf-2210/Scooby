@@ -19,7 +19,10 @@ class ProductCartAdapter(
             productCart.product.productImage?.let { itemBinding.cartImage.loadUrl(it) }
             itemBinding.itemCartTitle.text = productCart.product.name
             itemBinding.itemCardPrice.text = productCart.price.toString()
-            if (productCart.product.discount != null) {
+            if (productCart.product.discount.toString() == "0" ) {
+                itemBinding.layoutDiscount.visibility = View.GONE
+
+            }else{
                 itemBinding.layoutDiscount.visibility = View.VISIBLE
                 itemBinding.originalPrice.text = productCart.price.toString()
                 itemBinding.offerForProduct.text = productCart.product.discount.toString()
