@@ -24,5 +24,9 @@ class ProductRepo {
         return ProductApi.getApi()?.addProductToCart(userId,productId)
     }
 
+    suspend fun getCartUser(userId: String) :Response<ProductResponse>?{
+        return ProductApi.getApi()?.getCartUser(userId)
+    }
+
 
 }

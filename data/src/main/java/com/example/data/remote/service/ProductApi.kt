@@ -34,6 +34,11 @@ interface ProductApi {
         @Query("productId") productId: String
     ):Response<ProductPatch>
 
+    @GET("/scooby/api/cart/getcart/{userId}")
+    suspend fun getCartUser(
+        @Path("userId") id: String
+    ):Response<ProductResponse>
+
 
 
 

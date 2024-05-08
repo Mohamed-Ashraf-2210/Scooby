@@ -45,6 +45,10 @@ class ProfileFragment : Fragment() {
             addPetIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_myPetsFragment)
             }
+            favoritesSection.setOnClickListener{
+                findNavController().navigate(R.id.action_profileFragment_to_favoriteFragment)
+            }
+
         }
     }
 

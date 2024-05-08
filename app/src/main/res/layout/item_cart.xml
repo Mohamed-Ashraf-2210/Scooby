@@ -100,6 +100,64 @@
             app:layout_constraintStart_toEndOf="@id/tv_egp"
             tools:text="234.444" />
 
+        <LinearLayout
+            android:id="@+id/layout_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:layout_constraintStart_toEndOf="@id/item_card_price"
+            app:layout_constraintBottom_toBottomOf="@id/item_card_price"
+            >
+
+            <TextView
+                android:id="@+id/originalPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto"
+                tools:text="2,000"
+                android:background="@drawable/strike_through_shape"
+                android:textColor="@color/black_50"
+                android:textSize="8sp"
+                 />
+
+            <TextView
+                android:id="@+id/offerForProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                tools:text="17"
+                android:textColor="@color/primary"
+                android:textSize="8sp"
+                />
+            <TextView
+                android:id="@+id/percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/percent"
+                android:textColor="@color/primary"
+                android:textSize="8sp"
+                 />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/off"
+                android:textColor="@color/primary"
+                android:textSize="8sp"
+                />
+        </LinearLayout>
+
         <com.google.android.material.card.MaterialCardView
             android:layout_width="69dp"
             android:layout_height="27dp"

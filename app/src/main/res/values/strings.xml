@@ -272,5 +272,7 @@ again."</string>
     <string name="dloar">$</string>
     <string name="pet_care">Pet Care</string>
     <string name="pet_hotel">Pet Hotel</string>
+    <string name="off">OFF</string>
+    <string name="percent">%</string>
 
 </resources>

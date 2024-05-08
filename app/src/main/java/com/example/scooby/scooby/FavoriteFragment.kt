@@ -1,5 +1,6 @@
 package com.example.scooby.scooby
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -44,7 +45,6 @@ class FavoriteFragment : Fragment() {
 
         }
     }
-
     private fun observeFavoritePets() {
         pawsViewModel.getFavoritePet(currentUserId)
         pawsViewModel.favoritePetResult.observe(viewLifecycleOwner) {
@@ -55,6 +55,7 @@ class FavoriteFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun init() {
         observeFavoriteProduct()
         binding.btnFavProduct.setOnClickListener {

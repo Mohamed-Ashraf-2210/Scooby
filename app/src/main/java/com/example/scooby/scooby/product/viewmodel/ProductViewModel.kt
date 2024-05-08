@@ -23,6 +23,11 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
         get() = _favoriteProductResult
 
 
+    private val _userCartResult: MutableLiveData<ProductResponse> = MutableLiveData()
+    val userCartResult: LiveData<ProductResponse>
+        get() = _userCartResult
+
+
 
 
     fun getProduct(){
@@ -68,6 +73,19 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
                 productRepo.addProductToCart(userId, productId)
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS addProductToCart $e")
+            }
+        }
+    }
+
+    fun getCartUser(userId: String){
+        viewModelScope.launch {
+            try {
+                val response = productRepo.getCartUser(userId)
+                response?.body().let {
+                    _userCartResult.value = response?.body()
+                }
+            }catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Get User Product $e")
             }
         }
     }
