@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
 import com.example.data.repository.ProductRepo
 import com.example.domain.CartProductResponse
+import com.example.domain.ProductPatch
 import com.example.domain.product.ProductResponse
 import kotlinx.coroutines.launch
 
@@ -27,6 +28,10 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
     private val _userCartResult: MutableLiveData<CartProductResponse> = MutableLiveData()
     val userCartResult: LiveData<CartProductResponse>
         get() = _userCartResult
+
+    private val _deleteProductCartResult: MutableLiveData<ProductPatch> = MutableLiveData()
+    val deleteProductCartResult: LiveData<ProductPatch>
+        get() = _deleteProductCartResult
 
 
 
@@ -88,6 +93,18 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
             }catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Get User Product $e")
             }
+        }
+    }
+
+    fun deleteProductFromCart(userId: String, productId: String){
+        viewModelScope.launch {
+            try {
+                val response = productRepo.deleteProductFromCart(userId,productId)
+                _deleteProductCartResult.value = response?.body()
+            }catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Delete Product From Cart $e")
+            }
+
         }
     }
 

@@ -6,6 +6,7 @@ import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
 import com.example.domain.product.ProductResponse
 import retrofit2.Response
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.PATCH
 import retrofit2.http.Path
@@ -40,6 +41,11 @@ interface ProductApi {
         @Path("userId") id: String
     ):Response<CartProductResponse>
 
+    @DELETE("/scooby/api/cart/removeproduct/{userId}")
+    suspend fun deleteProductFromCart(
+        @Path("userId") id: String,
+        @Query("productId") productId: String
+    ): Response<ProductPatch>
 
 
 
