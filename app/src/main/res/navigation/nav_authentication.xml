@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_authentication"
-    app:startDestination="@id/onboardingFragment">
+    app:startDestination="@id/welcomeFragment">
 
     <fragment
-        android:id="@+id/onboardingFragment"
-        android:name="com.example.scooby.authentication.ui.OnboardingFragment"
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.scooby.authentication.signin.WelcomeFragment"
         android:label="fragment_onboarding"
-        tools:layout="@layout/fragment_onboarding">
+        tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_onboardingFragment_to_signupFragment"
             app:destination="@id/signupFragment"
-            app:popUpTo="@id/onboardingFragment"
+            app:popUpTo="@id/welcomeFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/onboardingFragment"
+            app:popUpTo="@id/welcomeFragment"
             app:popUpToInclusive="true" />
     </fragment>
 
@@ -30,7 +30,7 @@
         <action
             android:id="@+id/action_signupFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/onboardingFragment" />
+            app:popUpTo="@id/welcomeFragment" />
     </fragment>
 
     <fragment
@@ -44,7 +44,7 @@
         <action
             android:id="@+id/action_loginFragment_to_signupFragment"
             app:destination="@id/signupFragment"
-            app:popUpTo="@id/onboardingFragment" />
+            app:popUpTo="@id/welcomeFragment" />
     </fragment>
 
     <fragment

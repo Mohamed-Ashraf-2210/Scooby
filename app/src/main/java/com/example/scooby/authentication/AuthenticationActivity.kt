@@ -1,35 +1,21 @@
 package com.example.scooby.authentication
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NO_HISTORY
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.data.Constant
 import com.example.scooby.R
 import com.example.scooby.TokenManager
-import com.example.scooby.databinding.ActivityAuthenticationBinding
 import com.example.scooby.scooby.MainActivity
 
 class AuthenticationActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityAuthenticationBinding
     private lateinit var navController: NavController
 
-    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Thread.sleep(3000)
-        installSplashScreen()
-
-        binding = ActivityAuthenticationBinding.inflate(layoutInflater)
-        initView()
-        setContentView(binding.root)
-    }
-
-    private fun initView() {
+        setContentView(R.layout.activity_authentication)
 
         val navHost =
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
@@ -43,8 +29,8 @@ class AuthenticationActivity : AppCompatActivity() {
 
     private fun goToHome() {
         val intent = Intent(this, MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.addFlags(FLAG_ACTIVITY_NO_HISTORY)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        finish()
         startActivity(intent)
     }
 }

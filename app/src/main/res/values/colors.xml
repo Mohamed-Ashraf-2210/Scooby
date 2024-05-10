@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="app_background">#FFFFFF</color>
+    <color name="welcome_background">#FEFBFB</color>
     <color name="black_95">#F20F0F0F</color>
     <color name="black_85">#D90F0F0F</color>
     <color name="black_80">#CC0F0F0F</color>

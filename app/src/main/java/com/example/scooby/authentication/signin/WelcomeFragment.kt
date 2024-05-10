@@ -1,4 +1,4 @@
-package com.example.scooby.authentication.ui
+package com.example.scooby.authentication.signin
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,16 +9,16 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.R
-import com.example.scooby.databinding.FragmentOnboardingBinding
+import com.example.scooby.databinding.FragmentWelcomeBinding
 
-class OnboardingFragment : Fragment() {
-    private var binding: FragmentOnboardingBinding? = null
+class WelcomeFragment : Fragment() {
+    private var binding: FragmentWelcomeBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentOnboardingBinding.inflate(inflater)
+        binding = FragmentWelcomeBinding.inflate(inflater)
 
         binding?.apply {
             signUpBtn.setOnClickListener { nav ->
@@ -39,8 +39,11 @@ class OnboardingFragment : Fragment() {
 
     private fun goToHome() {
         val intent = Intent(requireContext(), MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

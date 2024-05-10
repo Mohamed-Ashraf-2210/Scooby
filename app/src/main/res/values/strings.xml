@@ -274,5 +274,8 @@ again."</string>
     <string name="pet_hotel">Pet Hotel</string>
     <string name="off">OFF</string>
     <string name="percent">%</string>
+    <string name="welcome_logo">Welcome logo</string>
+    <string name="splash_icon">Splash icon</string>
+    <string name="scooby">Scooby</string>
 
 </resources>
