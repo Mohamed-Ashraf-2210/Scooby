@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.product.adapter
 
 import android.view.LayoutInflater
 import android.view.View
