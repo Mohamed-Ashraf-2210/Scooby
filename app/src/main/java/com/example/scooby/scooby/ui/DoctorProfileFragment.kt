@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +14,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.domain.DoctorProfileResponse
 import com.example.scooby.databinding.FragmentDoctorProfileBinding
+import com.example.scooby.scooby.adapter.ReviewDoctorAdapter
 import com.example.scooby.scooby.viewmodel.VetViewModel
 
 class DoctorProfileFragment : Fragment() {

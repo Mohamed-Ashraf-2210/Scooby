@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.product.fragment
 
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +12,7 @@ import com.example.domain.CartProductResponse
 import com.example.scooby.R
 import com.example.scooby.TokenManager
 import com.example.scooby.databinding.FragmentProductCartBinding
+import com.example.scooby.scooby.product.adapter.ProductCartAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -58,7 +59,7 @@ class ProductCartFragment : Fragment() {
 
     }
     private fun initRecycleView(data : CartProductResponse,currentUserId: String){
-        val adapter =  ProductCartAdapter(data.data.cartItems,currentUserId)
+        val adapter =  ProductCartAdapter(data.data.cartItems,currentUserId,productViewModel)
         binding.rvCart.adapter = adapter
         binding.itemQuantity.text = adapter.itemCount.toString()
         binding.itemInCart.text = adapter.itemCount.toString()

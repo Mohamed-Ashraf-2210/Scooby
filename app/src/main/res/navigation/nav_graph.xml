@@ -67,7 +67,7 @@
         </fragment>
         <fragment
             android:id="@+id/doctorProfileFragment"
-            android:name="com.example.scooby.scooby.DoctorProfileFragment"
+            android:name="com.example.scooby.scooby.ui.DoctorProfileFragment"
             android:label="DoctorProfileFragment"
             tools:layout="@layout/fragment_doctor_profile"
             >
@@ -318,7 +318,7 @@
         </fragment>
         <fragment
             android:id="@+id/favoriteFragment"
-            android:name="com.example.scooby.scooby.FavoriteFragment"
+            android:name="com.example.scooby.scooby.ui.FavoriteFragment"
             android:label="fragment_favorite"
             tools:layout="@layout/fragment_favorite" />
         <fragment
@@ -341,7 +341,7 @@
         </fragment>
         <fragment
             android:id="@+id/productCartFragment"
-            android:name="com.example.scooby.scooby.ProductCartFragment"
+            android:name="com.example.scooby.scooby.product.fragment.ProductCartFragment"
             android:label="ProductCartFragment"
             tools:layout="@layout/fragment_product_cart"
             />

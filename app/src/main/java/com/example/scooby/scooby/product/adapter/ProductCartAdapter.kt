@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.product.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.CartProductResponse
 import com.example.scooby.databinding.ItemCartBinding
+import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 import com.example.scooby.utils.loadUrl
 
 class ProductCartAdapter(
-
     private val cartResponse: List<CartProductResponse.Data.CartItem>,
-    private val userId: String?
+    private val userId: String?,
+    private val productViewModel: ProductViewModel
 ) : RecyclerView.Adapter<ProductCartAdapter.ProductCartViewHolder>() {
     inner class ProductCartViewHolder(private val itemBinding: ItemCartBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
@@ -27,9 +28,16 @@ class ProductCartAdapter(
                 itemBinding.originalPrice.text = productCart.price.toString()
                 itemBinding.offerForProduct.text = productCart.product.discount.toString()
             }
+            deleteItemFromCart(productCart)
         }
-        fun deleteItemFromCart(){
-
+        private fun deleteItemFromCart(productCart: CartProductResponse.Data.CartItem){
+            itemBinding.itemDelete.setOnClickListener {
+                productCart.id?.let { it1 ->
+                    if (userId != null) {
+                        productViewModel.deleteProductFromCart(userId, it1)
+                    }
+                }
+            }
         }
 
     }
