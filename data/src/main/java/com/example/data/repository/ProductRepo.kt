@@ -29,5 +29,9 @@ class ProductRepo {
         return ProductApi.getApi()?.getCartUser(userId)
     }
 
+    suspend fun deleteProductFromCart(userId: String,productId: String) :Response<ProductPatch>?{
+        return ProductApi.getApi()?.deleteProductFromCart(userId,productId)
+    }
+
 
 }

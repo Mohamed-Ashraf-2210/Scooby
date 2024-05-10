@@ -28,7 +28,12 @@ class ProductCartAdapter(
                 itemBinding.offerForProduct.text = productCart.product.discount.toString()
             }
         }
+        fun deleteItemFromCart(){
+
+        }
+
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductCartViewHolder {
         return ProductCartViewHolder(
