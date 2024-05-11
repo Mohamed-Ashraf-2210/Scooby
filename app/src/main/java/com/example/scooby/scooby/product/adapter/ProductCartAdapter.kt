@@ -1,10 +1,13 @@
 package com.example.scooby.scooby.product.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.CartProductResponse
 import com.example.scooby.databinding.ItemCartBinding
@@ -12,11 +15,12 @@ import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 import com.example.scooby.utils.loadUrl
 
 class ProductCartAdapter(
-    private val cartResponse: List<CartProductResponse.Data.CartItem>,
     private val userId: String?,
     private val productViewModel: ProductViewModel,
     private val lifecycleOwner: LifecycleOwner
-) : RecyclerView.Adapter<ProductCartAdapter.ProductCartViewHolder>() {
+) : ListAdapter<CartProductResponse.Data.CartItem, ProductCartAdapter.ProductCartViewHolder>(
+    ProductCartDiffCallBack()
+) {
     inner class ProductCartViewHolder(private val itemBinding: ItemCartBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(productCart: CartProductResponse.Data.CartItem) {
@@ -35,16 +39,23 @@ class ProductCartAdapter(
         }
         private fun deleteItemFromCart(productCart: CartProductResponse.Data.CartItem){
             itemBinding.itemCartDelete.setOnClickListener {
+                Log.i("cart", "Item removed")
                 Toast.makeText(itemView.context, "Deleted", Toast.LENGTH_SHORT).show()
-                productCart.id?.let { it1 ->
+                productCart.id?.let { productId ->
                     if (userId != null) {
-                        productViewModel.deleteProductFromCart(userId, it1)
-                        productViewModel.getCartUser(userId)
-                        productViewModel.userCartResult.observe(lifecycleOwner){
-                            it.data.cartItems = listOf(productCart)
-                        }
+                        productViewModel.deleteProductFromCart(userId, productId)
+                        Log.i("infoDeletedPro", productId)
                     }
                 }
+                if (userId != null) {
+                    productViewModel.getCartUser(userId)
+                }
+                productViewModel.userCartResult.observe(lifecycleOwner) {
+                    submitList(it.data.cartItems)
+                }
+
+                notifyItemRemoved(adapterPosition)
+                notifyItemChanged(adapterPosition)
             }
         }
 
@@ -61,10 +72,28 @@ class ProductCartAdapter(
         )
     }
 
-    override fun getItemCount(): Int = cartResponse.size
+//    override fun getItemCount(): Int = cartResponse.size
 
     override fun onBindViewHolder(holder: ProductCartViewHolder, position: Int) {
-        holder.bind(cartResponse[position])
+        holder.bind(getItem(position))
+    }
+}
+
+class ProductCartDiffCallBack : DiffUtil.ItemCallback<CartProductResponse.Data.CartItem>() {
+    override fun areItemsTheSame(
+        oldItem: CartProductResponse.Data.CartItem,
+        newItem: CartProductResponse.Data.CartItem
+    ): Boolean {
+        Log.i("cart", oldItem.product.id + " " + newItem.product.id)
+        return oldItem.product.id == newItem.product.id
+    }
+
+    override fun areContentsTheSame(
+        oldItem: CartProductResponse.Data.CartItem,
+        newItem: CartProductResponse.Data.CartItem
+    ): Boolean {
+        Log.i("cart", oldItem.quantity.toString() + " " + newItem.quantity.toString())
+        return oldItem.quantity == newItem.quantity
     }
 }
 
