@@ -3,6 +3,8 @@ package com.example.scooby.scooby.product.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.CartProductResponse
 import com.example.scooby.databinding.ItemCartBinding
@@ -12,7 +14,8 @@ import com.example.scooby.utils.loadUrl
 class ProductCartAdapter(
     private val cartResponse: List<CartProductResponse.Data.CartItem>,
     private val userId: String?,
-    private val productViewModel: ProductViewModel
+    private val productViewModel: ProductViewModel,
+    private val lifecycleOwner: LifecycleOwner
 ) : RecyclerView.Adapter<ProductCartAdapter.ProductCartViewHolder>() {
     inner class ProductCartViewHolder(private val itemBinding: ItemCartBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
@@ -31,10 +34,15 @@ class ProductCartAdapter(
             deleteItemFromCart(productCart)
         }
         private fun deleteItemFromCart(productCart: CartProductResponse.Data.CartItem){
-            itemBinding.itemDelete.setOnClickListener {
+            itemBinding.itemCartDelete.setOnClickListener {
+                Toast.makeText(itemView.context, "Deleted", Toast.LENGTH_SHORT).show()
                 productCart.id?.let { it1 ->
                     if (userId != null) {
                         productViewModel.deleteProductFromCart(userId, it1)
+                        productViewModel.getCartUser(userId)
+                        productViewModel.userCartResult.observe(lifecycleOwner){
+                            it.data.cartItems = listOf(productCart)
+                        }
                     }
                 }
             }
