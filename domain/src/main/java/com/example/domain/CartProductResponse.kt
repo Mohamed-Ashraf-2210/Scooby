@@ -13,7 +13,7 @@ data class CartProductResponse(
 ) {
     data class Data(
         @SerializedName("cartItems")
-            val cartItems: List<CartItem>,
+        var cartItems: List<CartItem>,
         @SerializedName("createdAt")
         val createdAt: String?,
         @SerializedName("_id")

@@ -59,7 +59,7 @@ class ProductCartFragment : Fragment() {
 
     }
     private fun initRecycleView(data : CartProductResponse,currentUserId: String){
-        val adapter =  ProductCartAdapter(data.data.cartItems,currentUserId,productViewModel)
+        val adapter =  ProductCartAdapter(data.data.cartItems,currentUserId,productViewModel,viewLifecycleOwner)
         binding.rvCart.adapter = adapter
         binding.itemQuantity.text = adapter.itemCount.toString()
         binding.itemInCart.text = adapter.itemCount.toString()
