@@ -37,6 +37,8 @@ class ProductCartAdapter(
             }
             deleteItemFromCart(productCart)
         }
+
+        //stile work not finish
         private fun deleteItemFromCart(productCart: CartProductResponse.Data.CartItem){
             itemBinding.itemCartDelete.setOnClickListener {
                 Log.i("cart", "Item removed")
