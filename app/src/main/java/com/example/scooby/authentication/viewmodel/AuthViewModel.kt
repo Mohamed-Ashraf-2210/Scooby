@@ -71,22 +71,24 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     // endregion
 
     // region Forgot Password
-    val forgotPasswordResult: MutableLiveData<BaseResponse<ForgotPasswordResponse>> =
+    private val _forgotPasswordResult: MutableLiveData<BaseResponse<ForgotPasswordResponse>> =
         MutableLiveData()
+    val forgotPasswordResult: LiveData<BaseResponse<ForgotPasswordResponse>>
+        get() = _forgotPasswordResult
 
     fun forgotPassword(email: String) {
-        forgotPasswordResult.value = BaseResponse.Loading()
+        _forgotPasswordResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val forgotPasswordRequest = ForgotPasswordRequest(email)
                 val response = userRepository.forgotPassword(forgotPasswordRequest)
                 if (response?.code() == 200) {
-                    forgotPasswordResult.value = BaseResponse.Success(response.body())
+                    _forgotPasswordResult.value = BaseResponse.Success(response.body())
                 } else {
-                    forgotPasswordResult.value = BaseResponse.Error(response?.message())
+                    _forgotPasswordResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                forgotPasswordResult.value = BaseResponse.Error(e.message)
+                _forgotPasswordResult.value = BaseResponse.Error(e.message)
             }
         }
     }

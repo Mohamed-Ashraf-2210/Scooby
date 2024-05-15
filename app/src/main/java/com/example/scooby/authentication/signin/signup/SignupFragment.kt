@@ -30,7 +30,7 @@ class SignupFragment : Fragment() {
     ): View? {
         binding = FragmentSignupBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
-        signUpObserve()
+        authViewModelObserve()
         binding?.apply {
             tvSignIn.setOnClickListener {
                 Navigation.findNavController(it)
@@ -48,7 +48,7 @@ class SignupFragment : Fragment() {
     }
 
 
-    private fun signUpObserve() {
+    private fun authViewModelObserve() {
         viewModel.signUpResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
