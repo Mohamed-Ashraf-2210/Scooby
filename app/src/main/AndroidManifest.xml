@@ -6,7 +6,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Camera Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Camera Permissions -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -24,8 +26,8 @@
         tools:targetApi="31">
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.Scooby"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Scooby">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,12 +36,12 @@
         </activity>
         <activity
             android:name=".scooby.MainActivity"
-            android:theme="@style/Theme.Scooby"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Scooby" />
         <activity
             android:name=".authentication.AuthenticationActivity"
-            android:theme="@style/Theme.Scooby"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.Scooby" />
 
         <meta-data
             android:name="preloaded_fonts"

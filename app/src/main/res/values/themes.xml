@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Scooby" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -10,11 +10,11 @@
         <item name="colorSecondaryVariant">@color/primary</item>
         <item name="colorOnSecondary">@color/black_clear</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >@color/white_BG</item>
+        <item name="android:statusBarColor">@color/white_BG</item>
         <item name="android:windowLightStatusBar">true</item>
-
+        <item name="android:windowIsTranslucent">true</item>
     </style>
-    
+
     <!--    Community Switch Btn-->
     <style name="CommunitySwitch" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorControlActivated">#46bdbf</item>
@@ -23,7 +23,6 @@
     </style>
 
 
-    
     <!--    facebook blue button-->
     <style name="blue_btn" parent="Widget.MaterialComponents.Button">
         <item name="materialThemeOverlay">

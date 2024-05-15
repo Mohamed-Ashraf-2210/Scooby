@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".authentication.ui.SignupFragment">
+    tools:context=".authentication.signin.signup.SignupFragment">
     <TextView
         android:id="@+id/create_your_account_text_view"
         android:layout_width="wrap_content"

@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/signupFragment"
-        android:name="com.example.scooby.authentication.ui.SignupFragment"
+        android:name="com.example.scooby.authentication.signin.signup.SignupFragment"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup">
         <action
@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.scooby.authentication.ui.LoginFragment"
+        android:name="com.example.scooby.authentication.signin.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -49,7 +49,7 @@
 
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.example.scooby.authentication.ui.ForgotPasswordFragment"
+        android:name="com.example.scooby.authentication.signin.login.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password">
         <action
@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/otpVerificationFragment"
-        android:name="com.example.scooby.authentication.ui.OtpVerificationFragment"
+        android:name="com.example.scooby.authentication.signin.login.OtpVerificationFragment"
         android:label="fragment_otp_verification"
         tools:layout="@layout/fragment_otp_verification">
         <action
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/resetPasswordFragment"
-        android:name="com.example.scooby.authentication.ui.ResetPasswordFragment"
+        android:name="com.example.scooby.authentication.signin.login.ResetPasswordFragment"
         android:label="fragment_reset_password"
         tools:layout="@layout/fragment_reset_password" />
 

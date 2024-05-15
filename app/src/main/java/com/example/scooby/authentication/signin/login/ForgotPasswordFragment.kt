@@ -1,4 +1,4 @@
-package com.example.scooby.authentication.ui
+package com.example.scooby.authentication.signin.login
 
 import android.content.Context
 import android.content.res.ColorStateList
