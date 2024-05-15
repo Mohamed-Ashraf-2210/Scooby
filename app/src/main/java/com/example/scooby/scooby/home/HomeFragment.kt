@@ -17,7 +17,7 @@ import com.example.domain.offer.OfferResponse
 import com.example.domain.pet.PetsResponse
 import com.example.domain.services.ServicesResponse
 import com.example.scooby.R
-import com.example.scooby.TokenManager
+import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.PetsHomeAdapter

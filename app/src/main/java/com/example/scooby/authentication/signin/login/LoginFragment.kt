@@ -9,17 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.data.Constant
 import com.example.domain.profile.UserResponse
 import com.example.scooby.R
-import com.example.scooby.TokenManager
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentLoginBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.BaseResponse
+import com.example.scooby.utils.TokenManager
 
 
 class LoginFragment : Fragment() {
@@ -102,18 +101,18 @@ class LoginFragment : Fragment() {
                 data?.data?.result?.id.toString()
             )
 
-            binding?.apply {
-                tvMsgError.visibility = View.GONE
-                vView.visibility = View.GONE
-                emailTextFiled.apply {
-                    boxStrokeColor = Color.alpha(Color.argb(255, 81, 57, 115))
-                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
-                }
-                PasswordTextFiled.apply {
-                    boxStrokeColor = Color.argb(255, 81, 57, 115)
-                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
-                }
-            }
+//            binding?.apply {
+//                tvMsgError.visibility = View.GONE
+//                vView.visibility = View.GONE
+//                emailTextFiled.apply {
+//                    boxStrokeColor = Color.alpha(Color.argb(255, 81, 57, 115))
+//                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
+//                }
+//                PasswordTextFiled.apply {
+//                    boxStrokeColor = Color.argb(255, 81, 57, 115)
+//                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
+//                }
+//            }
             goToHome()
         }
     }

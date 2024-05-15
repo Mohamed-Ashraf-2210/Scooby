@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.example.data.Constant
 import com.example.domain.CartProductResponse
 import com.example.scooby.R
-import com.example.scooby.TokenManager
+import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentProductCartBinding
 import com.example.scooby.scooby.product.adapter.ProductCartAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel

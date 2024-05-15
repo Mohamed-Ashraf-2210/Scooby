@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.data.Constant
 import com.example.domain.pet.MyPetsResponse
 import com.example.scooby.R
-import com.example.scooby.TokenManager
+import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentPetProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.MyPetsViewModel

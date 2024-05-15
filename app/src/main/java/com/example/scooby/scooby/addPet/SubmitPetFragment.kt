@@ -17,7 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.data.Constant
 import com.example.domain.pet.AddPetData
-import com.example.scooby.TokenManager
+import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentSubmitPetBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.PetsViewModel

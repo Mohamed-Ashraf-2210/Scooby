@@ -1,10 +1,11 @@
-package com.example.scooby
+package com.example.scooby.splash
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.example.scooby.R
 import com.example.scooby.authentication.AuthenticationActivity
 
 class SplashScreenActivity : AppCompatActivity() {

@@ -48,21 +48,23 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
 
 
     // region Sign Up
-    val signUpResult: MutableLiveData<BaseResponse<UserResponse>> = MutableLiveData()
+    private val _signUpResult: MutableLiveData<BaseResponse<UserResponse>> = MutableLiveData()
+    val signUpResult: LiveData<BaseResponse<UserResponse>>
+        get() = _signUpResult
 
     fun signUpUser(email: String, name: String, password: String) {
-        signUpResult.value = BaseResponse.Loading()
+        _signUpResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val signUpRequest = SignUpRequest(email, name, password)
                 val response = userRepository.signUpUser(signUpRequest)
                 if (response?.code() == 200) {
-                    signUpResult.value = BaseResponse.Success(response.body())
+                    _signUpResult.value = BaseResponse.Success(response.body())
                 } else {
-                    signUpResult.value = BaseResponse.Error(response?.message())
+                    _signUpResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                signUpResult.value = BaseResponse.Error(e.message)
+                _signUpResult.value = BaseResponse.Error(e.message)
             }
         }
     }

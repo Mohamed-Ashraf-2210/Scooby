@@ -25,7 +25,7 @@
         android:theme="@style/Theme.Scooby"
         tools:targetApi="31">
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".splash.SplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.Scooby">
             <intent-filter>

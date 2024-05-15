@@ -1,6 +1,7 @@
-package com.example.scooby
+package com.example.scooby.utils
 
 import android.content.Context
+import com.example.scooby.R
 
 object TokenManager {
 
@@ -24,7 +25,7 @@ object TokenManager {
 
     fun clearToken(context: Context) {
         val editor = context.getSharedPreferences(
-            context.getString(com.example.scooby.R.string.app_name),
+            context.getString(R.string.app_name),
             Context.MODE_PRIVATE
         ).edit()
         editor.clear()

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.data.Constant
-import com.example.scooby.TokenManager
+import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentFavoriteBinding
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.scooby.product.adapter.FavoritePetsAdapter

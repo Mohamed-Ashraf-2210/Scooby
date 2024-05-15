@@ -1,305 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context=".authentication.signin.signup.SignupFragment">
-    <TextView
-        android:id="@+id/create_your_account_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:fontFamily="@font/roboto_medium"
-        android:gravity="center"
-        android:text="@string/create_your_account"
-        android:textColor="@color/black_font"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name_text_field"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="32dp"
-        android:hint="@string/name"
-        app:layout_constraintBottom_toTopOf="@+id/email_text_field"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/create_your_account_text_view"
-        app:layout_constraintVertical_chainStyle="packed"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <TextView
+            android:id="@+id/create_your_account_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="@string/create_your_account"
+            android:textColor="@color/black_font"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/name_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="32dp"
+            android:hint="@string/name"
+            app:layout_constraintBottom_toTopOf="@+id/email_text_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/create_your_account_text_view"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:ignore="MissingConstraints">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black_font"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tv_msg_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:drawablePadding="8dp"
             android:fontFamily="@font/roboto"
-            android:maxLines="1"
-            android:inputType="text"
-            android:textColor="@color/black_font"
-            android:textSize="12sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/tv_msg_error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:drawableLeft="@drawable/cancel"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/roboto"
-        android:text="The name field must not be empty "
-        android:textColor="@color/red"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/name_text_field"
-        app:layout_constraintTop_toBottomOf="@id/name_text_field" />
+            android:text="@string/the_name_field_must_not_be_empty"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:drawableLeftCompat="@drawable/cancel"
+            app:layout_constraintStart_toStartOf="@id/name_text_field"
+            app:layout_constraintTop_toBottomOf="@id/name_text_field" />
 
 
-    <TextView
-        android:id="@+id/msg_error_email_one"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:drawableLeft="@drawable/cancel"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/roboto"
-        android:text="Please enter your email address "
-        android:textColor="@color/red"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/email_text_field"
-        app:layout_constraintTop_toBottomOf="@id/email_text_field" />
+        <TextView
+            android:id="@+id/msg_error_email_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/please_enter_your_email_address"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:drawableLeftCompat="@drawable/cancel"
+            app:layout_constraintStart_toStartOf="@id/email_text_field"
+            app:layout_constraintTop_toBottomOf="@id/email_text_field" />
 
-    <TextView
-        android:id="@+id/msg_error_email_two"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:drawableLeft="@drawable/cancel"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/roboto"
-        android:text="Please enter a valid email address, e.g. joe@mail.com"
-        android:textColor="@color/red"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/msg_error_email_one"
-        app:layout_constraintTop_toBottomOf="@id/msg_error_email_one" />
+        <TextView
+            android:id="@+id/msg_error_email_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/please_enter_a_valid_email_address_e_g_joe_mail_com"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:drawableLeftCompat="@drawable/cancel"
+            app:layout_constraintStart_toStartOf="@id/msg_error_email_one"
+            app:layout_constraintTop_toBottomOf="@id/msg_error_email_one" />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_text_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="26dp"
-        android:hint="@string/email"
-        app:layout_constraintBottom_toTopOf="@+id/password_text_field"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_text_field"
-        tools:ignore="MissingConstraints">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:maxLines="1"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/black_font"
-            android:textSize="12sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="26dp"
+            android:hint="@string/email"
+            app:layout_constraintBottom_toTopOf="@+id/password_text_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_text_field"
+            tools:ignore="MissingConstraints">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password_text_field"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="17dp"
-        android:hint="@string/password"
-        app:endIconMode="password_toggle"
-        app:layout_constraintBottom_toTopOf="@+id/sign_up_btn_create"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/msg_error_email_two"
-        tools:ignore="ExtraText">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/black_font"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_text_field"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="17dp"
+            android:hint="@string/password"
+            app:endIconMode="password_toggle"
+            app:layout_constraintBottom_toTopOf="@+id/sign_up_btn_create"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/msg_error_email_two"
+            tools:ignore="ExtraText">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/black_font"
+                android:textSize="12sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/msg_error_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:drawablePadding="8dp"
             android:fontFamily="@font/roboto"
+            android:text="@string/must_be_at_least_8_characters_long"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:drawableLeftCompat="@drawable/cancel"
+            app:layout_constraintStart_toStartOf="@id/msg_error_email_one"
+            app:layout_constraintTop_toBottomOf="@id/password_text_field" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sign_up_btn_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="94dp"
+            android:backgroundTint="@color/primary"
+            android:fontFamily="@font/roboto"
+            android:paddingVertical="12sp"
+            android:text="@string/sign_up"
+            android:textColor="@color/white_BG"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_text_field" />
+
+        <TextView
+            android:id="@+id/continue_with_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/or_continue_with"
             android:textColor="@color/black_font"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:textSize="12sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:textSize="14sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sign_up_btn_create" />
 
-    <TextView
-        android:id="@+id/msg_error_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:drawableLeft="@drawable/cancel"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/roboto"
-        android:text="Must be at least 8 characters long "
-        android:textColor="@color/red"
-        android:textSize="12sp"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="@id/msg_error_email_one"
-        app:layout_constraintTop_toBottomOf="@id/password_text_field" />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/sign_up_btn_create"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="94dp"
-        android:backgroundTint="@color/primary"
-        android:fontFamily="@font/roboto"
-        android:paddingVertical="12sp"
-        android:text="@string/sign_up"
-        android:textColor="@color/white_BG"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:cornerRadius="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/password_text_field" />
-
-    <TextView
-        android:id="@+id/continue_with_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/or_continue_with"
-        android:textColor="@color/black_font"
-        android:textSize="14sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sign_up_btn_create" />
-
-    <ImageButton
-        android:id="@+id/btn_facebook"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/rounded_button"
-        android:src="@drawable/ic_v_facebookl"
-        app:layout_constraintEnd_toStartOf="@+id/btn_google"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/continue_with_text_view" />
+        <ImageButton
+            android:id="@+id/btn_facebook"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/facebook_icon"
+            android:src="@drawable/ic_v_facebookl"
+            app:layout_constraintEnd_toStartOf="@+id/btn_google"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/continue_with_text_view" />
 
 
-    <ImageButton
-        android:id="@+id/btn_google"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_button_white"
-        android:contentDescription="@string/sign_in_with_google"
-        android:src="@drawable/ic_google"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_facebook"
-        app:layout_constraintTop_toBottomOf="@+id/continue_with_text_view" />
+        <ImageButton
+            android:id="@+id/btn_google"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/rounded_button_white"
+            android:contentDescription="@string/sign_in_with_google"
+            android:src="@drawable/ic_google"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_facebook"
+            app:layout_constraintTop_toBottomOf="@+id/continue_with_text_view" />
 
-    <TextView
-        android:id="@+id/tv_AlaScooby"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto"
-        android:text="@string/already_a_scooby_member"
-        android:textSize="14sp"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintEnd_toStartOf="@+id/tv_SignIn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_facebook" />
+        <TextView
+            android:id="@+id/tv_AlaScooby"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/already_a_scooby_member"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_SignIn"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_facebook" />
 
-    <TextView
-        android:id="@+id/tv_SignIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/login"
-        android:textColor="@color/primary"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@id/tv_AlaScooby"
-        app:layout_constraintBaseline_toBaselineOf="@id/tv_AlaScooby"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_facebook" />
+        <TextView
+            android:id="@+id/tv_SignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/login"
+            android:textColor="@color/primary"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_AlaScooby"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_AlaScooby"
+            app:layout_constraintTop_toBottomOf="@+id/btn_facebook" />
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/linearLayout"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:orientation="horizontal"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/btn_google"-->
-<!--        tools:ignore="ExtraText">-->
+        <TextView
+            android:id="@+id/tv_terms"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52.5dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="52.5dp"
+            android:gravity="center"
+            android:text="@string/tv_terms_of_service"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_AlaScooby" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_AlaScooby"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginEnd="5dp"-->
-<!--            android:fontFamily="@font/roboto"-->
-<!--            android:text="@string/already_a_scooby_member"-->
-<!--            android:textSize="14sp" />-->
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="400dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/tv_SignIn"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:fontFamily="@font/roboto_medium"-->
-<!--            android:text="@string/login"-->
-<!--            android:textColor="@color/primary"-->
-<!--            android:textSize="16sp" />-->
-
-<!--    </LinearLayout>-->
-
-    <TextView
-        android:id="@+id/tv_terms"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52.5dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="52.5dp"
-        android:gravity="center"
-        android:textSize="12sp"
-        android:text="@string/tv_terms_of_service"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_AlaScooby"
-        />
-
-    <ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

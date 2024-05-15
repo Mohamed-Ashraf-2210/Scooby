@@ -278,5 +278,9 @@ again."</string>
     <string name="splash_icon">Splash icon</string>
     <string name="scooby">Scooby</string>
     <string name="facebook_icon">facebook icon</string>
+    <string name="the_name_field_must_not_be_empty">The name field must not be empty</string>
+    <string name="please_enter_your_email_address">Please enter your email address</string>
+    <string name="please_enter_a_valid_email_address_e_g_joe_mail_com">Please enter a valid email address, e.g. joe@mail.com</string>
+    <string name="must_be_at_least_8_characters_long">Must be at least 8 characters long</string>
 
 </resources>

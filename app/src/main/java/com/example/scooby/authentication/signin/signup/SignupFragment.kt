@@ -7,53 +7,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.data.Constant
 import com.example.domain.profile.UserResponse
 import com.example.scooby.R
-import com.example.scooby.TokenManager
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentSignupBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.BaseResponse
+import com.example.scooby.utils.TokenManager
 
 
 class SignupFragment : Fragment() {
-    private lateinit var binding: FragmentSignupBinding
-    private val viewModel by viewModels<AuthViewModel>()
+    private var binding: FragmentSignupBinding? = null
+    private lateinit var viewModel: AuthViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentSignupBinding.inflate(inflater, container, false)
-        init()
-        return binding.root
-    }
-
-    private fun init() {
+        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         signUpObserve()
-        clickSignUp()
-        clickLogin()
+        binding?.apply {
+            tvSignIn.setOnClickListener {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_signupFragment_to_loginFragment)
+            }
+            signUpBtnCreate.setOnClickListener {
+                val name = checkName()
+                val email = checkEmail()
+                val pass = checkPassword()
+                if (name && email && pass)
+                    doSignUp()
+            }
+        }
+        return binding?.root
     }
 
-    private fun clickLogin() {
-        binding.tvSignIn.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_signupFragment_to_loginFragment)
-        }
-    }
-
-    private fun clickSignUp() {
-        binding.signUpBtnCreate.setOnClickListener {
-            val name = checkName()
-            val email = checkEmail()
-            val pass = checkPassword()
-            if (name && email && pass)
-                doSignUp()
-        }
-    }
 
     private fun signUpObserve() {
         viewModel.signUpResult.observe(viewLifecycleOwner) {
@@ -78,42 +71,45 @@ class SignupFragment : Fragment() {
         }
     }
 
-    // region Checking if field is okay
     private fun checkName(): Boolean {
-        val name = binding.nameTextField.editText?.text.toString()
-        if (name.isEmpty()) {
-            binding.tvMsgError.visibility = View.VISIBLE
-            binding.nameTextField.apply {
-                boxStrokeColor = Color.RED
-                hintTextColor = ColorStateList.valueOf(Color.RED)
-            }
-            return false
-        } else {
-            binding.tvMsgError.visibility = View.GONE
-            binding.nameTextField.apply {
-                boxStrokeColor = Color.argb(255, 81, 57, 115)
-                hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
+        binding?.apply {
+            val name = nameTextField.editText?.text.toString()
+            if (name.isEmpty()) {
+                tvMsgError.visibility = View.VISIBLE
+                nameTextField.apply {
+                    boxStrokeColor = Color.RED
+                    hintTextColor = ColorStateList.valueOf(Color.RED)
+                }
+                return false
+            } else {
+                tvMsgError.visibility = View.GONE
+                nameTextField.apply {
+                    boxStrokeColor = Color.argb(255, 81, 57, 115)
+                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
+                }
             }
         }
         return true
     }
 
     private fun checkEmail(): Boolean {
-        val email = binding.emailTextField.editText?.text.toString()
-        if (email.isEmpty() || !isEmailValid(email)) {
-            binding.msgErrorEmailOne.visibility = View.VISIBLE
-            binding.msgErrorEmailTwo.visibility = View.VISIBLE
-            binding.emailTextField.apply {
-                boxStrokeColor = Color.RED
-                hintTextColor = ColorStateList.valueOf(Color.RED)
-            }
-            return false
-        } else {
-            binding.msgErrorEmailOne.visibility = View.GONE
-            binding.msgErrorEmailTwo.visibility = View.GONE
-            binding.emailTextField.apply {
-                boxStrokeColor = Color.argb(255, 81, 57, 115)
-                hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
+        binding?.apply {
+            val email = emailTextField.editText?.text.toString()
+            if (email.isEmpty() || !isEmailValid(email)) {
+                msgErrorEmailOne.visibility = View.VISIBLE
+                msgErrorEmailTwo.visibility = View.VISIBLE
+                emailTextField.apply {
+                    boxStrokeColor = Color.RED
+                    hintTextColor = ColorStateList.valueOf(Color.RED)
+                }
+                return false
+            } else {
+                msgErrorEmailOne.visibility = View.GONE
+                msgErrorEmailTwo.visibility = View.GONE
+                emailTextField.apply {
+                    boxStrokeColor = Color.argb(255, 81, 57, 115)
+                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
+                }
             }
         }
         return true
@@ -125,47 +121,50 @@ class SignupFragment : Fragment() {
     }
 
     private fun checkPassword(): Boolean {
-        val password = binding.passwordTextField.editText?.text.toString()
-        if (password.length < 8) {
-            binding.msgErrorPass.visibility = View.VISIBLE
-            binding.passwordTextField.apply {
-                boxStrokeColor = Color.RED
-                hintTextColor = ColorStateList.valueOf(Color.RED)
-            }
-            return false
-        } else {
-            binding.msgErrorPass.visibility = View.GONE
-            binding.passwordTextField.apply {
-                boxStrokeColor = Color.argb(255, 81, 57, 115)
-                hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
+        binding?.apply {
+            val password = passwordTextField.editText?.text.toString()
+            if (password.length < 8) {
+                msgErrorPass.visibility = View.VISIBLE
+                passwordTextField.apply {
+                    boxStrokeColor = Color.RED
+                    hintTextColor = ColorStateList.valueOf(Color.RED)
+                }
+                return false
+            } else {
+                msgErrorPass.visibility = View.GONE
+                passwordTextField.apply {
+                    boxStrokeColor = Color.argb(255, 81, 57, 115)
+                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
+                }
             }
         }
         return true
     }
-    // endregion
 
 
     private fun doSignUp() {
-        val email = binding.emailTextField.editText?.text.toString()
-        val name = binding.nameTextField.editText?.text.toString()
-        val password = binding.passwordTextField.editText?.text.toString()
-        viewModel.signUpUser(email, name, password)
+        binding?.apply {
+            val email = emailTextField.editText?.text.toString()
+            val name = nameTextField.editText?.text.toString()
+            val password = passwordTextField.editText?.text.toString()
+            viewModel.signUpUser(email, name, password)
+        }
     }
 
     private fun processLogin(data: UserResponse?) {
-        showToast("Welcome: " + (data?.data?.result?.name ?: ""))
         if (!data?.token.isNullOrEmpty()) {
-            data?.token?.let {
-                TokenManager.saveAuth(
-                    this.requireContext(),
-                    Constant.USER_TOKEN,
-                    it
-                )
-            }
+            // Save token
+            TokenManager.saveAuth(
+                this.requireContext(),
+                Constant.USER_TOKEN,
+                data?.token.toString()
+            )
+
+            // Save user id
             TokenManager.saveAuth(
                 this.requireContext(),
                 Constant.USER_ID,
-                data?.data?.result?.id ?: ""
+                data?.data?.result?.id.toString()
             )
             goToHome()
         }
@@ -173,23 +172,22 @@ class SignupFragment : Fragment() {
 
     private fun goToHome() {
         val intent = Intent(requireContext(), MainActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+        ActivityCompat.finishAffinity(requireActivity())
     }
 
 
-    // region Loading
     private fun showLoading() {
-        binding.loading.visibility = View.VISIBLE
+        binding?.loading?.visibility = View.VISIBLE
     }
 
     private fun stopLoading() {
-        binding.loading.visibility = View.GONE
+        binding?.loading?.visibility = View.GONE
     }
-    // endregion
 
-    private fun showToast(msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 }

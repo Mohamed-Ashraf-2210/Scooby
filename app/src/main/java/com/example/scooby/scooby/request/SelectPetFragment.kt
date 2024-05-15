@@ -1,7 +1,6 @@
 package com.example.scooby.scooby.request
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.data.Constant
 import com.example.scooby.R
-import com.example.scooby.TokenManager
+import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentSelectPetBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.MyPetsRequestAdapter
