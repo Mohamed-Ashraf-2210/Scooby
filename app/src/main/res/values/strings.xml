@@ -282,5 +282,7 @@ again."</string>
     <string name="please_enter_your_email_address">Please enter your email address</string>
     <string name="please_enter_a_valid_email_address_e_g_joe_mail_com">Please enter a valid email address, e.g. joe@mail.com</string>
     <string name="must_be_at_least_8_characters_long">Must be at least 8 characters long</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="Continue">Continue</string>
 
 </resources>
