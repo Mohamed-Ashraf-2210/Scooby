@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.domain.authentication.CheckCodeResponse
@@ -18,7 +17,6 @@ import com.example.scooby.utils.BaseResponse
 class OtpVerificationFragment : Fragment() {
     private var binding: FragmentOtpVerificationBinding? = null
     private lateinit var viewModel: AuthViewModel
-    private var flag = false
     private val args: OtpVerificationFragmentArgs by navArgs()
     private lateinit var userId: String
 

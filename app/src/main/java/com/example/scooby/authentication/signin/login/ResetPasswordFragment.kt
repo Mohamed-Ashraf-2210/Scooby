@@ -13,6 +13,7 @@ import com.example.scooby.R
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentResetPasswordBinding
 import com.example.scooby.utils.BaseResponse
+import kotlin.concurrent.thread
 
 
 class ResetPasswordFragment : Fragment() {
@@ -63,7 +64,10 @@ class ResetPasswordFragment : Fragment() {
 
     private fun resetSuccess() {
         binding?.success?.visibility = View.VISIBLE
-        findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+        thread {
+            Thread.sleep(2000)
+            findNavController().navigate(R.id.action_resetPasswordFragment_to_loginFragment)
+        }
     }
 
     private fun showLoading() {
