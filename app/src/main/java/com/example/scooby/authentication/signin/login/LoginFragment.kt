@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import androidx.navigation.Navigation
 import com.example.data.Constant
 import com.example.domain.profile.UserResponse
 import com.example.scooby.R
+import com.example.scooby.authentication.AuthenticationActivity
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentLoginBinding
 import com.example.scooby.scooby.MainActivity
@@ -85,6 +88,7 @@ class LoginFragment : Fragment() {
 
 
     private fun processLogin(data: UserResponse?) {
+        binding?.success?.visibility = View.VISIBLE
         if (!data?.token.isNullOrEmpty()) {
 
             // Save token
@@ -100,19 +104,6 @@ class LoginFragment : Fragment() {
                 Constant.USER_ID,
                 data?.data?.result?.id.toString()
             )
-
-//            binding?.apply {
-//                tvMsgError.visibility = View.GONE
-//                vView.visibility = View.GONE
-//                emailTextFiled.apply {
-//                    boxStrokeColor = Color.alpha(Color.argb(255, 81, 57, 115))
-//                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
-//                }
-//                PasswordTextFiled.apply {
-//                    boxStrokeColor = Color.argb(255, 81, 57, 115)
-//                    hintTextColor = ColorStateList.valueOf(Color.argb(255, 81, 57, 115))
-//                }
-//            }
             goToHome()
         }
     }
@@ -133,10 +124,12 @@ class LoginFragment : Fragment() {
     }
 
     private fun goToHome() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-        startActivity(intent)
-        ActivityCompat.finishAffinity(requireActivity())
+        Handler(Looper.getMainLooper()).postDelayed({
+            val intent = Intent(requireContext(), MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            ActivityCompat.finishAffinity(requireActivity())
+        }, 1500)
     }
 
     private fun showLoading() {
