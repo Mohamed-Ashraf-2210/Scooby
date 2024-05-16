@@ -21,6 +21,10 @@ class ProductCartAdapter(
 ) : ListAdapter<CartProductResponse.Data.CartItem, ProductCartAdapter.ProductCartViewHolder>(
     ProductCartDiffCallBack()
 ) {
+    override fun getItem(position: Int): CartProductResponse.Data.CartItem {
+        return super.getItem(position)
+    }
+
     inner class ProductCartViewHolder(private val itemBinding: ItemCartBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(productCart: CartProductResponse.Data.CartItem) {
@@ -35,6 +39,7 @@ class ProductCartAdapter(
                 itemBinding.originalPrice.text = productCart.price.toString()
                 itemBinding.offerForProduct.text = productCart.product.discount.toString()
             }
+
             deleteItemFromCart(productCart)
         }
 
@@ -54,10 +59,11 @@ class ProductCartAdapter(
                 }
                 productViewModel.userCartResult.observe(lifecycleOwner) {
                     submitList(it.data.cartItems)
-                }
+                    Log.i("checkDeletedPro", it.data.cartItems.toString())
 
-                notifyItemRemoved(adapterPosition)
-                notifyItemChanged(adapterPosition)
+                }
+                notifyItemRemoved(absoluteAdapterPosition)
+                notifyItemRangeChanged(adapterPosition,itemCount)
             }
         }
 
