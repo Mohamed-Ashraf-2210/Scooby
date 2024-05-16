@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.domain.authentication.CheckCodeResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
@@ -31,7 +32,7 @@ class OtpVerificationFragment : Fragment() {
         binding?.apply {
             tvEmail.text = args.email
             btnSubmit.setOnClickListener {
-                doCheck(it)
+                viewModel.checkCode(binding?.pinview?.text.toString())
             }
         }
         return binding?.root
@@ -64,22 +65,16 @@ class OtpVerificationFragment : Fragment() {
     private fun processLogin(data: CheckCodeResponse?) {
         if (data != null) {
             userId = data.userId
+            val action =
+                OtpVerificationFragmentDirections.actionOtpVerificationFragmentToResetPasswordFragment(
+                    userId
+                )
+            findNavController().navigate(action)
         }
     }
 
     private fun processError(msg: String?) {
         Toast.makeText(context, "$msg Try again", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun doCheck(v: View) {
-        viewModel.checkCode(binding?.pinview?.text.toString())
-        if (flag) {
-            val action =
-                OtpVerificationFragmentDirections.actionOtpVerificationFragmentToResetPasswordFragment(
-                    userId
-                )
-            Navigation.findNavController(v).navigate(action)
-        }
     }
 
     private fun showLoading() {

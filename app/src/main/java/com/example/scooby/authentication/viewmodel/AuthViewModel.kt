@@ -95,9 +95,11 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     // endregion
 
     // region Check Code
-    private val _checkCodeResult: MutableLiveData<BaseResponse<CheckCodeResponse>> = MutableLiveData()
+    private val _checkCodeResult: MutableLiveData<BaseResponse<CheckCodeResponse>> =
+        MutableLiveData()
     val checkCodeResult: LiveData<BaseResponse<CheckCodeResponse>>
         get() = _checkCodeResult
+
     fun checkCode(code: String) {
         _checkCodeResult.value = BaseResponse.Loading()
         viewModelScope.launch {
@@ -121,6 +123,7 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
         MutableLiveData()
     val resetPasswordResult: LiveData<BaseResponse<ResetPasswordResponse>>
         get() = _resetPasswordResult
+
     fun resetPassword(userId: String, password: String, confirmPassword: String) {
         _resetPasswordResult.value = BaseResponse.Loading()
         viewModelScope.launch {

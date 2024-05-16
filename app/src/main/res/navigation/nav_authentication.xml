@@ -78,10 +78,13 @@
         android:id="@+id/resetPasswordFragment"
         android:name="com.example.scooby.authentication.signin.login.ResetPasswordFragment"
         android:label="fragment_reset_password"
-        tools:layout="@layout/fragment_reset_password" >
+        tools:layout="@layout/fragment_reset_password">
         <argument
             android:name="userId"
             app:argType="string" />
+        <action
+            android:id="@+id/action_resetPasswordFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
 
