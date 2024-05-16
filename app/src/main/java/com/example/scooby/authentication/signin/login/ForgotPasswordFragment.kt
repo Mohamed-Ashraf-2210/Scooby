@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.domain.authentication.ForgotPasswordResponse
 import com.example.scooby.R
@@ -25,6 +26,7 @@ class ForgotPasswordFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentForgotPasswordBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         authViewModelObserve()
         binding?.apply {
             btnContinue.setOnClickListener {

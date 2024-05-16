@@ -95,42 +95,45 @@ class AuthViewModel(application: Application) : AndroidViewModel(application) {
     // endregion
 
     // region Check Code
-    val checkCodeResult: MutableLiveData<BaseResponse<CheckCodeResponse>> = MutableLiveData()
+    private val _checkCodeResult: MutableLiveData<BaseResponse<CheckCodeResponse>> = MutableLiveData()
+    val checkCodeResult: LiveData<BaseResponse<CheckCodeResponse>>
+        get() = _checkCodeResult
     fun checkCode(code: String) {
-        checkCodeResult.value = BaseResponse.Loading()
+        _checkCodeResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val checkCodeRequest = CheckCodeRequest(code)
                 val response = userRepository.checkCode(checkCodeRequest)
                 if (response?.code() == 200) {
-                    checkCodeResult.value = BaseResponse.Success(response.body())
+                    _checkCodeResult.value = BaseResponse.Success(response.body())
                 } else {
-                    checkCodeResult.value = BaseResponse.Error(response?.message())
+                    _checkCodeResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                checkCodeResult.value = BaseResponse.Error(e.message)
+                _checkCodeResult.value = BaseResponse.Error(e.message)
             }
         }
     }
     // endregion
 
     // region Check Code
-    val resetPasswordResult: MutableLiveData<BaseResponse<ResetPasswordResponse>> =
+    private val _resetPasswordResult: MutableLiveData<BaseResponse<ResetPasswordResponse>> =
         MutableLiveData()
-
-    fun resetPassword(password: String, confirmPassword: String) {
-        resetPasswordResult.value = BaseResponse.Loading()
+    val resetPasswordResult: LiveData<BaseResponse<ResetPasswordResponse>>
+        get() = _resetPasswordResult
+    fun resetPassword(userId: String, password: String, confirmPassword: String) {
+        _resetPasswordResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val resetPasswordRequest = ResetPasswordRequest(password, confirmPassword)
-                val response = userRepository.resetPassword(resetPasswordRequest)
+                val response = userRepository.resetPassword(userId, resetPasswordRequest)
                 if (response?.code() == 200) {
-                    resetPasswordResult.value = BaseResponse.Success(response.body())
+                    _resetPasswordResult.value = BaseResponse.Success(response.body())
                 } else {
-                    resetPasswordResult.value = BaseResponse.Error(response?.message())
+                    _resetPasswordResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                resetPasswordResult.value = BaseResponse.Error(e.message)
+                _resetPasswordResult.value = BaseResponse.Error(e.message)
             }
         }
     }

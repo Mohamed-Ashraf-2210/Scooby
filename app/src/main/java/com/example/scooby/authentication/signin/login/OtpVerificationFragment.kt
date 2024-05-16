@@ -1,37 +1,43 @@
 package com.example.scooby.authentication.signin.login
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
-import com.example.scooby.utils.BaseResponse
 import com.example.domain.authentication.CheckCodeResponse
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentOtpVerificationBinding
+import com.example.scooby.utils.BaseResponse
 
 class OtpVerificationFragment : Fragment() {
-
-    private var _binding: FragmentOtpVerificationBinding? = null
-    private val binding get() = _binding!!
-    private val viewModel by viewModels<AuthViewModel>()
-    private lateinit var mContext: Context
+    private var binding: FragmentOtpVerificationBinding? = null
+    private lateinit var viewModel: AuthViewModel
     private var flag = false
     private val args: OtpVerificationFragmentArgs by navArgs()
+    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentOtpVerificationBinding.inflate(inflater,container,false)
-        mContext = requireContext()
-        binding.tvEmail.text = args.email
+        binding = FragmentOtpVerificationBinding.inflate(inflater, container, false)
+        viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
+        authViewModelObserve()
+        binding?.apply {
+            tvEmail.text = args.email
+            btnSubmit.setOnClickListener {
+                doCheck(it)
+            }
+        }
+        return binding?.root
+    }
 
+    private fun authViewModelObserve() {
         viewModel.checkCodeResult.observe(viewLifecycleOwner) {
             when (it) {
                 is BaseResponse.Loading -> {
@@ -47,46 +53,45 @@ class OtpVerificationFragment : Fragment() {
                     stopLoading()
                     processError(it.msg)
                 }
+
                 else -> {
                     stopLoading()
                 }
             }
         }
-
-        binding.btnSubmit.setOnClickListener {
-            doCheck(it)
-        }
-        return binding.root
     }
 
     private fun processLogin(data: CheckCodeResponse?) {
         if (data != null) {
-//            Constant.ID_USER = data.userId
+            userId = data.userId
         }
     }
 
     private fun processError(msg: String?) {
-        showToast("$msg Try again")
+        Toast.makeText(context, "$msg Try again", Toast.LENGTH_SHORT).show()
     }
 
     private fun doCheck(v: View) {
-        viewModel.checkCode(binding.pinview.text.toString())
+        viewModel.checkCode(binding?.pinview?.text.toString())
         if (flag) {
-            val action = OtpVerificationFragmentDirections.actionOtpVerificationFragmentToResetPasswordFragment()
+            val action =
+                OtpVerificationFragmentDirections.actionOtpVerificationFragmentToResetPasswordFragment(
+                    userId
+                )
             Navigation.findNavController(v).navigate(action)
         }
     }
-    private fun stopLoading() {
-        binding.loading.visibility = View.GONE
-    }
 
     private fun showLoading() {
-        binding.loading.visibility = View.VISIBLE
+        binding?.loading?.visibility = View.VISIBLE
     }
 
-    private fun showToast(msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+    private fun stopLoading() {
+        binding?.loading?.visibility = View.GONE
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
 }
