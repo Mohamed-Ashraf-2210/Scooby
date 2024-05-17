@@ -92,14 +92,12 @@ class LoginFragment : Fragment() {
 
             // Save token
             TokenManager.saveAuth(
-                this.requireContext(),
                 Constant.USER_TOKEN,
                 data?.token.toString()
             )
 
             // Save user id
             TokenManager.saveAuth(
-                this.requireContext(),
                 Constant.USER_ID,
                 data?.data?.result?.id.toString()
             )

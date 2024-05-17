@@ -34,7 +34,7 @@ class ProductFragment : Fragment() {
     ): View? {
         if (_binding == null) {
             _binding = FragmentProductBinding.inflate(layoutInflater, container, false)
-            userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+            userId = TokenManager.getAuth( Constant.USER_ID).toString()
             init()
         }
 
@@ -53,7 +53,6 @@ class ProductFragment : Fragment() {
     }
 
     private fun init() {
-        productViewModel.getProduct()
         observeOfferViewModel()
         backOffFragment()
         callBackButton()
@@ -92,6 +91,7 @@ class ProductFragment : Fragment() {
 
     private fun observeOfferViewModel() {
             productViewModel.apply {
+                getProduct()
                 productResult.observe(viewLifecycleOwner) { products ->
                     getFavoriteProduct(userId)
                     favoriteProductResult.observe(viewLifecycleOwner) { _favoriteProducts ->
@@ -119,10 +119,6 @@ class ProductFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.hide()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding.productRv.adapter = null
-    }
     private fun stopLoading() {
         binding.progressBar.visibility = View.GONE
         binding.productRv.visibility = View.VISIBLE

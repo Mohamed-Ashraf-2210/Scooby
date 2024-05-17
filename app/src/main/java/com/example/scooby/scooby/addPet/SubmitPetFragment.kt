@@ -42,7 +42,7 @@ class SubmitPetFragment : Fragment() {
     }
 
     private fun getUserId() {
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        userId = TokenManager.getAuth(Constant.USER_ID).toString()
     }
 
     private var imagePet: Bitmap? = null

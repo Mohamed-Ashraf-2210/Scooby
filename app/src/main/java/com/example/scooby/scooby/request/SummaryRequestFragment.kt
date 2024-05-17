@@ -111,7 +111,7 @@ class SummaryRequestFragment : Fragment() {
     }
 
     private fun getUserId() {
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        userId = TokenManager.getAuth( Constant.USER_ID).toString()
     }
 
     private fun observeMyPets() {

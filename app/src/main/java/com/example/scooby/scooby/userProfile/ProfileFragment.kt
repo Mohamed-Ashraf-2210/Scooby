@@ -27,7 +27,7 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        userId = TokenManager.getAuth( Constant.USER_ID).toString()
         initView()
         observeViewModel()
         return binding?.root

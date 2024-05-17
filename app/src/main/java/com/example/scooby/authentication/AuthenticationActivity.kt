@@ -21,7 +21,7 @@ class AuthenticationActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
         navController = navHost.navController
 
-        val token = TokenManager.getAuth(this, Constant.USER_TOKEN)
+        val token = TokenManager.getAuth( Constant.USER_TOKEN)
         if (!token.isNullOrBlank()) {
             goToHome()
         }

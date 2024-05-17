@@ -60,7 +60,7 @@ class PetProfileFragment : Fragment() {
     }
 
     private fun observeProfileData() {
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        userId = TokenManager.getAuth( Constant.USER_ID).toString()
         profileViewModel.getMyPets(userId)
         profileViewModel.myPetsResult.observe(viewLifecycleOwner) { result ->
             stopLoading()

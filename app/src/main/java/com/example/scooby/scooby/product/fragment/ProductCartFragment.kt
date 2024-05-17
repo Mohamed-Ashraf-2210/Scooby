@@ -33,7 +33,7 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductCartBinding.inflate(layoutInflater, container, false)
-        currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        currentUserId = TokenManager.getAuth( Constant.USER_ID).toString()
         initViews()
         observeUserCart()
         return binding.root

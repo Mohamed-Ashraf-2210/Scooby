@@ -155,14 +155,12 @@ class SignupFragment : Fragment() {
         if (!data?.token.isNullOrEmpty()) {
             // Save token
             TokenManager.saveAuth(
-                this.requireContext(),
                 Constant.USER_TOKEN,
                 data?.token.toString()
             )
 
             // Save user id
             TokenManager.saveAuth(
-                this.requireContext(),
                 Constant.USER_ID,
                 data?.data?.result?.id.toString()
             )

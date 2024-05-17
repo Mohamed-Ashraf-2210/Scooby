@@ -42,7 +42,7 @@ class PawsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPawsBinding.inflate(inflater, container, false)
-        currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        currentUserId = TokenManager.getAuth(Constant.USER_ID).toString()
         initButtonCallBack()
         init()
         return binding.root

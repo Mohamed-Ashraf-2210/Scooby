@@ -27,7 +27,7 @@ class CommunityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCommunityBinding.inflate(inflater, container, false)
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        userId = TokenManager.getAuth( Constant.USER_ID).toString()
         observePublicPosts()
 
         binding?.apply {

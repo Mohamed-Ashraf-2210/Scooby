@@ -35,7 +35,7 @@ class EditProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEditProfileBinding.inflate(inflater)
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        userId = TokenManager.getAuth(Constant.USER_ID).toString()
         getUserData()
         init()
         return binding?.root

@@ -30,7 +30,7 @@ class FavoriteFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFavoriteBinding.inflate(layoutInflater,container,false)
-        currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+        currentUserId = TokenManager.getAuth(Constant.USER_ID).toString()
         init()
         return binding.root
     }
