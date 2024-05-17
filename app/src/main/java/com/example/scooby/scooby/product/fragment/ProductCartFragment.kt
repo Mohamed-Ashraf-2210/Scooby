@@ -14,26 +14,44 @@ import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentProductCartBinding
 import com.example.scooby.scooby.product.adapter.ProductCartAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
+import com.example.scooby.utils.IRefreshListListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class ProductCartFragment : Fragment() {
-    private lateinit var cartResponse : CartProductResponse
+class ProductCartFragment : Fragment(), IRefreshListListener {
+    private lateinit var cartResponse: CartProductResponse
     private val productViewModel by viewModels<ProductViewModel>()
     private lateinit var binding: FragmentProductCartBinding
     private lateinit var currentUserId: String
+    private lateinit var adapter: ProductCartAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProductCartBinding.inflate(layoutInflater,container,false)
+        binding = FragmentProductCartBinding.inflate(layoutInflater, container, false)
         currentUserId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
-        hideNavBar()
+        initViews()
         observeUserCart()
         return binding.root
+    }
+
+    private fun initViews() {
+        hideNavBar()
+        adapter = ProductCartAdapter(currentUserId, productViewModel, viewLifecycleOwner,this)
+        binding.rvCart.adapter = adapter
+        getCartData()
+    }
+
+    private fun getCartData() {
+        if (currentUserId != null) {
+            productViewModel.getCartUser(currentUserId)
+        } else {
+            Log.d("Cart User", "null")
+        }
     }
 
     private fun setData2Ui(cartProductResponse: CartProductResponse) {
@@ -45,31 +63,29 @@ class ProductCartFragment : Fragment() {
     }
 
     private fun observeUserCart() {
-        if(currentUserId != null){
-            productViewModel.getCartUser(currentUserId)
-            productViewModel.userCartResult.observe(viewLifecycleOwner){
-                initRecycleView(it,currentUserId)
-                setData2Ui(it)
-                Log.d("Cart User", it.data.toString())
-                binding.itemCardInfo.visibility = View.VISIBLE
-            }
-        }else{
-            Log.d("Cart User", "null")
+        productViewModel.userCartResult.observe(viewLifecycleOwner) {
+            binding.progressBtn.visibility = View.GONE
+            initRecycleView(it, currentUserId)
+            setData2Ui(it)
+            Log.d("Cart User", it.data.toString())
+            binding.itemCardInfo.visibility = View.VISIBLE
         }
-
     }
-    private fun initRecycleView(data : CartProductResponse,currentUserId: String){
-        val adapter =  ProductCartAdapter(currentUserId,productViewModel,viewLifecycleOwner)
+
+    private fun initRecycleView(data: CartProductResponse, currentUserId: String) {
         adapter.submitList(data.data.cartItems)
-        binding.rvCart.adapter = adapter
         binding.itemQuantity.text = adapter.itemCount.toString()
         binding.itemInCart.text = adapter.itemCount.toString()
     }
 
     private fun hideNavBar() {
-        val navBar:BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.GONE
     }
 
+    override fun onRefreshList() {
+        binding.progressBtn.visibility = View.VISIBLE
+       getCartData()
+    }
 
 }
