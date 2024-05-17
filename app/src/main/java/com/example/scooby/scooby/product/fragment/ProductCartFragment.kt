@@ -10,11 +10,11 @@ import androidx.fragment.app.viewModels
 import com.example.data.Constant
 import com.example.domain.CartProductResponse
 import com.example.scooby.R
-import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentProductCartBinding
 import com.example.scooby.scooby.product.adapter.ProductCartAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 import com.example.scooby.utils.IRefreshListListener
+import com.example.data.local.TokenManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProductCartFragment : Fragment(), IRefreshListListener {
@@ -65,10 +65,14 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
     private fun observeUserCart() {
         productViewModel.userCartResult.observe(viewLifecycleOwner) {
             binding.progressBtn.visibility = View.GONE
-            initRecycleView(it, currentUserId)
-            setData2Ui(it)
-            Log.d("Cart User", it.data.toString())
-            binding.itemCardInfo.visibility = View.VISIBLE
+            if (it != null) {
+                initRecycleView(it, currentUserId)
+                setData2Ui(it)
+                Log.d("Cart User", it.data.toString())
+                binding.itemCardInfo.visibility = View.VISIBLE
+                productViewModel.userCartResult.value = null
+            }
+
         }
     }
 
@@ -85,7 +89,7 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
 
     override fun onRefreshList() {
         binding.progressBtn.visibility = View.VISIBLE
-       getCartData()
+        getCartData()
     }
 
 }

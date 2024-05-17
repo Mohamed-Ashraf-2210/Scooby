@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.data.Constant
 import com.example.domain.profile.UserProfileResponse
-import com.example.scooby.utils.TokenManager
+import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentEditProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.ProfileViewModel

@@ -15,7 +15,7 @@ import com.example.domain.paws.AdaptionDogsResponse
 import com.example.domain.paws.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
-import com.example.scooby.utils.TokenManager
+import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentPawsBinding
 import com.example.scooby.scooby.paws.adapter.AdaptionAdoptMeAdapter
 import com.example.scooby.scooby.paws.adapter.AdaptionCatsAdapter

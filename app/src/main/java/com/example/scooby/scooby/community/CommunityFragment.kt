@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.data.Constant
 import com.example.scooby.R
-import com.example.scooby.utils.TokenManager
+import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentCommunityBinding
 import com.example.scooby.scooby.adapter.MyMomentPostsAdapter
 import com.example.scooby.scooby.adapter.PublicPostsAdapter

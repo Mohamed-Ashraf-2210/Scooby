@@ -1,31 +1,28 @@
-package com.example.scooby.utils
+package com.example.data.local
 
 import android.content.Context
-import com.example.scooby.R
+import com.example.data.R
 
 object TokenManager {
 
+    val prefs = context.getSharedPreferences(
+        "Scoopy",
+        Context.MODE_PRIVATE
+    )
     fun saveAuth(context: Context, key: String, value: String) {
-        val prefs = context.getSharedPreferences(
-            context.getString(R.string.app_name),
-            Context.MODE_PRIVATE
-        )
         val editor = prefs.edit()
         editor.putString(key, value)
         editor.apply()
     }
 
     fun getAuth(context: Context, key: String): String? {
-        val prefs = context.getSharedPreferences(
-            context.getString(R.string.app_name),
-            Context.MODE_PRIVATE
-        )
+
         return prefs.getString(key, null)
     }
 
     fun clearToken(context: Context) {
         val editor = context.getSharedPreferences(
-            context.getString(R.string.app_name),
+            "Scoopy",
             Context.MODE_PRIVATE
         ).edit()
         editor.clear()

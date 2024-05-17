@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.data.Constant
 import com.example.scooby.R
-import com.example.scooby.utils.TokenManager
+import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentMyPetsBinding
 import com.example.scooby.scooby.adapter.MyPetsAddAdapter
 import com.example.scooby.scooby.viewmodel.MyPetsViewModel

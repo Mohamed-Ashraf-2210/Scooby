@@ -14,7 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.data.Constant
 import com.example.scooby.R
-import com.example.scooby.utils.TokenManager
+import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentSummaryRequestBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.PetsSummaryRequestAdapter

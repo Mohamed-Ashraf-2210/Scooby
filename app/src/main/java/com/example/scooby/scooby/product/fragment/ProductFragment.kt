@@ -2,21 +2,21 @@ package com.example.scooby.scooby.product.fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.Constant
 import com.example.domain.product.ProductResponse
 import com.example.scooby.R
-import com.example.scooby.utils.TokenManager
 import com.example.scooby.databinding.FragmentProductBinding
 import com.example.scooby.scooby.product.adapter.ProductAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
+import com.example.data.local.TokenManager
 
 class ProductFragment : Fragment() {
     private lateinit var allProduct: ProductResponse
@@ -32,9 +32,12 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProductBinding.inflate(layoutInflater, container, false)
-        userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
-        init()
+        if (_binding == null) {
+            _binding = FragmentProductBinding.inflate(layoutInflater, container, false)
+            userId = TokenManager.getAuth(requireContext(), Constant.USER_ID).toString()
+            init()
+        }
+
         return binding.root
     }
 
@@ -50,6 +53,7 @@ class ProductFragment : Fragment() {
     }
 
     private fun init() {
+        productViewModel.getProduct()
         observeOfferViewModel()
         backOffFragment()
         callBackButton()
@@ -87,19 +91,18 @@ class ProductFragment : Fragment() {
     }
 
     private fun observeOfferViewModel() {
-        productViewModel.apply {
-            getProduct()
-            productResult.observe(viewLifecycleOwner) { products ->
-                getFavoriteProduct(userId)
-                favoriteProductResult.observe(viewLifecycleOwner) { _favoriteProducts ->
-                    favoriteProducts = _favoriteProducts
-                    stopLoading()
-                    getProductData(products, favoriteProducts)
-                    allProduct = products!!
-                    Log.d("my_Tagg", products.data.toString())
+            productViewModel.apply {
+                productResult.observe(viewLifecycleOwner) { products ->
+                    getFavoriteProduct(userId)
+                    favoriteProductResult.observe(viewLifecycleOwner) { _favoriteProducts ->
+                        favoriteProducts = _favoriteProducts
+                        stopLoading()
+                        getProductData(products, favoriteProducts)
+                        allProduct = products!!
+                        Log.d("my_Tagg", products.data.toString())
+                    }
                 }
             }
-        }
     }
 
 

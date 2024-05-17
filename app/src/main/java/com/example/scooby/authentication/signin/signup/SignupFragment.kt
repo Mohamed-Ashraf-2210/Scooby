@@ -18,7 +18,7 @@ import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentSignupBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.BaseResponse
-import com.example.scooby.utils.TokenManager
+import com.example.data.local.TokenManager
 
 
 class SignupFragment : Fragment() {

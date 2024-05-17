@@ -16,12 +16,11 @@ import androidx.navigation.Navigation
 import com.example.data.Constant
 import com.example.domain.profile.UserResponse
 import com.example.scooby.R
-import com.example.scooby.authentication.AuthenticationActivity
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentLoginBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.BaseResponse
-import com.example.scooby.utils.TokenManager
+import com.example.data.local.TokenManager
 
 
 class LoginFragment : Fragment() {
@@ -128,7 +127,7 @@ class LoginFragment : Fragment() {
             val intent = Intent(requireContext(), MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
-            ActivityCompat.finishAffinity(requireActivity())
+            requireActivity().finishAffinity()
         }, 1500)
     }
 

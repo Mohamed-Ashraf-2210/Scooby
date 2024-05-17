@@ -27,7 +27,7 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
 
 
     private val _userCartResult: MutableLiveData<CartProductResponse> = MutableLiveData()
-    val userCartResult: LiveData<CartProductResponse>
+    val userCartResult: MutableLiveData<CartProductResponse>
         get() = _userCartResult
 
     private val _deleteProductCartResult: MutableLiveData<BaseResponse<ProductPatch>> = MutableLiveData()
