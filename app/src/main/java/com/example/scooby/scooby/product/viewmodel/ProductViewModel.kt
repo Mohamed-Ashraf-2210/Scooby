@@ -11,6 +11,7 @@ import com.example.data.repository.ProductRepo
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
 import com.example.domain.product.ProductResponse
+import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
 
 class ProductViewModel(application: Application) : AndroidViewModel(application) {
@@ -29,8 +30,8 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
     val userCartResult: LiveData<CartProductResponse>
         get() = _userCartResult
 
-    private val _deleteProductCartResult: MutableLiveData<ProductPatch> = MutableLiveData()
-    val deleteProductCartResult: LiveData<ProductPatch>
+    private val _deleteProductCartResult: MutableLiveData<BaseResponse<ProductPatch>> = MutableLiveData()
+    val deleteProductCartResult: LiveData<BaseResponse<ProductPatch>>
         get() = _deleteProductCartResult
 
 
@@ -56,7 +57,6 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
                 response?.body().let {
                     _favoriteProductResult.value = response?.body()
                 }
-
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS favoriteProduct $e")
             }
@@ -97,10 +97,15 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
     }
 
     fun deleteProductFromCart(userId: String, productId: String){
+        _deleteProductCartResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val response = productRepo.deleteProductFromCart(userId,productId)
-                _deleteProductCartResult.value = response?.body()
+                if (response?.code() == 200) {
+                    _deleteProductCartResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _deleteProductCartResult.value = BaseResponse.Error(response?.message())
+                }
             }catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Delete Product From Cart $e")
             }

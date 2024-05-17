@@ -9,15 +9,18 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.scooby.utils.BaseResponse
 import com.example.domain.CartProductResponse
 import com.example.scooby.databinding.ItemCartBinding
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
+import com.example.scooby.utils.IRefreshListListener
 import com.example.scooby.utils.loadUrl
 
 class ProductCartAdapter(
     private val userId: String?,
     private val productViewModel: ProductViewModel,
-    private val lifecycleOwner: LifecycleOwner
+    private val lifecycleOwner: LifecycleOwner,
+    private val listener : IRefreshListListener
 ) : ListAdapter<CartProductResponse.Data.CartItem, ProductCartAdapter.ProductCartViewHolder>(
     ProductCartDiffCallBack()
 ) {
@@ -31,20 +34,21 @@ class ProductCartAdapter(
             productCart.product.productImage?.let { itemBinding.cartImage.loadUrl(it) }
             itemBinding.itemCartTitle.text = productCart.product.name
             itemBinding.itemCardPrice.text = productCart.price.toString()
-            if (productCart.product.discount.toString() == "0" ) {
+            if (productCart.product.discount.toString() == "0") {
                 itemBinding.layoutDiscount.visibility = View.GONE
 
-            }else{
+            } else {
                 itemBinding.layoutDiscount.visibility = View.VISIBLE
                 itemBinding.originalPrice.text = productCart.price.toString()
                 itemBinding.offerForProduct.text = productCart.product.discount.toString()
             }
 
             deleteItemFromCart(productCart)
+            observeViews()
         }
 
         //stile work not finish
-        private fun deleteItemFromCart(productCart: CartProductResponse.Data.CartItem){
+        private fun deleteItemFromCart(productCart: CartProductResponse.Data.CartItem) {
             itemBinding.itemCartDelete.setOnClickListener {
                 Log.i("cart", "Item removed")
                 Toast.makeText(itemView.context, "Deleted", Toast.LENGTH_SHORT).show()
@@ -54,16 +58,32 @@ class ProductCartAdapter(
                         Log.i("infoDeletedPro", productId)
                     }
                 }
-                if (userId != null) {
-                    productViewModel.getCartUser(userId)
-                }
-                productViewModel.userCartResult.observe(lifecycleOwner) {
-                    submitList(it.data.cartItems)
-                    Log.i("checkDeletedPro", it.data.cartItems.toString())
+//                if (userId != null) {
+//                    productViewModel.getCartUser(userId)
+//                }
+//                productViewModel.userCartResult.observe(lifecycleOwner) {
+//                    submitList(it.data.cartItems)
+//                    Log.i("checkDeletedPro", it.data.cartItems.toString())
+//
+//                }
+//                notifyItemRemoved(absoluteAdapterPosition)
+//                notifyItemRangeChanged(adapterPosition,itemCount)
+            }
+        }
 
+    }
+
+    private fun observeViews() {
+        productViewModel.deleteProductCartResult.observe(lifecycleOwner) { baseResponse ->
+            when (baseResponse) {
+                is BaseResponse.Success -> {
+                    if (userId != null) {
+                        listener.onRefreshList()
+                    }
                 }
-                notifyItemRemoved(absoluteAdapterPosition)
-                notifyItemRangeChanged(adapterPosition,itemCount)
+
+                is BaseResponse.Error -> Log.i("DeleteItem",baseResponse.msg.toString())
+                is BaseResponse.Loading -> {}
             }
         }
 
