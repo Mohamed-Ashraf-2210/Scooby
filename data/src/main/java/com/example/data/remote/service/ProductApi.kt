@@ -44,7 +44,7 @@ interface ProductApi {
     @DELETE("/scooby/api/cart/removeproduct/{userId}")
     suspend fun deleteProductFromCart(
         @Path("userId") id: String,
-        @Query("productId") productId: String
+        @Query("itemId") productId: String
     ): Response<ProductPatch>
 
 

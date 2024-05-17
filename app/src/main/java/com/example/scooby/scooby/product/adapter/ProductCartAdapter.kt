@@ -48,7 +48,7 @@ class ProductCartAdapter(
             itemBinding.itemCartDelete.setOnClickListener {
                 Log.i("cart", "Item removed")
                 Toast.makeText(itemView.context, "Deleted", Toast.LENGTH_SHORT).show()
-                productCart.id?.let { productId ->
+                productCart.product.id?.let { productId ->
                     if (userId != null) {
                         productViewModel.deleteProductFromCart(userId, productId)
                         Log.i("infoDeletedPro", productId)
