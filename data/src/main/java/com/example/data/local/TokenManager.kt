@@ -1,9 +1,11 @@
 package com.example.data.local
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.data.R
 
+@SuppressLint("StaticFieldLeak")
 object TokenManager {
 
     private lateinit var context: Context
