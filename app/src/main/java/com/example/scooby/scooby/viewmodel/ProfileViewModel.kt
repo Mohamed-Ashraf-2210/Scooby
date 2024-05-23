@@ -35,7 +35,6 @@ class ProfileViewModel : ViewModel() {
             } catch (e: Exception) {
                 _profileResult.value = BaseResponse.Error(e.message)
             }
-
         }
     }
     // endregion

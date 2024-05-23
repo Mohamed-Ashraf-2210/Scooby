@@ -1,6 +1,5 @@
 package com.example.scooby.scooby.services.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -33,10 +32,10 @@ class ServicesAdapter(private var servicesList: ServicesResponse) :
         )
     }
 
-    override fun getItemCount() = servicesList.shuffledServices.size
+    override fun getItemCount() = 20
 
     override fun onBindViewHolder(holder: ServicesViewHolder, position: Int) {
-       holder.bind(servicesList.shuffledServices[position])
+        holder.bind(servicesList.shuffledServices[position])
     }
 
 }

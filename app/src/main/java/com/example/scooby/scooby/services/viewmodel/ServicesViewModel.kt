@@ -6,41 +6,46 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ServicesRepo
-import com.example.data.Constant
 import com.example.domain.ServicesProfileResponse
 import com.example.domain.services.ServicesResponse
+import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
 
 class ServicesViewModel() : ViewModel() {
     private val servicesRepo = ServicesRepo()
-    private val _servicesResult : MutableLiveData<ServicesResponse?> = MutableLiveData()
-    val servicesResult: LiveData<ServicesResponse?>
-        get() =_servicesResult
 
-    private val _servicesProfileResult : MutableLiveData<ServicesProfileResponse?> = MutableLiveData()
-    val servicesProfileResult:LiveData<ServicesProfileResponse?>
+
+    private val _servicesResult: MutableLiveData<BaseResponse<ServicesResponse>> = MutableLiveData()
+    val servicesResult: LiveData<BaseResponse<ServicesResponse>>
+        get() = _servicesResult
+
+    private val _servicesProfileResult: MutableLiveData<ServicesProfileResponse?> =
+        MutableLiveData()
+    val servicesProfileResult: LiveData<ServicesProfileResponse?>
         get() = _servicesProfileResult
 
 
-
     fun getServices() {
+        _servicesResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val response = servicesRepo.getServices()
-                if (response != null) {
-                    _servicesResult.value =response.body()
+                if (response != null && response.isSuccessful) {
+                    _servicesResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _servicesResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+                _servicesResult.value = BaseResponse.Error(e.message)
             }
         }
     }
 
-    fun getServicesProfile(servicesId:String){
+    fun getServicesProfile(servicesId: String) {
         viewModelScope.launch {
             val response = servicesRepo.getServicesProfileData(servicesId)
             try {
-                if (response != null && response.isSuccessful){
+                if (response != null && response.isSuccessful) {
                     _servicesProfileResult.value = response.body()
                 }
                 Log.d("TEST_FILTER", "Response code: ${response?.code()}")
@@ -51,7 +56,6 @@ class ServicesViewModel() : ViewModel() {
 
         }
     }
-
 
 
 }

@@ -10,9 +10,9 @@ import com.example.data.repository.PetsRepo
 import com.example.domain.pet.AddPetData
 import com.example.domain.pet.AddPetResponse
 import com.example.domain.pet.PetsResponse
+import com.example.scooby.utils.BaseResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -21,8 +21,9 @@ import java.io.File
 
 class PetsViewModel : ViewModel() {
     private val petsRepo = PetsRepo()
-    private val _petsResult: MutableLiveData<PetsResponse?> = MutableLiveData()
-    val petsResult: LiveData<PetsResponse?>
+
+    private val _petsResult: MutableLiveData<BaseResponse<PetsResponse>> = MutableLiveData()
+    val petsResult: LiveData<BaseResponse<PetsResponse>>
         get() = _petsResult
 
     private val _addPetsResult: MutableLiveData<AddPetResponse?> = MutableLiveData()
@@ -30,25 +31,28 @@ class PetsViewModel : ViewModel() {
         get() = _addPetsResult
 
     fun getPets() {
+        _petsResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val response = petsRepo.getAllPets()
-                if (response != null) {
-                    _petsResult.value = response.body()
+                if (response != null && response.isSuccessful) {
+                    _petsResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _petsResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+                _petsResult.value = BaseResponse.Error(e.message)
             }
         }
     }
 
-    fun addPet(userId: String, file: File, petData: AddPetData){
+    fun addPet(userId: String, file: File, petData: AddPetData) {
         viewModelScope.launch {
             try {
                 val fileReqBody = file.asRequestBody("image/*".toMediaTypeOrNull())
                 val part = MultipartBody.Part.createFormData("file", file.name, fileReqBody)
 
-                val response = petsRepo.addPet(userId, part,petDataToRequestBody(petData))
+                val response = petsRepo.addPet(userId, part, petDataToRequestBody(petData))
                 if (response != null && response.isSuccessful) {
                     _addPetsResult.value = response.body()
                 }

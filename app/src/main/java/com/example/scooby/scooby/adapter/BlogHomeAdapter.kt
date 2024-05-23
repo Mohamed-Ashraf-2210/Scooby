@@ -8,22 +8,23 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.scooby.R
 import com.example.domain.blog.BlogResponse
+import com.example.scooby.R
 
 class BlogHomeAdapter(private val blogList: BlogResponse, private val context: Context) :
     RecyclerView.Adapter<BlogHomeAdapter.BlogHomeViewHolder>() {
-    class BlogHomeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class BlogHomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imgLink: ImageView = itemView.findViewById(R.id.img_card_blog_home)
         val imgTitle: TextView = itemView.findViewById(R.id.title_card_blog_home)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlogHomeViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.blogs_item_home, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.blogs_item_home, parent, false)
         return BlogHomeViewHolder(itemView)
     }
 
-    override fun getItemCount() = blogList.data.size
+    override fun getItemCount() = 20
 
 
     override fun onBindViewHolder(holder: BlogHomeViewHolder, position: Int) {

@@ -4,20 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
-import com.example.data.Constant
 import com.example.domain.blog.BlogResponse
 import com.example.domain.offer.OfferResponse
 import com.example.domain.pet.PetsResponse
-import com.example.domain.services.ServicesResponse
+import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
-import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentHomeBinding
 import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.PetsHomeAdapter
@@ -27,55 +26,49 @@ import com.example.scooby.scooby.viewmodel.BlogViewModel
 import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.PetsViewModel
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.utils.BaseResponse
 
 class HomeFragment : Fragment() {
 
     private var binding: FragmentHomeBinding? = null
-    private val servicesViewModel by viewModels<ServicesViewModel>()
-    private val blogsViewModel by viewModels<BlogViewModel>()
-    private val petsViewModel by viewModels<PetsViewModel>()
-    private val offerViewModel by viewModels<OfferViewModel>()
-    private val profileViewModel by viewModels<ProfileViewModel>()
-    private lateinit var userId: String
+    private lateinit var profileViewModel: ProfileViewModel
+    private lateinit var offerViewModel: OfferViewModel
+    private lateinit var servicesViewModel: ServicesViewModel
+    private lateinit var petsViewModel: PetsViewModel
+    private lateinit var blogsViewModel: BlogViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        getUserId()
+        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+        servicesViewModel = ViewModelProvider(this)[ServicesViewModel::class.java]
+        offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]
+        petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
+        blogsViewModel = ViewModelProvider(this)[BlogViewModel::class.java]
+
         initView()
         return binding?.root
     }
 
     private fun initView() {
         observeViewModel()
-        requestsSection()
-        seeMore()
+        clickActions()
+    }
+
+    private fun clickActions() {
         binding?.apply {
             userImage.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
             }
-        }
-    }
-
-    private fun getUserId() {
-        userId = TokenManager.getAuth(Constant.USER_ID).toString()
-    }
-
-    private fun seeMore() {
-        binding?.apply {
             blogsSeeMore.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_blogsFragment)
             }
             servicesSeeMore.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
             }
-        }
-    }
-
-    private fun requestsSection() {
-        binding?.apply {
             vetIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
             }
@@ -136,46 +129,92 @@ class HomeFragment : Fragment() {
             moreIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
             }
-
         }
     }
 
 
     private fun observeViewModel() {
+        observeUserProfile()
         observeOffers()
         observeServices()
         observePets()
         observeBlogs()
-        observeUserProfile()
     }
 
+    // region User Profile
     private fun observeUserProfile() {
         profileViewModel.apply {
-            getUser(userId)
+            getUserInfo()
             profileResult.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    binding?.apply {
-                        val name = it.data.data.name
-                        for (i in name.indices) {
-                            if (name[i] == ' ') {
-                                userName.text = "Hi, ${name.substring(0, i)}"
-                                break
-                            }
-                        }
-                        Glide.with(requireContext()).load(it.data.data.profileImage).into(userImage)
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        profileSuccess(it.data)
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
                     }
                 }
             }
         }
     }
 
+    private fun profileSuccess(data: UserProfileResponse?) {
+        val userInfo = data?.data?.data
+        binding?.apply {
+            val name = userInfo?.name
+            if (name != null) {
+                for (i in name.indices) {
+                    // Take the first name of the user
+                    if (name[i] == ' ') {
+                        userName.text = "Hi, ${name.substring(0, i)}"
+                        break
+                    }
+                }
+            }
+            Glide.with(requireContext())
+                .load(userInfo?.profileImage)
+                .placeholder(R.drawable.user_default_image)
+                .error(R.drawable.error)
+                .into(userImage)
+        }
+    }
+    // endregion
+
     // region Offers
     private fun observeOffers() {
         offerViewModel.apply {
             getOffer()
             offerResult.observe(viewLifecycleOwner) {
-                if (it != null)
-                    getOffersData(it)
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        getOffersData(it.data)
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
+                }
             }
         }
     }
@@ -196,17 +235,29 @@ class HomeFragment : Fragment() {
         servicesViewModel.apply {
             getServices()
             servicesResult.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    stopLoading()
-                    getServicesData(it)
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        binding?.servicesRv?.adapter = ServicesAdapter(it.data!!)
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
                 }
             }
         }
     }
 
-    private fun getServicesData(data: ServicesResponse?) {
-        binding?.servicesRv?.adapter = ServicesAdapter(data!!)
-    }
     // endregion
 
     // region Pets
@@ -214,8 +265,25 @@ class HomeFragment : Fragment() {
         petsViewModel.apply {
             getPets()
             petsResult.observe(viewLifecycleOwner) {
-                if (it != null)
-                    getPetsData(it)
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        getPetsData(it.data)
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
+                }
             }
         }
     }
@@ -230,8 +298,25 @@ class HomeFragment : Fragment() {
         blogsViewModel.apply {
             getBlogs()
             blogResult.observe(viewLifecycleOwner) {
-                if (it != null)
-                    getBlogsData(it)
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        getBlogsData(it.data)
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
+                }
             }
         }
     }
@@ -241,6 +326,9 @@ class HomeFragment : Fragment() {
     }
     // endregion
 
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
 
     private fun stopLoading() {
         binding?.apply {
@@ -249,6 +337,9 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -258,4 +349,5 @@ class HomeFragment : Fragment() {
             petsRv.adapter = null
         }
     }
+
 }

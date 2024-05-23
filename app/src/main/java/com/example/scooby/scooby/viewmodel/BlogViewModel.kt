@@ -1,31 +1,32 @@
 package com.example.scooby.scooby.viewmodel
 
-import android.app.Application
-import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.blog.BlogResponse
 import com.example.data.repository.BlogRepo
-import com.example.data.Constant
+import com.example.domain.blog.BlogResponse
+import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
 
-class BlogViewModel (application: Application) : AndroidViewModel(application) {
-     private val blogRepo = BlogRepo()
-     private val _blogResult : MutableLiveData<BlogResponse?> = MutableLiveData()
-    val blogResult:LiveData<BlogResponse?>
+class BlogViewModel() : ViewModel() {
+    private val blogRepo = BlogRepo()
+    private val _blogResult: MutableLiveData<BaseResponse<BlogResponse>> = MutableLiveData()
+    val blogResult: LiveData<BaseResponse<BlogResponse>>
         get() = _blogResult
 
-    fun getBlogs(){
+    fun getBlogs() {
+        _blogResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val response = blogRepo.getBlogs()
-                if (response != null) {
-                    _blogResult.value =response.body()
+                if (response != null && response.isSuccessful) {
+                    _blogResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _blogResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+                _blogResult.value = BaseResponse.Error(e.message)
             }
         }
     }
