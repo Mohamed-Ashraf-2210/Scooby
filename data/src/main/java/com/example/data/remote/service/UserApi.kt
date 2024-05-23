@@ -13,7 +13,6 @@ import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UserResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -37,10 +36,13 @@ interface UserApi {
     suspend fun checkCode(@Body checkCodeRequest: CheckCodeRequest): Response<CheckCodeResponse>
 
     @POST("/scooby/api/users/reset-password/{userId}")
-    suspend fun resetPassword(@Path("userId") userId: String, @Body resetPasswordRequest: ResetPasswordRequest): Response<ResetPasswordResponse>
+    suspend fun resetPassword(
+        @Path("userId") userId: String,
+        @Body resetPasswordRequest: ResetPasswordRequest
+    ): Response<ResetPasswordResponse>
 
-    @GET("/scooby/api/user/getuser/{userId}")
-    suspend fun getUser(@Path("userId") userId: String): Response<UserProfileResponse>
+    @GET("/scooby/api/user/getuser")
+    suspend fun getUser(): Response<UserProfileResponse>
 
 
     @Multipart
@@ -48,7 +50,7 @@ interface UserApi {
     suspend fun updateUser(
         @Path("userId") userId: String,
         @Part image: MultipartBody.Part
-        ): Response<UpdateUseResponse>
+    ): Response<UpdateUseResponse>
 
     companion object {
         fun getApi(): UserApi? {

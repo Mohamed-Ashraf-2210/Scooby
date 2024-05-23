@@ -8,32 +8,32 @@ import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
 import com.example.data.repository.UserRepository
 import com.example.domain.profile.UpdateUseResponse
-import com.example.domain.profile.UpdateUserData
 import com.example.domain.profile.UserProfileResponse
+import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 class ProfileViewModel : ViewModel() {
     private val profileRepo = UserRepository()
 
     // region Get user
-    private val _profileResult: MutableLiveData<UserProfileResponse?> = MutableLiveData()
-    val profileResult: LiveData<UserProfileResponse?>
+    private val _profileResult: MutableLiveData<BaseResponse<UserProfileResponse>> =
+        MutableLiveData()
+    val profileResult: LiveData<BaseResponse<UserProfileResponse>>
         get() = _profileResult
 
-    fun getUser(userId: String) {
+    fun getUserInfo() {
+        _profileResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
-                val response = profileRepo.getUser(userId)
+                val response = profileRepo.getUser()
                 if (response != null && response.isSuccessful) {
-                    _profileResult.value = response.body()
+                    _profileResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _profileResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+                _profileResult.value = BaseResponse.Error(e.message)
             }
 
         }

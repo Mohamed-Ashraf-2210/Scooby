@@ -25,7 +25,7 @@ class UserRepository {
     suspend fun resetPassword(userId: String, resetPasswordRequest: ResetPasswordRequest) =
         UserApi.getApi()?.resetPassword(userId, resetPasswordRequest)
 
-    suspend fun getUser(userId: String) = UserApi.getApi()?.getUser(userId)
+    suspend fun getUser() = UserApi.getApi()?.getUser()
 
     suspend fun updateUser(
         userId: String,
