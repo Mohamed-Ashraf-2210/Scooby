@@ -284,5 +284,6 @@ again."</string>
     <string name="must_be_at_least_8_characters_long">Must be at least 8 characters long</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="Continue">Continue</string>
+    <string name="hi_guest">Hi, Guest</string>
 
 </resources>

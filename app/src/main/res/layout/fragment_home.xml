@@ -5,8 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_BG"
-    android:backgroundTint="@color/white_BG"
-    android:fitsSystemWindows="true"
     app:layout_behavior="com.google.android.material.search.SearchBar$ScrollingViewBehavior"
     tools:context=".scooby.home.HomeFragment">
 
@@ -18,7 +16,7 @@
             android:id="@+id/home_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -27,8 +25,8 @@
                 android:id="@+id/top_bar_home"
                 android:layout_width="match_parent"
                 android:layout_height="39dp"
-                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="2dp"
+                android:paddingHorizontal="@dimen/small_dimens"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -49,12 +47,12 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/roboto_medium"
                     android:letterSpacing="0.05"
+                    android:text="@string/hi_guest"
                     android:textColor="@color/black_user_name"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/user_image"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Hi, Fatma" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/notification_home"
@@ -83,9 +81,9 @@
             <com.denzcoskun.imageslider.ImageSlider
                 android:id="@+id/image_slider"
                 android:layout_width="match_parent"
-                android:layout_height="124dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_height="136dp"
+                android:layout_marginHorizontal="@dimen/small_dimens"
+                android:layout_marginTop="@dimen/small_dimens"
                 app:iss_auto_cycle="true"
                 app:iss_corner_radius="54"
                 app:iss_delay="0"
@@ -100,8 +98,8 @@
                 android:id="@+id/text_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="@dimen/small_dimens"
+                android:layout_marginTop="@dimen/medium_dimens"
                 android:fontFamily="@font/roboto_medium"
                 android:text="@string/what_are_you_looking_for"
                 android:textColor="@color/black_font"
@@ -113,8 +111,8 @@
                 android:id="@+id/vet_icon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="@dimen/small_dimens"
+                android:layout_marginTop="@dimen/_24dp"
                 android:src="@drawable/vet_image"
                 app:layout_constraintEnd_toStartOf="@+id/boarding_icon"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -166,7 +164,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="29dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/_24dp"
                 android:src="@drawable/sitting_image"
                 app:layout_constraintEnd_toStartOf="@+id/pet_friendly_places_icon"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -192,8 +190,8 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="29dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="@dimen/_24dp"
+                android:layout_marginEnd="@dimen/small_dimens"
                 android:src="@drawable/pet_friendly_places_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -218,8 +216,8 @@
                 android:id="@+id/grooming_icon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginStart="@dimen/small_dimens"
+                android:layout_marginTop="@dimen/_24dp"
                 android:src="@drawable/grooming_image"
                 app:layout_constraintEnd_toStartOf="@id/training_icon"
                 app:layout_constraintStart_toStartOf="parent"
@@ -244,7 +242,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="29dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/_24dp"
                 android:src="@drawable/training_image"
                 app:layout_constraintEnd_toStartOf="@id/supplies_icon"
                 app:layout_constraintStart_toEndOf="@id/grooming_icon"
@@ -269,7 +267,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="29dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/_24dp"
                 android:src="@drawable/supplies_image"
                 app:layout_constraintEnd_toStartOf="@id/more_icon"
                 app:layout_constraintStart_toEndOf="@id/training_icon"
@@ -323,7 +321,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/small_dimens"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="18dp"
                 android:gravity="center"
@@ -352,15 +350,14 @@
                     android:text="@string/see_more"
                     android:textAlignment="textEnd"
                     android:textColor="@color/primary"
-                    android:textSize="10sp"
-                    tools:ignore="SmallSp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/services_rv"
                 android:layout_width="match_parent"
                 android:layout_height="165dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/small_dimens"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -374,7 +371,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/small_dimens"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="18dp"
                 android:gravity="center"
@@ -403,15 +400,14 @@
                     android:text="@string/see_more"
                     android:textAlignment="textEnd"
                     android:textColor="@color/primary"
-                    android:textSize="10sp"
-                    tools:ignore="SmallSp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/pets_rv"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/_24dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -424,10 +420,10 @@
                 android:id="@+id/card_dag_walking"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginHorizontal="@dimen/small_dimens"
+                android:layout_marginTop="@dimen/_24dp"
                 app:cardBackgroundColor="#75E384FF"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="@dimen/small_dimens"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/pets_rv">
@@ -488,7 +484,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/small_dimens"
                 android:layout_marginTop="36dp"
                 android:layout_marginEnd="18dp"
                 android:gravity="center"
@@ -518,15 +514,14 @@
                     android:text="@string/see_more"
                     android:textAlignment="textEnd"
                     android:textColor="@color/primary"
-                    android:textSize="10sp"
-                    tools:ignore="SmallSp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/blogs_rv"
                 android:layout_width="match_parent"
                 android:layout_height="135dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/_24dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -541,12 +536,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginTop="400dp"
-            app:lottie_autoPlay="true"
-            app:lottie_rawRes="@raw/loading"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
