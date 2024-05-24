@@ -81,9 +81,9 @@ class VetFragment : Fragment() {
             getOffer()
             offerResult.observe(viewLifecycleOwner) { offerResponse ->
                 if (offerResponse != null) {
-                    val filteredOffers = offerResponse.data.filter { it.type == "medicine" }
-                    val medicineOffer = OfferResponse(filteredOffers, 1)
-                    displayOfferImage(medicineOffer)
+//                    val filteredOffers = offerResponse.data.filter { it.type == "medicine" }
+//                    val medicineOffer = OfferResponse(filteredOffers, 1)
+//                    displayOfferImage(medicineOffer)
                 }
             }
         }

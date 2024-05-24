@@ -54,10 +54,10 @@ class ProfileFragment : Fragment() {
 
     private fun observeViewModel() {
         profileViewModel.apply {
-            getUser(userId)
+            //getUser(userId)
             profileResult.observe(viewLifecycleOwner) {
                 stopLoading()
-                getProfileData(it)
+                //getProfileData(it)
             }
         }
     }

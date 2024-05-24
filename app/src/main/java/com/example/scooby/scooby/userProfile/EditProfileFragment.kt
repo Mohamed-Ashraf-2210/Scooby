@@ -45,10 +45,10 @@ class EditProfileFragment : Fragment() {
     // region get user data
     private fun getUserData() {
         profileViewModel.apply {
-            getUser(userId)
+            //getUser(userId)
             profileResult.observe(viewLifecycleOwner) {
                 stopLoading()
-                getProfileData(it)
+                //getProfileData(it)
             }
         }
     }

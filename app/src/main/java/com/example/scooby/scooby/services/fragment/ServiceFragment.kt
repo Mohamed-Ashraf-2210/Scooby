@@ -58,7 +58,7 @@ class ServiceFragment : Fragment() {
         binding.apply {
             allBtn.setOnClickListener {
                 servicesViewModel.servicesResult.observe(viewLifecycleOwner) {
-                    getServicesDataMain(it)
+                    //getServicesDataMain(it)
                 }
             }
             btnBoarding.setOnClickListener{
@@ -102,8 +102,8 @@ class ServiceFragment : Fragment() {
             getServices()
             servicesResult.observe(viewLifecycleOwner) {
                 stopLoading()
-                getServicesDataMain(it)
-                allServices = it!!
+                //getServicesDataMain(it)
+                //allServices = it!!
             }
 
         }

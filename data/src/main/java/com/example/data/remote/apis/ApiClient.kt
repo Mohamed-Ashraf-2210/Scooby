@@ -25,7 +25,7 @@ object ApiClient {
             .addInterceptor { chain ->
                 val original = chain.request()
                 val request = original.newBuilder()
-                    .addHeader("Authorization", "Bearer $token")
+                    .addHeader("authorization", "Bearer $token")
                     .addHeader("Accept", "application/json")
                     .addHeader("Api-Version", "v1")
                     .method(original.method, original.body)

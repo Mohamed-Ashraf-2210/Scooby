@@ -69,7 +69,7 @@ class BlogsFragment : Fragment() {
             getBlogs()
             blogResult.observe(viewLifecycleOwner) {
                 stopLoading()
-                getBlogsData(it)
+                //getBlogsData(it)
             }
         }
     }
