@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
             sittingIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Sitting",
-                    "20"
+                    "30"
                 )
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
             petFriendlyPlacesIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Pet Friendly Places",
-                    "20"
+                    "25"
                 )
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
@@ -102,7 +102,7 @@ class HomeFragment : Fragment() {
             groomingIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Grooming",
-                    "20"
+                    "35"
                 )
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
@@ -111,7 +111,7 @@ class HomeFragment : Fragment() {
             trainingIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Training",
-                    "20"
+                    "40"
                 )
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
@@ -120,7 +120,7 @@ class HomeFragment : Fragment() {
             suppliesIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Supplies",
-                    "20"
+                    "45"
                 )
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)

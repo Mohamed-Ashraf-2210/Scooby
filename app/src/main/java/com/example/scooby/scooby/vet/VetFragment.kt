@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -15,22 +16,26 @@ import com.example.domain.offer.OfferResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentVetBinding
 import com.example.scooby.scooby.adapter.VetAdapter
-import com.example.scooby.scooby.viewmodel.VetViewModel
 import com.example.scooby.scooby.viewmodel.OfferViewModel
+import com.example.scooby.scooby.viewmodel.VetViewModel
+import com.example.scooby.utils.BaseResponse
 
 class VetFragment : Fragment() {
 
-    private lateinit var binding: FragmentVetBinding
-    private val vetViewModel by viewModels<VetViewModel>()
-    private val offerViewModel by viewModels<OfferViewModel>()
+    private var binding: FragmentVetBinding? = null
+    private lateinit var vetViewModel: VetViewModel
+    private lateinit var offerViewModel: OfferViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentVetBinding.inflate(inflater, container, false)
+        vetViewModel = ViewModelProvider(this)[VetViewModel::class.java]
+        offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]
+
         initView()
-        return binding.root
+        return binding?.root
     }
 
     private fun initView() {
@@ -41,14 +46,16 @@ class VetFragment : Fragment() {
 
 
     private fun setupNavigation() {
-        binding.backVetIcon.setOnClickListener {
-            findNavController().popBackStack()
-        }
-        binding.btnBookDoctorVet.setOnClickListener {
-            findNavController().navigate(R.id.action_vetFragment_to_doctorsFragment)
-        }
-        binding.btnPharmacy.setOnClickListener {
-            findNavController().navigate(R.id.action_vetFragment_to_productFragment)
+        binding?.apply {
+            backVetIcon.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            btnBookDoctorVet.setOnClickListener {
+                findNavController().navigate(R.id.action_vetFragment_to_doctorsFragment)
+            }
+            btnPharmacy.setOnClickListener {
+                findNavController().navigate(R.id.action_vetFragment_to_productFragment)
+            }
         }
     }
 
@@ -56,7 +63,7 @@ class VetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.refreshVetLayout.apply {
+        binding?.refreshVetLayout?.apply {
             setOnRefreshListener {
                 initView()
                 isRefreshing = false
@@ -68,9 +75,30 @@ class VetFragment : Fragment() {
         vetViewModel.apply {
             getVet()
             vetResult.observe(viewLifecycleOwner) { vet ->
-                if (vet != null) {
-                    binding.veterinaryCardRv.adapter = VetAdapter(vet, requireContext())
-                    binding.veterinaryCardRv.layoutManager = LinearLayoutManager(requireContext())
+                when (vet) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+
+                        if (vet.data != null) {
+                            binding?.veterinaryCardRv?.apply {
+                                layoutManager = LinearLayoutManager(context)
+                                adapter = VetAdapter(vet.data, requireContext())
+                            }
+                        }
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(vet.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
                 }
             }
         }
@@ -80,27 +108,62 @@ class VetFragment : Fragment() {
         offerViewModel.apply {
             getOffer()
             offerResult.observe(viewLifecycleOwner) { offerResponse ->
-                if (offerResponse != null) {
-//                    val filteredOffers = offerResponse.data.filter { it.type == "medicine" }
-//                    val medicineOffer = OfferResponse(filteredOffers, 1)
-//                    displayOfferImage(medicineOffer)
+                when (offerResponse) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+
+                        if (offerResponse.data != null) {
+                            val filteredOffers =
+                                offerResponse.data.data.filter { it.type == "medicine" }
+                            val medicineOffer = OfferResponse(filteredOffers, 1)
+                            displayOfferImage(medicineOffer)
+                        }
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(offerResponse.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
                 }
             }
         }
     }
 
+    private fun stopLoading() {
+        binding?.loading?.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
+    }
+
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+
     private fun displayOfferImage(offerResponse: OfferResponse) {
         val offer = offerResponse.data.firstOrNull()
         if (offer != null) {
-            Glide.with(this)
-                .load(offer.offerImage)
-                .transform(CenterCrop(), RoundedCorners(50))
-                .into(binding.offerVetImage)
+            binding?.let {
+                Glide.with(this)
+                    .load(offer.offerImage)
+                    .transform(CenterCrop(), RoundedCorners(50))
+                    .into(it.offerVetImage)
+            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.veterinaryCardRv.adapter = null
+        binding?.veterinaryCardRv?.adapter = null
     }
 }

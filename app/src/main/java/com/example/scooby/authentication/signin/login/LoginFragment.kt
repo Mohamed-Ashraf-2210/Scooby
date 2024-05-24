@@ -4,23 +4,23 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.data.Constant
+import com.example.data.local.TokenManager
 import com.example.domain.profile.UserResponse
 import com.example.scooby.R
 import com.example.scooby.authentication.viewmodel.AuthViewModel
 import com.example.scooby.databinding.FragmentLoginBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.BaseResponse
-import com.example.data.local.TokenManager
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 
 class LoginFragment : Fragment() {
@@ -87,9 +87,7 @@ class LoginFragment : Fragment() {
 
 
     private fun processLogin(data: UserResponse?) {
-        binding?.success?.visibility = View.VISIBLE
         if (!data?.token.isNullOrEmpty()) {
-
             // Save token
             TokenManager.saveAuth(
                 Constant.USER_TOKEN,
@@ -101,6 +99,8 @@ class LoginFragment : Fragment() {
                 Constant.USER_ID,
                 data?.data?.result?.id.toString()
             )
+
+            binding?.success?.visibility = View.VISIBLE
             goToHome()
         }
     }
@@ -121,12 +121,15 @@ class LoginFragment : Fragment() {
     }
 
     private fun goToHome() {
-        Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(requireContext(), MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-            requireActivity().finishAffinity()
-        }, 1500)
+        runBlocking {
+            launch {
+                delay(1500)
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                requireActivity().finishAffinity()
+            }
+        }
     }
 
     private fun showLoading() {
