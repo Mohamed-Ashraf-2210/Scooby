@@ -58,6 +58,7 @@ class EditProfileFragment : Fragment() {
         }
     }
 
+
     private fun observeUserData() {
         profileViewModel.apply {
             getUserInfo()
@@ -70,6 +71,33 @@ class EditProfileFragment : Fragment() {
                     is BaseResponse.Success -> {
                         stopLoading()
                         dataSuccess(it.data)
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun observeUpdateUserImage() {
+        profileViewModel.apply {
+            updateUser(selectedImg!!)
+            updateUserResult.observe(viewLifecycleOwner) {
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        showToast("Update success")
                     }
 
                     is BaseResponse.Error -> {
@@ -169,5 +197,10 @@ class EditProfileFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         (activity as MainActivity).showBottomNavigationView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
