@@ -10,23 +10,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.data.Constant
 import com.example.domain.profile.UserProfileResponse
-import com.example.data.local.TokenManager
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentEditProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.utils.BaseResponse
 import java.io.File
 import java.io.FileOutputStream
 
 
 class EditProfileFragment : Fragment() {
     private var binding: FragmentEditProfileBinding? = null
-    private val profileViewModel by viewModels<ProfileViewModel>()
-    private lateinit var userId: String
+    private lateinit var profileViewModel: ProfileViewModel
     private var selectedImg: File? = null
     private val REQUEST_IMAGE_CAPTURE = 100
     private val REQUEST_IMAGE_PICKER = 101
@@ -34,45 +33,57 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentEditProfileBinding.inflate(inflater)
-        userId = TokenManager.getAuth(Constant.USER_ID).toString()
-        getUserData()
-        init()
+        if (binding == null) {
+            binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+            profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+            init()
+        }
         return binding?.root
     }
 
 
-    // region get user data
-    private fun getUserData() {
-        profileViewModel.apply {
-            //getUser(userId)
-            profileResult.observe(viewLifecycleOwner) {
-                stopLoading()
-                //getProfileData(it)
-            }
-        }
-    }
-
-    private fun getProfileData(it: UserProfileResponse?) {
-        val data = it?.data?.data
-        data.let {
-            binding?.apply {
-                Glide.with(this@EditProfileFragment).load(data?.profileImage).into(profileImage)
-                nameEditText.setText(data?.name)
-                emailEditText.setText(data?.email)
-            }
-        }
-    }
-    // endregion
-
     private fun init() {
+        changeScreen()
+        observeUserData()
+
+    }
+
+    private fun changeScreen() {
         binding?.apply {
             backProfile.setOnClickListener { findNavController().popBackStack() }
             editImageProfile.setOnClickListener { pickImage() }
-            savaEditProfile.setOnClickListener { savaUpdate() }
+            savaEditProfile.setOnClickListener {
+                //savaUpdate()
+            }
         }
     }
 
+    private fun observeUserData() {
+        profileViewModel.apply {
+            getUserInfo()
+            profileResult.observe(viewLifecycleOwner) {
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        dataSuccess(it.data)
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
+                }
+            }
+        }
+    }
 
     // region pick image
     private fun pickImage() {
@@ -88,7 +99,7 @@ class EditProfileFragment : Fragment() {
             val imgBitMap = data?.extras?.get("data") as Bitmap
             val imgFile = saveBitmapToFile(imgBitMap)
             selectedImg = imgFile
-        }else if (requestCode == REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
             val imageUri = data?.data
             binding?.profileImage?.setImageURI(imageUri)
             if (imageUri != null) {
@@ -122,24 +133,32 @@ class EditProfileFragment : Fragment() {
     }
     // endregion
 
-    // region save update
-    private fun savaUpdate() {
-        profileViewModel.apply {
-            updateUser(userId, selectedImg!!)
-            updateUserResult.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    Toast.makeText(requireContext(), it.status, Toast.LENGTH_SHORT).show()
-                    findNavController().popBackStack()
-                }
+
+    private fun dataSuccess(data: UserProfileResponse?) {
+        if (data != null) {
+            val userInfo = data.data.data
+            binding?.apply {
+                nameEditText.setText(userInfo.name)
+                emailEditText.setText(userInfo.email)
+                Glide.with(requireContext())
+                    .load(userInfo.profileImage)
+                    .placeholder(R.drawable.user_default_image)
+                    .error(R.drawable.error)
+                    .into(profileImage)
             }
         }
     }
-    // endregion
+
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
 
     private fun stopLoading() {
-        binding?.apply {
-            loading.visibility = View.GONE
-        }
+        binding?.loading?.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
     }
 
     override fun onResume() {
