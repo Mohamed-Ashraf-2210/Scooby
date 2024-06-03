@@ -20,16 +20,13 @@ import com.example.scooby.scooby.viewmodel.ProfileViewModel
 class ProfileFragment : Fragment() {
     private var binding: FragmentProfileBinding? = null
     private val profileViewModel by viewModels<ProfileViewModel>()
-    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
-        userId = TokenManager.getAuth( Constant.USER_ID).toString()
         initView()
-        observeViewModel()
         return binding?.root
     }
 
@@ -52,34 +49,8 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun observeViewModel() {
-        profileViewModel.apply {
-            //getUser(userId)
-            profileResult.observe(viewLifecycleOwner) {
-                stopLoading()
-                //getProfileData(it)
-            }
-        }
-    }
-
-    private fun getProfileData(it: UserProfileResponse?) {
-        val data = it?.data?.data
-        Glide.with(this).load(data?.profileImage).into(binding!!.profileImage)
-        binding?.apply {
-            userName.text = data?.name
-            numberFollowersTv.text = data?.followers?.size.toString()
-            numberFollowingTv.text = data?.following?.size.toString()
-            myPetsRv.adapter = MyPetsHomeAdapter(it!!, requireContext())
-        }
-    }
 
 
-    private fun stopLoading() {
-        binding?.apply {
-            loading.visibility = View.GONE
-            userProfileContent.visibility = View.VISIBLE
-        }
-    }
 
     override fun onResume() {
         super.onResume()
