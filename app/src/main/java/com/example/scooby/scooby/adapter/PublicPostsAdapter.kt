@@ -22,8 +22,7 @@ import java.util.TimeZone
 class PublicPostsAdapter(
     private val communityViewModel: CommunityViewModel,
     private val postsList: PublicPosts,
-    private val context: Context,
-    private val userId: String
+    private val context: Context
 ) :
     RecyclerView.Adapter<PublicPostsAdapter.PublicPostViewHolder>() {
 
@@ -60,7 +59,7 @@ class PublicPostsAdapter(
         holder.loveIcon.setEventListener(object : SparkEventListener {
             override fun onEvent(button: ImageView?, buttonState: Boolean) {
                 communityViewModel.apply {
-                    likePost(userId, currentItem.id)
+                    likePost(currentItem.id)
 //                    if (holder.loveIcon.isChecked) {
 //                        holder.loveText.text = (currentItem.likesNumber + 1).toString()
 //                    } else {

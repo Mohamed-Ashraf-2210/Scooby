@@ -31,8 +31,6 @@ class CommunityViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 communityRepo.getPosts()?.apply {
-                    Log.e(Constant.MY_TAG, "RESPONSE: ${this.code()}")
-                    Log.e(Constant.MY_TAG, "RESPONSE: ${this.message()}")
                     if (isSuccessful) {
                         _publicPostsResult.value = body()
                     }
@@ -43,10 +41,10 @@ class CommunityViewModel : ViewModel() {
         }
     }
 
-    fun getMyMomentPosts(userId: String) {
+    fun getMyMomentPosts() {
         viewModelScope.launch {
             try {
-                communityRepo.getMyMoments(userId)?.apply {
+                communityRepo.getMyMoments()?.apply {
                     if (isSuccessful) {
                         _myMomentPostsResult.value = body()
                     }
@@ -57,10 +55,10 @@ class CommunityViewModel : ViewModel() {
         }
     }
 
-    fun likePost(userId: String, postId: String) {
+    fun likePost(postId: String) {
         viewModelScope.launch {
             try {
-                communityRepo.likePost(userId, postId)?.apply {
+                communityRepo.likePost(postId)?.apply {
                     if (isSuccessful) {
                         _likePostsResult.value = body()
                     }
