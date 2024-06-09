@@ -123,7 +123,7 @@ class LoginFragment : Fragment() {
     private fun goToHome() {
         runBlocking {
             launch {
-                delay(1500)
+                delay(2000)
                 val intent = Intent(requireContext(), MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)

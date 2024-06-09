@@ -43,17 +43,17 @@ class MyMomentPostsAdapter(
         )
     }
 
-    override fun getItemCount() = postsList.myMoments.size
+    override fun getItemCount() = postsList.processedPosts.size
 
     override fun onBindViewHolder(holder: MyMomentPostViewHolder, position: Int) {
-        val currentItem = postsList.myMoments[position]
+        val currentItem = postsList.processedPosts[position].post
         Glide.with(context).load(currentItem.userImage).transform(CenterCrop())
             .into(holder.userPostImage)
         holder.userName.text = currentItem.userName
         holder.descriptionPost.text = currentItem.description
         holder.timePost.text = getTimePost(currentItem.createdAt)
         holder.loveText.text = currentItem.likesNumber.toString()
-        holder.loveIcon.isChecked = currentItem.likesId.contains(userId)
+        holder.loveIcon.isChecked = postsList.processedPosts[position].liked
         Glide.with(context).load(currentItem.postImage).transform(CenterCrop())
             .into(holder.postImage)
         holder.loveIcon.setEventListener(object : SparkEventListener {

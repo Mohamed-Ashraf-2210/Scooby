@@ -3,9 +3,7 @@ package com.example.domain.community
 
 import com.google.gson.annotations.SerializedName
 
-data class LikePostResponse(
-    @SerializedName("liked")
-    val liked: Boolean,
+data class AddPostResponse(
     @SerializedName("post")
     val post: Post
 ) {
@@ -17,13 +15,11 @@ data class LikePostResponse(
         @SerializedName("_id")
         val id: String,
         @SerializedName("likes_Id")
-        val likesId: List<String>,
+        val likesId: List<Any>,
         @SerializedName("likesNumber")
         val likesNumber: Int,
         @SerializedName("onlyMe")
         val onlyMe: Boolean,
-        @SerializedName("postImage")
-        val postImage: String,
         @SerializedName("updatedAt")
         val updatedAt: String,
         @SerializedName("userId")

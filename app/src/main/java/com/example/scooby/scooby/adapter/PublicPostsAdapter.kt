@@ -43,28 +43,23 @@ class PublicPostsAdapter(
         )
     }
 
-    override fun getItemCount() = postsList.shuffledPosts.size
+    override fun getItemCount() = postsList.processedPosts.size
 
     override fun onBindViewHolder(holder: PublicPostViewHolder, position: Int) {
-        val currentItem = postsList.shuffledPosts[position]
+        val currentItem = postsList.processedPosts[position].post
         Glide.with(context).load(currentItem.userImage).transform(CenterCrop())
             .into(holder.userPostImage)
         holder.userName.text = currentItem.userName
         holder.descriptionPost.text = currentItem.description
         holder.timePost.text = getTimePost(currentItem.createdAt)
         holder.loveText.text = currentItem.likesNumber.toString()
-        holder.loveIcon.isChecked = currentItem.likesId.contains(userId)
+        holder.loveIcon.isChecked = postsList.processedPosts[position].liked
         Glide.with(context).load(currentItem.postImage).transform(CenterCrop())
             .into(holder.postImage)
         holder.loveIcon.setEventListener(object : SparkEventListener {
             override fun onEvent(button: ImageView?, buttonState: Boolean) {
                 communityViewModel.apply {
                     likePost(currentItem.id)
-//                    if (holder.loveIcon.isChecked) {
-//                        holder.loveText.text = (currentItem.likesNumber + 1).toString()
-//                    } else {
-//                        holder.loveText.text = (currentItem.likesNumber - 1).toString()
-//                    }
                 }
             }
 

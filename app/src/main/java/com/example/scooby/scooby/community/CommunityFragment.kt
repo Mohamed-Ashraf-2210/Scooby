@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.example.data.Constant
 import com.example.scooby.R
-import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentCommunityBinding
 import com.example.scooby.scooby.adapter.MyMomentPostsAdapter
 import com.example.scooby.scooby.adapter.PublicPostsAdapter
 import com.example.scooby.scooby.viewmodel.CommunityViewModel
+import com.example.scooby.utils.BaseResponse
 
 
 class CommunityFragment : Fragment() {
@@ -29,8 +28,6 @@ class CommunityFragment : Fragment() {
         binding = FragmentCommunityBinding.inflate(inflater, container, false)
         communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
         initView()
-
-
         return binding?.root
     }
 
@@ -75,9 +72,28 @@ class CommunityFragment : Fragment() {
         communityViewModel.apply {
             getPublicPosts()
             publicPostsResult.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    binding?.postRv?.adapter =
-                        PublicPostsAdapter(this, it, requireContext())
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        //showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        //stopLoading()
+                        if (it.data != null) {
+                            binding?.postRv?.adapter =
+                                PublicPostsAdapter(this, it.data, requireContext())
+                        }
+
+                    }
+
+                    is BaseResponse.Error -> {
+                        //stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        //stopLoading()
+                    }
                 }
             }
         }
@@ -87,11 +103,42 @@ class CommunityFragment : Fragment() {
         communityViewModel.apply {
             getMyMomentPosts()
             myMomentPostsResult.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    binding?.myMomentPostRv?.adapter =
-                        MyMomentPostsAdapter(this, it, requireContext())
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        //showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        //stopLoading()
+                        if (it.data != null) {
+                            binding?.myMomentPostRv?.adapter =
+                                MyMomentPostsAdapter(this, it.data, requireContext())
+                        }
+
+                    }
+
+                    is BaseResponse.Error -> {
+                        //stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        //stopLoading()
+                    }
                 }
             }
+        }
+    }
+
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding?.apply {
+            postRv.adapter = null
+            myMomentPostRv.adapter = null
         }
     }
 }
