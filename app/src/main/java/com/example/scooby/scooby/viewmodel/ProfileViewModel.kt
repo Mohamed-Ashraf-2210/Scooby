@@ -41,19 +41,22 @@ class ProfileViewModel : ViewModel() {
 
 
     // region Update user
-    private val _updateUserResult: MutableLiveData<UpdateUseResponse?> = MutableLiveData()
-    val updateUserResult: LiveData<UpdateUseResponse?>
+    private val _updateUserResult: MutableLiveData<BaseResponse<UpdateUseResponse>> = MutableLiveData()
+    val updateUserResult: LiveData<BaseResponse<UpdateUseResponse>>
         get() = _updateUserResult
 
-    fun updateUser(userId: String, image: File) {
+    fun updateUser(image: File) {
+        _updateUserResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
-                val response = profileRepo.updateUser(userId, image)
+                val response = profileRepo.updateUser(image)
                 if (response != null && response.isSuccessful) {
-                    _updateUserResult.value = response.body()
+                    _updateUserResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _updateUserResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS (updateUser View Model) ->>> $e")
+                _updateUserResult.value = BaseResponse.Error(e.message)
             }
         }
     }

@@ -48,14 +48,14 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.annotation:annotation:1.8.0")
 
     implementation("androidx.fragment:fragment-ktx:1.7.1")
     implementation("androidx.activity:activity-ktx:1.9.0")
-    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("androidx.activity:activity-ktx:1.9.0")
 
 
@@ -83,10 +83,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
     // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.0")
-    implementation("androidx.lifecycle:lifecycle-common:2.8.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
+    implementation("androidx.lifecycle:lifecycle-common:2.8.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.1")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.1")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
 
     //  Recycler View
@@ -100,7 +100,7 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.1")
 
     // Google Play services
-    implementation("com.google.android.gms:play-services-auth:21.1.1")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
 
     // PinView Provides a widget for enter PIN/OTP/password etc on Android
     implementation("io.github.chaosleung:pinview:1.4.4")
@@ -128,7 +128,7 @@ dependencies {
     implementation("com.github.varunest:sparkbutton:1.0.6")
 
     // Google Play services
-    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("com.google.android.gms:play-services-location:21.3.0")
 
     // Lottie animation
     implementation("com.airbnb.android:lottie:6.4.0")

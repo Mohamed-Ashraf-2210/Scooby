@@ -4,82 +4,121 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.data.Constant
 import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
-import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.MyPetsHomeAdapter
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.utils.BaseResponse
 
 class ProfileFragment : Fragment() {
     private var binding: FragmentProfileBinding? = null
-    private val profileViewModel by viewModels<ProfileViewModel>()
-    private lateinit var userId: String
+    private lateinit var profileViewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentProfileBinding.inflate(inflater, container, false)
-        userId = TokenManager.getAuth( Constant.USER_ID).toString()
-        initView()
-        observeViewModel()
+        if (binding == null) {
+            binding = FragmentProfileBinding.inflate(inflater, container, false)
+            profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+            initView()
+        }
+
         return binding?.root
     }
 
 
     private fun initView() {
+        changeScreen()
+        observeUserData()
+
+    }
+
+    private fun observeUserData() {
+        profileViewModel.apply {
+            getUserInfo()
+            profileResult.observe(viewLifecycleOwner) {
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        dataSuccess(it.data)
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
+                }
+            }
+        }
+    }
+
+    private fun dataSuccess(data: UserProfileResponse?) {
+        if (data != null) {
+            val userInfo = data.data.data
+            binding?.apply {
+                userName.text = userInfo.name
+                numberFollowersTv.text = userInfo.followers.size.toString()
+                numberFollowingTv.text = userInfo.following.size.toString()
+                Glide.with(requireContext())
+                    .load(userInfo.profileImage)
+                    .placeholder(R.drawable.user_default_image)
+                    .error(R.drawable.error)
+                    .into(userImage)
+                myPetsRv.adapter = MyPetsHomeAdapter(data, requireContext())
+            }
+        }
+    }
+
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopLoading() {
+        binding?.loading?.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
+    }
+
+    private fun changeScreen() {
         binding?.apply {
+
             backProfile.setOnClickListener {
                 findNavController().popBackStack()
             }
+
             editProfile.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
             }
+
             addPetIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_myPetsFragment)
             }
-            favoritesSection.setOnClickListener{
+
+            favoritesSection.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_favoriteFragment)
             }
 
         }
     }
 
-    private fun observeViewModel() {
-        profileViewModel.apply {
-            //getUser(userId)
-            profileResult.observe(viewLifecycleOwner) {
-                stopLoading()
-                //getProfileData(it)
-            }
-        }
-    }
-
-    private fun getProfileData(it: UserProfileResponse?) {
-        val data = it?.data?.data
-        Glide.with(this).load(data?.profileImage).into(binding!!.profileImage)
-        binding?.apply {
-            userName.text = data?.name
-            numberFollowersTv.text = data?.followers?.size.toString()
-            numberFollowingTv.text = data?.following?.size.toString()
-            myPetsRv.adapter = MyPetsHomeAdapter(it!!, requireContext())
-        }
-    }
-
-
-    private fun stopLoading() {
-        binding?.apply {
-            loading.visibility = View.GONE
-            userProfileContent.visibility = View.VISIBLE
-        }
-    }
 
     override fun onResume() {
         super.onResume()

@@ -46,9 +46,8 @@ interface UserApi {
 
 
     @Multipart
-    @PATCH("/scooby/api/user/updateuser/{userId}")
+    @PATCH("/scooby/api/user/updateuser")
     suspend fun updateUser(
-        @Path("userId") userId: String,
         @Part image: MultipartBody.Part
     ): Response<UpdateUseResponse>
 

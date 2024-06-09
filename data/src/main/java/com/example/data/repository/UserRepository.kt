@@ -28,11 +28,9 @@ class UserRepository {
     suspend fun getUser() = UserApi.getApi()?.getUser()
 
     suspend fun updateUser(
-        userId: String,
         image: File
     ) =
         UserApi.getApi()?.updateUser(
-            userId,
             image = MultipartBody.Part.createFormData(
                 "profileImage",
                 image.name,

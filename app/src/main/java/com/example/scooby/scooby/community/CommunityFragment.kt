@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.data.Constant
 import com.example.scooby.R
 import com.example.data.local.TokenManager
@@ -18,8 +19,7 @@ import com.example.scooby.scooby.viewmodel.CommunityViewModel
 
 class CommunityFragment : Fragment() {
     private var binding: FragmentCommunityBinding? = null
-    private val communityViewModel by viewModels<CommunityViewModel>()
-    private lateinit var userId: String
+    private lateinit var communityViewModel: CommunityViewModel
 
 
     override fun onCreateView(
@@ -27,9 +27,19 @@ class CommunityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCommunityBinding.inflate(inflater, container, false)
-        userId = TokenManager.getAuth( Constant.USER_ID).toString()
-        observePublicPosts()
+        communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
+        initView()
 
+
+        return binding?.root
+    }
+
+    private fun initView() {
+        switchButton()
+        observePublicPosts()
+    }
+
+    private fun switchButton() {
         binding?.apply {
             switchOnOff.setOnCheckedChangeListener { _, checked ->
                 when {
@@ -59,7 +69,6 @@ class CommunityFragment : Fragment() {
                 }
             }
         }
-        return binding?.root
     }
 
     private fun observePublicPosts() {
@@ -68,7 +77,7 @@ class CommunityFragment : Fragment() {
             publicPostsResult.observe(viewLifecycleOwner) {
                 if (it != null) {
                     binding?.postRv?.adapter =
-                        PublicPostsAdapter(this, it, requireContext(), userId)
+                        PublicPostsAdapter(this, it, requireContext())
                 }
             }
         }
@@ -76,11 +85,11 @@ class CommunityFragment : Fragment() {
 
     private fun observeMyMomentPosts() {
         communityViewModel.apply {
-            getMyMomentPosts(userId)
+            getMyMomentPosts()
             myMomentPostsResult.observe(viewLifecycleOwner) {
                 if (it != null) {
                     binding?.myMomentPostRv?.adapter =
-                        MyMomentPostsAdapter(this, it, requireContext(), userId)
+                        MyMomentPostsAdapter(this, it, requireContext())
                 }
             }
         }
