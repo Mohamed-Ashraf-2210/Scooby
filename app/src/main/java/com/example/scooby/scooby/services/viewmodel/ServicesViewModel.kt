@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.ServicesRepo
 import com.example.domain.ServicesProfileResponse
-import com.example.domain.services.ServicesResponse
+import com.example.domain.ServicesResponse
 import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
 

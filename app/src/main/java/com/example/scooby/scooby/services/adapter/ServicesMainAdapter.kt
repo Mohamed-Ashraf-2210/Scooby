@@ -1,12 +1,11 @@
 package com.example.scooby.scooby.services.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.domain.services.ServicesResponse
+import com.example.domain.ServicesResponse
 import com.example.scooby.databinding.ItemServicesBinding
 import com.example.scooby.scooby.services.fragment.ServiceFragmentDirections
 
@@ -28,9 +27,11 @@ class ServicesMainAdapter(private var servicesList: ServicesResponse) :
         private fun navigate2ServiceProfile(service: ServicesResponse.ShuffledService){
             itemServicesBinding.serviceImage.setOnClickListener {
                 val action = service.serviceProfile?.let { it1 ->
-                    ServiceFragmentDirections.actionServicesFragmentToServicesProfileFragment(
-                        it1
-                    )
+                    it1.id?.let { it2 ->
+                        ServiceFragmentDirections.actionServicesFragmentToServicesProfileFragment(
+                            it2
+                        )
+                    }
                 }
                 if (action != null) {
                     it.findNavController().navigate(action)

@@ -2,7 +2,7 @@ package com.example.data.repository
 
 import com.example.data.remote.service.ServicesApi
 import com.example.domain.ServicesProfileResponse
-import com.example.domain.services.ServicesResponse
+import com.example.domain.ServicesResponse
 import retrofit2.Response
 
 class ServicesRepo {
