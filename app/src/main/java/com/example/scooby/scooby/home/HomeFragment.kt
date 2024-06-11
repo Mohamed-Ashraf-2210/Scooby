@@ -323,7 +323,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getBlogsData(data: BlogResponse?) {
-        binding?.blogsRv?.adapter = BlogHomeAdapter(data!!, requireContext())
+        binding?.blogsRv?.adapter = BlogHomeAdapter(data!!)
     }
     // endregion
 

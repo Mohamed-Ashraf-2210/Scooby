@@ -26,7 +26,6 @@ class ProductFragment : Fragment() {
     private lateinit var userId: String
     private var _binding: FragmentProductBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var productRv: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
