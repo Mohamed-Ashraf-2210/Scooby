@@ -11,6 +11,11 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentInfoPetBinding
 import com.example.scooby.scooby.MainActivity
 
+/**
+ * 5th screen to Add Pet
+ * Add user pet info
+ * author: Mohamed Ashraf
+ * */
 class InfoPetFragment : Fragment() {
     private var binding: FragmentInfoPetBinding? = null
     private val args: InfoPetFragmentArgs by navArgs()
@@ -21,11 +26,20 @@ class InfoPetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentInfoPetBinding.inflate(inflater, container, false)
-        setupClickListeners()
-        binding?.nextBtn?.setOnClickListener{
-            onClickNext()
-        }
+        initView()
         return binding?.root
+    }
+
+    private fun initView() {
+        setupClickListeners()
+        clickListeners()
+    }
+
+    private fun clickListeners() {
+        binding?.apply {
+            backScreen.setOnClickListener { findNavController().popBackStack() }
+            nextBtn.setOnClickListener { onClickNext() }
+        }
     }
 
     private fun setupClickListeners() {
@@ -68,7 +82,7 @@ class InfoPetFragment : Fragment() {
     }
 
     private fun onClickNext() {
-        binding?.nextBtn?.setOnClickListener {
+        binding?.apply {
             val bio = info.indices.filter { info[it] }.joinToString(separator = ", ") {
                 arrayOf(
                     "Vaccinated", "Friendly with cats", "Microchipped",

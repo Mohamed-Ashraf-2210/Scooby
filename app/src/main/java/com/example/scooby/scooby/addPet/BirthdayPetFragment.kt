@@ -52,22 +52,20 @@ class BirthdayPetFragment : Fragment() {
 
     private fun onClickNext() {
         binding?.apply {
-            nextBtn.setOnClickListener {
-                val listOfData = arrayOf(
-                    args.listOfData[0],
-                    args.listOfData[1],
-                    args.listOfData[2],
-                    args.listOfData[3],
-                    args.listOfData[4],
-                    selectDateTv.toString(),
-                    selectAdoptionDateTv.toString()
+            val listOfData = arrayOf(
+                args.listOfData[0],
+                args.listOfData[1],
+                args.listOfData[2],
+                args.listOfData[3],
+                args.listOfData[4],
+                selectDateTv.toString(),
+                selectAdoptionDateTv.toString()
+            )
+            val action =
+                BirthdayPetFragmentDirections.actionBirthdayPetFragmentToInfoPetFragment(
+                    listOfData
                 )
-                val action =
-                    BirthdayPetFragmentDirections.actionBirthdayPetFragmentToInfoPetFragment(
-                        listOfData
-                    )
-                findNavController().navigate(action)
-            }
+            findNavController().navigate(action)
         }
     }
 

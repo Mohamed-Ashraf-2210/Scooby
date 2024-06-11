@@ -52,17 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="@string/optional"
-        android:textColor="@color/gray_font_hint"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/about_your_pet_tv"
-        app:layout_constraintTop_toTopOf="@id/about_your_pet_tv" />
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/vaccinated_card"
         android:layout_width="160dp"
