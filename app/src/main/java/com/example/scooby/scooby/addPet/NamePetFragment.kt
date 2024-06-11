@@ -10,7 +10,11 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentNamePetBinding
 import com.example.scooby.scooby.MainActivity
 
-
+/**
+ * Second screen to Add Pet
+ * Add user pet name ,type and breed
+ * author: Mohamed Ashraf
+ * */
 class NamePetFragment : Fragment() {
     private var binding: FragmentNamePetBinding? = null
     private var typePet: String? = null
@@ -20,14 +24,25 @@ class NamePetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentNamePetBinding.inflate(inflater, container, false)
-        selectType()
+        if (binding != null) {
+            return binding?.root
+        }
 
+        binding = FragmentNamePetBinding.inflate(inflater, container, false)
+        initView()
+        return binding?.root
+    }
+
+    private fun initView() {
+        selectType()
+        clickListeners()
+    }
+
+    private fun clickListeners() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
         }
-        return binding?.root
     }
 
 
@@ -59,19 +74,19 @@ class NamePetFragment : Fragment() {
 
     private fun onClickNext() {
         binding?.apply {
-            nextBtn.setOnClickListener {
-                val petName = namePetEditText.text.toString()
-                val petBreed = breedPetEditText.text.toString()
-                if (petName.isNotEmpty() && petBreed.isNotEmpty() && typePet != null) {
-                    val listOfData = arrayOf(
-                        petName,
-                        typePet!!,
-                        petBreed
-                    )
-                    val action =
-                        NamePetFragmentDirections.actionAddPetsFragmentToSizePetFragment(listOfData)
-                    findNavController().navigate(action)
-                }
+            val petName = namePetEditText.text.toString()
+            val petBreed = breedPetEditText.text.toString()
+            if (petName.isNotEmpty() && petBreed.isNotEmpty() && typePet != null) {
+                val listOfData = arrayOf(
+                    petName,
+                    typePet!!,
+                    petBreed
+                )
+                val action =
+                    NamePetFragmentDirections.actionAddPetsFragmentToSizePetFragment(listOfData)
+                findNavController().navigate(action)
+            } else {
+                // TODO pop menu to input the information
             }
         }
     }
