@@ -53,17 +53,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:paddingHorizontal="4dp"
-        android:text="@string/optional"
-        android:textColor="@color/gray_font_hint"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/birthday_tv"
-        app:layout_constraintTop_toTopOf="@id/birthday_tv" />
-
-    <TextView
         android:id="@+id/select_date_tv"
         android:layout_width="match_parent"
         android:layout_height="44dp"
@@ -94,17 +83,6 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/select_date_tv" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto_medium"
-        android:paddingHorizontal="4dp"
-        android:text="@string/optional"
-        android:textColor="@color/gray_font_hint"
-        android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@id/adoption_date_tv"
-        app:layout_constraintTop_toTopOf="@id/adoption_date_tv" />
 
     <TextView
         android:id="@+id/select_adoption_date_tv"

@@ -14,7 +14,11 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-
+/**
+ * 4th screen to Add Pet
+ * Add user pet birthday and adoption date
+ * author: Mohamed Ashraf
+ * */
 class BirthdayPetFragment : Fragment() {
     private var binding: FragmentBirthdayPetBinding? = null
     private val args: BirthdayPetFragmentArgs by navArgs()
@@ -23,14 +27,26 @@ class BirthdayPetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (binding != null) {
+            return binding?.root
+        }
+
         binding = FragmentBirthdayPetBinding.inflate(inflater, container, false)
+        initView()
+        return binding?.root
+    }
+
+    private fun initView() {
         clickToSelectBirthday()
         clickToSelectAdoptionDate()
+        clickListeners()
+    }
+
+    private fun clickListeners() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
         }
-        return binding?.root
     }
 
 

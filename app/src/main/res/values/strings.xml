@@ -169,7 +169,7 @@ again."</string>
     <string name="where_do_you_need_your_service">Where do you need your service?</string>
     <string name="enter_your_location"> Enter your location</string>
     <string name="optional">(optional)</string>
-    <string name="what_is_your_pet_adoption_date">What is your pet adoption date?</string>
+    <string name="what_is_your_pet_adoption_date">What is your pet adoption date? <font color="#800F0F0F">(optional)</font></string>
     <string name="what_is_your_pet_type">What is your pet type?</string>
     <string name="_1_5kg">1-5kg</string>
     <string name="_6_10kg">6-10kg</string>
@@ -179,7 +179,7 @@ again."</string>
     <string name="what_is_your_pet_gender">What is your pet gender?</string>
     <string name="_20_kg">20+kg</string>
     <string name="_11_20kg">11-20kg</string>
-    <string name="what_is_your_pet_birthday">What is your pet birthday?</string>
+    <string name="what_is_your_pet_birthday">What is your pet birthday? <font color="#800F0F0F">(optional)</font></string>
     <string name="tell_us_more_about_your_pet">Tell us more about your pet</string>
     <string name="vaccinated">Vaccinated</string>
     <string name="friendly_with_cats">Friendly with cats</string>
