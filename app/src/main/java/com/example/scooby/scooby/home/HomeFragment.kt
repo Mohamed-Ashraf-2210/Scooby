@@ -49,7 +49,6 @@ class HomeFragment : Fragment() {
             offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]
             petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
             blogsViewModel = ViewModelProvider(this)[BlogViewModel::class.java]
-
             initView()
         }
         return binding?.root
