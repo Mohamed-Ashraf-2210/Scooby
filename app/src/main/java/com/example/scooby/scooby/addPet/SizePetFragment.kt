@@ -11,7 +11,11 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentSizePetBinding
 import com.example.scooby.scooby.MainActivity
 
-
+/**
+ * Third screen to Add Pet
+ * Add user pet size and gender
+ * author: Mohamed Ashraf
+ * */
 class SizePetFragment : Fragment() {
     private var binding: FragmentSizePetBinding? = null
     private val args: SizePetFragmentArgs by navArgs()
@@ -23,15 +27,26 @@ class SizePetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (binding != null) {
+            return binding?.root
+        }
+
         binding = FragmentSizePetBinding.inflate(inflater, container, false)
+        initView()
+        return binding?.root
+    }
+
+    private fun initView() {
+        clickListeners()
         selectSize()
         selectGender()
+    }
 
+    private fun clickListeners() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
         }
-        return binding?.root
     }
 
 
@@ -128,21 +143,21 @@ class SizePetFragment : Fragment() {
 
     private fun onClickNext() {
         binding?.apply {
-            nextBtn.setOnClickListener {
-                if (sizePet != null && genderPet != null) {
-                    val listOfData = arrayOf(
-                        args.listOfData[0],
-                        args.listOfData[1],
-                        args.listOfData[2],
-                        sizePet!!,
-                        genderPet!!
+            if (sizePet != null && genderPet != null) {
+                val listOfData = arrayOf(
+                    args.listOfData[0],
+                    args.listOfData[1],
+                    args.listOfData[2],
+                    sizePet!!,
+                    genderPet!!
+                )
+                val action =
+                    SizePetFragmentDirections.actionSizePetFragmentToBirthdayPetFragment(
+                        listOfData
                     )
-                    val action =
-                        SizePetFragmentDirections.actionSizePetFragmentToBirthdayPetFragment(
-                            listOfData
-                        )
-                    findNavController().navigate(action)
-                }
+                findNavController().navigate(action)
+            } else {
+                // TODO pop menu to input the information
             }
         }
     }
