@@ -20,6 +20,7 @@
             android:layout_height="99dp"
             android:layout_marginStart="13dp"
             android:layout_marginTop="14dp"
+            android:contentDescription="@string/veterinary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -102,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
+            android:contentDescription="@string/man_icon"
             android:src="@drawable/man"
             app:layout_constraintStart_toEndOf="@id/image_veterinary"
             app:layout_constraintTop_toBottomOf="@id/description_veterinary_tv" />
