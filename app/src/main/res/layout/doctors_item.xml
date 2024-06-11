@@ -28,8 +28,7 @@
                 android:id="@+id/image_doctor_vet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:contentDescription="TODO" />
-
+                android:contentDescription="@string/doctors" />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -113,6 +112,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:contentDescription="@string/man_icon"
             android:layout_marginTop="4dp"
             android:src="@drawable/man"
             app:layout_constraintStart_toEndOf="@id/card_doctor_vet"

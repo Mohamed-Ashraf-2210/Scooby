@@ -58,7 +58,7 @@
         </fragment>
         <fragment
             android:id="@+id/doctorsFragment"
-            android:name="com.example.scooby.scooby.ui.DoctorsFragment"
+            android:name="com.example.scooby.scooby.doctor.DoctorsFragment"
             android:label="fragment_doctors"
             tools:layout="@layout/fragment_doctors" >
             <action

@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.doctor
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -60,7 +60,7 @@ class DoctorsFragment : Fragment() {
     }
 
     private fun backOffFragment() {
-        binding?.backDoctorIcon?.setOnClickListener {
+        binding?.backScreen?.setOnClickListener {
             findNavController().popBackStack()
         }
     }
@@ -68,7 +68,6 @@ class DoctorsFragment : Fragment() {
     private fun stopLoading() {
         binding?.apply {
             loading.visibility = View.GONE
-            doctorContent.visibility = View.VISIBLE
         }
     }
 
