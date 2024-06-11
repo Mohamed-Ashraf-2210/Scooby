@@ -25,9 +25,8 @@ interface PetsApi {
     suspend fun getMyPets(): Response<MyPetsResponse>
 
     @Multipart
-    @POST("/scooby/api/Pets/addpet/{userId}")
+    @POST("/scooby/api/Pets/addpet")
     suspend fun addPet(
-        @Path("userId") userId: String,
         @Part image: MultipartBody.Part,
         @Part("petData") petData: RequestBody
     ): Response<AddPetResponse>

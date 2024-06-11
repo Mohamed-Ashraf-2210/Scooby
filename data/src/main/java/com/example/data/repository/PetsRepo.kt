@@ -12,11 +12,10 @@ class PetsRepo {
     suspend fun getMyPets() = PetsApi.getApi()?.getMyPets()
 
     suspend fun addPet(
-        userId: String,
         image: MultipartBody.Part,
         requestBody: RequestBody
     ): Response<AddPetResponse>? {
-        return PetsApi.getApi()?.addPet(userId, image, requestBody)
+        return PetsApi.getApi()?.addPet(image, requestBody)
     }
 
 }

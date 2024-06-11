@@ -67,13 +67,13 @@ class PetsViewModel : ViewModel() {
         }
     }
 
-    fun addPet(userId: String, file: File, petData: AddPetData) {
+    fun addPet(file: File, petData: AddPetData) {
         viewModelScope.launch {
             try {
                 val fileReqBody = file.asRequestBody("image/*".toMediaTypeOrNull())
                 val part = MultipartBody.Part.createFormData("file", file.name, fileReqBody)
 
-                val response = petsRepo.addPet(userId, part, petDataToRequestBody(petData))
+                val response = petsRepo.addPet(part, petDataToRequestBody(petData))
                 if (response != null && response.isSuccessful) {
                     _addPetsResult.value = response.body()
                 }

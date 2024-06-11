@@ -49,7 +49,7 @@
         android:fontFamily="@font/roboto_medium"
         android:text="@string/upload_some_lovely_photos_of_your_pet"
         android:textColor="@color/black_font"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

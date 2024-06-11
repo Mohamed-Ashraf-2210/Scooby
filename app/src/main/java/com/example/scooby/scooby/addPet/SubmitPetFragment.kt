@@ -12,12 +12,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.data.Constant
 import com.example.domain.pet.AddPetData
-import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentSubmitPetBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.PetsViewModel
@@ -25,25 +23,29 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 
-
+/**
+ * last screen to Add Pet
+ * Add user pet image and Submit
+ * author: Mohamed Ashraf
+ * */
 class SubmitPetFragment : Fragment() {
     private var binding: FragmentSubmitPetBinding? = null
-    private val petsViewModel by viewModels<PetsViewModel>()
+    private lateinit var petsViewModel: PetsViewModel
     private val args: SubmitPetFragmentArgs by navArgs()
-    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (binding != null) {
+            return binding?.root
+        }
         binding = FragmentSubmitPetBinding.inflate(inflater, container, false)
+        petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
         initView()
         return binding?.root
     }
 
-    private fun getUserId() {
-        userId = TokenManager.getAuth(Constant.USER_ID).toString()
-    }
 
     private var imagePet: Bitmap? = null
 
@@ -96,7 +98,6 @@ class SubmitPetFragment : Fragment() {
     }
 
     private fun initView() {
-        getUserId()
         binding?.apply {
             addImageCard.setOnClickListener {
                 imageChooser()
@@ -125,12 +126,12 @@ class SubmitPetFragment : Fragment() {
             )
             val file = bitmapToFile(imagePet)
             petsViewModel.apply {
-                addPet(userId, file, petData)
+                addPet(file, petData)
                 addPetsResult.observe(viewLifecycleOwner) {
                     if (it?.status == "success") {
                         Toast.makeText(requireContext(), "Save is success", Toast.LENGTH_SHORT)
                             .show()
-                    }else{
+                    } else {
                         Toast.makeText(requireContext(), "Save is failed", Toast.LENGTH_SHORT)
                             .show()
                     }
