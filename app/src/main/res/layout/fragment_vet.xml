@@ -66,12 +66,11 @@
                 <ImageView
                     android:id="@+id/offer_vet_image"
                     android:layout_width="match_parent"
-                    android:layout_height="108dp"
+                    android:layout_height="128dp"
                     android:layout_marginTop="16dp"
                     android:contentDescription="@string/offer_vet_image"
-                    app:iss_corner_radius="24"
+                    android:scaleType="fitXY"
                     app:layout_constraintBottom_toTopOf="@id/meet_doctor_card"
-                    app:layout_constraintCircleRadius="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -100,7 +99,6 @@
                             android:layout_marginStart="13dp"
                             android:layout_marginTop="14dp"
                             android:contentDescription="@string/meet_the_doctors"
-                            android:src="@drawable/meet_doctor_image"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -177,7 +175,6 @@
                             android:layout_marginStart="13dp"
                             android:layout_marginTop="14dp"
                             android:contentDescription="@string/veterinary_pharmacy"
-                            android:src="@drawable/pharmacy_image"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
