@@ -16,7 +16,7 @@ import com.example.scooby.R
 import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentPetProfileBinding
 import com.example.scooby.scooby.MainActivity
-import com.example.scooby.scooby.viewmodel.MyPetsViewModel
+import com.example.scooby.scooby.viewmodel.PetsViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -24,7 +24,7 @@ import java.util.Locale
 
 class PetProfileFragment : Fragment() {
     private var binding: FragmentPetProfileBinding? = null
-    private val profileViewModel by viewModels<MyPetsViewModel>()
+    private val profileViewModel by viewModels<PetsViewModel>()
     private val args: PetProfileFragmentArgs by navArgs()
     private lateinit var userId: String
 
@@ -61,10 +61,10 @@ class PetProfileFragment : Fragment() {
 
     private fun observeProfileData() {
         userId = TokenManager.getAuth( Constant.USER_ID).toString()
-        profileViewModel.getMyPets(userId)
+        profileViewModel.getMyPets()
         profileViewModel.myPetsResult.observe(viewLifecycleOwner) { result ->
             stopLoading()
-            getPetProfileData(result)
+            //getPetProfileData(result)
         }
     }
 

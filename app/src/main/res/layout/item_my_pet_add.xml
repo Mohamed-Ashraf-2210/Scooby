@@ -8,7 +8,6 @@
     android:layout_marginBottom="32dp"
     android:backgroundTint="@color/app_background"
     app:cardCornerRadius="12dp"
-    app:cardElevation="4dp"
     app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

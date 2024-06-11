@@ -15,12 +15,12 @@ import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentSelectPetBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.MyPetsRequestAdapter
-import com.example.scooby.scooby.viewmodel.MyPetsViewModel
+import com.example.scooby.scooby.viewmodel.PetsViewModel
 
 
 class SelectPetFragment : Fragment() {
     private var binding: FragmentSelectPetBinding? = null
-    private val myPetsViewModel by viewModels<MyPetsViewModel>()
+    private val myPetsViewModel by viewModels<PetsViewModel>()
     private val args: SelectPetFragmentArgs by navArgs()
     private lateinit var userId: String
     private lateinit var adapter: MyPetsRequestAdapter
@@ -46,11 +46,12 @@ class SelectPetFragment : Fragment() {
 
     private fun observeMyPets() {
         myPetsViewModel.apply {
-            getMyPets(userId)
+            getMyPets()
             myPetsResult.observe(viewLifecycleOwner) {
                 stopLoading()
 
-                adapter = MyPetsRequestAdapter(it!!, requireContext())
+
+                //adapter = MyPetsRequestAdapter(it, requireContext())
                 binding?.myPetsRv?.adapter = adapter
             }
         }

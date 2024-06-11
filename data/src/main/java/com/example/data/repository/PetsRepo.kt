@@ -9,7 +9,7 @@ import retrofit2.Response
 class PetsRepo {
     suspend fun getAllPets() = PetsApi.getApi()?.getAllPets()
 
-    suspend fun getMyPets(userId: String) = PetsApi.getApi()?.getMyPets(userId)
+    suspend fun getMyPets() = PetsApi.getApi()?.getMyPets()
 
     suspend fun addPet(
         userId: String,

@@ -9,6 +9,7 @@ import com.example.data.Constant
 import com.example.data.repository.PetsRepo
 import com.example.domain.pet.AddPetData
 import com.example.domain.pet.AddPetResponse
+import com.example.domain.pet.MyPetsResponse
 import com.example.domain.pet.PetsResponse
 import com.example.scooby.utils.BaseResponse
 import com.google.gson.Gson
@@ -22,6 +23,10 @@ import java.io.File
 class PetsViewModel : ViewModel() {
     private val petsRepo = PetsRepo()
 
+    private val _myPetsResult: MutableLiveData<BaseResponse<MyPetsResponse>> = MutableLiveData()
+    val myPetsResult: LiveData<BaseResponse<MyPetsResponse>>
+        get() = _myPetsResult
+
     private val _petsResult: MutableLiveData<BaseResponse<PetsResponse>> = MutableLiveData()
     val petsResult: LiveData<BaseResponse<PetsResponse>>
         get() = _petsResult
@@ -29,6 +34,22 @@ class PetsViewModel : ViewModel() {
     private val _addPetsResult: MutableLiveData<AddPetResponse?> = MutableLiveData()
     val addPetsResult: LiveData<AddPetResponse?>
         get() = _addPetsResult
+
+    fun getMyPets() {
+        viewModelScope.launch {
+            _myPetsResult.value = BaseResponse.Loading()
+            try {
+                val response = petsRepo.getMyPets()
+                if (response != null && response.isSuccessful) {
+                    _myPetsResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _myPetsResult.value = BaseResponse.Error(response?.message())
+                }
+            } catch (e: Exception) {
+                _myPetsResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
 
     fun getPets() {
         _petsResult.value = BaseResponse.Loading()

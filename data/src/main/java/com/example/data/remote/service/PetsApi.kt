@@ -21,8 +21,8 @@ interface PetsApi {
     @GET("/scooby/api/Pets/getallpets")
     suspend fun getAllPets(): Response<PetsResponse>
 
-    @GET("/scooby/api/Pets/getmypets/{userId}")
-    suspend fun getMyPets(@Path("userId") userId: String): Response<MyPetsResponse>
+    @GET("/scooby/api/Pets/getmypets")
+    suspend fun getMyPets(): Response<MyPetsResponse>
 
     @Multipart
     @POST("/scooby/api/Pets/addpet/{userId}")
@@ -31,8 +31,6 @@ interface PetsApi {
         @Part image: MultipartBody.Part,
         @Part("petData") petData: RequestBody
     ): Response<AddPetResponse>
-
-
 
 
     companion object {

@@ -4,38 +4,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.data.Constant
 import com.example.scooby.R
-import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentMyPetsBinding
 import com.example.scooby.scooby.adapter.MyPetsAddAdapter
-import com.example.scooby.scooby.viewmodel.MyPetsViewModel
+import com.example.scooby.scooby.viewmodel.PetsViewModel
+import com.example.scooby.utils.BaseResponse
 
-
+/**
+ * First screen to Add Pet
+ * display User pets and button to add another pet
+ * author: Mohamed Ashraf
+ * */
 class MyPetsFragment : Fragment() {
     private var binding: FragmentMyPetsBinding? = null
-    private val myPetsViewModel by viewModels<MyPetsViewModel>()
-    private lateinit var userId: String
+    private lateinit var myPetsViewModel: PetsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (binding != null) {
+            return binding?.root
+        }
+
         binding = FragmentMyPetsBinding.inflate(inflater, container, false)
-        getUserId()
+        myPetsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
         initView()
-        observeViewModel()
         return binding?.root
     }
 
-    private fun getUserId() {
-        userId = TokenManager.getAuth(Constant.USER_ID).toString()
-    }
 
     private fun initView() {
+        clickListeners()
+        observeViewModel()
+    }
+
+    private fun clickListeners() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             addPetImage.setOnClickListener {
@@ -46,19 +54,38 @@ class MyPetsFragment : Fragment() {
 
     private fun observeViewModel() {
         myPetsViewModel.apply {
-            getMyPets(userId)
+            getMyPets()
             myPetsResult.observe(viewLifecycleOwner) {
-                stopLoading()
-                binding?.RvMyPetsContent?.adapter = MyPetsAddAdapter(it!!, requireContext())
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        //showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        //stopLoading()
+                        if (it.data != null) {
+                            binding?.RvMyPetsContent?.adapter =
+                                MyPetsAddAdapter(it.data, requireContext())
+                        }
+
+                    }
+
+                    is BaseResponse.Error -> {
+                        //stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        //stopLoading()
+                    }
+                }
+
             }
         }
     }
 
-    private fun stopLoading() {
-        binding?.apply {
-            loading.visibility = View.GONE
-            fragmentContent.visibility = View.VISIBLE
-        }
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

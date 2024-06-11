@@ -18,7 +18,7 @@ import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentSummaryRequestBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.PetsSummaryRequestAdapter
-import com.example.scooby.scooby.viewmodel.MyPetsViewModel
+import com.example.scooby.scooby.viewmodel.PetsViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -26,7 +26,7 @@ import java.util.Locale
 
 class SummaryRequestFragment : Fragment() {
     private var binding: FragmentSummaryRequestBinding? = null
-    private val myPetsViewModel by viewModels<MyPetsViewModel>()
+    private val myPetsViewModel by viewModels<PetsViewModel>()
     private val args: SummaryRequestFragmentArgs by navArgs()
     private lateinit var userId: String
     private lateinit var adapter: PetsSummaryRequestAdapter
@@ -116,9 +116,9 @@ class SummaryRequestFragment : Fragment() {
 
     private fun observeMyPets() {
         myPetsViewModel.apply {
-            getMyPets(userId)
+            getMyPets()
             myPetsResult.observe(viewLifecycleOwner) {
-                adapter = PetsSummaryRequestAdapter(it!!, requireContext(), args.idPets)
+                //adapter = PetsSummaryRequestAdapter(it!!, requireContext(), args.idPets)
                 binding?.petsRv?.adapter = adapter
             }
         }
