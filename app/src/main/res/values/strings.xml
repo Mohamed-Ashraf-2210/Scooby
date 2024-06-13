@@ -286,5 +286,7 @@ again."</string>
     <string name="Continue">Continue</string>
     <string name="hi_guest">Hi, Guest</string>
     <string name="new_added_missing_pets">New added missing pets</string>
+    <string name="missing_cats">Missing cats</string>
+    <string name="missing_dogs">Missing dogs</string>
 
 </resources>
