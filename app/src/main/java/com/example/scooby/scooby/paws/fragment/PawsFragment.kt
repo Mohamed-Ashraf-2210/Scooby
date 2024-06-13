@@ -120,13 +120,18 @@ class PawsFragment : Fragment() {
         binding.btnAdaption.setOnClickListener {
             binding.adaptionFragment.visibility = View.VISIBLE
             binding.rescueFragment.visibility = View.GONE
+            binding.missingFragment.visibility = View.GONE
         }
         binding.btnRescue.setOnClickListener {
             binding.rescueFragment.visibility = View.VISIBLE
             binding.adaptionFragment.visibility = View.GONE
+            binding.missingFragment.visibility = View.GONE
+
         }
         binding.btnMissing.setOnClickListener {
-
+            binding.missingFragment.visibility = View.VISIBLE
+            binding.rescueFragment.visibility = View.GONE
+            binding.adaptionFragment.visibility = View.GONE
         }
     }
 
