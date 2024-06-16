@@ -511,6 +511,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_margin="16dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:backgroundTint="@color/primary"
                 android:contentDescription="@string/fab_content_desc"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -518,6 +520,40 @@
                 app:shapeAppearanceOverlay="@style/fab_3_rounded"
                 app:srcCompat="@drawable/ic_plus"
                 app:tint="@android:color/white"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/edit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/yellow"
+                android:clickable="true"
+                android:contentDescription="@string/fab_content_desc"
+                android:focusable="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@id/floating_action_button"
+                app:layout_constraintEnd_toEndOf="@id/floating_action_button"
+                app:shapeAppearanceOverlay="@style/fab_3_rounded"
+                app:srcCompat="@drawable/ic_edit"
+                app:tint="@android:color/white" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/primary_70"
+                android:clickable="true"
+                android:contentDescription="@string/fab_content_desc"
+                android:focusable="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@id/edit_button"
+                app:layout_constraintEnd_toEndOf="@id/edit_button"
+                app:shapeAppearanceOverlay="@style/fab_3_rounded"
+                app:srcCompat="@drawable/ic_plus"
+                app:tint="@android:color/white" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +19,7 @@ import com.example.domain.paws.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import com.example.data.local.TokenManager
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentPawsBinding
 import com.example.scooby.scooby.paws.adapter.AdaptionAdoptMeAdapter
 import com.example.scooby.scooby.paws.adapter.AdaptionCatsAdapter
@@ -36,7 +40,11 @@ class PawsFragment : Fragment() {
     private lateinit var rvAdoptMe: RecyclerView
     private lateinit var rvShelters: RecyclerView
     private lateinit var rvPetsShelter: RecyclerView
-
+    private val rotateOpen : Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_open_anim) }
+    private val rotateClose : Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.rotet_close_anim) }
+    private val fromBottom : Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.from_bottom_anim) }
+    private val toBottom : Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.to_bottom_anim) }
+    private var clicked = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -133,7 +141,46 @@ class PawsFragment : Fragment() {
             binding.rescueFragment.visibility = View.GONE
             binding.adaptionFragment.visibility = View.GONE
         }
+        //fab animation
+
+        binding.floatingActionButton.setOnClickListener {
+            onAddButtonClicked()
+        }
+        binding.editButton.setOnClickListener {
+            Toast.makeText(requireContext(),"clicked edit Button",Toast.LENGTH_SHORT).show()
+        }
+        binding.imageButton.setOnClickListener {
+            Toast.makeText(requireContext(),"clicked image Button",Toast.LENGTH_SHORT).show()
+        }
     }
+
+    private fun onAddButtonClicked() {
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+    }
+    private fun setVisibility(clicked:Boolean) {
+        if(!clicked){
+            binding.editButton.visibility= View.VISIBLE
+            binding.imageButton.visibility = View.VISIBLE
+        }else{
+            binding.editButton.visibility= View.INVISIBLE
+            binding.imageButton.visibility = View.INVISIBLE
+        }
+    }
+    private fun setAnimation(clicked:Boolean) {
+        if(!clicked){
+            binding.editButton.startAnimation(fromBottom)
+            binding.imageButton.startAnimation(fromBottom)
+            binding.floatingActionButton.startAnimation(rotateOpen)
+        }else{
+            binding.editButton.startAnimation(toBottom)
+            binding.imageButton.startAnimation(toBottom)
+            binding.floatingActionButton.startAnimation(rotateClose)
+        }
+    }
+
+
 
     private fun getDataTopCollection(data: AdaptionResponse) {
         rvTopCol = binding.rvTopCol
