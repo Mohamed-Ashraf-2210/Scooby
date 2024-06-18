@@ -20,21 +20,19 @@ class ServicesMainAdapter(private var servicesList: ServicesResponse) :
             itemServicesBinding.serviceType.text = service.serviceType
             itemServicesBinding.city.text = service.city
             itemServicesBinding.servicesPrice.text = service.price.toString()
-            itemServicesBinding.rate.rating = service.rate?.toFloat()!!
+            itemServicesBinding.rate.rating = service.rate.toFloat()
             itemServicesBinding.servicesTime.text = service.pricePer
             navigate2ServiceProfile(service)
         }
 
         private fun navigate2ServiceProfile(service: ServicesResponse.ShuffledService){
             itemServicesBinding.serviceImage.setOnClickListener {
-                val action = service.serviceProfile?.let { it1 ->
+                val action = service.serviceProfile.let { it1 ->
                     ServiceFragmentDirections.actionServicesFragmentToServicesProfileFragment(
-                        it1
+                        it1.id
                     )
                 }
-                if (action != null) {
-                    it.findNavController().navigate(action)
-                }
+                it.findNavController().navigate(action)
             }
         }
     }

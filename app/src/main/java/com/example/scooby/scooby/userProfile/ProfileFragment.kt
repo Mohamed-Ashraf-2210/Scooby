@@ -17,6 +17,11 @@ import com.example.scooby.scooby.adapter.MyPetsHomeAdapter
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
 
+/**
+ * User Profile screen
+ * User information and his pets
+ * author: Mohamed Ashraf
+ * */
 class ProfileFragment : Fragment() {
     private var binding: FragmentProfileBinding? = null
     private lateinit var profileViewModel: ProfileViewModel
@@ -25,18 +30,19 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (binding == null) {
-            binding = FragmentProfileBinding.inflate(inflater, container, false)
-            profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-            initView()
-        }
+        if (binding != null) return binding?.root
+
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+
+        initView()
 
         return binding?.root
     }
 
 
     private fun initView() {
-        changeScreen()
+        clickListener()
         observeUserData()
 
     }
@@ -97,7 +103,7 @@ class ProfileFragment : Fragment() {
         binding?.loading?.visibility = View.VISIBLE
     }
 
-    private fun changeScreen() {
+    private fun clickListener() {
         binding?.apply {
 
             backProfile.setOnClickListener {

@@ -41,6 +41,7 @@ class VetFragment : Fragment() {
         offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]
 
         initView()
+
         return binding?.root
     }
 
