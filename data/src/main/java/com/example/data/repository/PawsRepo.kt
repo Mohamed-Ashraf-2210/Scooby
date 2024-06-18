@@ -10,6 +10,7 @@ import com.example.domain.paws.adaption.AdaptionDogsResponse
 import com.example.domain.paws.adaption.AdaptionResponse
 import com.example.domain.paws.missing.CatsResponse
 import com.example.domain.paws.missing.DogsResponse
+import com.example.domain.paws.missing.GetRecentlyResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import retrofit2.Response
@@ -51,6 +52,10 @@ class PawsRepo {
 
     suspend fun getPetShelterProfile(shelterId:String): Response<List<PetShelterProfileResponse.PetShelterProfileResponseItem>>? {
         return PawsApi.getApi()?.getPetShelterProfile(shelterId)
+    }
+
+    suspend fun getRecentlyAdded() : Response<GetRecentlyResponse>?{
+        return PawsApi.getApi()?.getRecentlyAdded()
     }
     suspend fun getCatsMissing():Response<CatsResponse>? {
         return PawsApi.getApi()?.getCatsMissing()

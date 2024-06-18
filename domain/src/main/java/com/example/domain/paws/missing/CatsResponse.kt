@@ -7,7 +7,7 @@ data class CatsResponse(
     @SerializedName("length")
     val length: Int?,
     @SerializedName("shuffledCats")
-    val shuffledCats: List<ShuffledCat?>?
+    val shuffledCats: List<ShuffledCat>
 ) {
     data class ShuffledCat(
         @SerializedName("createdAt")

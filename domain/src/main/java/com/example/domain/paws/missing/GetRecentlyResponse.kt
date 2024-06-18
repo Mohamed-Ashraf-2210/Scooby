@@ -3,13 +3,13 @@ package com.example.domain.paws.missing
 
 import com.google.gson.annotations.SerializedName
 
-data class DogsResponse(
-    @SerializedName("dogs")
-    val dogs: List<Dog>,
+data class GetRecentlyResponse(
     @SerializedName("length")
-    val length: Int?
+    val length: Int?,
+    @SerializedName("recentlyAddedPets")
+    val recentlyAddedPets: List<RecentlyAddedPet>
 ) {
-    data class Dog(
+    data class RecentlyAddedPet(
         @SerializedName("createdAt")
         val createdAt: String?,
         @SerializedName("description")
