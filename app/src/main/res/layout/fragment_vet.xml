@@ -31,12 +31,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/back_vet_icon"
+                android:id="@+id/back_screen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-
+                android:contentDescription="@string/back"
                 android:src="@drawable/arrow_left_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="26dp"
+                android:contentDescription="@string/search"
                 android:src="@drawable/search_icon"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -65,10 +66,11 @@
                 <ImageView
                     android:id="@+id/offer_vet_image"
                     android:layout_width="match_parent"
-                    android:layout_height="108dp"
+                    android:layout_height="128dp"
                     android:layout_marginTop="16dp"
-                    app:iss_corner_radius="24"
-                    app:layout_constraintCircleRadius="24dp"
+                    android:contentDescription="@string/offer_vet_image"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toTopOf="@id/meet_doctor_card"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -96,7 +98,7 @@
                             android:layout_height="99dp"
                             android:layout_marginStart="13dp"
                             android:layout_marginTop="14dp"
-                            android:src="@drawable/meet_doctor_image"
+                            android:contentDescription="@string/meet_the_doctors"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -129,7 +131,8 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/image_doctor_vet"
                             app:layout_constraintTop_toBottomOf="@id/meet_doctor_tv"
-                            tools:ignore="SmallSp" />
+                            tools:ignore="SmallSp"
+                            tools:targetApi="p" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btn_book_doctor_vet"
@@ -171,7 +174,7 @@
                             android:layout_height="99dp"
                             android:layout_marginStart="13dp"
                             android:layout_marginTop="14dp"
-                            android:src="@drawable/pharmacy_image"
+                            android:contentDescription="@string/veterinary_pharmacy"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -204,7 +207,8 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@id/image_pharmacy"
                             app:layout_constraintTop_toBottomOf="@id/pharmacy_tv"
-                            tools:ignore="SmallSp" />
+                            tools:ignore="SmallSp"
+                            tools:targetApi="p" />
 
 
                         <com.google.android.material.button.MaterialButton
@@ -263,8 +267,6 @@
                     app:lottie_rawRes="@raw/loading" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

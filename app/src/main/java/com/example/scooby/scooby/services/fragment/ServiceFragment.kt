@@ -91,7 +91,7 @@ class ServiceFragment : Fragment() {
 
     private fun filterServices(type:String){
         val filterResponse = allServices.shuffledServices.filter { it.serviceType == type }
-        getServicesDataMain(ServicesResponse(filterResponse))
+        //getServicesDataMain(ServicesResponse(filterResponse))
     }
     // Here we Filter The Services Fragment by type of selected services
 

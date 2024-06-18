@@ -17,7 +17,7 @@ class ServicesAdapter(private var servicesList: ServicesResponse) :
             servicesItemHomeBinding.serviceType.text = service.serviceType
             servicesItemHomeBinding.city.text = service.city
             servicesItemHomeBinding.price.text = service.price.toString()
-            servicesItemHomeBinding.rate.rating = service.rate?.toFloat()!!
+            servicesItemHomeBinding.rate.rating = service.rate.toFloat()
         }
     }
 

@@ -20,6 +20,10 @@ class VetViewModel : ViewModel() {
     val vetResult: LiveData<BaseResponse<VetResponse>>
         get() = _vetResult
 
+    private val _doctorResult: MutableLiveData<BaseResponse<DoctorsResponse>> = MutableLiveData()
+    val doctorResult: LiveData<BaseResponse<DoctorsResponse>>
+        get() = _doctorResult
+
 
     private val _doctorProfileResult: MutableLiveData<DoctorProfileResponse?> = MutableLiveData()
     val doctorProfileResult: LiveData<DoctorProfileResponse?>
@@ -42,20 +46,18 @@ class VetViewModel : ViewModel() {
         }
     }
 
-
-    private val _doctorResult: MutableLiveData<DoctorsResponse?> = MutableLiveData()
-    val doctorResult: LiveData<DoctorsResponse?>
-        get() = _doctorResult
-
     fun getDoctors() {
         viewModelScope.launch {
+            _doctorResult.value = BaseResponse.Loading()
             try {
                 val response = vetRepo.getDoctors()
-                if (response != null) {
-                    _doctorResult.value = response.body()
+                if (response != null && response.isSuccessful) {
+                    _doctorResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _doctorResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Doctors List $e")
+                _doctorResult.value = BaseResponse.Error(e.message)
             }
         }
     }

@@ -1,28 +1,30 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.doctor
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.domain.doctors.DoctorsResponse
 import com.example.scooby.databinding.FragmentDoctorsBinding
 import com.example.scooby.scooby.adapter.DoctorAdapter
 import com.example.scooby.scooby.viewmodel.VetViewModel
+import com.example.scooby.utils.BaseResponse
 
 
 class DoctorsFragment : Fragment() {
     private var binding: FragmentDoctorsBinding? = null
-    private val doctorViewModel by viewModels<VetViewModel>()
-
+    private lateinit var doctorViewModel: VetViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (binding != null) return binding?.root
+
         binding = FragmentDoctorsBinding.inflate(inflater, container, false)
+        doctorViewModel = ViewModelProvider(this)[VetViewModel::class.java]
         init()
         return binding?.root
     }
@@ -40,27 +42,37 @@ class DoctorsFragment : Fragment() {
 
     private fun init() {
         observeViewModel()
-        backOffFragment()
-        stopLoading()
+        clickListener()
     }
 
     private fun observeViewModel() {
         doctorViewModel.apply {
             getDoctors()
             doctorResult.observe(viewLifecycleOwner) {
-                if (it != null) {
-                    getDoctorsData(it)
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        binding?.loading?.visibility = View.VISIBLE
+                    }
+
+                    is BaseResponse.Success -> {
+                        if (it.data != null) {
+                            binding?.doctorCardRv?.adapter =
+                                DoctorAdapter(it.data, requireContext())
+                        }
+                        stopLoading()
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                    }
+
                 }
             }
         }
     }
 
-    private fun getDoctorsData(it: DoctorsResponse) {
-        binding?.doctorCardRv?.adapter = DoctorAdapter(it)
-    }
-
-    private fun backOffFragment() {
-        binding?.backDoctorIcon?.setOnClickListener {
+    private fun clickListener() {
+        binding?.backScreen?.setOnClickListener {
             findNavController().popBackStack()
         }
     }
@@ -68,7 +80,6 @@ class DoctorsFragment : Fragment() {
     private fun stopLoading() {
         binding?.apply {
             loading.visibility = View.GONE
-            doctorContent.visibility = View.VISIBLE
         }
     }
 

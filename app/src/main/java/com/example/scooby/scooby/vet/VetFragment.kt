@@ -20,6 +20,10 @@ import com.example.scooby.scooby.viewmodel.OfferViewModel
 import com.example.scooby.scooby.viewmodel.VetViewModel
 import com.example.scooby.utils.BaseResponse
 
+/**
+ * veterinary screen
+ * author: Mohamed Ashraf
+ * */
 class VetFragment : Fragment() {
 
     private var binding: FragmentVetBinding? = null
@@ -30,24 +34,27 @@ class VetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (binding != null) return binding?.root
+
         binding = FragmentVetBinding.inflate(inflater, container, false)
         vetViewModel = ViewModelProvider(this)[VetViewModel::class.java]
         offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]
 
         initView()
+
         return binding?.root
     }
 
     private fun initView() {
-        setupNavigation()
         setupVetData()
         setupOfferData()
+        clickListener()
     }
 
 
-    private fun setupNavigation() {
+    private fun clickListener() {
         binding?.apply {
-            backVetIcon.setOnClickListener {
+            backScreen.setOnClickListener {
                 findNavController().popBackStack()
             }
             btnBookDoctorVet.setOnClickListener {
@@ -56,6 +63,17 @@ class VetFragment : Fragment() {
             btnPharmacy.setOnClickListener {
                 findNavController().navigate(R.id.action_vetFragment_to_productFragment)
             }
+
+
+            Glide.with(this@VetFragment)
+                .load(R.drawable.meet_doctor_image)
+                .transform(CenterCrop(), RoundedCorners(24))
+                .into(imageDoctorVet)
+
+            Glide.with(this@VetFragment)
+                .load(R.drawable.pharmacy_image)
+                .transform(CenterCrop(), RoundedCorners(24))
+                .into(imagePharmacy)
         }
     }
 
@@ -156,7 +174,7 @@ class VetFragment : Fragment() {
             binding?.let {
                 Glide.with(this)
                     .load(offer.offerImage)
-                    .transform(CenterCrop(), RoundedCorners(50))
+                    .transform(RoundedCorners(100))
                     .into(it.offerVetImage)
             }
         }
