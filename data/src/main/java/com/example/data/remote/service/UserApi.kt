@@ -13,6 +13,7 @@ import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UserResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -48,7 +49,9 @@ interface UserApi {
     @Multipart
     @PATCH("/scooby/api/user/updateuser")
     suspend fun updateUser(
-        @Part image: MultipartBody.Part
+        @Part image: MultipartBody.Part,
+        @Part("name") name: RequestBody,
+        @Part("email") email: RequestBody
     ): Response<UpdateUseResponse>
 
     companion object {

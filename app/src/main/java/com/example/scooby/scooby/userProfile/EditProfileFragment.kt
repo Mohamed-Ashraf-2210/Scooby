@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -33,16 +34,19 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (binding == null) {
-            binding = FragmentEditProfileBinding.inflate(inflater, container, false)
-            profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-            init()
-        }
+        if (binding != null) return binding?.root
+
+        binding = FragmentEditProfileBinding.inflate(inflater, container, false)
+        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+        selectedImg = saveBitmapToFile(binding?.profileImage?.drawable?.toBitmap()!!)
+
+        initView()
+
         return binding?.root
     }
 
 
-    private fun init() {
+    private fun initView() {
         changeScreen()
         observeUserData()
 
@@ -53,7 +57,7 @@ class EditProfileFragment : Fragment() {
             backProfile.setOnClickListener { findNavController().popBackStack() }
             editImageProfile.setOnClickListener { pickImage() }
             savaEditProfile.setOnClickListener {
-                //savaUpdate()
+                observeUpdateUserImage()
             }
         }
     }
@@ -88,7 +92,7 @@ class EditProfileFragment : Fragment() {
 
     private fun observeUpdateUserImage() {
         profileViewModel.apply {
-            updateUser(selectedImg!!)
+            updateUser(selectedImg!!,"MO","ma1261327@gmail.com")
             updateUserResult.observe(viewLifecycleOwner) {
                 when (it) {
                     is BaseResponse.Loading -> {

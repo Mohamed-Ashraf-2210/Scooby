@@ -45,12 +45,13 @@ class ProfileViewModel : ViewModel() {
     val updateUserResult: LiveData<BaseResponse<UpdateUseResponse>>
         get() = _updateUserResult
 
-    fun updateUser(image: File) {
+    fun updateUser(image: File, name: String, email: String) {
         _updateUserResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
-                val response = profileRepo.updateUser(image)
+                val response = profileRepo.updateUser(image,name,email)
                 if (response != null && response.isSuccessful) {
+                    Log.d(Constant.MY_TAG, "updateUser: ${response.body()}")
                     _updateUserResult.value = BaseResponse.Success(response.body())
                 } else {
                     _updateUserResult.value = BaseResponse.Error(response?.message())
