@@ -30,11 +30,11 @@ class ServiceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        if (binding == null){
+//        if (binding == null){
             binding = FragmentServiceBinding.inflate(inflater, container, false)
             servicesViewModel = ViewModelProvider(this)[ServicesViewModel::class.java]
             init()
-        }
+//        }
 
         return binding!!.root
     }

@@ -10,6 +10,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.whenCreated
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.Constant
 import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
@@ -24,14 +26,19 @@ import com.example.scooby.databinding.FragmentPawsBinding
 import com.example.scooby.scooby.paws.adapter.AdaptionAdoptMeAdapter
 import com.example.scooby.scooby.paws.adapter.AdaptionCatsAdapter
 import com.example.scooby.scooby.paws.adapter.AdaptionDogsAdapter
+import com.example.scooby.scooby.paws.adapter.CatsMissingAdapter
+import com.example.scooby.scooby.paws.adapter.DogsMissingAdapter
+import com.example.scooby.scooby.paws.adapter.GetRecentlyAdapter
 import com.example.scooby.scooby.paws.adapter.MarginBetweenDecoration
 import com.example.scooby.scooby.paws.adapter.PawsTopColAdapter
 import com.example.scooby.scooby.paws.adapter.PetsShelterAdapter
 import com.example.scooby.scooby.paws.adapter.ShelterAdapter
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
+import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
+import com.example.scooby.utils.BaseResponse
 
 class PawsFragment : Fragment() {
-    private val pawsViewModel by viewModels<PawsViewModel>()
+    private lateinit var pawsViewModel : PawsViewModel
     private lateinit var binding : FragmentPawsBinding
     private lateinit var currentUserId: String
     private lateinit var rvTopCol: RecyclerView
@@ -50,6 +57,7 @@ class PawsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPawsBinding.inflate(inflater, container, false)
+        pawsViewModel = ViewModelProvider(this)[PawsViewModel::class.java]
         currentUserId = TokenManager.getAuth(Constant.USER_ID).toString()
         initButtonCallBack()
         init()
@@ -121,7 +129,64 @@ class PawsFragment : Fragment() {
             }
         }
 
+        setUpObservableMissingSection()
 
+
+    }
+
+    private fun setUpObservableMissingSection() {
+        pawsViewModel.apply {
+            getCatsMissing()
+            catsMissingResult.observe(viewLifecycleOwner){catResponse->
+                when(catResponse){
+                    is BaseResponse.Loading -> showLoading()
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        binding.rvMissingCat.apply {
+                            adapter = catResponse.data?.let { CatsMissingAdapter(it) }
+                        }
+                    }
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast()
+                    }
+                }
+            }
+
+            getDogsMissing()
+            dogsMissingResult.observe(viewLifecycleOwner){dogResponse->
+                when(dogResponse){
+                    is BaseResponse.Loading -> showLoading()
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        binding.rvMissingDog.apply {
+                            adapter = dogResponse.data?.let { DogsMissingAdapter(it) }
+                        }
+                    }
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast()
+                    }
+                }
+            }
+
+            getRecentlyMissing()
+            recentlyMissingResult.observe(viewLifecycleOwner){recentlyResponse->
+                when(recentlyResponse){
+                    is BaseResponse.Loading -> showLoading()
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        binding.rvAddedMissPet.apply {
+                            adapter = recentlyResponse.data?.let { GetRecentlyAdapter(it) }
+                        }
+                    }
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast()
+                    }
+                }
+            }
+        }
     }
 
     private fun initButtonCallBack() {
@@ -210,11 +275,17 @@ class PawsFragment : Fragment() {
         rvPetsShelter = binding.rvPetsInShelter
         rvPetsShelter.adapter = PetsShelterAdapter(data)
     }
+    private fun showLoading() {
+        binding.loading.visibility = View.VISIBLE
+    }
 
     private fun stopLoading() {
         binding.apply {
             loading.visibility = View.GONE
         }
+    }
+    private fun showToast() {
+        Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
     }
 
 }
