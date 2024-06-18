@@ -1,4 +1,4 @@
-package com.example.domain.paws
+package com.example.domain.paws.adaption
 
 
 import com.google.gson.annotations.SerializedName

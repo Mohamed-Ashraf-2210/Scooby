@@ -6,10 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".scooby.paws.fragment.PawsFragment">
 
-
-
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_app_bar"
         android:layout_width="match_parent"
@@ -68,7 +64,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-
             app:strokeWidth="0dp">
 
             <LinearLayout
@@ -199,9 +194,9 @@
         android:id="@+id/adaption_fragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
-        android:visibility="visible"
         android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -422,6 +417,143 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_babies"
                 app:spanCount="2"
                 tools:listitem="@layout/item_pet_shelter" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/missing_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hor_linear_lay">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_new_added"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/new_added_missing_pets"
+                android:textColor="@color/_0f0f0f"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_added_MissPet"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tv_new_added"
+                tools:listitem="@layout/item_pet_missing" />
+
+            <TextView
+                android:id="@+id/tv_missing_cat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/missing_cats"
+                android:textColor="@color/_0f0f0f"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_added_MissPet" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_missing_cat"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tv_missing_cat"
+                tools:listitem="@layout/item_pet_missing" />
+
+            <TextView
+                android:id="@+id/tv_missing_dog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/missing_dogs"
+                android:textColor="@color/_0f0f0f"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_missing_cat" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_missing_dog"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tv_missing_dog"
+                tools:listitem="@layout/item_pet_missing" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floating_action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:backgroundTint="@color/primary"
+                android:contentDescription="@string/fab_content_desc"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:shapeAppearanceOverlay="@style/fab_3_rounded"
+                app:srcCompat="@drawable/ic_plus"
+                app:tint="@android:color/white"/>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/edit_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/yellow"
+                android:clickable="true"
+                android:contentDescription="@string/fab_content_desc"
+                android:focusable="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@id/floating_action_button"
+                app:layout_constraintEnd_toEndOf="@id/floating_action_button"
+                app:shapeAppearanceOverlay="@style/fab_3_rounded"
+                app:srcCompat="@drawable/ic_edit"
+                app:tint="@android:color/white" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/image_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/primary_70"
+                android:clickable="true"
+                android:contentDescription="@string/fab_content_desc"
+                android:focusable="true"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@id/edit_button"
+                app:layout_constraintEnd_toEndOf="@id/edit_button"
+                app:shapeAppearanceOverlay="@style/fab_3_rounded"
+                app:srcCompat="@drawable/ic_plus"
+                app:tint="@android:color/white" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

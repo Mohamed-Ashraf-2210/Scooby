@@ -285,6 +285,9 @@ again."</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="Continue">Continue</string>
     <string name="hi_guest">Hi, Guest</string>
+    <string name="new_added_missing_pets">New added missing pets</string>
+    <string name="missing_cats">Missing cats</string>
+    <string name="missing_dogs">Missing dogs</string>
     <string name="offer_vet_image">offer_vet_image</string>
     <string name="man_icon">man icon</string>
 

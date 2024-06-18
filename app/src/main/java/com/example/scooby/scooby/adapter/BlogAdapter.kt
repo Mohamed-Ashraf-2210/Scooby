@@ -1,34 +1,33 @@
 package com.example.scooby.scooby.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.scooby.R
 import com.example.domain.blog.BlogResponse
+import com.example.scooby.databinding.BlogItemBinding
+import com.example.scooby.utils.loadUrl
 
-class BlogAdapter(private val blogList: BlogResponse, private val context: Context) :RecyclerView.Adapter<BlogAdapter.BlogViewHolder>() {
-    class BlogViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        val imgLink:ImageView = itemView.findViewById(R.id.img_card_plog)
-        val imgTitle:TextView = itemView.findViewById(R.id.title_card_plog)
+class BlogAdapter(private val blogList: BlogResponse) :
+    RecyclerView.Adapter<BlogAdapter.BlogViewHolder>() {
+    inner class BlogViewHolder(private val itemHomeBinding: BlogItemBinding) :
+        RecyclerView.ViewHolder(itemHomeBinding.root) {
+        fun bind(blog: BlogResponse.Data) {
+            blog.blogImage.let { itemHomeBinding.imgCardPlog.loadUrl(it) }
+            itemHomeBinding.titleCardPlog.text = blog.description
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BlogViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.blog_item, parent, false)
-        return BlogViewHolder(itemView)
+        return BlogViewHolder(
+            BlogItemBinding
+                .inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
     override fun getItemCount() = blogList.data.size
 
+
     override fun onBindViewHolder(holder: BlogViewHolder, position: Int) {
-        val currentItem = blogList.data
-        Glide.with(context).load(currentItem[position].blogImage).into(holder.imgLink)
-        holder.imgTitle.text = currentItem[position].description
-
+        holder.bind(blogList.data[position])
     }
-
 }

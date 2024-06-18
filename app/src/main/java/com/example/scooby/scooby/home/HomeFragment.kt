@@ -49,7 +49,6 @@ class HomeFragment : Fragment() {
             offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]
             petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
             blogsViewModel = ViewModelProvider(this)[BlogViewModel::class.java]
-
             initView()
         }
         return binding?.root
@@ -324,7 +323,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getBlogsData(data: BlogResponse?) {
-        binding?.blogsRv?.adapter = BlogHomeAdapter(data!!, requireContext())
+        binding?.blogsRv?.adapter = BlogHomeAdapter(data!!)
     }
     // endregion
 

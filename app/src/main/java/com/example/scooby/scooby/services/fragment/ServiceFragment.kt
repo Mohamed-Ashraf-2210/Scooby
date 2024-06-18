@@ -6,25 +6,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.viewModels
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.services.ServicesResponse
-import com.example.scooby.R
+import com.example.domain.ServicesResponse
 import com.example.scooby.databinding.FragmentServiceBinding
 import com.example.scooby.scooby.services.adapter.ServicesMainAdapter
 import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
+import com.example.scooby.utils.BaseResponse
 
 @SuppressLint("InflateParams")
 
 class ServiceFragment : Fragment() {
     private lateinit var allServices: ServicesResponse
-    private val servicesViewModel by viewModels<ServicesViewModel>()
+    private lateinit var servicesViewModel : ServicesViewModel
     private lateinit var servicesRV: RecyclerView
-
-    private var _binding: FragmentServiceBinding? = null
-    private val binding get() = _binding!!
+    private var binding: FragmentServiceBinding? = null
 
 
 
@@ -32,15 +31,19 @@ class ServiceFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentServiceBinding.inflate(inflater, container, false)
-        init()
-        return binding.root
+        if (binding == null){
+            binding = FragmentServiceBinding.inflate(inflater, container, false)
+            servicesViewModel = ViewModelProvider(this)[ServicesViewModel::class.java]
+            init()
+        }
+
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.refreshServicesLayout.apply {
+        binding?.refreshServicesLayout?.apply {
             setOnRefreshListener {
                 init()
                 isRefreshing = false
@@ -55,10 +58,23 @@ class ServiceFragment : Fragment() {
     }
 
     private fun callBackButton() {
-        binding.apply {
+        binding?.apply {
             allBtn.setOnClickListener {
-                servicesViewModel.servicesResult.observe(viewLifecycleOwner) {
-                    //getServicesDataMain(it)
+                servicesViewModel.apply {
+                    getServices()
+                    servicesResult.observe(viewLifecycleOwner){
+                        when(it){
+                            is BaseResponse.Loading -> showLoading()
+                            is BaseResponse.Success -> {
+                                stopLoading()
+                                getServicesDataMain(it.data)
+                            }
+                            is BaseResponse.Error -> {
+                                stopLoading()
+                                showToast()
+                            }
+                        }
+                    }
                 }
             }
             btnBoarding.setOnClickListener{
@@ -101,30 +117,50 @@ class ServiceFragment : Fragment() {
         servicesViewModel.apply {
             getServices()
             servicesResult.observe(viewLifecycleOwner) {
-                stopLoading()
-                //getServicesDataMain(it)
-                //allServices = it!!
+                when(it){
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        allServices = it.data!!
+                        getServicesDataMain(it.data)
+                    }
+                    is BaseResponse.Error ->{
+                        stopLoading()
+                        showToast()
+                    }
+                    else -> {
+                        stopLoading()
+                    }
+                }
+
             }
 
         }
     }
 
     private fun getServicesDataMain(data: ServicesResponse?) {
-        servicesRV = binding.RvServicesContent
+        servicesRV = binding!!.RvServicesContent
         servicesRV.adapter = ServicesMainAdapter(data!!)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        binding.RvServicesContent.adapter = null
+        binding?.RvServicesContent?.adapter = null
     }
-
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
+    }
     private fun stopLoading() {
-        binding.loading.visibility = View.GONE
-        binding.RvServicesContent.visibility = View.VISIBLE
+        binding?.loading?.visibility = View.GONE
+        binding?.RvServicesContent?.visibility = View.VISIBLE
+    }
+    private fun showToast() {
+        Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
     }
     private fun backOffFragment() {
-        binding.icBack.setOnClickListener {
+        binding?.icBack?.setOnClickListener {
             findNavController().popBackStack()
         }
     }

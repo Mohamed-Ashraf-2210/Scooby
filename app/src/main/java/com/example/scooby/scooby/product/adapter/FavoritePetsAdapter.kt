@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.paws.AdaptionAdoptMeResponse
+import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
 import com.example.scooby.databinding.ItemFavoritePetsBinding
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.utils.loadUrl

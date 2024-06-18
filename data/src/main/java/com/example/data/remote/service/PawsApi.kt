@@ -4,10 +4,12 @@ import com.example.data.remote.apis.ApiClient
 import com.example.domain.AddFavoriteResponse
 import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
-import com.example.domain.paws.AdaptionAdoptMeResponse
-import com.example.domain.paws.AdaptionCatsResponse
-import com.example.domain.paws.AdaptionDogsResponse
-import com.example.domain.paws.AdaptionResponse
+import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
+import com.example.domain.paws.adaption.AdaptionCatsResponse
+import com.example.domain.paws.adaption.AdaptionDogsResponse
+import com.example.domain.paws.adaption.AdaptionResponse
+import com.example.domain.paws.missing.CatsResponse
+import com.example.domain.paws.missing.DogsResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import retrofit2.Response
@@ -56,6 +58,11 @@ interface PawsApi {
     suspend fun getPetShelterProfile(
         @Path("shelterId") shelterId: String
     ): Response<List<PetShelterProfileResponse.PetShelterProfileResponseItem>>
+
+    @GET("/scooby/api/founded/getCats")
+    suspend fun getCatsMissing() : Response<CatsResponse>
+    @GET("/scooby/api/founded/getDogs")
+    suspend fun getDogsMissing() : Response<DogsResponse>
 
 
 
