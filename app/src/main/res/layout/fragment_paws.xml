@@ -531,7 +531,7 @@
                 android:clickable="true"
                 android:contentDescription="@string/fab_content_desc"
                 android:focusable="true"
-                android:visibility="invisible"
+                android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@id/floating_action_button"
                 app:layout_constraintEnd_toEndOf="@id/floating_action_button"
                 app:shapeAppearanceOverlay="@style/fab_3_rounded"
@@ -544,16 +544,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/primary_70"
+                android:backgroundTint="@color/gray_fabBtn"
                 android:clickable="true"
                 android:contentDescription="@string/fab_content_desc"
                 android:focusable="true"
-                android:visibility="invisible"
+                android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@id/edit_button"
                 app:layout_constraintEnd_toEndOf="@id/edit_button"
                 app:shapeAppearanceOverlay="@style/fab_3_rounded"
-                app:srcCompat="@drawable/ic_plus"
-                app:tint="@android:color/white" />
+                app:srcCompat="@drawable/ic_ai"
+                app:tint="@null"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
