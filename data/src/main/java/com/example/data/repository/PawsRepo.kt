@@ -4,10 +4,12 @@ import com.example.data.remote.service.PawsApi
 import com.example.domain.AddFavoriteResponse
 import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
-import com.example.domain.paws.AdaptionAdoptMeResponse
-import com.example.domain.paws.AdaptionCatsResponse
-import com.example.domain.paws.AdaptionDogsResponse
-import com.example.domain.paws.AdaptionResponse
+import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
+import com.example.domain.paws.adaption.AdaptionCatsResponse
+import com.example.domain.paws.adaption.AdaptionDogsResponse
+import com.example.domain.paws.adaption.AdaptionResponse
+import com.example.domain.paws.missing.CatsResponse
+import com.example.domain.paws.missing.DogsResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import retrofit2.Response
@@ -50,6 +52,15 @@ class PawsRepo {
     suspend fun getPetShelterProfile(shelterId:String): Response<List<PetShelterProfileResponse.PetShelterProfileResponseItem>>? {
         return PawsApi.getApi()?.getPetShelterProfile(shelterId)
     }
+    suspend fun getCatsMissing():Response<CatsResponse>? {
+        return PawsApi.getApi()?.getCatsMissing()
+    }
+    suspend fun getDogsMissing():Response<DogsResponse>? {
+        return PawsApi.getApi()?.getDogsMissing()
+    }
+
+
+
 
 
 

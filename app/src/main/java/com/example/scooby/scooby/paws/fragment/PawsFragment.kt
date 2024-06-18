@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.Constant
-import com.example.domain.paws.AdaptionAdoptMeResponse
-import com.example.domain.paws.AdaptionCatsResponse
-import com.example.domain.paws.AdaptionDogsResponse
-import com.example.domain.paws.AdaptionResponse
+import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
+import com.example.domain.paws.adaption.AdaptionCatsResponse
+import com.example.domain.paws.adaption.AdaptionDogsResponse
+import com.example.domain.paws.adaption.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import com.example.data.local.TokenManager

@@ -9,10 +9,10 @@ import com.example.data.Constant
 import com.example.data.repository.PawsRepo
 import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
-import com.example.domain.paws.AdaptionAdoptMeResponse
-import com.example.domain.paws.AdaptionCatsResponse
-import com.example.domain.paws.AdaptionDogsResponse
-import com.example.domain.paws.AdaptionResponse
+import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
+import com.example.domain.paws.adaption.AdaptionCatsResponse
+import com.example.domain.paws.adaption.AdaptionDogsResponse
+import com.example.domain.paws.adaption.AdaptionResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import kotlinx.coroutines.launch

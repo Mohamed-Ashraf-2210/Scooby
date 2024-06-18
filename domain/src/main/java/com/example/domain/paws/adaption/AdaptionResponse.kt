@@ -1,19 +1,15 @@
-package com.example.domain.paws
+package com.example.domain.paws.adaption
 
 
 import com.google.gson.annotations.SerializedName
 
-data class AdaptionCatsResponse(
+data class AdaptionResponse(
     @SerializedName("data")
     val `data`: List<Data>,
     @SerializedName("status")
     val status: String?
 ) {
     data class Data(
-        @SerializedName("adoptionDay")
-        val adoptionDay: String?,
-        @SerializedName("availableForAdoption")
-        val availableForAdoption: Boolean?,
         @SerializedName("birthday")
         val birthday: String?,
         @SerializedName("category")
@@ -30,14 +26,10 @@ data class AdaptionCatsResponse(
         val petImage: String?,
         @SerializedName("profileBio")
         val profileBio: String?,
-        @SerializedName("shelterInfo")
-        val shelterInfo: String?,
         @SerializedName("size")
         val size: String?,
         @SerializedName("type")
         val type: String?,
-        @SerializedName("user")
-        val user: String?,
         @SerializedName("vaccinations_id")
         val vaccinationsId: List<Any?>?,
         @SerializedName("weight")
