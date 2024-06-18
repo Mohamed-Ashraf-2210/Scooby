@@ -6,8 +6,13 @@ import com.example.domain.authentication.ForgotPasswordRequest
 import com.example.domain.authentication.LoginRequest
 import com.example.domain.authentication.ResetPasswordRequest
 import com.example.domain.authentication.SignUpRequest
+import com.example.domain.profile.UpdateUseResponse
+import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Response
 import java.io.File
 
 class UserRepository {
@@ -28,13 +33,16 @@ class UserRepository {
     suspend fun getUser() = UserApi.getApi()?.getUser()
 
     suspend fun updateUser(
-        image: File
-    ) =
-        UserApi.getApi()?.updateUser(
-            image = MultipartBody.Part.createFormData(
-                "profileImage",
-                image.name,
-                image.asRequestBody()
-            )
-        )
+        image: File,
+        name: String,
+        email: String
+    ) : Response<UpdateUseResponse>? {
+        val nameRequestBody = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
+        val emailRequestBody =
+            RequestBody.create("text/plain".toMediaTypeOrNull(), email)
+        val requestFile = RequestBody.create("image/jpeg".toMediaTypeOrNull(), image)
+        val imagePart = MultipartBody.Part.createFormData("image", image.name, requestFile)
+
+        return UserApi.getApi()?.updateUser(imagePart, nameRequestBody, emailRequestBody)
+    }
 }
