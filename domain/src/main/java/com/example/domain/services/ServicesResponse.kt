@@ -4,8 +4,7 @@ package com.example.domain.services
 import com.google.gson.annotations.SerializedName
 
 data class ServicesResponse(
-    @SerializedName("length")
-    val length: Int,
+
     @SerializedName("shuffledServices")
     val shuffledServices: List<ShuffledService>
 ) {

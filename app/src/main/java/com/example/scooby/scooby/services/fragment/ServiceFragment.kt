@@ -8,10 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.ServicesResponse
+import com.example.domain.services.ServicesResponse
 import com.example.scooby.databinding.FragmentServiceBinding
 import com.example.scooby.scooby.services.adapter.ServicesMainAdapter
 import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
@@ -107,7 +106,7 @@ class ServiceFragment : Fragment() {
 
     private fun filterServices(type:String){
         val filterResponse = allServices.shuffledServices.filter { it.serviceType == type }
-        //getServicesDataMain(ServicesResponse(filterResponse))
+        getServicesDataMain(ServicesResponse(filterResponse))
     }
     // Here we Filter The Services Fragment by type of selected services
 

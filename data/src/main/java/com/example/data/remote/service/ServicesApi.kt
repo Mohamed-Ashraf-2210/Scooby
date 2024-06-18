@@ -2,7 +2,7 @@ package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
 import com.example.domain.ServicesProfileResponse
-import com.example.domain.ServicesResponse
+import com.example.domain.services.ServicesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
