@@ -13,8 +13,12 @@ import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
 import com.example.domain.paws.adaption.AdaptionCatsResponse
 import com.example.domain.paws.adaption.AdaptionDogsResponse
 import com.example.domain.paws.adaption.AdaptionResponse
+import com.example.domain.paws.missing.CatsResponse
+import com.example.domain.paws.missing.DogsResponse
+import com.example.domain.paws.missing.GetRecentlyResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
+import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
 
 class PawsViewModel : ViewModel() {
@@ -61,6 +65,19 @@ class PawsViewModel : ViewModel() {
     private val _petShelterProfileResult: MutableLiveData<List<PetShelterProfileResponse.PetShelterProfileResponseItem>> = MutableLiveData()
     val petShelterProfileResult: LiveData<List<PetShelterProfileResponse.PetShelterProfileResponseItem>>
         get() = _petShelterProfileResult
+
+    // This Belong To Missing Part in PawsFragment
+    private val _catsMissingResult : MutableLiveData<BaseResponse<CatsResponse>> = MutableLiveData()
+    val catsMissingResult :LiveData<BaseResponse<CatsResponse>>
+        get() = _catsMissingResult
+
+    private val _dogsMissingResult : MutableLiveData<BaseResponse<DogsResponse>> = MutableLiveData()
+    val dogsMissingResult :LiveData<BaseResponse<DogsResponse>>
+        get() = _dogsMissingResult
+
+    private val _recentlyMissingResult : MutableLiveData<BaseResponse<GetRecentlyResponse>> = MutableLiveData()
+    val recentlyMissingResult :LiveData<BaseResponse<GetRecentlyResponse>>
+        get() = _recentlyMissingResult
 
 
     fun getTopCollection(){
@@ -190,6 +207,52 @@ class PawsViewModel : ViewModel() {
 
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Pet Shelter Profile $e")
+            }
+        }
+    }
+
+    fun getCatsMissing(){
+        _catsMissingResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = pawsRepo.getCatsMissing()
+                if(response != null && response.isSuccessful){
+                    _catsMissingResult.value = BaseResponse.Success(response.body())
+                }else{
+                    _catsMissingResult.value = BaseResponse.Error(response?.message())
+                }
+            }catch (e: Exception) {
+                 _catsMissingResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
+    fun getDogsMissing(){
+        _dogsMissingResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = pawsRepo.getDogsMissing()
+                if(response != null && response.isSuccessful){
+                    _dogsMissingResult.value = BaseResponse.Success(response.body())
+                }else{
+                    _dogsMissingResult.value = BaseResponse.Error(response?.message())
+                }
+            }catch (e: Exception) {
+                _dogsMissingResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
+    fun getRecentlyMissing(){
+        _recentlyMissingResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = pawsRepo.getRecentlyAdded()
+                if(response != null && response.isSuccessful){
+                    _recentlyMissingResult.value = BaseResponse.Success(response.body())
+                }else{
+                    _recentlyMissingResult.value = BaseResponse.Error(response?.message())
+                }
+            }catch (e: Exception) {
+                _recentlyMissingResult.value = BaseResponse.Error(e.message)
             }
         }
     }
