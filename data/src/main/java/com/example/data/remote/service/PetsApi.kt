@@ -1,21 +1,16 @@
 package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
-import com.example.domain.AddFavoriteResponse
 import com.example.domain.pet.AddPetResponse
 import com.example.domain.pet.MyPetsResponse
 import com.example.domain.pet.PetsResponse
-import com.example.domain.product.ProductResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Multipart
-import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Part
-import retrofit2.http.Path
-import retrofit2.http.Query
 
 interface PetsApi {
     @GET("/scooby/api/Pets/getallpets")
@@ -27,8 +22,15 @@ interface PetsApi {
     @Multipart
     @POST("/scooby/api/Pets/addpet")
     suspend fun addPet(
-        @Part image: MultipartBody.Part,
-        @Part("petData") petData: RequestBody
+        @Part("name") name: RequestBody,
+        @Part("type") type: RequestBody,
+        @Part("birthday") birthday: RequestBody,
+        @Part("breed") breed: RequestBody,
+        @Part("adoptionDay") adoptionDay: RequestBody,
+        @Part("size") size: RequestBody,
+        @Part("gender") gender: RequestBody,
+        @Part("profileBio") profileBio: RequestBody,
+        @Part profileImage: MultipartBody.Part?
     ): Response<AddPetResponse>
 
 
