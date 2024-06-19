@@ -3,7 +3,6 @@ package com.example.scooby.scooby.userProfile
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,14 +21,17 @@ import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class EditProfileFragment : Fragment() {
     private var binding: FragmentEditProfileBinding? = null
     private lateinit var profileViewModel: ProfileViewModel
-    private var selectedImg: File? = null
-    private val REQUEST_IMAGE_CAPTURE = 100
-    private val REQUEST_IMAGE_PICKER = 101
+    private var selectedImg: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,9 +40,9 @@ class EditProfileFragment : Fragment() {
 
         binding = FragmentEditProfileBinding.inflate(inflater, container, false)
         profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-        selectedImg = saveBitmapToFile(binding?.profileImage?.drawable?.toBitmap()!!)
 
         initView()
+        selectedImg = binding?.profileImage?.drawable?.let { saveBitmapToFile(it.toBitmap()) }
 
         return binding?.root
     }
@@ -90,9 +92,14 @@ class EditProfileFragment : Fragment() {
         }
     }
 
+
     private fun observeUpdateUserImage() {
         profileViewModel.apply {
-            updateUser(selectedImg!!,"MO","ma1261327@gmail.com")
+            binding?.apply {
+                selectedImg = saveBitmapToFile(profileImage.drawable.toBitmap())
+                updateUser(nameEditText.text.toString(), emailEditText.text.toString(), selectedImg)
+
+            }
             updateUserResult.observe(viewLifecycleOwner) {
                 when (it) {
                     is BaseResponse.Loading -> {
@@ -101,7 +108,7 @@ class EditProfileFragment : Fragment() {
 
                     is BaseResponse.Success -> {
                         stopLoading()
-                        showToast("Update success")
+                        showToast("Save is successful")
                     }
 
                     is BaseResponse.Error -> {
@@ -129,40 +136,35 @@ class EditProfileFragment : Fragment() {
 
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             val imgBitMap = data?.extras?.get("data") as Bitmap
-            val imgFile = saveBitmapToFile(imgBitMap)
-            selectedImg = imgFile
+            binding?.profileImage?.setImageBitmap(imgBitMap)
         } else if (requestCode == REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
             val imageUri = data?.data
             binding?.profileImage?.setImageURI(imageUri)
-            if (imageUri != null) {
-                val file = saveImageToFile(imageUri)
-                selectedImg = file
-            }
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
-    private fun saveBitmapToFile(bitmap: Bitmap): File {
-        val file = File(requireContext().cacheDir, "image.png")
-        file.outputStream().use {
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
+    private fun saveBitmapToFile(bitmap: Bitmap): String? {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val fileName = "IMG_$timeStamp.jpg"
+        val storageDir = requireContext().getExternalFilesDir(null)
+
+        val file = File(storageDir, fileName)
+        var fileOutputStream: FileOutputStream? = null
+        try {
+            fileOutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fileOutputStream)
+            fileOutputStream.close()
+            return file.absolutePath
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } finally {
+            fileOutputStream?.close()
         }
-        return file
+        return null
     }
 
-    private fun saveImageToFile(imageUri: Uri): File {
-        val inputStream = imageUri.let { requireContext().contentResolver.openInputStream(it) }
-        val file = File(context?.cacheDir, "selected_image.png")
-        val outputStream = FileOutputStream(file)
-
-        inputStream?.use { input ->
-            outputStream.use { output ->
-                input.copyTo(output)
-            }
-        }
-        return file
-    }
     // endregion
 
 
@@ -206,5 +208,10 @@ class EditProfileFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    companion object {
+        private const val REQUEST_IMAGE_CAPTURE = 100
+        private const val REQUEST_IMAGE_PICKER = 101
     }
 }

@@ -49,9 +49,9 @@ interface UserApi {
     @Multipart
     @PATCH("/scooby/api/user/updateuser")
     suspend fun updateUser(
-        @Part image: MultipartBody.Part,
         @Part("name") name: RequestBody,
-        @Part("email") email: RequestBody
+        @Part("email") email: RequestBody,
+        @Part profileImage: MultipartBody.Part?
     ): Response<UpdateUseResponse>
 
     companion object {

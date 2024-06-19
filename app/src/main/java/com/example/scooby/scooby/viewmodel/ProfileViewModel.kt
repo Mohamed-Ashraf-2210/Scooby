@@ -1,16 +1,18 @@
 package com.example.scooby.scooby.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.Constant
 import com.example.data.repository.UserRepository
 import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class ProfileViewModel : ViewModel() {
@@ -41,17 +43,27 @@ class ProfileViewModel : ViewModel() {
 
 
     // region Update user
-    private val _updateUserResult: MutableLiveData<BaseResponse<UpdateUseResponse>> = MutableLiveData()
+    private val _updateUserResult: MutableLiveData<BaseResponse<UpdateUseResponse>> =
+        MutableLiveData()
     val updateUserResult: LiveData<BaseResponse<UpdateUseResponse>>
         get() = _updateUserResult
 
-    fun updateUser(image: File, name: String, email: String) {
+    fun updateUser(name: String, email: String, imagePath: String?) {
         _updateUserResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
-                val response = profileRepo.updateUser(image,name,email)
+                val nameUser = RequestBody.create("text/plain".toMediaTypeOrNull(), name)
+                val emailUser = RequestBody.create("text/plain".toMediaTypeOrNull(), email)
+
+                val profileImage: MultipartBody.Part? = if (imagePath != null) {
+                    val file = File(imagePath)
+                    val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+                    MultipartBody.Part.createFormData("profileImage", file.name, requestFile)
+                } else {
+                    null
+                }
+                val response = profileRepo.updateUser(nameUser, emailUser, profileImage)
                 if (response != null && response.isSuccessful) {
-                    Log.d(Constant.MY_TAG, "updateUser: ${response.body()}")
                     _updateUserResult.value = BaseResponse.Success(response.body())
                 } else {
                     _updateUserResult.value = BaseResponse.Error(response?.message())
