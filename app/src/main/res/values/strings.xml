@@ -300,5 +300,7 @@ again."</string>
     <string name="something_went_wrong_we_can_t_get_any">Something went wrong, we can’t get any</string>
     <string name="information_please_try_again">information, please try again</string>
     <string name="upload_photo">Upload photo</string>
+    <string name="cancel">Cancel</string>
+    <string name="send">Send</string>
 
 </resources>
