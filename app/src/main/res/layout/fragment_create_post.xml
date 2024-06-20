@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fefbfb"
     tools:context=".scooby.CreatePostFragment">
 
     <ImageView
@@ -40,17 +41,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/exit_btn" />
 
-    <TextView
-        android:layout_width="wrap_content"
+<!--    <EditText-->
+<!--        android:id="@+id/editText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:fontFamily="@font/roboto"-->
+<!--        android:hint="What’s new?"-->
+<!--        android:textColorHint="@color/hint_color_gray"-->
+<!--        android:textSize="13sp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/user_image"-->
+<!--        app:layout_constraintStart_toEndOf="@id/user_image"-->
+<!--        app:layout_constraintTop_toTopOf="@id/user_image" />-->
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto"
-        android:hint="What’s new?"
-        android:textColorHint="@color/hint_color_gray"
-        android:textSize="13sp"
+        android:hint="@string/what_s_new"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintBottom_toBottomOf="@id/user_image"
         app:layout_constraintStart_toEndOf="@id/user_image"
-        app:layout_constraintTop_toTopOf="@id/user_image" />
+        app:layout_constraintTop_toTopOf="@id/user_image">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:background="@color/fefbfb"
+            android:textSize="13sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/pet_image"
