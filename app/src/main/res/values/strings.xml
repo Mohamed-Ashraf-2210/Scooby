@@ -291,5 +291,10 @@ again."</string>
     <string name="offer_vet_image">offer_vet_image</string>
     <string name="man_icon">man icon</string>
     <string name="post">Post</string>
+    <string name="successfully_uploaded">Successfully uploaded!</string>
+    <string name="don_t_worry_scooby_is_searching_for">Don\'t worry, Scooby is searching for</string>
+    <string name="you_know_when_we_have_one">you know when we have one</string>
+    <string name="your_pet_s_perfect_match_we_ll_let">your pet\'s perfect match! We\'ll let</string>
+    <string name="back_to_home">Back to home</string>
 
 </resources>

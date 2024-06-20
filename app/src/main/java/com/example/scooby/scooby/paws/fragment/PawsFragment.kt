@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.whenCreated
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.Constant
 import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
@@ -213,6 +215,7 @@ class PawsFragment : Fragment() {
         }
         binding.editButton.setOnClickListener {
             Toast.makeText(requireContext(),"clicked edit Button",Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_pawsFragment_to_createPostFragment)
         }
         binding.imageButton.setOnClickListener {
             Toast.makeText(requireContext(),"clicked image Button",Toast.LENGTH_SHORT).show()
