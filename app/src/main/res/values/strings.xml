@@ -296,5 +296,9 @@ again."</string>
     <string name="you_know_when_we_have_one">you know when we have one</string>
     <string name="your_pet_s_perfect_match_we_ll_let">your pet\'s perfect match! We\'ll let</string>
     <string name="back_to_home">Back to home</string>
+    <string name="oops">Oops!</string>
+    <string name="something_went_wrong_we_can_t_get_any">Something went wrong, we can’t get any</string>
+    <string name="information_please_try_again">information, please try again</string>
+    <string name="upload_photo">Upload photo</string>
 
 </resources>
