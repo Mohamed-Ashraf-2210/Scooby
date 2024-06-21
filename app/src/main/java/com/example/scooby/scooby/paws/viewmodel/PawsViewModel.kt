@@ -293,6 +293,9 @@ class PawsViewModel : ViewModel() {
 
                 }else{
                     _iFoundPetResult.value = BaseResponse.Error(response?.message())
+                    if (response != null) {
+                        Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet ${response.body()} ${response.message() }")
+                    }
                 }
             }catch (e: Exception) {
                 Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet $e")

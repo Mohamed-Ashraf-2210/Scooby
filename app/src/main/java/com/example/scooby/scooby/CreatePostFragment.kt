@@ -26,6 +26,7 @@ import java.util.Locale
 class CreatePostFragment : Fragment() {
     private var binding : FragmentCreatePostBinding?= null
     private lateinit var pawsViewModel: PawsViewModel
+    private lateinit var profileViewModel: ProfileViewModel
     private var selectedImg: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,7 @@ class CreatePostFragment : Fragment() {
     ): View {
         binding = FragmentCreatePostBinding.inflate(inflater,container,false)
         pawsViewModel = ViewModelProvider(this)[PawsViewModel::class.java]
+        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         selectedImg = binding?.petImage?.drawable?.let { saveBitmapToFile(it.toBitmap()) }
         init()
         return binding!!.root
@@ -58,32 +60,28 @@ class CreatePostFragment : Fragment() {
 
     private fun observeData() {
         pawsViewModel.apply {
-            binding?.apply {
-                selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
-                foundPet(selectedImg,descEditText.editText.toString())
-            }
-            iFoundPetResult.observe(viewLifecycleOwner){
-                when (it) {
-                    is BaseResponse.Loading -> {
-                        showLoading()
-                    }
-
-                    is BaseResponse.Success -> {
-                        stopLoading()
-                        showToast("Send is successful")
-                    }
-
-                    is BaseResponse.Error -> {
-                        stopLoading()
-                        it.msg?.let { it1 -> Log.e("CHK_MSG", it1) }
-                        showToast(it.msg)
-                    }
-
-                    else -> {
-                        stopLoading()
+                binding?.apply {
+                    selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
+                    foundPet(selectedImg, descEditText.editText.toString())
+                }
+                iFoundPetResult.observe(viewLifecycleOwner) {
+                    when (it) {
+                        is BaseResponse.Loading -> {
+                            showLoading()
+                        }
+                        is BaseResponse.Success -> {
+                            stopLoading()
+                            showToast("Send is successful")
+                        }
+                        is BaseResponse.Error -> {
+                            stopLoading()
+                            showToast("Erorr")
+                        }
+                        else -> {
+                            stopLoading()
+                        }
                     }
                 }
-            }
         }
     }
 

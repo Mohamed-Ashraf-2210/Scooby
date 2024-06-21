@@ -505,56 +505,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_missing_dog"
                 tools:listitem="@layout/item_pet_missing" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floating_action_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="16dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:backgroundTint="@color/primary"
-                android:contentDescription="@string/fab_content_desc"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:shapeAppearanceOverlay="@style/fab_3_rounded"
-                app:srcCompat="@drawable/ic_plus"
-                app:tint="@android:color/white"/>
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/edit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/yellow"
-                android:clickable="true"
-                android:contentDescription="@string/fab_content_desc"
-                android:focusable="true"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/floating_action_button"
-                app:layout_constraintEnd_toEndOf="@id/floating_action_button"
-                app:shapeAppearanceOverlay="@style/fab_3_rounded"
-                app:srcCompat="@drawable/ic_edit"
-                app:tint="@android:color/white" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/image_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_marginBottom="16dp"
-                android:backgroundTint="@color/gray_fabBtn"
-                android:clickable="true"
-                android:contentDescription="@string/fab_content_desc"
-                android:focusable="true"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toTopOf="@id/edit_button"
-                app:layout_constraintEnd_toEndOf="@id/edit_button"
-                app:shapeAppearanceOverlay="@style/fab_3_rounded"
-                app:srcCompat="@drawable/ic_ai"
-                app:tint="@null"
-                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -571,6 +522,57 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_action_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/primary"
+        android:clickable="true"
+        android:contentDescription="@string/fab_content_desc"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearanceOverlay="@style/fab_3_rounded"
+        app:srcCompat="@drawable/ic_plus"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/yellow"
+        android:clickable="true"
+        android:contentDescription="@string/fab_content_desc"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/floating_action_button"
+        app:layout_constraintEnd_toEndOf="@id/floating_action_button"
+        app:shapeAppearanceOverlay="@style/fab_3_rounded"
+        app:srcCompat="@drawable/ic_edit"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/image_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/gray_fabBtn"
+        android:clickable="true"
+        android:contentDescription="@string/fab_content_desc"
+        android:focusable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/edit_button"
+        app:layout_constraintEnd_toEndOf="@id/edit_button"
+        app:shapeAppearanceOverlay="@style/fab_3_rounded"
+        app:srcCompat="@drawable/ic_ai"
+        app:tint="@null"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
