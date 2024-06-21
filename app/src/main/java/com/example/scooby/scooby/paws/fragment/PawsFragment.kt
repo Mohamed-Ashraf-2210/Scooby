@@ -288,7 +288,7 @@ class PawsFragment : Fragment() {
         }
     }
     private fun showToast() {
-        Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), "Something went wrong with missing section ", Toast.LENGTH_SHORT).show()
     }
 
 }

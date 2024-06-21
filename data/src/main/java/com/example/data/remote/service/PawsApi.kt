@@ -10,12 +10,18 @@ import com.example.domain.paws.adaption.AdaptionDogsResponse
 import com.example.domain.paws.adaption.AdaptionResponse
 import com.example.domain.paws.missing.CatsResponse
 import com.example.domain.paws.missing.DogsResponse
+import com.example.domain.paws.missing.FoundPetPost
 import com.example.domain.paws.missing.GetRecentlyResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -67,6 +73,13 @@ interface PawsApi {
     suspend fun getCatsMissing() : Response<CatsResponse>
     @GET("/scooby/api/founded/getDogs")
     suspend fun getDogsMissing() : Response<DogsResponse>
+
+    @Multipart
+    @POST("/scooby/api/founded/IfoundPet")
+    suspend fun iFoundPet(
+        @Part("petImage") petImage : MultipartBody.Part?,
+        @Part("description") description : RequestBody
+    ): Response<FoundPetPost>
 
 
 

@@ -55,7 +55,7 @@
 <!--        app:layout_constraintTop_toTopOf="@id/user_image" />-->
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/filledTextField"
+        android:id="@+id/descEditText"
         style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
@@ -95,5 +95,15 @@
             android:layout_gravity="center"
             />
     </com.google.android.material.card.MaterialCardView>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/pet_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
