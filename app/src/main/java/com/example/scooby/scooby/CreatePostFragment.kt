@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,7 +59,7 @@ class CreatePostFragment : Fragment() {
     private fun observeData() {
         pawsViewModel.apply {
             binding?.apply {
-                selectedImg = saveBitmapToFile(petImage.drawable.toBitmap())
+                selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
                 foundPet(selectedImg,descEditText.editText.toString())
             }
             iFoundPetResult.observe(viewLifecycleOwner){
@@ -69,11 +70,12 @@ class CreatePostFragment : Fragment() {
 
                     is BaseResponse.Success -> {
                         stopLoading()
-                        showToast("Save is successful")
+                        showToast("Send is successful")
                     }
 
                     is BaseResponse.Error -> {
                         stopLoading()
+                        it.msg?.let { it1 -> Log.e("CHK_MSG", it1) }
                         showToast(it.msg)
                     }
 

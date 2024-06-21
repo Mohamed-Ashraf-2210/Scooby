@@ -235,7 +235,8 @@ class PawsViewModel : ViewModel() {
                     _catsMissingResult.value = BaseResponse.Error(response?.message())
                 }
             }catch (e: Exception) {
-                 _catsMissingResult.value = BaseResponse.Error(e.message)
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS cats missing $e")
+                _catsMissingResult.value = BaseResponse.Error(e.message)
             }
         }
     }
@@ -250,6 +251,7 @@ class PawsViewModel : ViewModel() {
                     _dogsMissingResult.value = BaseResponse.Error(response?.message())
                 }
             }catch (e: Exception) {
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS dog missing $e")
                 _dogsMissingResult.value = BaseResponse.Error(e.message)
             }
         }
@@ -266,6 +268,7 @@ class PawsViewModel : ViewModel() {
                 }
             }catch (e: Exception) {
                 _recentlyMissingResult.value = BaseResponse.Error(e.message)
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS recently add $e")
             }
         }
     }
@@ -273,7 +276,7 @@ class PawsViewModel : ViewModel() {
 
     fun foundPet(imagePath:String?,description : String){
         _iFoundPetResult.value = BaseResponse.Loading()
-        viewModelScope.launch (Dispatchers.IO){
+        viewModelScope.launch {
             try {
                 val desc = RequestBody.create("text/plain".toMediaTypeOrNull(),description)
                 val profileImage :MultipartBody.Part? = if (imagePath != null){
@@ -286,10 +289,13 @@ class PawsViewModel : ViewModel() {
                 val response = pawsRepo.iFoundPet(profileImage,desc)
                 if (response != null && response.isSuccessful){
                     _iFoundPetResult.value = BaseResponse.Success(response.body())
+                    Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet ${response.body()} ${response.message() }")
+
                 }else{
                     _iFoundPetResult.value = BaseResponse.Error(response?.message())
                 }
             }catch (e: Exception) {
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet $e")
                 _iFoundPetResult.value = BaseResponse.Error(e.message)
             }
         }

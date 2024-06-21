@@ -143,6 +143,7 @@ class PawsFragment : Fragment() {
                 when(catResponse){
                     is BaseResponse.Loading -> showLoading()
                     is BaseResponse.Success -> {
+                        Log.e("checkResCat", catResponse.data.toString())
                         stopLoading()
                         binding.rvMissingCat.apply {
                             adapter = catResponse.data?.let { CatsMissingAdapter(it) }

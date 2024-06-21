@@ -77,7 +77,7 @@ interface PawsApi {
     @Multipart
     @POST("/scooby/api/founded/IfoundPet")
     suspend fun iFoundPet(
-        @Part("petImage") petImage : MultipartBody.Part?,
+        @Part petImage : MultipartBody.Part?,
         @Part("description") description : RequestBody
     ): Response<FoundPetPost>
 
