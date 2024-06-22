@@ -282,7 +282,7 @@ class PawsViewModel : ViewModel() {
                 val petImage :MultipartBody.Part? = if (imagePath != null){
                     val file = File(imagePath)
                     val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-                    MultipartBody.Part.createFormData("aA",file.name,requestFile)
+                    MultipartBody.Part.createFormData("petImage",file.name,requestFile)
                 }else{
                     null
                 }
