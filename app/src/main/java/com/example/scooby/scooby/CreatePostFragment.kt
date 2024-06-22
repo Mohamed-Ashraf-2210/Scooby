@@ -28,10 +28,6 @@ class CreatePostFragment : Fragment() {
     private lateinit var pawsViewModel: PawsViewModel
     private lateinit var profileViewModel: ProfileViewModel
     private var selectedImg: String? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,7 +71,7 @@ class CreatePostFragment : Fragment() {
                         }
                         is BaseResponse.Error -> {
                             stopLoading()
-                            showToast("Erorr")
+                            showToast(it.msg)
                         }
                         else -> {
                             stopLoading()
@@ -91,10 +87,10 @@ class CreatePostFragment : Fragment() {
         startActivityForResult(intent, REQUEST_IMAGE_PICKER)
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == CreatePostFragment.REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             val imgBitMap = data?.extras?.get("data") as Bitmap
             binding?.petImage?.setImageBitmap(imgBitMap)
-        } else if (requestCode == CreatePostFragment.REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
+        } else if (requestCode == REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
             val imageUri = data?.data
             binding?.petImage?.setImageURI(imageUri)
         } else {
