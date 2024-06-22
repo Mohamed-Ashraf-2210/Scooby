@@ -359,6 +359,9 @@
             <action
                 android:id="@+id/action_pawsFragment_to_shelterProfileFragment"
                 app:destination="@id/shelterProfileFragment" />
+            <action
+                android:id="@+id/action_pawsFragment_to_createPostFragment"
+                app:destination="@id/createPostFragment" />
         </fragment>
         <fragment
             android:id="@+id/shelterProfileFragment"
@@ -369,7 +372,11 @@
                 android:name="shelterId"
                 app:argType="string" />
         </fragment>
-
+        <fragment
+            android:id="@+id/createPostFragment"
+            android:name="com.example.scooby.scooby.CreatePostFragment"
+            android:label="fragment_create_post"
+            tools:layout="@layout/fragment_create_post" />
     </navigation>
 
     <navigation

@@ -67,5 +67,6 @@
     <color name="fefbfb">#FEFBFB</color>
     <color name="_0f0f0f">#0F0F0F</color>
     <color name="gray_fabBtn">#DDD6D6</color>
+    <color name="hint_color_gray">#888080</color>
 
 </resources>

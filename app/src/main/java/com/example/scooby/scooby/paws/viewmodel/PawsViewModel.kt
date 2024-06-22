@@ -15,11 +15,19 @@ import com.example.domain.paws.adaption.AdaptionDogsResponse
 import com.example.domain.paws.adaption.AdaptionResponse
 import com.example.domain.paws.missing.CatsResponse
 import com.example.domain.paws.missing.DogsResponse
+import com.example.domain.paws.missing.FoundPetPost
 import com.example.domain.paws.missing.GetRecentlyResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import com.example.scooby.utils.BaseResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.Dispatcher
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 class PawsViewModel : ViewModel() {
     private val pawsRepo = PawsRepo()
@@ -78,6 +86,11 @@ class PawsViewModel : ViewModel() {
     private val _recentlyMissingResult : MutableLiveData<BaseResponse<GetRecentlyResponse>> = MutableLiveData()
     val recentlyMissingResult :LiveData<BaseResponse<GetRecentlyResponse>>
         get() = _recentlyMissingResult
+
+
+    private val _iFoundPetResult : MutableLiveData<BaseResponse<FoundPetPost>> = MutableLiveData()
+    val iFoundPetResult : LiveData<BaseResponse<FoundPetPost>>
+        get() = _iFoundPetResult
 
 
     fun getTopCollection(){
@@ -222,7 +235,8 @@ class PawsViewModel : ViewModel() {
                     _catsMissingResult.value = BaseResponse.Error(response?.message())
                 }
             }catch (e: Exception) {
-                 _catsMissingResult.value = BaseResponse.Error(e.message)
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS cats missing $e")
+                _catsMissingResult.value = BaseResponse.Error(e.message)
             }
         }
     }
@@ -237,6 +251,7 @@ class PawsViewModel : ViewModel() {
                     _dogsMissingResult.value = BaseResponse.Error(response?.message())
                 }
             }catch (e: Exception) {
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS dog missing $e")
                 _dogsMissingResult.value = BaseResponse.Error(e.message)
             }
         }
@@ -253,6 +268,34 @@ class PawsViewModel : ViewModel() {
                 }
             }catch (e: Exception) {
                 _recentlyMissingResult.value = BaseResponse.Error(e.message)
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS recently add $e")
+            }
+        }
+    }
+
+
+    fun foundPet(imagePath:String?,description : String){
+        _iFoundPetResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val desc = RequestBody.create("text/plain".toMediaTypeOrNull(),description)
+                val profileImage :MultipartBody.Part? = if (imagePath != null){
+                    val file = File(imagePath)
+                    val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+                    MultipartBody.Part.createFormData("profileImage",file.name,requestFile)
+                }else{
+                    null
+                }
+                val response = pawsRepo.iFoundPet(profileImage,desc)
+                if (response != null && response.isSuccessful){
+                    _iFoundPetResult.value = BaseResponse.Success(response.body())
+                }else{
+                    _iFoundPetResult.value = BaseResponse.Error(response?.message())
+                    Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet res ${response?.errorBody()}")
+                }
+            }catch (e: Exception) {
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet  catch $e")
+                _iFoundPetResult.value = BaseResponse.Error(e.message)
             }
         }
     }

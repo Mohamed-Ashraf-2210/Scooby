@@ -53,7 +53,6 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
             Log.d("Cart User", "null")
         }
     }
-
     private fun setData2Ui(cartProductResponse: CartProductResponse) {
         binding.apply {
             priceCheckout.text = cartProductResponse.data.totalCartPrice.toString()
@@ -61,7 +60,6 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
             priceTotal2.text = cartProductResponse.data.totalCartPrice.toString()
         }
     }
-
     private fun observeUserCart() {
         productViewModel.userCartResult.observe(viewLifecycleOwner) {
             binding.progressBtn.visibility = View.GONE
@@ -72,7 +70,6 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
                 binding.itemCardInfo.visibility = View.VISIBLE
                 productViewModel.userCartResult.value = null
             }
-
         }
     }
 

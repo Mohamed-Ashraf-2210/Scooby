@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".scooby.SuccessUploadFragment">
+
+    <TextView
+        android:id="@+id/tv_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="73dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/successfully_uploaded"
+        android:textColor="@color/primary"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/don_t_worry_scooby_is_searching_for"
+        android:textColor="#990F0F0F"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_success"
+        app:layout_constraintStart_toStartOf="@+id/tv_success"
+        app:layout_constraintTop_toBottomOf="@id/tv_success" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/your_pet_s_perfect_match_we_ll_let"
+        android:textColor="#990F0F0F"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_1"
+        app:layout_constraintStart_toStartOf="@+id/tv_1"
+        app:layout_constraintTop_toBottomOf="@id/tv_1" />
+
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/you_know_when_we_have_one"
+        android:textColor="#990F0F0F"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_2"
+        app:layout_constraintStart_toStartOf="@+id/tv_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_2" />
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/pana"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_3" />
+
+    <com.google.android.material.button.MaterialButton
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="82dp"
+        android:elevation="1dp"
+        app:cornerRadius="20dp"
+        android:text="@string/back_to_home"
+        android:textColor="@color/primary"
+        android:fontFamily="@font/roboto_bold"
+        android:backgroundTint="@color/fefbfb"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
