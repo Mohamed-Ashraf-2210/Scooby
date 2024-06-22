@@ -19,6 +19,7 @@ import com.example.domain.pet.AddPetData
 import com.example.scooby.databinding.FragmentSubmitPetBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewmodel.PetsViewModel
+import com.example.scooby.utils.BaseResponse
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -32,14 +33,15 @@ class SubmitPetFragment : Fragment() {
     private var binding: FragmentSubmitPetBinding? = null
     private lateinit var petsViewModel: PetsViewModel
     private val args: SubmitPetFragmentArgs by navArgs()
+    private var selectedImg: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (binding != null) {
+        if (binding != null)
             return binding?.root
-        }
+
         binding = FragmentSubmitPetBinding.inflate(inflater, container, false)
         petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
         initView()
@@ -114,6 +116,7 @@ class SubmitPetFragment : Fragment() {
 
     private fun clickToSubmit() {
         if (imagePet != null) {
+
             val petData = AddPetData(
                 name = args.listOfData?.get(0) ?: "",
                 type = args.listOfData?.get(1) ?: "",
@@ -126,14 +129,26 @@ class SubmitPetFragment : Fragment() {
             )
             val file = bitmapToFile(imagePet)
             petsViewModel.apply {
-                addPet(file, petData)
+                addPet(petData,file.absolutePath)
                 addPetsResult.observe(viewLifecycleOwner) {
-                    if (it?.status == "success") {
-                        Toast.makeText(requireContext(), "Save is success", Toast.LENGTH_SHORT)
-                            .show()
-                    } else {
-                        Toast.makeText(requireContext(), "Save is failed", Toast.LENGTH_SHORT)
-                            .show()
+                    when (it) {
+                        is BaseResponse.Loading -> {
+                            //showLoading()
+                        }
+
+                        is BaseResponse.Success -> {
+                            //stopLoading()
+                            showToast("Save is successful")
+                        }
+
+                        is BaseResponse.Error -> {
+                            //stopLoading()
+                            showToast(it.msg)
+                        }
+
+                        else -> {
+                            //stopLoading()
+                        }
                     }
                 }
             }
@@ -142,6 +157,9 @@ class SubmitPetFragment : Fragment() {
 
     }
 
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onResume() {
         super.onResume()
