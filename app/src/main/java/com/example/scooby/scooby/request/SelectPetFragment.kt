@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.request
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.data.Constant
@@ -16,13 +18,17 @@ import com.example.scooby.databinding.FragmentSelectPetBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.MyPetsRequestAdapter
 import com.example.scooby.scooby.viewmodel.PetsViewModel
+import com.example.scooby.utils.BaseResponse
 
-
+/**
+ * First screen to Request a service
+ * Select user pets
+ * author: Mohamed Ashraf
+ * */
 class SelectPetFragment : Fragment() {
     private var binding: FragmentSelectPetBinding? = null
-    private val myPetsViewModel by viewModels<PetsViewModel>()
+    private lateinit var petsViewModel: PetsViewModel
     private val args: SelectPetFragmentArgs by navArgs()
-    private lateinit var userId: String
     private lateinit var adapter: MyPetsRequestAdapter
 
 
@@ -30,36 +36,57 @@ class SelectPetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (binding!= null) return binding?.root
+
         binding = FragmentSelectPetBinding.inflate(inflater, container, false)
-        getUserId()
+        petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
+        initView()
+        return binding?.root
+    }
+
+    private fun initView() {
         observeMyPets()
+        clickListener()
+    }
+    @SuppressLint("SetTextI18n")
+    private fun clickListener() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
             nextBtn.text = "Next (\$${args.requestName[1]} /night)"
             addPetCard.setOnClickListener { findNavController().navigate(R.id.action_selectPetFragment_to_addPetsFragment) }
         }
-
-        return binding?.root
     }
 
 
     private fun observeMyPets() {
-        myPetsViewModel.apply {
+        petsViewModel.apply {
             getMyPets()
             myPetsResult.observe(viewLifecycleOwner) {
-                stopLoading()
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
 
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        adapter = MyPetsRequestAdapter(it.data!!,requireContext())
+                        binding?.myPetsRv?.adapter = adapter
+                    }
 
-                //adapter = MyPetsRequestAdapter(it, requireContext())
-                binding?.myPetsRv?.adapter = adapter
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
+                }
             }
         }
     }
 
-    private fun getUserId() {
-        userId = TokenManager.getAuth(Constant.USER_ID).toString()
-    }
 
 
     private fun onClickNext() {
@@ -76,12 +103,19 @@ class SelectPetFragment : Fragment() {
         }
     }
 
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
 
     private fun stopLoading() {
         binding?.apply {
             loading.visibility = View.GONE
             myPetsRv.visibility = View.VISIBLE
         }
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
     }
 
     override fun onResume() {
