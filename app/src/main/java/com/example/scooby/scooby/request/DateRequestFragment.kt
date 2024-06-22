@@ -7,6 +7,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
@@ -37,7 +38,11 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-
+/**
+ * Second screen to Request a service
+ * Select date, time, location and duration
+ * author: Mohamed Ashraf
+ * */
 class DateRequestFragment : Fragment() {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var binding: FragmentDateRequestBinding? = null
@@ -59,6 +64,7 @@ class DateRequestFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
@@ -172,6 +178,7 @@ class DateRequestFragment : Fragment() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -202,7 +209,7 @@ class DateRequestFragment : Fragment() {
                 if (location != null) {
                     latitude = location.latitude
                     longitude = location.longitude
-                    userLocation = getCountryName()
+                    userLocation = getCityAndCountry()
                     binding?.locationTv?.text = userLocation
                 } else {
                     val locationRequest = LocationRequest()
@@ -220,7 +227,7 @@ class DateRequestFragment : Fragment() {
                             if (location1 != null) {
                                 longitude = location1.longitude
                             }
-                            userLocation = getCountryName()
+                            userLocation = getCityAndCountry()
                             binding?.locationTv?.text = userLocation
                         }
                     }
@@ -267,21 +274,23 @@ class DateRequestFragment : Fragment() {
         }
     }
 
-    private fun getCountryName(): String {
+
+    private fun getCityAndCountry(): String {
         val geocoder = Geocoder(requireContext(), Locale.getDefault())
-        var countryName = ""
+        var city = ""
+        var country = ""
 
         try {
-            val addresses = geocoder.getFromLocation(latitude, longitude, 1)
-            if (addresses != null) {
-                if (addresses.isNotEmpty()) {
-                    countryName = addresses[0].countryName
-                }
+            val addresses: List<Address>? = geocoder.getFromLocation(latitude, longitude, 1)
+            if (!addresses.isNullOrEmpty()) {
+                val address = addresses[0]
+                city = address.locality ?: ""
+                country = address.countryName ?: ""
             }
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        return countryName
+        return "$city , $country"
     }
 
 

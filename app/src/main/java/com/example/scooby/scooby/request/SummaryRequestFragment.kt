@@ -9,26 +9,28 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.data.Constant
 import com.example.scooby.R
-import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentSummaryRequestBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.PetsSummaryRequestAdapter
 import com.example.scooby.scooby.viewmodel.PetsViewModel
+import com.example.scooby.utils.BaseResponse
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
-
+/**
+ * 4th screen to Request a service
+ * display summary
+ * author: Mohamed Ashraf
+ * */
 class SummaryRequestFragment : Fragment() {
     private var binding: FragmentSummaryRequestBinding? = null
-    private val myPetsViewModel by viewModels<PetsViewModel>()
+    private lateinit var petsViewModel: PetsViewModel
     private val args: SummaryRequestFragmentArgs by navArgs()
-    private lateinit var userId: String
     private lateinit var adapter: PetsSummaryRequestAdapter
     private val calendar = Calendar.getInstance()
     private var pickUp = ""
@@ -52,7 +54,7 @@ class SummaryRequestFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSummaryRequestBinding.inflate(inflater, container, false)
-        getUserId()
+        petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
         pickUp = args.listOfData[7]
         binding?.apply {
             selectDate.text = args.listOfData[0]
@@ -110,16 +112,31 @@ class SummaryRequestFragment : Fragment() {
         }
     }
 
-    private fun getUserId() {
-        userId = TokenManager.getAuth( Constant.USER_ID).toString()
-    }
-
     private fun observeMyPets() {
-        myPetsViewModel.apply {
+        petsViewModel.apply {
             getMyPets()
             myPetsResult.observe(viewLifecycleOwner) {
-                //adapter = PetsSummaryRequestAdapter(it!!, requireContext(), args.idPets)
-                binding?.petsRv?.adapter = adapter
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        //showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        //stopLoading()
+                        adapter =
+                            PetsSummaryRequestAdapter(it.data!!, requireContext(), args.idPets)
+                        binding?.petsRv?.adapter = adapter
+                    }
+
+                    is BaseResponse.Error -> {
+                        //stopLoading()
+                        //showToast(it.msg)
+                    }
+
+                    else -> {
+                        //stopLoading()
+                    }
+                }
             }
         }
     }
