@@ -11,6 +11,7 @@ import com.example.domain.paws.adaption.AdaptionDogsResponse
 import com.example.domain.paws.adaption.AdaptionResponse
 import com.example.domain.paws.missing.CatsResponse
 import com.example.domain.paws.missing.DogsResponse
+import com.example.domain.paws.missing.FoundPetPost
 import com.example.domain.paws.missing.GetRecentlyResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
@@ -67,10 +68,13 @@ class PawsRepo {
         return PawsApi.getApi()?.getDogsMissing()
     }
 
+
     suspend fun iFoundPet(
         petImage: MultipartBody.Part?,
         description : RequestBody
-    ) = PawsApi.getApi()?.iFoundPet(petImage,description)
+    ) : Response<FoundPetPost>? {
+        return PawsApi.getApi()?.iFoundPet(petImage,description)
+    }
 
 
 

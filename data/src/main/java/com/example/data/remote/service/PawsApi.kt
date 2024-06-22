@@ -81,10 +81,6 @@ interface PawsApi {
         @Part("description") description : RequestBody
     ): Response<FoundPetPost>
 
-
-
-
-
     companion object{
         fun getApi(): PawsApi? {
             return ApiClient.client?.create(PawsApi::class.java)

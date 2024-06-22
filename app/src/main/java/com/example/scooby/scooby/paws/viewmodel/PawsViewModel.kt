@@ -281,7 +281,7 @@ class PawsViewModel : ViewModel() {
                 val desc = RequestBody.create("text/plain".toMediaTypeOrNull(),description)
                 val profileImage :MultipartBody.Part? = if (imagePath != null){
                     val file = File(imagePath)
-                    val requestFile =file.asRequestBody("image/*".toMediaTypeOrNull())
+                    val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
                     MultipartBody.Part.createFormData("profileImage",file.name,requestFile)
                 }else{
                     null
@@ -289,16 +289,12 @@ class PawsViewModel : ViewModel() {
                 val response = pawsRepo.iFoundPet(profileImage,desc)
                 if (response != null && response.isSuccessful){
                     _iFoundPetResult.value = BaseResponse.Success(response.body())
-                    Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet ${response.body()} ${response.message() }")
-
                 }else{
                     _iFoundPetResult.value = BaseResponse.Error(response?.message())
-                    if (response != null) {
-                        Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet ${response.body()} ${response.message() }")
-                    }
+                    Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet res ${response?.errorBody()}")
                 }
             }catch (e: Exception) {
-                Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet $e")
+                Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet  catch $e")
                 _iFoundPetResult.value = BaseResponse.Error(e.message)
             }
         }

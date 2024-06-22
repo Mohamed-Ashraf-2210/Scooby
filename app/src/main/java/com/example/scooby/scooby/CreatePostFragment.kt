@@ -62,7 +62,7 @@ class CreatePostFragment : Fragment() {
         pawsViewModel.apply {
                 binding?.apply {
                     selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
-                    foundPet(selectedImg, descEditText.editText.toString())
+                    foundPet(selectedImg, descEditText.editText?.text.toString())
                 }
                 iFoundPetResult.observe(viewLifecycleOwner) {
                     when (it) {
@@ -85,7 +85,6 @@ class CreatePostFragment : Fragment() {
         }
     }
 
-
     private fun pickImage() {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
@@ -106,7 +105,6 @@ class CreatePostFragment : Fragment() {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val fileName = "IMG_$timeStamp.jpg"
         val storageDir = requireContext().getExternalFilesDir(null)
-
         val file = File(storageDir, fileName)
         var fileOutputStream: FileOutputStream? = null
         try {
