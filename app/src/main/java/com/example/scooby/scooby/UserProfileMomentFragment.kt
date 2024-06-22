@@ -5,10 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.viewpager2.widget.ViewPager2
 import com.example.scooby.R
+import com.example.scooby.databinding.FragmentCreatePostBinding
+import com.example.scooby.databinding.FragmentProductBinding
+import com.example.scooby.databinding.FragmentUserProfileMomentBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 
 class UserProfileMomentFragment : Fragment() {
+    private var _binding: FragmentUserProfileMomentBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -17,9 +25,24 @@ class UserProfileMomentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
+        _binding = FragmentUserProfileMomentBinding.inflate(inflater,container,false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_profile_moment, container, false)
+        initViewPager()
+        return binding.root
+    }
+
+    private fun initViewPager() {
+        val mViewPager : ViewPager2 = binding.MyViewPager
+        val mTabLayout : TabLayout  = binding.tabLayout
+
+        mViewPager.adapter = MyVpAdapter(requireActivity())
+        TabLayoutMediator(mTabLayout,mViewPager){tab,postion ->
+            when(postion){
+                0 -> tab.text = "Moment"
+                1 -> tab.text = "Reviews"
+            }
+        }.attach()
     }
 
 }
