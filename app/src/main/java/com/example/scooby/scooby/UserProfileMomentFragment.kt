@@ -5,17 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
+import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentCreatePostBinding
 import com.example.scooby.databinding.FragmentProductBinding
 import com.example.scooby.databinding.FragmentUserProfileMomentBinding
+import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 
 class UserProfileMomentFragment : Fragment() {
     private var _binding: FragmentUserProfileMomentBinding? = null
+    private lateinit var profileViewModel: ProfileViewModel
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +31,24 @@ class UserProfileMomentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentUserProfileMomentBinding.inflate(inflater,container,false)
-        // Inflate the layout for this fragment
+        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+        observeOnUserData()
         initViewPager()
         return binding.root
     }
+    private fun observeOnUserData() {
+        profileViewModel.apply {
+            getUserInfo()
+            profileResult.observe(viewLifecycleOwner){
 
+            }
+        }
+    }
+    private fun setData2Ui(data:UserProfileResponse) {
+        binding.apply {
+
+        }
+    }
     private fun initViewPager() {
         val mViewPager : ViewPager2 = binding.MyViewPager
         val mTabLayout : TabLayout  = binding.tabLayout

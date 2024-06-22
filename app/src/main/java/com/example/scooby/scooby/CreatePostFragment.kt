@@ -50,9 +50,13 @@ class CreatePostFragment : Fragment() {
         observeData()
     }
     private fun callBackSelectImage() {
-        binding?.postBtn?.setOnClickListener {
-            observeData()
+        binding?.apply {
+            postBtn.setOnClickListener {
+                selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
+                pawsViewModel.foundPet(selectedImg, descEditText.editText?.text.toString())
+            }
         }
+
         binding?.cameraBtn?.setOnClickListener {
             pickImage()
         }
@@ -60,10 +64,6 @@ class CreatePostFragment : Fragment() {
 
     private fun observeData() {
         pawsViewModel.apply {
-                binding?.apply {
-                    selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
-                    foundPet(selectedImg, descEditText.editText?.text.toString())
-                }
                 iFoundPetResult.observe(viewLifecycleOwner) {
                     when (it) {
                         is BaseResponse.Loading -> {
