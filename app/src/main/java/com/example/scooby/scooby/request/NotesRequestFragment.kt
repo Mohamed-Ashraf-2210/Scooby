@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.request
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,11 @@ import androidx.navigation.fragment.navArgs
 import com.example.scooby.databinding.FragmentNotesRequestBinding
 import com.example.scooby.scooby.MainActivity
 
-
+/**
+ * Third screen to Request a service
+ * Add note and Select pick up
+ * author: Mohamed Ashraf
+ * */
 class NotesRequestFragment : Fragment() {
     private var binding: FragmentNotesRequestBinding? = null
     private val args: NotesRequestFragmentArgs by navArgs()
@@ -26,6 +31,7 @@ class NotesRequestFragment : Fragment() {
         return binding?.root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
