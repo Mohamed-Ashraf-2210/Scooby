@@ -7,7 +7,6 @@
     android:background="@color/white_BG"
     tools:context=".scooby.request.PaymentMethodsFragment">
 
-
     <ImageView
         android:id="@+id/back_screen"
         android:layout_width="wrap_content"
@@ -63,8 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:contentDescription="@string/check_circle_gray"
-            android:src="@drawable/check_circle_yellow"
+            android:contentDescription="@string/check_circle_yellow"
+            android:src="@drawable/check_circle_purple"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +74,7 @@
             android:layout_marginTop="36dp"
             android:fontFamily="@font/roboto"
             android:text="@string/summery"
-            android:textColor="@color/yellow_request"
+            android:textColor="@color/primary"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +86,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="45dp"
             android:contentDescription="@string/check_circle_gray"
-            android:src="@drawable/check_circle_gray"
+            android:src="@drawable/check_circle_yellow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,13 +97,12 @@
             android:layout_marginEnd="30dp"
             android:fontFamily="@font/roboto"
             android:text="@string/payment"
-            android:textColor="@color/gray_request"
+            android:textColor="@color/yellow_request"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     <TextView
         android:layout_width="wrap_content"

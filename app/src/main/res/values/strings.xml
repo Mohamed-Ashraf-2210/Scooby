@@ -304,5 +304,9 @@ again."</string>
     <string name="send">Send</string>
     <string name="what_s_new">What’s new?</string>
     <string name="follow">Follow</string>
+    <string name="expiry_date">Expiry date</string>
+    <string name="mm_yy">MM / YY</string>
+    <string name="security_code">Security code</string>
+    <string name="save_card_for_future_purchases">Save card for future purchases</string>
 
 </resources>
