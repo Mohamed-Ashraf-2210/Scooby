@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.databinding.FragmentConfirmServiceBinding
+import com.example.scooby.scooby.MainActivity
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -50,12 +51,12 @@ class ConfirmServiceFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.P)
     private fun init() {
         binding?.apply {
-            val total = args.idPets.size * args.idPets.size
+            val total = args.requestName[1].toInt() * args.idPets.size
             nightPrice.text = args.requestName[1]
             petsNumberTv.text = "For ${args.idPets.size} pet"
             totalPrice.text = "$total for a night"
             dataRequest.text = getFormattedTodayDate()
-            normalPriceValue.text = "Normal price is ${args.idPets.size} / night"
+            normalPriceValue.text = "Normal price is ${args.requestName[1]} / night"
             confirmBtn.setOnClickListener { goToConfirm() }
         }
     }
@@ -100,4 +101,13 @@ class ConfirmServiceFragment : Fragment() {
         return today.format(formatter)
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
+    }
 }

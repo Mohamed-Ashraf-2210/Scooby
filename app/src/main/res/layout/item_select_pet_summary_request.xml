@@ -27,10 +27,12 @@
 
         <TextView
             android:id="@+id/name_pet_summary_request"
-            android:layout_width="wrap_content"
+            android:layout_width="35dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:ellipsize="end"
             android:fontFamily="@font/noto_sans"
+            android:maxLines="1"
             android:textColor="@color/primary"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"

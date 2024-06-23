@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentPaymentMethodsBinding
+import com.example.scooby.scooby.MainActivity
 
 
 class PaymentMethodsFragment : Fragment() {
@@ -96,5 +97,15 @@ class PaymentMethodsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
     }
 }
