@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.Constant
 import com.example.data.repository.PawsRepo
+import com.example.domain.MissingPetResponse
 import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
 import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
@@ -92,6 +93,10 @@ class PawsViewModel : ViewModel() {
     val iFoundPetResult : LiveData<BaseResponse<FoundPetPost>>
         get() = _iFoundPetResult
 
+
+    private val _missingPetResult : MutableLiveData<BaseResponse<MissingPetResponse>> = MutableLiveData()
+    val missingPetResult : MutableLiveData<BaseResponse<MissingPetResponse>>
+        get() = _missingPetResult
 
     fun getTopCollection(){
         viewModelScope.launch {
@@ -291,16 +296,38 @@ class PawsViewModel : ViewModel() {
                     _iFoundPetResult.value = BaseResponse.Success(response.body())
                 }else{
                     _iFoundPetResult.value = BaseResponse.Error(response?.message())
-                    Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet res ${response?.errorBody()}")
+                    Log.e("FOUND_PET", "ERROR FETCHING URLS found pet res ${response?.errorBody()}")
                 }
             }catch (e: Exception) {
-                Log.e("IFOUND_PET", "ERROR FETCHING URLS ifound pet  catch $e")
+                Log.e("FOUND_PET", "ERROR FETCHING URLS ifound pet  catch $e")
                 _iFoundPetResult.value = BaseResponse.Error(e.message)
             }
         }
     }
 
+    fun getMissingPet(imagePath: String?){
+        _missingPetResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val petImage :MultipartBody.Part? = if (imagePath != null){
+                    val file = File(imagePath)
+                    val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+                    MultipartBody.Part.createFormData("petImage",file.name,requestFile)
+                }else{
+                    null
+                }
+                val response = pawsRepo.getMissingPet(petImage)
+                if(response != null && response.isSuccessful){
+                    _missingPetResult.value = BaseResponse.Success(response.body())
+                }else{
+                    _missingPetResult.value = BaseResponse.Error(response?.message())
+                    Log.e("MISS_PET", "ERROR FETCHING URLS  ${response?.errorBody()}")
+                }
+            }catch (e: Exception) {
+                Log.e("MISS_PET", "ERROR FETCHING URLS Missing Pet catch $e")
+                _missingPetResult.value = BaseResponse.Error(e.message)
+            }
 
-
-
+        }
+    }
 }

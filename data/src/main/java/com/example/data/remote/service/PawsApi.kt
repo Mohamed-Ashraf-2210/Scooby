@@ -2,6 +2,7 @@ package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
 import com.example.domain.AddFavoriteResponse
+import com.example.domain.MissingPetResponse
 import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
 import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
@@ -80,6 +81,12 @@ interface PawsApi {
         @Part petImage : MultipartBody.Part?,
         @Part("description") description : RequestBody
     ): Response<FoundPetPost>
+
+    @Multipart
+    @GET("/scooby/api/AI/missing")
+    suspend fun getMissingPet(
+        @Part petImage: MultipartBody.Part?
+    ) : Response<MissingPetResponse>
 
     companion object{
         fun getApi(): PawsApi? {

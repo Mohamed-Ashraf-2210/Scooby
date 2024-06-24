@@ -304,5 +304,13 @@ again."</string>
     <string name="send">Send</string>
     <string name="what_s_new">What’s new?</string>
     <string name="follow">Follow</string>
+    <string name="matching_results">Matching results</string>
+    <string name="your_uploaded_photo">Your uploaded photo</string>
+    <string name="first_match_found">First match found</string>
+    <string name="description">Description:</string>
+    <string name="current_owner">Current owner:</string>
+    <string name="phone_number">Phone number:</string>
+    <string name="locationR">Location:</string>
+    <string name="second_match_found">Second match found</string>
 
 </resources>

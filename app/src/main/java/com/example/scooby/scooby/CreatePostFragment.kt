@@ -46,6 +46,7 @@ class CreatePostFragment : Fragment() {
         observeData()
     }
     private fun callBackSelectImage() {
+
         binding?.apply {
             postBtn.setOnClickListener {
                 selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }

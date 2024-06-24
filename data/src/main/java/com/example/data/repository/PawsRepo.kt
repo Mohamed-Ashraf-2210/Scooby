@@ -1,8 +1,8 @@
 package com.example.data.repository
 
-import android.media.Image
 import com.example.data.remote.service.PawsApi
 import com.example.domain.AddFavoriteResponse
+import com.example.domain.MissingPetResponse
 import com.example.domain.PetShelterProfileResponse
 import com.example.domain.ShelterProfileResponse
 import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
@@ -67,8 +67,6 @@ class PawsRepo {
     suspend fun getDogsMissing():Response<DogsResponse>? {
         return PawsApi.getApi()?.getDogsMissing()
     }
-
-
     suspend fun iFoundPet(
         petImage: MultipartBody.Part?,
         description : RequestBody
@@ -76,10 +74,9 @@ class PawsRepo {
         return PawsApi.getApi()?.iFoundPet(petImage,description)
     }
 
-
-
-
-
-
-
+    suspend fun getMissingPet(
+        petImage: MultipartBody.Part?
+    ): Response<MissingPetResponse>? {
+        return PawsApi.getApi()?.getMissingPet(petImage)
+    }
 }

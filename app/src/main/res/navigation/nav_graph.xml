@@ -365,6 +365,9 @@
             <action
                 android:id="@+id/action_pawsFragment_to_userProfileMomentFragment"
                 app:destination="@id/userProfileMomentFragment" />
+            <action
+                android:id="@+id/action_pawsFragment_to_aiFragment"
+                app:destination="@id/aiFragment" />
         </fragment>
         <fragment
             android:id="@+id/shelterProfileFragment"
@@ -385,6 +388,11 @@
             android:name="com.example.scooby.scooby.UserProfileMomentFragment"
             android:label="fragment_user_profile_moment"
             tools:layout="@layout/fragment_user_profile_moment" />
+        <fragment
+            android:id="@+id/aiFragment"
+            android:name="com.example.scooby.scooby.AiFragment"
+            android:label="fragment_ai"
+            tools:layout="@layout/fragment_ai" />
     </navigation>
 
     <navigation

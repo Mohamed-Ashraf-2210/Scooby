@@ -219,7 +219,7 @@ class PawsFragment : Fragment() {
             findNavController().navigate(R.id.action_pawsFragment_to_createPostFragment)
         }
         binding.imageButton.setOnClickListener {
-            findNavController().navigate(R.id.action_pawsFragment_to_userProfileMomentFragment)
+            findNavController().navigate(R.id.action_pawsFragment_to_aiFragment)
             Toast.makeText(requireContext(),"clicked image Button",Toast.LENGTH_SHORT).show()
         }
     }
