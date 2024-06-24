@@ -339,7 +339,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:buttonTint="@color/gray_font_second"
                 android:fontFamily="@font/roboto"
                 android:text="@string/save_card_for_future_purchases"
                 android:textColor="@color/black_font"
