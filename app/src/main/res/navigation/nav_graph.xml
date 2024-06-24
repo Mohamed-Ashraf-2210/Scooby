@@ -401,6 +401,7 @@
             <action
                 android:id="@+id/action_aiFragment_to_aiResultFragment"
                 app:destination="@id/aiResultFragment" />
+
         </fragment>
     </navigation>
 

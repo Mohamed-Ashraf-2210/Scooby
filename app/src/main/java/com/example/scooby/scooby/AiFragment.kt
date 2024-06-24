@@ -12,11 +12,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentAiBinding
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.utils.BaseResponse
+import okhttp3.internal.wait
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -30,6 +32,8 @@ class AiFragment : Fragment() {
     private var selectedImg: String? = null
     private var _binding: FragmentAiBinding ?= null
     private val binding get() = _binding!!
+    private val navController: NavController by lazy { findNavController() }
+    private var navigatedOnce = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -56,6 +60,7 @@ class AiFragment : Fragment() {
             sendBtn.setOnClickListener {
                 selectedImg = targetImg.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
                 pawsViewModel.getMissingPet(selectedImg)
+
             }
         }
         binding.cameraBtn.setOnClickListener {
@@ -72,10 +77,15 @@ class AiFragment : Fragment() {
                     }
                     is BaseResponse.Success -> {
                         stopLoading()
+                        showToast("Send is successful")
                         Log.i("CHECK_MISSING_SUCCESS",it.data?.similarityArray?.get(0)?.location.toString())
                         Log.i("CHECK_MISSING_SUCCESS",it.data?.similarityArray?.get(1)?.location.toString())
-                        findNavController().navigate(R.id.action_aiFragment_to_aiResultFragment)
-                        showToast("Send is successful")
+                        //findNavController().navigate(R.id.action_aiFragment_to_aiResultFragment)
+//                        if (!navigatedOnce){
+//                            findNavController().navigate(R.id.action_aiFragment_to_aiResultFragment)
+//                        }
+//                        navigatedOnce = true
+
                     }
                     is BaseResponse.Error -> {
                         stopLoading()
