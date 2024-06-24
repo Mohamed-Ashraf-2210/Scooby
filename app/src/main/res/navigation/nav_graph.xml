@@ -340,12 +340,20 @@
             <argument
                 android:name="listOfData"
                 app:argType="string[]" />
+            <action
+                android:id="@+id/action_confirmNumberFragment_to_doneBookingFragment"
+                app:destination="@id/doneBookingFragment" />
         </fragment>
         <fragment
             android:id="@+id/productCartFragment"
             android:name="com.example.scooby.scooby.product.fragment.ProductCartFragment"
             android:label="ProductCartFragment"
             tools:layout="@layout/fragment_product_cart" />
+        <fragment
+            android:id="@+id/doneBookingFragment"
+            android:name="com.example.scooby.scooby.request.DoneBookingFragment"
+            android:label="fragment_done_booking"
+            tools:layout="@layout/fragment_done_booking"/>
     </navigation>
 
     <navigation

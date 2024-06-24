@@ -308,5 +308,6 @@ again."</string>
     <string name="mm_yy">MM / YY</string>
     <string name="security_code">Security code</string>
     <string name="save_card_for_future_purchases">Save card for future purchases</string>
+    <string name="phone_number">Phone Number</string>
 
 </resources>

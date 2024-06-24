@@ -66,7 +66,7 @@ class ConfirmServiceFragment : Fragment() {
             val cardNumber = cardNumberLayout.text.toString()
             val expiryDate = expiryDateLayout.text.toString()
             val securityCode = securityCodeLayout.text.toString()
-            if (cardNumber.length == 8 && securityCode.length == 3) {
+            if (cardNumber.length == 16 && securityCode.length == 3) {
                 val flag = saveCard.isChecked
                 val listOfData = arrayOf(
                     args.listOfData[0],
