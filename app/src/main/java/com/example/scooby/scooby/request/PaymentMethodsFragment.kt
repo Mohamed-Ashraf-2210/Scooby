@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentPaymentMethodsBinding
+import com.example.scooby.scooby.MainActivity
 
 
 class PaymentMethodsFragment : Fragment() {
@@ -28,10 +29,6 @@ class PaymentMethodsFragment : Fragment() {
         Notes
         pickUp
         paymentMethod
-        cardNumber
-        cardExpireDate
-        cardSecurityCode
-        saveCard
      */
 
     override fun onCreateView(
@@ -69,27 +66,46 @@ class PaymentMethodsFragment : Fragment() {
                     }
                 }
             }
-//            nextBtn.setOnClickListener {
-//                val listOfData = arrayOf(
-//                    args.listOfData[0],
-//                    args.listOfData[1],
-//                    args.listOfData[2],
-//                    args.listOfData[3],
-//                    args.listOfData[4],
-//                    args.listOfData[5],
-//                    args.listOfData[6],
-//                    paymentMethod
-//                )
-//
-//                findNavController().navigate(
-//                    PaymentMethodsFragmentDirections.actionPaymentMethodsFragmentToConfirmServiceFragment(
-//                        args.idPets,
-//                        args.requestName,
-//                        listOfData
-//                    )
-//                )
-//            }
+            nextBtn.setOnClickListener {
+                val listOfData = arrayOf(
+                    args.listOfData[0],
+                    args.listOfData[1],
+                    args.listOfData[2],
+                    args.listOfData[3],
+                    args.listOfData[4],
+                    args.listOfData[5],
+                    args.listOfData[6],
+                    paymentMethod
+                )
+
+                if (paymentMethod == "Cash") {
+                    findNavController().navigate(
+                        PaymentMethodsFragmentDirections.actionPaymentMethodsFragmentToConfirmNumberFragment(
+                            args.idPets,
+                            args.requestName,
+                            listOfData
+                        )
+                    )
+                } else {
+                    findNavController().navigate(
+                        PaymentMethodsFragmentDirections.actionPaymentMethodsFragmentToConfirmServiceFragment(
+                            args.idPets,
+                            args.requestName,
+                            listOfData
+                        )
+                    )
+                }
+            }
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
+    }
 }

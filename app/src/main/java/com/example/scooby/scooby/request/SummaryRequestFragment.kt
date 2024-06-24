@@ -103,7 +103,7 @@ class SummaryRequestFragment : Fragment() {
                 pickUp
             )
             val action =
-                SummaryRequestFragmentDirections.actionSummaryRequestFragmentToConfirmNumberFragment(
+                SummaryRequestFragmentDirections.actionSummaryRequestFragmentToPaymentMethodsFragment(
                     args.idPets,
                     args.requestName,
                     listOfData

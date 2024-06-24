@@ -312,5 +312,14 @@ again."</string>
     <string name="phone_number">Phone number:</string>
     <string name="locationR">Location:</string>
     <string name="second_match_found">Second match found</string>
+    <string name="expiry_date">Expiry date</string>
+    <string name="mm_yy">MM / YY</string>
+    <string name="security_code">Security code</string>
+    <string name="save_card_for_future_purchases">Save card for future purchases</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="image_dag_and_cat">image dag and cat</string>
+    <string name="booking_confirmed">Booking Confirmed!</string>
+    <string name="thank_you_for_booking_with_your_pet_home_scooby">Thank you for booking with your\n pet home Scooby</string>
+    <string name="view_booking_details">View booking details</string>
 
 </resources>

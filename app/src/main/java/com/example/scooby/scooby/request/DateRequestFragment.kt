@@ -284,13 +284,25 @@ class DateRequestFragment : Fragment() {
             val addresses: List<Address>? = geocoder.getFromLocation(latitude, longitude, 1)
             if (!addresses.isNullOrEmpty()) {
                 val address = addresses[0]
-                city = address.locality ?: ""
+                city = address.locality ?: address.subLocality ?: ""
                 country = address.countryName ?: ""
+
+                // Check other address components as a fallback
+                if (city.isEmpty()) {
+                    for (i in 0..address.maxAddressLineIndex) {
+                        val line = address.getAddressLine(i)
+                        if (line.contains("city", true)) {
+                            city = line
+                            break
+                        }
+                    }
+                }
+
             }
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        return "$city , $country"
+        return country
     }
 
 

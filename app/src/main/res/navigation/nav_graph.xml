@@ -60,7 +60,7 @@
             android:id="@+id/doctorsFragment"
             android:name="com.example.scooby.scooby.doctor.DoctorsFragment"
             android:label="fragment_doctors"
-            tools:layout="@layout/fragment_doctors" >
+            tools:layout="@layout/fragment_doctors">
             <action
                 android:id="@+id/action_doctorsFragment_to_doctorProfileFragment"
                 app:destination="@id/doctorProfileFragment" />
@@ -69,8 +69,7 @@
             android:id="@+id/doctorProfileFragment"
             android:name="com.example.scooby.scooby.ui.DoctorProfileFragment"
             android:label="DoctorProfileFragment"
-            tools:layout="@layout/fragment_doctor_profile"
-            >
+            tools:layout="@layout/fragment_doctor_profile">
             <argument
                 android:name="doctorId"
                 app:argType="string" />
@@ -278,8 +277,8 @@
                 android:name="listOfData"
                 app:argType="string[]" />
             <action
-                android:id="@+id/action_summaryRequestFragment_to_confirmNumberFragment"
-                app:destination="@id/confirmNumberFragment" />
+                android:id="@+id/action_summaryRequestFragment_to_paymentMethodsFragment"
+                app:destination="@id/paymentMethodsFragment" />
         </fragment>
         <fragment
             android:id="@+id/paymentMethodsFragment"
@@ -296,6 +295,12 @@
             <argument
                 android:name="listOfData"
                 app:argType="string[]" />
+            <action
+                android:id="@+id/action_paymentMethodsFragment_to_confirmServiceFragment"
+                app:destination="@id/confirmServiceFragment" />
+            <action
+                android:id="@+id/action_paymentMethodsFragment_to_confirmNumberFragment"
+                app:destination="@id/confirmNumberFragment" />
 
         </fragment>
         <fragment
@@ -313,8 +318,8 @@
                 android:name="listOfData"
                 app:argType="string[]" />
             <action
-                android:id="@+id/action_confirmServiceFragment_to_paymentMethodsFragment"
-                app:destination="@id/paymentMethodsFragment" />
+                android:id="@+id/action_confirmServiceFragment_to_confirmNumberFragment"
+                app:destination="@id/confirmNumberFragment" />
         </fragment>
         <fragment
             android:id="@+id/favoriteFragment"
@@ -336,15 +341,19 @@
                 android:name="listOfData"
                 app:argType="string[]" />
             <action
-                android:id="@+id/action_confirmNumberFragment_to_confirmServiceFragment"
-                app:destination="@id/confirmServiceFragment" />
+                android:id="@+id/action_confirmNumberFragment_to_doneBookingFragment"
+                app:destination="@id/doneBookingFragment" />
         </fragment>
         <fragment
             android:id="@+id/productCartFragment"
             android:name="com.example.scooby.scooby.product.fragment.ProductCartFragment"
             android:label="ProductCartFragment"
-            tools:layout="@layout/fragment_product_cart"
-            />
+            tools:layout="@layout/fragment_product_cart" />
+        <fragment
+            android:id="@+id/doneBookingFragment"
+            android:name="com.example.scooby.scooby.request.DoneBookingFragment"
+            android:label="fragment_done_booking"
+            tools:layout="@layout/fragment_done_booking"/>
     </navigation>
 
     <navigation
@@ -424,7 +433,6 @@
             android:label="fragment_community"
             tools:layout="@layout/fragment_community" />
     </navigation>
-
 
 
 </navigation>
