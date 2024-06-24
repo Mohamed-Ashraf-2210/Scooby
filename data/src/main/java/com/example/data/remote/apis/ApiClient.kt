@@ -18,8 +18,10 @@ object ApiClient {
 
     private val okHttpClient: OkHttpClient
         get() = OkHttpClient().newBuilder()
-            .connectTimeout(30, TimeUnit.SECONDS)
-            .readTimeout(30, TimeUnit.SECONDS)
+            // .connectTimeout(30, TimeUnit.SECONDS)
+            // .readTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
             .addInterceptor(mHttpLoggingInterceptor)
             .addInterceptor { chain ->

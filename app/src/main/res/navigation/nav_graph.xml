@@ -370,6 +370,11 @@
                 app:destination="@id/aiFragment" />
         </fragment>
         <fragment
+            android:id="@+id/aiResultFragment"
+            android:name="com.example.scooby.scooby.AiResultFragment"
+            android:label="fragment_ai_result"
+            tools:layout="@layout/fragment_ai_result" />
+        <fragment
             android:id="@+id/shelterProfileFragment"
             android:name="com.example.scooby.scooby.paws.fragment.ShelterProfileFragment"
             android:label="ShelterProfileFragment"
@@ -392,7 +397,11 @@
             android:id="@+id/aiFragment"
             android:name="com.example.scooby.scooby.AiFragment"
             android:label="fragment_ai"
-            tools:layout="@layout/fragment_ai" />
+            tools:layout="@layout/fragment_ai" >
+            <action
+                android:id="@+id/action_aiFragment_to_aiResultFragment"
+                app:destination="@id/aiResultFragment" />
+        </fragment>
     </navigation>
 
     <navigation

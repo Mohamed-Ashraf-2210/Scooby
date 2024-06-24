@@ -83,7 +83,7 @@ interface PawsApi {
     ): Response<FoundPetPost>
 
     @Multipart
-    @GET("/scooby/api/AI/missing")
+    @POST("/scooby/api/AI/missing")
     suspend fun getMissingPet(
         @Part petImage: MultipartBody.Part?
     ) : Response<MissingPetResponse>

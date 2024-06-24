@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentAiBinding
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.utils.BaseResponse
@@ -72,6 +74,7 @@ class AiFragment : Fragment() {
                         stopLoading()
                         Log.i("CHECK_MISSING_SUCCESS",it.data?.similarityArray?.get(0)?.location.toString())
                         Log.i("CHECK_MISSING_SUCCESS",it.data?.similarityArray?.get(1)?.location.toString())
+                        findNavController().navigate(R.id.action_aiFragment_to_aiResultFragment)
                         showToast("Send is successful")
                     }
                     is BaseResponse.Error -> {
