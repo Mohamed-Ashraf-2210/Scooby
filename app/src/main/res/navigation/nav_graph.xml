@@ -229,8 +229,7 @@
                 app:popUpToInclusive="true" />
             <argument
                 android:name="listOfData"
-                app:argType="string[]"
-                app:nullable="true" />
+                app:argType="string[]" />
         </fragment>
         <fragment
             android:id="@+id/submitPetFragment"
@@ -239,8 +238,7 @@
             tools:layout="@layout/fragment_submit_pet">
             <argument
                 android:name="listOfData"
-                app:argType="string[]"
-                app:nullable="true" />
+                app:argType="string[]" />
         </fragment>
         <fragment
             android:id="@+id/notesRequestFragment"
@@ -353,7 +351,7 @@
             android:id="@+id/doneBookingFragment"
             android:name="com.example.scooby.scooby.request.DoneBookingFragment"
             android:label="fragment_done_booking"
-            tools:layout="@layout/fragment_done_booking"/>
+            tools:layout="@layout/fragment_done_booking" />
     </navigation>
 
     <navigation

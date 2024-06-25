@@ -20,17 +20,17 @@ interface PetsApi {
     suspend fun getMyPets(): Response<MyPetsResponse>
 
     @Multipart
-    @POST("/scooby/api/Pets/addpet")
+    @POST("/scooby/api/Pets/addpetuser")
     suspend fun addPet(
         @Part("name") name: RequestBody,
         @Part("type") type: RequestBody,
         @Part("birthday") birthday: RequestBody,
-        @Part("breed") breed: RequestBody,
+        @Part("category") category: RequestBody,
         @Part("adoptionDay") adoptionDay: RequestBody,
         @Part("size") size: RequestBody,
         @Part("gender") gender: RequestBody,
         @Part("profileBio") profileBio: RequestBody,
-        @Part profileImage: MultipartBody.Part?
+        @Part petImage: MultipartBody.Part?
     ): Response<AddPetResponse>
 
 

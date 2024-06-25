@@ -16,7 +16,7 @@ data class BlogResponse(
         val id: String,
         @SerializedName("link")
         val link: String,
-        @SerializedName("blogImage")
-        val blogImage: String
+        @SerializedName("plogImage")
+        val plogImage: String
     )
 }

@@ -13,7 +13,7 @@ class BlogHomeAdapter(private val blogList: BlogResponse) :
     inner class BlogHomeViewHolder(private val itemHomeBinding: BlogsItemHomeBinding) :
         RecyclerView.ViewHolder(itemHomeBinding.root) {
         fun bind(blog: BlogResponse.Data) {
-            blog.blogImage.let { itemHomeBinding.imgCardBlogHome.loadUrl(it) }
+            blog.plogImage.let { itemHomeBinding.imgCardBlogHome.loadUrl(it) }
             itemHomeBinding.titleCardBlogHome.text = blog.description
         }
     }

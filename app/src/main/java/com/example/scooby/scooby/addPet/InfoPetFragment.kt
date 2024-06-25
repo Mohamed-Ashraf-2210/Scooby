@@ -91,8 +91,18 @@ class InfoPetFragment : Fragment() {
                     "Full medical records", "Friendly with dogs", "Friendly with kids"
                 )[it]
             }
+            val listOfData = arrayOf(
+                args.listOfData[0],
+                args.listOfData[1],
+                args.listOfData[2],
+                args.listOfData[3],
+                args.listOfData[4],
+                args.listOfData[5],
+                args.listOfData[6],
+                bio
+            )
             val action = InfoPetFragmentDirections.actionInfoPetFragmentToSubmitPetFragment(
-                args.listOfData?.plus(bio)
+                listOfData
             )
             findNavController().navigate(action)
         }
