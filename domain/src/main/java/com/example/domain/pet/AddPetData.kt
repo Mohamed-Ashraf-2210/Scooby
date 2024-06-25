@@ -4,7 +4,7 @@ data class AddPetData(
     val name: String,
     val type: String,
     val birthday: String,
-    val breed: String,
+    val category: String,
     val gender: String,
     val profileBio: String,
     val adoptionDay: String,

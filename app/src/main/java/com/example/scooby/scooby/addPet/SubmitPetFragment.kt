@@ -115,7 +115,7 @@ class SubmitPetFragment : Fragment() {
                 name = args.listOfData[0],
                 type = args.listOfData[1],
                 birthday = args.listOfData[5],
-                breed = args.listOfData[2],
+                category = args.listOfData[2],
                 adoptionDay = args.listOfData[6],
                 size = args.listOfData[3],
                 gender = args.listOfData[4],

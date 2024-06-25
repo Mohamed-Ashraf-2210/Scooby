@@ -24,6 +24,8 @@ data class AddPetResponse(
         val name: String,
         @SerializedName("owner")
         val owner: String,
+        @SerializedName("petImage")
+        val petImage: String,
         @SerializedName("profileBio")
         val profileBio: String,
         @SerializedName("size")
@@ -33,8 +35,6 @@ data class AddPetResponse(
         @SerializedName("user")
         val user: String,
         @SerializedName("vaccinations_id")
-        val vaccinationsId: List<Any>,
-        @SerializedName("weight")
-        val weight: Int
+        val vaccinationsId: List<Any>
     )
 }

@@ -13,13 +13,13 @@ class PetsRepo {
         name: RequestBody,
         type: RequestBody,
         birthday: RequestBody,
-        breed: RequestBody,
+        category: RequestBody,
         adoptionDay: RequestBody,
         size: RequestBody,
         gender: RequestBody,
         profileBio: RequestBody,
-        profileImage: MultipartBody.Part?
+        petImage: MultipartBody.Part?
     ) = PetsApi.getApi()
-        ?.addPet(name, type, birthday, breed, adoptionDay, size, gender, profileBio, profileImage)
+        ?.addPet(name, type, birthday, category, adoptionDay, size, gender, profileBio, petImage)
 
 }

@@ -72,7 +72,7 @@ class PetsViewModel : ViewModel() {
                 val type = RequestBody.create("text/plain".toMediaTypeOrNull(), petData.type)
                 val birthday =
                     RequestBody.create("text/plain".toMediaTypeOrNull(), petData.birthday)
-                val breed = RequestBody.create("text/plain".toMediaTypeOrNull(), petData.breed)
+                val category = RequestBody.create("text/plain".toMediaTypeOrNull(), petData.category)
                 val adoptionDay =
                     RequestBody.create("text/plain".toMediaTypeOrNull(), petData.adoptionDay)
                 val size = RequestBody.create("text/plain".toMediaTypeOrNull(), petData.size)
@@ -82,7 +82,7 @@ class PetsViewModel : ViewModel() {
                 val petImage: MultipartBody.Part? = if (imagePath != null) {
                     val file = File(imagePath)
                     val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-                    MultipartBody.Part.createFormData("profileImage", file.name, requestFile)
+                    MultipartBody.Part.createFormData("petImage", file.name, requestFile)
                 } else {
                     null
                 }
@@ -91,7 +91,7 @@ class PetsViewModel : ViewModel() {
                     name,
                     type,
                     birthday,
-                    breed,
+                    category,
                     adoptionDay,
                     size,
                     gender,
