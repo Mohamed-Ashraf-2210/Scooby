@@ -5,12 +5,12 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -18,7 +18,6 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentAiBinding
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.utils.BaseResponse
-import okhttp3.internal.wait
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -46,6 +45,7 @@ class AiFragment : Fragment() {
         _binding = FragmentAiBinding.inflate(layoutInflater,container,false)
         pawsViewModel = ViewModelProvider(this)[PawsViewModel::class.java]
         selectedImg = binding.targetImg.drawable?.let { saveBitmapToFile(it.toBitmap()) }
+
         init()
         return binding.root
     }
@@ -76,16 +76,26 @@ class AiFragment : Fragment() {
                         showLoading()
                     }
                     is BaseResponse.Success -> {
+
                         stopLoading()
                         showToast("Send is successful")
                         Log.i("CHECK_MISSING_SUCCESS",it.data?.similarityArray?.get(0)?.location.toString())
                         Log.i("CHECK_MISSING_SUCCESS",it.data?.similarityArray?.get(1)?.location.toString())
-                        //findNavController().navigate(R.id.action_aiFragment_to_aiResultFragment)
-//                        if (!navigatedOnce){
-//                            findNavController().navigate(R.id.action_aiFragment_to_aiResultFragment)
-//                        }
-//                        navigatedOnce = true
-
+                        val action = AiFragmentDirections.actionAiFragmentToAiResultFragment(
+                            it.data?.uploadedImage.toString(),
+                            it.data?.similarityArray?.get(0)?.userId?.name.toString(),
+                            it.data?.similarityArray?.get(0)?.url.toString(),
+                            it.data?.similarityArray?.get(0)?.description.toString(),
+                            it.data?.similarityArray?.get(0)?.phoneNumber.toString(),
+                            it.data?.similarityArray?.get(0)?.location.toString(),
+                            it.data?.similarityArray?.get(1)?.userId?.name.toString(),
+                            it.data?.similarityArray?.get(1)?.url.toString(),
+                            it.data?.similarityArray?.get(1)?.description.toString(),
+                            it.data?.similarityArray?.get(1)?.phoneNumber.toString(),
+                            it.data?.similarityArray?.get(1)?.location.toString()
+                        )
+                        findNavController().navigate(action)
+                        findNavController().navigate(R.id.action_aiFragment_to_aiResultFragment)
                     }
                     is BaseResponse.Error -> {
                         stopLoading()
@@ -107,15 +117,18 @@ class AiFragment : Fragment() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             val imgBitMap = data?.extras?.get("data") as Bitmap
             binding.targetImg.setImageBitmap(imgBitMap)
         } else if (requestCode == REQUEST_IMAGE_PICKER && resultCode == Activity.RESULT_OK) {
-            val imageUri = data?.data
+            val imageUri = data?.data!!
             binding.targetImg.setImageURI(imageUri)
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
+
+
     }
 
 

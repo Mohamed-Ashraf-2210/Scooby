@@ -4,6 +4,8 @@ package com.example.domain
 import com.google.gson.annotations.SerializedName
 
 data class MissingPetResponse(
+    @SerializedName("uploadedImage")
+    val uploadedImage: String?,
     @SerializedName("similarityArray")
     val similarityArray: List<SimilarityArray?>?
 ) {

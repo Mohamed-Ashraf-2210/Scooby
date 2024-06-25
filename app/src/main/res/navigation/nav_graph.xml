@@ -380,7 +380,43 @@
             android:id="@+id/aiResultFragment"
             android:name="com.example.scooby.scooby.AiResultFragment"
             android:label="fragment_ai_result"
-            tools:layout="@layout/fragment_ai_result" />
+            tools:layout="@layout/fragment_ai_result" >
+            <argument
+                android:name="uploadedImg"
+                app:argType="string" />
+            <argument
+                android:name="name1"
+                app:argType="string" />
+            <argument
+                android:name="petImg1"
+                app:argType="string" />
+            <argument
+                android:name="desc1"
+                app:argType="string" />
+            <argument
+                android:name="phoneNum1"
+                app:argType="string" />
+            <argument
+                android:name="location1"
+                app:argType="string" />
+            <argument
+                android:name="name2"
+                app:argType="string" />
+            <argument
+                android:name="petImg2"
+                app:argType="string" />
+            <argument
+                android:name="desc2"
+                app:argType="string" />
+            <argument
+                android:name="phoneNum2"
+                app:argType="string" />
+            <argument
+                android:name="location2"
+                app:argType="string" />
+
+
+        </fragment>
         <fragment
             android:id="@+id/shelterProfileFragment"
             android:name="com.example.scooby.scooby.paws.fragment.ShelterProfileFragment"
