@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fefbfb"
     tools:context=".scooby.CreatePostFragment">
 
     <ImageView
@@ -64,8 +63,67 @@
             android:src="@drawable/fluent_camera" />
     </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/your_name"
+        android:fontFamily="@font/roboto"
+        android:textSize="14sp"
+        android:textColor="@color/_0f0f0f"
+        app:layout_constraintStart_toStartOf="@+id/ed_name"
+        app:layout_constraintTop_toBottomOf="@id/cameraBtn" />
+    <EditText
+        android:id="@+id/ed_name"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_bg"
+        android:fontFamily="@font/roboto"
+        android:gravity="top"
+        android:inputType="text"
+        android:maxLength="100"
+        android:padding="16dp"
+        android:text=""
+        android:textColor="@color/black_font"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_name"
+        tools:ignore="Autofill,SmallSp" />
 
-
+    <TextView
+        android:id="@+id/tv_phone_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Your phone number"
+        android:fontFamily="@font/roboto"
+        android:textSize="14sp"
+        android:textColor="@color/_0f0f0f"
+        app:layout_constraintStart_toStartOf="@+id/ed_name"
+        app:layout_constraintTop_toBottomOf="@id/ed_name" />
+    <EditText
+        android:id="@+id/editText_phoneNum"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/edit_text_bg"
+        android:fontFamily="@font/roboto"
+        android:gravity="top"
+        android:inputType="phone"
+        android:maxLength="100"
+        android:padding="16dp"
+        android:text=""
+        android:textColor="@color/black_font"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone_num"
+        tools:ignore="Autofill,SmallSp" />
     <ProgressBar
         android:id="@+id/loading"
         style="?android:attr/progressBarStyle"

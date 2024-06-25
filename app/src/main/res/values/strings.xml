@@ -322,5 +322,6 @@ again."</string>
     <string name="thank_you_for_booking_with_your_pet_home_scooby">Thank you for booking with your\n pet home Scooby</string>
     <string name="view_booking_details">View booking details</string>
     <string name="upload_pet_image">Upload pet image</string>
+    <string name="your_name">Your Name</string>
 
 </resources>
