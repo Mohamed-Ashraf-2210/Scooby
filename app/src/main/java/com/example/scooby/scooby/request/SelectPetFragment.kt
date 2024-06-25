@@ -86,9 +86,6 @@ class SelectPetFragment : Fragment() {
             }
         }
     }
-
-
-
     private fun onClickNext() {
         val listOfPetsData = adapter.getItemSelected().toTypedArray()
         if (listOfPetsData.isEmpty()) {

@@ -31,78 +31,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/user_image"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/exit_btn" />
-
-<!--    <EditText-->
-<!--        android:id="@+id/editText"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="8dp"-->
-<!--        android:fontFamily="@font/roboto"-->
-<!--        android:hint="What’s new?"-->
-<!--        android:textColorHint="@color/hint_color_gray"-->
-<!--        android:textSize="13sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="@id/user_image"-->
-<!--        app:layout_constraintStart_toEndOf="@id/user_image"-->
-<!--        app:layout_constraintTop_toTopOf="@id/user_image" />-->
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/descEditText"
-        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
-        android:layout_width="150dp"
+    <TextView
+        android:id="@+id/tv_uploadImg"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="@string/what_s_new"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/user_image"
-        app:layout_constraintStart_toEndOf="@id/user_image"
-        app:layout_constraintTop_toTopOf="@id/user_image">
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@color/fefbfb"
-            android:textSize="13sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <ImageView
-        android:id="@+id/pet_image"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="98dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/upload_pet_image"
+        android:textColor="@color/_0f0f0f"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cameraBtn"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_uploadImg"
+        app:layout_constraintStart_toStartOf="@+id/tv_uploadImg"
+        app:layout_constraintTop_toBottomOf="@id/tv_uploadImg">
+        <ImageView
+            android:id="@+id/pet_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            />
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_camera"
             android:layout_gravity="center"
-            />
+            android:src="@drawable/fluent_camera" />
     </com.google.android.material.card.MaterialCardView>
+
+
 
     <ProgressBar
         android:id="@+id/loading"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/pet_image"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
