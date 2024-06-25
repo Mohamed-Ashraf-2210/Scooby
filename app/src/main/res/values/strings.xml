@@ -323,5 +323,8 @@ again."</string>
     <string name="view_booking_details">View booking details</string>
     <string name="upload_pet_image">Upload pet image</string>
     <string name="your_name">Your Name</string>
+    <string name="your_phone_number">Your phone number</string>
+    <string name="your_location_createPost">Your Location</string>
+    <string name="discerption">Discerption</string>
 
 </resources>

@@ -37,7 +37,7 @@ class CreatePostFragment : Fragment() {
         pawsViewModel = ViewModelProvider(this)[PawsViewModel::class.java]
         profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         selectedImg = binding?.petImage?.drawable?.let { saveBitmapToFile(it.toBitmap()) }
-//        init()
+         init()
         return binding!!.root
     }
 
@@ -50,7 +50,7 @@ class CreatePostFragment : Fragment() {
         binding?.apply {
             postBtn.setOnClickListener {
                 selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
-//                pawsViewModel.foundPet(selectedImg, descEditText.editText?.text.toString())
+                pawsViewModel.foundPet(selectedImg, descEditText.text.toString())
             }
         }
 
