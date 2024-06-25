@@ -69,9 +69,11 @@ class PawsRepo {
     }
     suspend fun iFoundPet(
         petImage: MultipartBody.Part?,
-        description : RequestBody
+        description : RequestBody,
+        phoneNumber : RequestBody,
+        locations : RequestBody
     ) : Response<FoundPetPost>? {
-        return PawsApi.getApi()?.iFoundPet(petImage,description)
+        return PawsApi.getApi()?.iFoundPet(petImage,description,phoneNumber,locations)
     }
 
     suspend fun getMissingPet(

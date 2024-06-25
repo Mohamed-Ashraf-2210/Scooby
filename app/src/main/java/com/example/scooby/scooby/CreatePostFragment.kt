@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +49,12 @@ class CreatePostFragment : Fragment() {
         binding?.apply {
             postBtn.setOnClickListener {
                 selectedImg = petImage.drawable?.toBitmap()?.let { saveBitmapToFile(it) }
-                pawsViewModel.foundPet(selectedImg, descEditText.text.toString())
+                pawsViewModel.foundPet(
+                    selectedImg,
+                    descEditText.text.toString(),
+                    editTextPhoneNum.text.toString(),
+                    editTextLocation.text.toString()
+                )
             }
         }
 

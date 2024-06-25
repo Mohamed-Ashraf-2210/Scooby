@@ -2,7 +2,6 @@ package com.example.scooby.scooby.paws.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.paws.missing.CatsResponse
 import com.example.domain.paws.missing.GetRecentlyResponse
 import com.example.scooby.databinding.ItemPetMissingBinding
 import com.example.scooby.utils.loadUrl

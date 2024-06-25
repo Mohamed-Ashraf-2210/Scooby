@@ -279,11 +279,13 @@ class PawsViewModel : ViewModel() {
     }
 
 
-    fun foundPet(imagePath:String?,description : String){
+    fun foundPet(imagePath:String?,description : String,phoneNumber:String,locations:String){
         _iFoundPetResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val desc = RequestBody.create("text/plain".toMediaTypeOrNull(),description)
+                val phoneNum = RequestBody.create("text/plain".toMediaTypeOrNull(),phoneNumber)
+                val location = RequestBody.create("text/plain".toMediaTypeOrNull(),locations)
                 val petImage :MultipartBody.Part? = if (imagePath != null){
                     val file = File(imagePath)
                     val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
@@ -291,7 +293,7 @@ class PawsViewModel : ViewModel() {
                 }else{
                     null
                 }
-                val response = pawsRepo.iFoundPet(petImage,desc)
+                val response = pawsRepo.iFoundPet(petImage,desc,phoneNum,location)
                 if (response != null && response.isSuccessful){
                     _iFoundPetResult.value = BaseResponse.Success(response.body())
                 }else{
