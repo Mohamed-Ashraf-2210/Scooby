@@ -12,8 +12,8 @@ import com.example.scooby.databinding.FragmentConfirmNumberBinding
 import com.example.scooby.scooby.MainActivity
 
 /*
-        args.idPets,
-        args.requestName,
+        args.idPets, (Array)
+        args.requestName, (request name, request price)
 
         selectDateTv
         selectTime
@@ -47,27 +47,27 @@ class ConfirmNumberFragment : Fragment() {
 
     private fun initView() {
         binding?.apply {
-            confirmBtn.setOnClickListener { goToConfirm() }
+            confirmBtn.setOnClickListener { sendDataRequest() }
         }
     }
 
-    private fun goToConfirm() {
+    private fun sendDataRequest() {
         val phoneNum = binding?.phoneNumber?.text.toString()
-        val listOfData = arrayOf(
-            args.listOfData[0],
-            args.listOfData[1],
-            args.listOfData[2],
-            args.listOfData[3],
-            args.listOfData[4],
-            args.listOfData[5],
-            args.listOfData[6],
-            args.listOfData[7],
-            args.listOfData[8],
-            args.listOfData[9],
-            args.listOfData[10],
-            args.listOfData[11],
-            phoneNum
-        )
+//        val listOfData = arrayOf(
+//            args.listOfData[0],
+//            args.listOfData[1],
+//            args.listOfData[2],
+//            args.listOfData[3],
+//            args.listOfData[4],
+//            args.listOfData[5],
+//            args.listOfData[6],
+//            args.listOfData[7],
+//            args.listOfData[8],
+//            args.listOfData[9],
+//            args.listOfData[10],
+//            args.listOfData[11],
+//            phoneNum
+//        )
 
     }
 
