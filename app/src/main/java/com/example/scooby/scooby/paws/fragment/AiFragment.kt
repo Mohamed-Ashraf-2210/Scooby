@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.paws.fragment
 
 import android.app.Activity
 import android.content.Intent
@@ -12,7 +12,6 @@ import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentAiBinding
@@ -25,18 +24,17 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
 class AiFragment : Fragment() {
     private lateinit var pawsViewModel: PawsViewModel
     private var selectedImg: String? = null
-    private var _binding: FragmentAiBinding ?= null
+    private var _binding: FragmentAiBinding?= null
     private val binding get() = _binding!!
-    
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAiBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentAiBinding.inflate(layoutInflater, container, false)
         pawsViewModel = ViewModelProvider(this)[PawsViewModel::class.java]
         selectedImg = binding.targetImg.drawable?.let { saveBitmapToFile(it.toBitmap()) }
 
@@ -73,8 +71,14 @@ class AiFragment : Fragment() {
 
                         stopLoading()
                         showToast("Send is successful")
-                        Log.i("CHECK_MISSING_SUCCESS",it.data?.similarityArray?.get(0)?.location.toString())
-                        Log.i("CHECK_MISSING_SUCCESS",it.data?.similarityArray?.get(1)?.location.toString())
+                        Log.i(
+                            "CHECK_MISSING_SUCCESS",
+                            it.data?.similarityArray?.get(0)?.location.toString()
+                        )
+                        Log.i(
+                            "CHECK_MISSING_SUCCESS",
+                            it.data?.similarityArray?.get(1)?.location.toString()
+                        )
                         val action = AiFragmentDirections.actionAiFragmentToAiResultFragment(
                             it.data?.uploadedImage.toString(),
                             it.data?.similarityArray?.get(0)?.userId?.name.toString(),

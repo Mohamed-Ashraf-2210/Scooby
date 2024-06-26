@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.paws.fragment
 
 import android.app.Activity
 import android.content.Intent
@@ -32,7 +32,7 @@ class CreatePostFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentCreatePostBinding.inflate(inflater,container,false)
+        binding = FragmentCreatePostBinding.inflate(inflater, container, false)
         pawsViewModel = ViewModelProvider(this)[PawsViewModel::class.java]
         profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         selectedImg = binding?.petImage?.drawable?.let { saveBitmapToFile(it.toBitmap()) }

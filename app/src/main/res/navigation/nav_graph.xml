@@ -379,7 +379,7 @@
         </fragment>
         <fragment
             android:id="@+id/aiResultFragment"
-            android:name="com.example.scooby.scooby.AiResultFragment"
+            android:name="com.example.scooby.scooby.paws.fragment.AiResultFragment"
             android:label="fragment_ai_result"
             tools:layout="@layout/fragment_ai_result" >
             <argument
@@ -429,17 +429,17 @@
         </fragment>
         <fragment
             android:id="@+id/createPostFragment"
-            android:name="com.example.scooby.scooby.CreatePostFragment"
+            android:name="com.example.scooby.scooby.paws.fragment.CreatePostFragment"
             android:label="fragment_create_post"
             tools:layout="@layout/fragment_create_post" />
         <fragment
             android:id="@+id/userProfileMomentFragment"
-            android:name="com.example.scooby.scooby.UserProfileMomentFragment"
+            android:name="com.example.scooby.scooby.userProfile.UserProfileMomentFragment"
             android:label="fragment_user_profile_moment"
             tools:layout="@layout/fragment_user_profile_moment" />
         <fragment
             android:id="@+id/aiFragment"
-            android:name="com.example.scooby.scooby.AiFragment"
+            android:name="com.example.scooby.scooby.paws.fragment.AiFragment"
             android:label="fragment_ai"
             tools:layout="@layout/fragment_ai" >
             <action

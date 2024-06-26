@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.userProfile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

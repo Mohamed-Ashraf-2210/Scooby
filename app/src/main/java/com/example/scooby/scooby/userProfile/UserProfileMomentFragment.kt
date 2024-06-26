@@ -1,4 +1,4 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.userProfile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.domain.profile.UserProfileResponse
-import com.example.scooby.R
-import com.example.scooby.databinding.FragmentCreatePostBinding
-import com.example.scooby.databinding.FragmentProductBinding
 import com.example.scooby.databinding.FragmentUserProfileMomentBinding
+import com.example.scooby.scooby.adapter.MyVpAdapter
 import com.example.scooby.scooby.viewmodel.ProfileViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

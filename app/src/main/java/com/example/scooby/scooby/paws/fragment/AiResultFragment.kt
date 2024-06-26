@@ -1,16 +1,13 @@
-package com.example.scooby.scooby
+package com.example.scooby.scooby.paws.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.example.scooby.R
-import com.example.scooby.databinding.FragmentAiBinding
 import com.example.scooby.databinding.FragmentAiResultBinding
 import com.example.scooby.utils.loadUrl
-
 
 class AiResultFragment : Fragment() {
     private val args : AiResultFragmentArgs by navArgs()
@@ -25,7 +22,7 @@ class AiResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentAiResultBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentAiResultBinding.inflate(layoutInflater, container, false)
         initView()
         // Inflate the layout for this fragment
         return binding.root
