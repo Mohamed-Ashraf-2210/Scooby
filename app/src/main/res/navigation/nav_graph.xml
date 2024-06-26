@@ -374,7 +374,8 @@
                 app:destination="@id/userProfileMomentFragment" />
             <action
                 android:id="@+id/action_pawsFragment_to_aiFragment"
-                app:destination="@id/aiFragment" />
+                app:destination="@id/aiFragment"
+                 />
         </fragment>
         <fragment
             android:id="@+id/aiResultFragment"
