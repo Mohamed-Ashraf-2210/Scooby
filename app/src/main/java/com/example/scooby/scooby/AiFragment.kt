@@ -31,13 +31,7 @@ class AiFragment : Fragment() {
     private var selectedImg: String? = null
     private var _binding: FragmentAiBinding ?= null
     private val binding get() = _binding!!
-    private val navController: NavController by lazy { findNavController() }
-    private var navigatedOnce = false
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -130,7 +124,6 @@ class AiFragment : Fragment() {
 
 
     }
-
 
     private fun saveBitmapToFile(bitmap: Bitmap): String? {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
