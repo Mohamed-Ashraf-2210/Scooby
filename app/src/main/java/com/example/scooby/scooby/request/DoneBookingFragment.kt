@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.request.fragment
+package com.example.scooby.scooby.request
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

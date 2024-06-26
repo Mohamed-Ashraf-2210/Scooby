@@ -58,8 +58,8 @@ class BirthdayPetFragment : Fragment() {
                 args.listOfData[2],
                 args.listOfData[3],
                 args.listOfData[4],
-                selectDateTv.toString(),
-                selectAdoptionDateTv.toString()
+                selectDateTv.text.toString(),
+                selectAdoptionDateTv.text.toString()
             )
             val action =
                 BirthdayPetFragmentDirections.actionBirthdayPetFragmentToInfoPetFragment(
@@ -87,7 +87,7 @@ class BirthdayPetFragment : Fragment() {
             requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, monthOfYear, dayOfMonth)
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
                 val formattedDate = dateFormat.format(selectedDate.time)
                 binding?.selectDateTv?.text = formattedDate.toString()
             },
@@ -104,7 +104,7 @@ class BirthdayPetFragment : Fragment() {
             requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, monthOfYear, dayOfMonth)
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
                 val formattedDate = dateFormat.format(selectedDate.time)
                 binding?.selectAdoptionDateTv?.text = formattedDate.toString()
             },

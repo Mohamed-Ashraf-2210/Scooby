@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.request.fragment
+package com.example.scooby.scooby.request
 
 import android.Manifest
 import android.annotation.SuppressLint
