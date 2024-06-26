@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.request
+package com.example.scooby.scooby.request.fragment
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -91,7 +91,7 @@ class DateRequestFragment : Fragment() {
             requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, monthOfYear, dayOfMonth)
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
                 val formattedDate = dateFormat.format(selectedDate.time)
                 binding?.selectDateTv?.text = formattedDate.toString()
             },

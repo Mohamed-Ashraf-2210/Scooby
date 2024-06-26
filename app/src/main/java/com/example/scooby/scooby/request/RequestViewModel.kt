@@ -18,7 +18,7 @@ class RequestViewModel : ViewModel() {
     val requestResult: LiveData<BaseResponse<AddRequestResponse>>
         get() = _requestResult
 
-    private fun sendDataRequest(addResuestRequest: AddResuestRequest) {
+    fun sendDataRequest(addResuestRequest: AddResuestRequest) {
         _requestResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {

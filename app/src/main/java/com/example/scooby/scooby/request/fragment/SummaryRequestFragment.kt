@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.request
+package com.example.scooby.scooby.request.fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -147,7 +147,7 @@ class SummaryRequestFragment : Fragment() {
             requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(year, monthOfYear, dayOfMonth)
-                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val dateFormat = SimpleDateFormat("MM/dd/yyyy", Locale.getDefault())
                 val formattedDate = dateFormat.format(selectedDate.time)
                 binding?.selectDate?.text = formattedDate.toString()
             },

@@ -10,10 +10,6 @@ data class AddResuestRequest(
     val cardNumber: String,
     @SerializedName("cardSecurityCode")
     val cardSecurityCode: String,
-    @SerializedName("completed")
-    val completed: Boolean,
-    @SerializedName("country")
-    val country: String,
     @SerializedName("date")
     val date: String,
     @SerializedName("duration")
@@ -28,12 +24,8 @@ data class AddResuestRequest(
     val payment: String,
     @SerializedName("petsId")
     val petsId: List<String>,
-    @SerializedName("petsNumber")
-    val petsNumber: String,
     @SerializedName("pickUp")
     val pickUp: Boolean,
-    @SerializedName("remindMe3Hours")
-    val remindMe3Hours: Boolean,
     @SerializedName("requestTotalPrice")
     val requestTotalPrice: Int,
     @SerializedName("saveCard")
