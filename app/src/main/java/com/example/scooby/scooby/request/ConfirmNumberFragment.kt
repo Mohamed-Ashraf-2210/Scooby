@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.domain.request.AddResuestRequest
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentConfirmNumberBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewModels.RequestViewModel
@@ -45,7 +47,6 @@ class ConfirmNumberFragment : Fragment() {
     ): View? {
         binding = FragmentConfirmNumberBinding.inflate(inflater, container, false)
         requestViewModel = ViewModelProvider(this)[RequestViewModel::class.java]
-        showToast(args.listOfData.size.toString())
         initView()
         return binding?.root
     }
@@ -100,7 +101,7 @@ class ConfirmNumberFragment : Fragment() {
 
                     is BaseResponse.Success -> {
                         stopLoading()
-                        showToast("Send Success")
+                        findNavController().navigate(R.id.action_confirmNumberFragment_to_doneBookingFragment)
                     }
 
                     is BaseResponse.Error -> {
