@@ -1,7 +1,7 @@
 package com.example.data.remote.apis
 
 import android.util.Log
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.data.local.TokenManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

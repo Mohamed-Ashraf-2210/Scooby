@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.scooby.databinding.FragmentCreatePostBinding
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.scooby.viewModels.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
 import java.io.File
 import java.io.FileOutputStream

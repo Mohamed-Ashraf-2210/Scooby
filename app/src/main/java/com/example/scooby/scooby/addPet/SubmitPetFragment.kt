@@ -16,7 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.domain.pet.AddPetData
 import com.example.scooby.databinding.FragmentSubmitPetBinding
 import com.example.scooby.scooby.MainActivity
-import com.example.scooby.scooby.viewmodel.PetsViewModel
+import com.example.scooby.scooby.viewModels.PetsViewModel
 import com.example.scooby.utils.BaseResponse
 import java.io.File
 import java.io.FileOutputStream

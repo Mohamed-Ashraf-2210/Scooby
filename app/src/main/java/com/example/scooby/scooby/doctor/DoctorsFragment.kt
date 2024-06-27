@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.scooby.databinding.FragmentDoctorsBinding
 import com.example.scooby.scooby.adapter.DoctorAdapter
-import com.example.scooby.scooby.viewmodel.VetViewModel
+import com.example.scooby.scooby.viewModels.VetViewModel
 import com.example.scooby.utils.BaseResponse
 
 

@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.example.domain.community.PublicPosts
 import com.example.scooby.R
-import com.example.scooby.scooby.viewmodel.CommunityViewModel
+import com.example.scooby.scooby.viewModels.CommunityViewModel
 import com.varunest.sparkbutton.SparkButton
 import com.varunest.sparkbutton.SparkEventListener
 import java.text.SimpleDateFormat

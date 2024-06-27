@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.data.repository.PawsRepo
 import com.example.domain.MissingPetResponse
 import com.example.domain.PetShelterProfileResponse
@@ -21,9 +21,7 @@ import com.example.domain.paws.missing.GetRecentlyResponse
 import com.example.domain.paws.rescue.PetsInShelterResponse
 import com.example.domain.paws.rescue.ShelterResponse
 import com.example.scooby.utils.BaseResponse
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.Dispatcher
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody

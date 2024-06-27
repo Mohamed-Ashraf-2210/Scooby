@@ -1,6 +1,5 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.blogs
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -17,7 +14,7 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentBlogsBinding
 import com.example.scooby.scooby.adapter.BlogAdapter
 import com.example.domain.blog.BlogResponse
-import com.example.scooby.scooby.viewmodel.BlogViewModel
+import com.example.scooby.scooby.viewModels.BlogViewModel
 import com.example.scooby.utils.BaseResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 

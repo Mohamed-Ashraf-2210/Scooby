@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.menuBottomSheet
 
 import android.os.Bundle
 import android.view.LayoutInflater

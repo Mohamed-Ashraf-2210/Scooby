@@ -35,7 +35,7 @@
         </fragment>
         <fragment
             android:id="@+id/blogsFragment"
-            android:name="com.example.scooby.scooby.ui.BlogsFragment"
+            android:name="com.example.scooby.scooby.blogs.BlogsFragment"
             android:label="fragment_blogs"
             tools:layout="@layout/fragment_blogs" />
         <fragment
@@ -67,7 +67,7 @@
         </fragment>
         <fragment
             android:id="@+id/doctorProfileFragment"
-            android:name="com.example.scooby.scooby.ui.DoctorProfileFragment"
+            android:name="com.example.scooby.scooby.doctor.DoctorProfileFragment"
             android:label="DoctorProfileFragment"
             tools:layout="@layout/fragment_doctor_profile">
             <argument
@@ -97,7 +97,7 @@
         </fragment>
         <dialog
             android:id="@+id/menuBottomSheetFragment"
-            android:name="com.example.scooby.scooby.ui.MenuBottomSheetFragment"
+            android:name="com.example.scooby.scooby.menuBottomSheet.MenuBottomSheetFragment"
             android:label="menu_bottom_sheet"
             tools:layout="@layout/menu_bottom_sheet">
             <action
@@ -321,7 +321,7 @@
         </fragment>
         <fragment
             android:id="@+id/favoriteFragment"
-            android:name="com.example.scooby.scooby.ui.FavoriteFragment"
+            android:name="com.example.scooby.scooby.favorite.FavoriteFragment"
             android:label="fragment_favorite"
             tools:layout="@layout/fragment_favorite" />
         <fragment
@@ -454,7 +454,7 @@
         app:startDestination="@id/bookingFragment">
         <fragment
             android:id="@+id/bookingFragment"
-            android:name="com.example.scooby.scooby.ui.BookingFragment"
+            android:name="com.example.scooby.scooby.booking.BookingFragment"
             android:label="fragment_booking"
             tools:layout="@layout/fragment_booking" />
     </navigation>

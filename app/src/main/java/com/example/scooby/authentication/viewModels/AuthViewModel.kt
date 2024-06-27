@@ -1,4 +1,4 @@
-package com.example.scooby.authentication.viewmodel
+package com.example.scooby.authentication.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

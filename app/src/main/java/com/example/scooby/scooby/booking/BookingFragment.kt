@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.booking
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

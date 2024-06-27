@@ -17,7 +17,7 @@ import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentEditProfileBinding
 import com.example.scooby.scooby.MainActivity
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.scooby.viewModels.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
 import java.io.File
 import java.io.FileOutputStream

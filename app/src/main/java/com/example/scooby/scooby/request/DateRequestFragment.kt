@@ -24,7 +24,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentDateRequestBinding
 import com.example.scooby.scooby.MainActivity

@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.scooby.R
 import com.example.data.local.TokenManager
 import com.example.scooby.scooby.MainActivity

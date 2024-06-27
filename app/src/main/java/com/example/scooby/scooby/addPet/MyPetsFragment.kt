@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentMyPetsBinding
 import com.example.scooby.scooby.adapter.MyPetsAddAdapter
-import com.example.scooby.scooby.viewmodel.PetsViewModel
+import com.example.scooby.scooby.viewModels.PetsViewModel
 import com.example.scooby.utils.BaseResponse
 
 /**

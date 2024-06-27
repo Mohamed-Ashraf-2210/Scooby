@@ -12,7 +12,7 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentCommunityBinding
 import com.example.scooby.scooby.adapter.MyMomentPostsAdapter
 import com.example.scooby.scooby.adapter.PublicPostsAdapter
-import com.example.scooby.scooby.viewmodel.CommunityViewModel
+import com.example.scooby.scooby.viewModels.CommunityViewModel
 import com.example.scooby.utils.BaseResponse
 
 

@@ -1,4 +1,4 @@
-package com.example.data
+package com.example.data.utils
 
 object Constant {
     const val BASE_URL ="https://scoobyfamily.onrender.com"

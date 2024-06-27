@@ -16,7 +16,7 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentSummaryRequestBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.PetsSummaryRequestAdapter
-import com.example.scooby.scooby.viewmodel.PetsViewModel
+import com.example.scooby.scooby.viewModels.PetsViewModel
 import com.example.scooby.utils.BaseResponse
 import java.text.SimpleDateFormat
 import java.util.Calendar

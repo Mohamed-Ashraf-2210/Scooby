@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.domain.authentication.CheckCodeResponse
-import com.example.scooby.authentication.viewmodel.AuthViewModel
+import com.example.scooby.authentication.viewModels.AuthViewModel
 import com.example.scooby.databinding.FragmentOtpVerificationBinding
 import com.example.scooby.utils.BaseResponse
 

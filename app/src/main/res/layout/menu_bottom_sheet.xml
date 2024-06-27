@@ -7,7 +7,7 @@
     android:layout_height="297dp"
     android:backgroundTint="@color/white_BG"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    tools:context=".scooby.ui.MenuBottomSheetFragment">
+    tools:context=".scooby.menuBottomSheet.MenuBottomSheetFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

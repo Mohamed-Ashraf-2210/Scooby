@@ -14,7 +14,7 @@ import com.example.scooby.R
 import com.example.scooby.databinding.FragmentProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.MyPetsHomeAdapter
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.scooby.viewModels.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
 
 /**

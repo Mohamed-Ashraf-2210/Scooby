@@ -10,11 +10,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.data.local.TokenManager
 import com.example.domain.profile.UserResponse
 import com.example.scooby.R
-import com.example.scooby.authentication.viewmodel.AuthViewModel
+import com.example.scooby.authentication.viewModels.AuthViewModel
 import com.example.scooby.databinding.FragmentLoginBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.BaseResponse

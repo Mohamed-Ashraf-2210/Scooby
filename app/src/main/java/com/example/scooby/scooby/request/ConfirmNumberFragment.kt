@@ -11,7 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.domain.request.AddResuestRequest
 import com.example.scooby.databinding.FragmentConfirmNumberBinding
 import com.example.scooby.scooby.MainActivity
-import com.example.scooby.scooby.viewmodel.RequestViewModel
+import com.example.scooby.scooby.viewModels.RequestViewModel
 import com.example.scooby.utils.BaseResponse
 
 /*

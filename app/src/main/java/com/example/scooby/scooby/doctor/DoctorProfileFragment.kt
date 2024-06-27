@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.doctor
 
 import android.os.Bundle
 import android.util.Log
@@ -15,7 +15,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.domain.DoctorProfileResponse
 import com.example.scooby.databinding.FragmentDoctorProfileBinding
 import com.example.scooby.scooby.adapter.ReviewDoctorAdapter
-import com.example.scooby.scooby.viewmodel.VetViewModel
+import com.example.scooby.scooby.viewModels.VetViewModel
 
 class DoctorProfileFragment : Fragment() {
     private val vetViewModel by viewModels<VetViewModel>()

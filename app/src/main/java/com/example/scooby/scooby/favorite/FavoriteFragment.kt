@@ -1,4 +1,4 @@
-package com.example.scooby.scooby.ui
+package com.example.scooby.scooby.favorite
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentFavoriteBinding
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel

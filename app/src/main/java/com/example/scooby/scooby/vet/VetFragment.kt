@@ -16,8 +16,8 @@ import com.example.domain.offer.OfferResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentVetBinding
 import com.example.scooby.scooby.adapter.VetAdapter
-import com.example.scooby.scooby.viewmodel.OfferViewModel
-import com.example.scooby.scooby.viewmodel.VetViewModel
+import com.example.scooby.scooby.viewModels.OfferViewModel
+import com.example.scooby.scooby.viewModels.VetViewModel
 import com.example.scooby.utils.BaseResponse
 
 /**

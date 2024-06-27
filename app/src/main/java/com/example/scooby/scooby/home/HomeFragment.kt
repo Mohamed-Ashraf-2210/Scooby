@@ -22,10 +22,10 @@ import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.PetsHomeAdapter
 import com.example.scooby.scooby.services.adapter.ServicesAdapter
 import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
-import com.example.scooby.scooby.viewmodel.BlogViewModel
-import com.example.scooby.scooby.viewmodel.OfferViewModel
-import com.example.scooby.scooby.viewmodel.PetsViewModel
-import com.example.scooby.scooby.viewmodel.ProfileViewModel
+import com.example.scooby.scooby.viewModels.BlogViewModel
+import com.example.scooby.scooby.viewModels.OfferViewModel
+import com.example.scooby.scooby.viewModels.PetsViewModel
+import com.example.scooby.scooby.viewModels.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
 
 class HomeFragment : Fragment() {

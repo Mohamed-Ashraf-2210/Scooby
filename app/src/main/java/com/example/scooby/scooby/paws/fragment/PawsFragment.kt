@@ -9,13 +9,10 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.whenCreated
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.domain.paws.adaption.AdaptionAdoptMeResponse
 import com.example.domain.paws.adaption.AdaptionCatsResponse
 import com.example.domain.paws.adaption.AdaptionDogsResponse
@@ -36,7 +33,6 @@ import com.example.scooby.scooby.paws.adapter.PawsTopColAdapter
 import com.example.scooby.scooby.paws.adapter.PetsShelterAdapter
 import com.example.scooby.scooby.paws.adapter.ShelterAdapter
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
-import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
 import com.example.scooby.utils.BaseResponse
 
 class PawsFragment : Fragment() {

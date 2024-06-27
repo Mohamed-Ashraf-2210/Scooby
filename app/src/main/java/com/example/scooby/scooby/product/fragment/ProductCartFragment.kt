@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.domain.CartProductResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentProductCartBinding

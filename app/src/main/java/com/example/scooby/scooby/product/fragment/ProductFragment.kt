@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.data.Constant
+import com.example.data.utils.Constant
 import com.example.domain.product.ProductResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentProductBinding
