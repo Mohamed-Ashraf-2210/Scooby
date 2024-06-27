@@ -302,7 +302,7 @@ class DateRequestFragment : Fragment() {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        return country
+        return "$city , $country"
     }
 
 
