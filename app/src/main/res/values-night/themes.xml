@@ -12,8 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >@color/app_background</item>
         <item name="android:windowLightStatusBar">true</item>
-
+        <item name="android:windowIsTranslucent">true</item>
     </style>
+
 
     <!--    facebook blue button-->
     <style name="blue_btn" parent="Widget.MaterialComponents.Button">
