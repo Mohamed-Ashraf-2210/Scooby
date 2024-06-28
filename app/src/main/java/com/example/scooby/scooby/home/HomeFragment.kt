@@ -42,15 +42,13 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (binding == null) {
-            binding = FragmentHomeBinding.inflate(inflater, container, false)
-            profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-            servicesViewModel = ViewModelProvider(this)[ServicesViewModel::class.java]
-            offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]
-            petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
-            blogsViewModel = ViewModelProvider(this)[BlogViewModel::class.java]
-            initView()
-        }
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+        servicesViewModel = ViewModelProvider(this)[ServicesViewModel::class.java]
+        offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]
+        petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
+        blogsViewModel = ViewModelProvider(this)[BlogViewModel::class.java]
+        initView()
         return binding?.root
     }
 
