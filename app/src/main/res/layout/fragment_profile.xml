@@ -183,11 +183,10 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/my_pets_rv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="300dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:orientation="horizontal"
-                    android:visibility="gone"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     tools:itemCount="5"

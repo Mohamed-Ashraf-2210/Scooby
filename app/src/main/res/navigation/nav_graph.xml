@@ -340,7 +340,9 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_confirmNumberFragment_to_doneBookingFragment"
-                app:destination="@id/doneBookingFragment" />
+                app:destination="@id/doneBookingFragment"
+                app:popUpTo="@id/selectPetFragment"
+                app:popUpToInclusive="true" />
         </fragment>
         <fragment
             android:id="@+id/productCartFragment"
@@ -351,7 +353,8 @@
             android:id="@+id/doneBookingFragment"
             android:name="com.example.scooby.scooby.request.DoneBookingFragment"
             android:label="fragment_done_booking"
-            tools:layout="@layout/fragment_done_booking" />
+            tools:layout="@layout/fragment_done_booking"
+            />
     </navigation>
 
     <navigation

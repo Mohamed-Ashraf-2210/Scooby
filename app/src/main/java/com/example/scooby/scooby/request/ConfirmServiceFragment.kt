@@ -52,8 +52,8 @@ class ConfirmServiceFragment : Fragment() {
     private fun init() {
         binding?.apply {
             val total = args.requestName[1].toInt() * args.idPets.size
-            nightPrice.text = args.requestName[1]
-            petsNumberTv.text = "For $${args.idPets.size} pet"
+            nightPrice.text = "$${args.requestName[1]}"
+            petsNumberTv.text = "For ${args.idPets.size} pet"
             totalPrice.text = "$$total for a night"
             dataRequest.text = getFormattedTodayDate()
             normalPriceValue.text = "Normal price is $${args.requestName[1]} / night"

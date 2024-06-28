@@ -126,26 +126,26 @@ class SubmitPetFragment : Fragment() {
                 addPetsResult.observe(viewLifecycleOwner) {
                     when (it) {
                         is BaseResponse.Loading -> {
-                            //showLoading()
+                            showLoading()
                         }
 
                         is BaseResponse.Success -> {
-                            //stopLoading()
-                            showToast("Save is successful")
+                            stopLoading()
+                            showToast("Add is successful")
+                            findNavController().popBackStack()
                         }
 
                         is BaseResponse.Error -> {
-                            //stopLoading()
+                            stopLoading()
                             showToast(it.msg)
                         }
 
                         else -> {
-                            //stopLoading()
+                            stopLoading()
                         }
                     }
                 }
             }
-//            findNavController().popBackStack()
         } else {
             showToast("Select your pet image")
         }
@@ -153,6 +153,14 @@ class SubmitPetFragment : Fragment() {
 
     private fun showToast(msg: String?) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopLoading() {
+        binding?.loading?.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
     }
 
     override fun onResume() {
