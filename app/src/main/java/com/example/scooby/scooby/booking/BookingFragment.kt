@@ -6,18 +6,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentBookingBinding
+import com.example.scooby.databinding.FragmentUserProfileMomentBinding
+import com.example.scooby.scooby.viewModels.CommunityViewModel
+import com.example.scooby.scooby.viewModels.ProfileViewModel
 
 
 class BookingFragment : Fragment() {
-    private lateinit var binding : FragmentBookingBinding
+    private lateinit var communityViewModel: CommunityViewModel
+    private var _binding: FragmentBookingBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentBookingBinding.inflate(layoutInflater,container,false)
+        _binding = FragmentBookingBinding.inflate(layoutInflater,container,false)
+        communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
         // Inflate the layout for this fragment
         init()
         return binding.root

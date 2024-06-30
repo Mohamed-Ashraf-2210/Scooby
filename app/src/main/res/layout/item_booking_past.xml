@@ -17,14 +17,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
+            app:cardCornerRadius="76dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/bookImg"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/placeholder" />
+                android:layout_height="match_parent"
+                android:src="@drawable/placeholder"
+                android:scaleType="centerCrop"
+                />
 
         </com.google.android.material.card.MaterialCardView>
 
@@ -38,6 +42,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             <TextView
+                android:id="@+id/bookTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
@@ -47,6 +52,7 @@
                 android:fontFamily="@font/roboto_medium"
                 />
             <TextView
+                android:id="@+id/bookData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
