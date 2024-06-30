@@ -12,6 +12,7 @@ import com.example.domain.authentication.SignUpRequest
 import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UserProfileResponse
 import com.example.domain.profile.UserResponse
+import com.example.domain.profile.UserResponseX
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -44,6 +45,12 @@ interface UserApi {
 
     @GET("/scooby/api/user/getuser")
     suspend fun getUser(): Response<UserProfileResponse>
+
+
+    @GET("/scooby/api/user/getOneUser/{userId}")
+    suspend fun getUserById(
+        @Path("userId") userId: String
+        ) : Response<UserResponseX>
 
 
     @Multipart

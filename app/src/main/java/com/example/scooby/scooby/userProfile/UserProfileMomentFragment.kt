@@ -6,16 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.example.domain.profile.UserProfileResponse
+import com.example.domain.profile.UserResponseX
 import com.example.scooby.databinding.FragmentUserProfileMomentBinding
 import com.example.scooby.scooby.adapter.MyVpAdapter
 import com.example.scooby.scooby.viewModels.ProfileViewModel
+import com.example.scooby.utils.BaseResponse
+import com.example.scooby.utils.loadUrl
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 
 class UserProfileMomentFragment : Fragment() {
+    private val args: UserProfileMomentFragmentArgs by navArgs()
     private var _binding: FragmentUserProfileMomentBinding? = null
     private lateinit var profileViewModel: ProfileViewModel
     private val binding get() = _binding!!
@@ -36,15 +41,27 @@ class UserProfileMomentFragment : Fragment() {
     }
     private fun observeOnUserData() {
         profileViewModel.apply {
-            getUserInfo()
-            profileResult.observe(viewLifecycleOwner){
-
+            getUserById(args.userId)
+            userDetailsResult.observe(viewLifecycleOwner){
+                when(it){
+                    is BaseResponse.Loading ->{
+                        showLoading()
+                    }
+                    is BaseResponse.Success->{
+                        stopLoading()
+                        it.data?.let { it1 -> setData2Ui(it1) }
+                    }
+                    is BaseResponse.Error ->{
+                        stopLoading()
+                    }
+                }
             }
         }
     }
-    private fun setData2Ui(data:UserProfileResponse) {
+    private fun setData2Ui(data:UserResponseX) {
         binding.apply {
-
+            userImg.loadUrl(data.data?.data?.profileImage.toString())
+            userName.text = data.data?.data?.name.toString()
         }
     }
     private fun initViewPager() {
@@ -58,6 +75,14 @@ class UserProfileMomentFragment : Fragment() {
                 1 -> tab.text = "Reviews"
             }
         }.attach()
+    }
+
+    private fun stopLoading() {
+        binding.loading.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding.loading.visibility = View.VISIBLE
     }
 
 }

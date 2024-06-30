@@ -90,7 +90,9 @@ class AiFragment : Fragment() {
                             it.data?.similarityArray?.get(1)?.url.toString(),
                             it.data?.similarityArray?.get(1)?.description.toString(),
                             it.data?.similarityArray?.get(1)?.phoneNumber.toString(),
-                            it.data?.similarityArray?.get(1)?.location.toString()
+                            it.data?.similarityArray?.get(1)?.location.toString(),
+                            it.data?.similarityArray?.get(0)?.userId?.id.toString(),
+                            it.data?.similarityArray?.get(1)?.userId?.id.toString()
                         )
                         findNavController().navigate(action)
                         findNavController().navigate(R.id.action_aiFragment_to_aiResultFragment)

@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.data.remote.service.UserApi
 import com.example.data.repository.UserRepository
 import com.example.domain.profile.UpdateUseResponse
 import com.example.domain.profile.UserProfileResponse
+import com.example.domain.profile.UserResponseX
 import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -17,12 +19,17 @@ import java.io.File
 
 class ProfileViewModel : ViewModel() {
     private val profileRepo = UserRepository()
-
     // region Get user
     private val _profileResult: MutableLiveData<BaseResponse<UserProfileResponse>> =
         MutableLiveData()
     val profileResult: LiveData<BaseResponse<UserProfileResponse>>
         get() = _profileResult
+
+    private val _userDetailsResult: MutableLiveData<BaseResponse<UserResponseX>> =
+        MutableLiveData()
+    val userDetailsResult: LiveData<BaseResponse<UserResponseX>>
+        get() = _userDetailsResult
+
 
     fun getUserInfo() {
         _profileResult.value = BaseResponse.Loading()
@@ -75,4 +82,19 @@ class ProfileViewModel : ViewModel() {
     }
     // endregion
 
+
+    fun getUserById(userId:String){
+        _userDetailsResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = profileRepo.getUserById(userId)
+                if (response != null && response.isSuccessful)
+                    _userDetailsResult.value = BaseResponse.Success(response.body())
+                    else
+                    _userDetailsResult.value = BaseResponse.Error(response?.message())
+            }catch (e: Exception){
+                _userDetailsResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
 }
