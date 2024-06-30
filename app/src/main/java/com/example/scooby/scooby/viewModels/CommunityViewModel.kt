@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.CommunityRepo
+import com.example.domain.booking.PastBookResponse
 import com.example.domain.community.LikePostResponse
 import com.example.domain.community.MyMomentsPosts
 import com.example.domain.community.PublicPosts
@@ -27,6 +28,11 @@ class CommunityViewModel : ViewModel() {
         MutableLiveData()
     val likePostsResult: LiveData<BaseResponse<LikePostResponse>>
         get() = _likePostsResult
+
+    private val _pastBookingResult: MutableLiveData<BaseResponse<PastBookResponse>> =
+        MutableLiveData()
+    val pastBookingResult: LiveData<BaseResponse<PastBookResponse>>
+        get() = _pastBookingResult
 
     fun getPublicPosts() {
         viewModelScope.launch {
@@ -73,6 +79,21 @@ class CommunityViewModel : ViewModel() {
                 }
             } catch (e: Exception) {
                 _likePostsResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
+
+    fun getPastBooking(){
+        _pastBookingResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = communityRepo.getPastBooking()
+                if (response != null && response.isSuccessful)
+                    _pastBookingResult.value = BaseResponse.Success(response.body())
+                else
+                    _pastBookingResult.value = BaseResponse.Error(response?.message())
+            }catch (e: Exception){
+                _pastBookingResult.value = BaseResponse.Error(e.message)
             }
         }
     }

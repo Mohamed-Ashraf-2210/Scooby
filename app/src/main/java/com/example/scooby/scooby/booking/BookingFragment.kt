@@ -29,6 +29,7 @@ class BookingFragment : Fragment() {
             binding.btnPast.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
             binding.btnUpcoming.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.white_btn_booking))
             binding.btnUpcoming.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+            initData()
       }
         binding.btnUpcoming.setOnClickListener {
             binding.btnPast.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.white_btn_booking))
@@ -36,5 +37,9 @@ class BookingFragment : Fragment() {
             binding.btnUpcoming.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.primary))
             binding.btnUpcoming.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
         }
+    }
+
+    private fun initData() {
+
     }
 }
