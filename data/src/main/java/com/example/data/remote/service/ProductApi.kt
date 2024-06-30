@@ -4,11 +4,16 @@ import com.example.data.remote.apis.ApiClient
 import com.example.domain.AddFavoriteResponse
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
+import com.example.domain.ocr.OcrResponse
 import com.example.domain.product.ProductResponse
+import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
+import retrofit2.http.POST
+import retrofit2.http.Part
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -32,14 +37,14 @@ interface ProductApi {
 
     @PATCH("/scooby/api/cart/addproduct/{userId}")
     suspend fun addProductToCart(
-        @Path("userId") id:String,
+        @Path("userId") id: String,
         @Query("productId") productId: String
-    ):Response<ProductPatch>
+    ): Response<ProductPatch>
 
     @GET("/scooby/api/cart/getcart/{userId}")
     suspend fun getCartUser(
         @Path("userId") id: String
-    ):Response<CartProductResponse>
+    ): Response<CartProductResponse>
 
     @DELETE("/scooby/api/cart/removeproduct/{userId}")
     suspend fun deleteProductFromCart(
@@ -47,10 +52,14 @@ interface ProductApi {
         @Query("itemId") productId: String
     ): Response<ProductPatch>
 
+    @Multipart
+    @POST("/scooby/api/ocr/product")
+    suspend fun sendImageToOCR(
+        @Part profileImage: MultipartBody.Part?
+    ): Response<OcrResponse>
 
 
-
-    companion object{
+    companion object {
         fun getApi(): ProductApi? {
             return ApiClient.client?.create(ProductApi::class.java)
         }

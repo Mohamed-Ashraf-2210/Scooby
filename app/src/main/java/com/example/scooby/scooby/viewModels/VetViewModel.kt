@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.utils.Constant
 import com.example.data.repository.VetRepo
+import com.example.data.utils.Constant
 import com.example.domain.DoctorProfileResponse
 import com.example.domain.doctors.DoctorsResponse
 import com.example.domain.vet.VetResponse
