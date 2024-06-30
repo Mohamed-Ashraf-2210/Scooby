@@ -1,24 +1,28 @@
 package com.example.scooby.scooby.product.viewmodel
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.utils.Constant
 import com.example.data.repository.ProductRepo
+import com.example.data.utils.Constant
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
+import com.example.domain.ocr.OcrResponse
 import com.example.domain.product.ProductResponse
 import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
-class ProductViewModel(application: Application) : AndroidViewModel(application) {
+class ProductViewModel() : ViewModel() {
     private val productRepo = ProductRepo()
 
-    private val _productResult : MutableLiveData<ProductResponse?> = MutableLiveData()
-    val productResult: LiveData<ProductResponse?>
+    private val _productResult: MutableLiveData<BaseResponse<ProductResponse>> = MutableLiveData()
+    val productResult: LiveData<BaseResponse<ProductResponse>>
         get() = _productResult
 
     private val _favoriteProductResult: MutableLiveData<ProductResponse> = MutableLiveData()
@@ -30,22 +34,24 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
     val userCartResult: MutableLiveData<CartProductResponse>
         get() = _userCartResult
 
-    private val _deleteProductCartResult: MutableLiveData<BaseResponse<ProductPatch>> = MutableLiveData()
+    private val _deleteProductCartResult: MutableLiveData<BaseResponse<ProductPatch>> =
+        MutableLiveData()
     val deleteProductCartResult: LiveData<BaseResponse<ProductPatch>>
         get() = _deleteProductCartResult
 
 
-
-
-    fun getProduct(){
+    fun getProduct() {
         viewModelScope.launch {
+            _productResult.value = BaseResponse.Loading()
             try {
                 val response = productRepo.getAllProduct()
-                if (response != null){
-                    _productResult.value = response.body()
+                if (response != null && response.isSuccessful) {
+                    _productResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _productResult.value = BaseResponse.Error(response?.message())
                 }
-            }catch (e: Exception) {
-                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS $e")
+            } catch (e: Exception) {
+                _productResult.value = BaseResponse.Error(e.message)
             }
         }
     }
@@ -83,30 +89,30 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun getCartUser(userId: String){
+    fun getCartUser(userId: String) {
         viewModelScope.launch {
             try {
                 val response = productRepo.getCartUser(userId)
                 response?.body().let {
                     _userCartResult.value = response?.body()
                 }
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Get User Product $e")
             }
         }
     }
 
-    fun deleteProductFromCart(userId: String, productId: String){
+    fun deleteProductFromCart(userId: String, productId: String) {
         _deleteProductCartResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
-                val response = productRepo.deleteProductFromCart(userId,productId)
+                val response = productRepo.deleteProductFromCart(userId, productId)
                 if (response?.code() == 200) {
                     _deleteProductCartResult.value = BaseResponse.Success(response.body())
                 } else {
                     _deleteProductCartResult.value = BaseResponse.Error(response?.message())
                 }
-            }catch (e: Exception) {
+            } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Delete Product From Cart $e")
             }
 
@@ -114,6 +120,31 @@ class ProductViewModel(application: Application) : AndroidViewModel(application)
     }
 
 
+    private val _ocrResult: MutableLiveData<BaseResponse<OcrResponse>> =
+        MutableLiveData()
+    val ocrResult: LiveData<BaseResponse<OcrResponse>>
+        get() = _ocrResult
 
-
+    fun sendImageToOCR(imagePath: String?) {
+        _ocrResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val profileImage: MultipartBody.Part? = if (imagePath != null) {
+                    val file = File(imagePath)
+                    val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
+                    MultipartBody.Part.createFormData("profileImage", file.name, requestFile)
+                } else {
+                    null
+                }
+                val response = productRepo.sendImageToOCR(profileImage)
+                if (response != null && response.isSuccessful) {
+                    _ocrResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _ocrResult.value = BaseResponse.Error(response?.message())
+                }
+            } catch (e: Exception) {
+                _ocrResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
 }
