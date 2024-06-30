@@ -261,9 +261,6 @@ class ProductFragment : Fragment() {
         productRv.adapter = ProductAdapter(productViewModel, userId, data!!, favoriteProducts)
     }
 
-    private fun setData(productListDiff: List<ProductResponse.Data>) {
-        productAdapter.setData(productListDiff)
-    }
 
     override fun onResume() {
         super.onResume()
