@@ -4,7 +4,6 @@ import com.example.data.remote.apis.ApiClient
 import com.example.domain.AddFavoriteResponse
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
-import com.example.domain.ocr.OcrResponse
 import com.example.domain.product.ProductResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
@@ -56,7 +55,7 @@ interface ProductApi {
     @POST("/scooby/api/ocr/product")
     suspend fun sendImageToOCR(
         @Part profileImage: MultipartBody.Part?
-    ): Response<OcrResponse>
+    ): Response<ProductResponse>
 
 
     companion object {

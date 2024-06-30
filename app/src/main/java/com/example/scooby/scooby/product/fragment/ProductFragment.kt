@@ -118,8 +118,8 @@ class ProductFragment : Fragment() {
             showToast("Camera Success")
             productViewModel.apply {
                 sendImageToOCR(imgFile)
-                ocrResult.observe(viewLifecycleOwner) {
-                    when (it) {
+                ocrResult.observe(viewLifecycleOwner) { products ->
+                    when (products) {
                         is BaseResponse.Loading -> {
                             showLoading()
                         }
@@ -127,12 +127,17 @@ class ProductFragment : Fragment() {
                         is BaseResponse.Success -> {
                             stopLoading()
                             showToast("Save is successful")
-                            // TODO adapter
+                            favoriteProductResult.observe(viewLifecycleOwner) {
+                                favoriteProducts = it
+                                stopLoading()
+                                getProductData(products.data, favoriteProducts)
+                                allProduct = products.data!!
+                            }
                         }
 
                         is BaseResponse.Error -> {
                             stopLoading()
-                            showToast(it.msg)
+                            showToast(products.msg)
                         }
 
                         else -> {

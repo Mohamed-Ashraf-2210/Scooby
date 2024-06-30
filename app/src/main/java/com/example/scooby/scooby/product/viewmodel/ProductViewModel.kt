@@ -9,7 +9,6 @@ import com.example.data.repository.ProductRepo
 import com.example.data.utils.Constant
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
-import com.example.domain.ocr.OcrResponse
 import com.example.domain.product.ProductResponse
 import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
@@ -120,9 +119,9 @@ class ProductViewModel() : ViewModel() {
     }
 
 
-    private val _ocrResult: MutableLiveData<BaseResponse<OcrResponse>> =
+    private val _ocrResult: MutableLiveData<BaseResponse<ProductResponse>> =
         MutableLiveData()
-    val ocrResult: LiveData<BaseResponse<OcrResponse>>
+    val ocrResult: LiveData<BaseResponse<ProductResponse>>
         get() = _ocrResult
 
     fun sendImageToOCR(imagePath: String?) {
