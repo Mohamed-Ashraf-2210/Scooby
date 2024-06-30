@@ -37,10 +37,13 @@ class AiResultFragment : Fragment() {
 //            findNavController().navigate(R.id.action_aiResultFragment_to_userProfileMomentFragment)
             sendId2UserProfile()
         }
+        binding.foundPetImg2.setOnClickListener {
+            sendId2UserProfile()
+        }
     }
 
     private fun sendId2UserProfile() {
-        val action = AiResultFragmentDirections.actionAiResultFragmentToUserProfileMomentFragment(args.userId1)
+        val action = AiResultFragmentDirections.actionAiResultFragmentToUserProfileMomentFragment(args.userId1,args.userId2)
         findNavController().navigate(action)
     }
 

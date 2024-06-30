@@ -57,6 +57,23 @@ class UserProfileMomentFragment : Fragment() {
                 }
             }
         }
+        profileViewModel.apply {
+            getUserById(args.userId2)
+            userDetailsResult.observe(viewLifecycleOwner){
+                when(it){
+                    is BaseResponse.Loading ->{
+                        showLoading()
+                    }
+                    is BaseResponse.Success->{
+                        stopLoading()
+                        it.data?.let { it1 -> setData2Ui(it1) }
+                    }
+                    is BaseResponse.Error ->{
+                        stopLoading()
+                    }
+                }
+            }
+        }
     }
     private fun setData2Ui(data:UserResponseX) {
         binding.apply {
