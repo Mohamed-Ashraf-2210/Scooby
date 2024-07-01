@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.domain.pet.MyPetsResponse
-import com.example.scooby.R
 import com.example.scooby.databinding.FragmentPetProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewModels.PetsViewModel
@@ -52,9 +51,6 @@ class PetProfileFragment : Fragment() {
         binding?.apply {
             backProfile.setOnClickListener {
                 findNavController().popBackStack()
-            }
-            editProfile.setOnClickListener {
-                findNavController().navigate(R.id.action_profileFragment_to_editProfileFragment)
             }
         }
     }
