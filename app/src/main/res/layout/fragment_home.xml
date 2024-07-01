@@ -315,42 +315,34 @@
                 tools:layout_editor_absoluteX="340dp"
                 tools:layout_editor_absoluteY="420dp" />
 
-            <LinearLayout
-                android:id="@+id/services_title"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_dimens"
                 android:layout_marginTop="36dp"
-                android:layout_marginEnd="18dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/services"
+                android:textColor="@color/black_font"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/grooming_text">
+                app:layout_constraintTop_toBottomOf="@id/grooming_text" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/services"
-                    android:textColor="@color/black_font"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/services_see_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/see_more"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/primary"
-                    android:textSize="12sp" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/services_see_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="18dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto"
+                android:text="@string/see_more"
+                android:textAlignment="textEnd"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/grooming_text" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/services_rv"
@@ -362,45 +354,36 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/services_title"
+                app:layout_constraintTop_toBottomOf="@id/services_see_more"
                 tools:listitem="@layout/services_item_home" />
 
-            <LinearLayout
-                android:id="@+id/Pets_title"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/small_dimens"
                 android:layout_marginTop="36dp"
-                android:layout_marginEnd="18dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/pets_in_community"
+                android:textColor="@color/black_font"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/services_rv">
+                app:layout_constraintTop_toBottomOf="@id/services_rv" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="180dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/pets_in_community"
-                    android:textColor="@color/black_font"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/pets_see_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/see_more"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/primary"
-                    android:textSize="12sp" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/pets_see_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/roboto"
+                android:text="@string/see_more"
+                android:textAlignment="textEnd"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/services_rv" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/pets_rv"
@@ -412,7 +395,7 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/Pets_title"
+                app:layout_constraintTop_toBottomOf="@id/pets_see_more"
                 tools:listitem="@layout/pets_item_home" />
 
             <com.google.android.material.card.MaterialCardView
@@ -478,43 +461,33 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
-                android:id="@+id/Blogs_title"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_gravity="center"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_dimens"
                 android:layout_marginTop="36dp"
-                android:layout_marginEnd="18dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/blogs"
+                android:textColor="@color/black_font"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_dag_walking">
+                app:layout_constraintTop_toBottomOf="@id/card_dag_walking" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="180dp"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/roboto_medium"
-                    android:text="@string/blogs"
-                    android:textColor="@color/black_font"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/blogs_see_more"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/see_more"
-                    android:textAlignment="textEnd"
-                    android:textColor="@color/primary"
-                    android:textSize="12sp" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/blogs_see_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:layout_marginEnd="18dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/roboto"
+                android:text="@string/see_more"
+                android:textAlignment="textEnd"
+                android:textColor="@color/primary"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_dag_walking" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/blogs_rv"
@@ -526,7 +499,7 @@
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/Blogs_title"
+                app:layout_constraintTop_toBottomOf="@id/blogs_see_more"
                 tools:listitem="@layout/blogs_item_home" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
