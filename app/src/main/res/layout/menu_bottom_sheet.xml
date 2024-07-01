@@ -5,7 +5,7 @@
     android:id="@+id/standard_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="297dp"
-    android:backgroundTint="@color/white_BG"
+    android:background="@color/app_background"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".scooby.menuBottomSheet.MenuBottomSheetFragment">
 
@@ -19,10 +19,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="21dp"
-            android:fontFamily="@font/roboto"
+            android:fontFamily="@font/roboto_medium"
             android:text="@string/requests"
             android:textColor="@color/black_font"
-            android:textFontWeight="600"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
