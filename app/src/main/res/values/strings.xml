@@ -326,6 +326,10 @@ again."</string>
     <string name="your_phone_number">Your phone number</string>
     <string name="your_location_createPost">Your Location</string>
     <string name="discerption">Discerption</string>
+    <string name="screen_one_text_onBoarding">Furry friend, happy life. Let\'s keep them wagging!</string>
+    <string name="skip">Skip</string>
+    <string name="text_second_onBoarding_screen_1">We\'re here to help your</string>
+    <string name="text_second_onBoarding_screen_2">pet whenever they need it</string>
     <string name="shop">Shop</string>
 
 </resources>

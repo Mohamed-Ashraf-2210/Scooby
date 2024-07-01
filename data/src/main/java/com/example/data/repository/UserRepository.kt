@@ -26,6 +26,8 @@ class UserRepository {
 
     suspend fun getUser() = UserApi.getApi()?.getUser()
 
+    suspend fun getUserById(userId: String) = UserApi.getApi()?.getUserById(userId)
+
     suspend fun updateUser(
         name: RequestBody,
         email: RequestBody,

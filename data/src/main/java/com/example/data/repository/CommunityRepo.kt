@@ -8,4 +8,6 @@ class CommunityRepo {
     suspend fun getMyMoments() = CommunityApi.getApi()?.getMyMoments()
 
     suspend fun likePost(postId: String) = CommunityApi.getApi()?.likePost(postId)
+
+    suspend fun getPastBooking() = CommunityApi.getApi()?.getPastBooking()
 }

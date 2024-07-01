@@ -373,9 +373,6 @@
                 android:id="@+id/action_pawsFragment_to_createPostFragment"
                 app:destination="@id/createPostFragment" />
             <action
-                android:id="@+id/action_pawsFragment_to_userProfileMomentFragment"
-                app:destination="@id/userProfileMomentFragment" />
-            <action
                 android:id="@+id/action_pawsFragment_to_aiFragment"
                 app:destination="@id/aiFragment"
                  />
@@ -418,6 +415,15 @@
             <argument
                 android:name="location2"
                 app:argType="string" />
+            <action
+                android:id="@+id/action_aiResultFragment_to_userProfileMomentFragment"
+                app:destination="@id/userProfileMomentFragment" />
+            <argument
+                android:name="userId1"
+                app:argType="string" />
+            <argument
+                android:name="userId2"
+                app:argType="string" />
 
 
         </fragment>
@@ -439,7 +445,14 @@
             android:id="@+id/userProfileMomentFragment"
             android:name="com.example.scooby.scooby.userProfile.UserProfileMomentFragment"
             android:label="fragment_user_profile_moment"
-            tools:layout="@layout/fragment_user_profile_moment" />
+            tools:layout="@layout/fragment_user_profile_moment" >
+            <argument
+                android:name="userId"
+                app:argType="string" />
+            <argument
+                android:name="userId2"
+                app:argType="string" />
+        </fragment>
         <fragment
             android:id="@+id/aiFragment"
             android:name="com.example.scooby.scooby.paws.fragment.AiFragment"

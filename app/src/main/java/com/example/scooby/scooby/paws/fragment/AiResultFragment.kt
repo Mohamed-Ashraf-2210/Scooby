@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentAiResultBinding
 import com.example.scooby.utils.loadUrl
+import okhttp3.internal.wait
 
 class AiResultFragment : Fragment() {
     private val args : AiResultFragmentArgs by navArgs()
@@ -25,8 +28,25 @@ class AiResultFragment : Fragment() {
         _binding = FragmentAiResultBinding.inflate(layoutInflater, container, false)
         initView()
         // Inflate the layout for this fragment
+        callBackImgBtn()
         return binding.root
     }
+
+    private fun callBackImgBtn() {
+        binding.foundPetImg1.setOnClickListener {
+//            findNavController().navigate(R.id.action_aiResultFragment_to_userProfileMomentFragment)
+            sendId2UserProfile()
+        }
+        binding.foundPetImg2.setOnClickListener {
+            sendId2UserProfile()
+        }
+    }
+
+    private fun sendId2UserProfile() {
+        val action = AiResultFragmentDirections.actionAiResultFragmentToUserProfileMomentFragment(args.userId1,args.userId2)
+        findNavController().navigate(action)
+    }
+
     private fun initView() {
         binding.MyUploadedImg.loadUrl(args.uploadedImg)
         binding.petCurrentOwn.text = args.name1
