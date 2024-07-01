@@ -5,18 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.data.utils.Constant
 import com.example.domain.pet.MyPetsResponse
 import com.example.scooby.R
-import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentPetProfileBinding
 import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.viewModels.PetsViewModel
+import com.example.scooby.utils.BaseResponse
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -24,15 +24,15 @@ import java.util.Locale
 
 class PetProfileFragment : Fragment() {
     private var binding: FragmentPetProfileBinding? = null
-    private val profileViewModel by viewModels<PetsViewModel>()
+    private lateinit var petViewModel: PetsViewModel
     private val args: PetProfileFragmentArgs by navArgs()
-    private lateinit var userId: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPetProfileBinding.inflate(inflater, container, false)
+        petViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
         init()
         observeProfileData()
         return binding?.root
@@ -60,30 +60,62 @@ class PetProfileFragment : Fragment() {
     }
 
     private fun observeProfileData() {
-        userId = TokenManager.getAuth( Constant.USER_ID).toString()
-        profileViewModel.getMyPets()
-        profileViewModel.myPetsResult.observe(viewLifecycleOwner) { result ->
-            stopLoading()
-            //getPetProfileData(result)
+        petViewModel.apply {
+            getMyPets()
+            myPetsResult.observe(viewLifecycleOwner) {
+                when (it) {
+                    is BaseResponse.Loading -> {
+                        showLoading()
+                    }
+
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        if (it.data != null) {
+                            getPetProfileData(it.data)
+                        } else {
+                            showToast("Null Data")
+                        }
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast(it.msg)
+                    }
+
+                    else -> {
+                        stopLoading()
+                    }
+                }
+            }
         }
     }
 
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopLoading() {
+        binding?.loading?.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
+    }
+
     private fun getPetProfileData(myPetsResponse: MyPetsResponse?) {
-        val pet = myPetsResponse?.data?.get(args.petPosition)
-        pet?.let {
-            binding?.apply {
-                Glide.with(this@PetProfileFragment).load(it.petImage).into(imagePetProfile)
-                namePet.text = it.name
-                adjPet.text = it.type
-                bioPet.text = it.profileBio
-                genderValueTv.text = it.gender
-                sizeValueTv.text = it.size
-                "${it.weight} kg".also { weightValueTv.text = it }
-                formatDate(birthdayTv, it.birthday)
-                formatDate(adoptionDayTv, it.adoptionDay)
-                calculateAndSetAge(oldYear, it.birthday)
-            }
-        } ?: showError()
+        val pet = myPetsResponse?.data?.get(args.petPosition)!!
+        binding?.apply {
+            Glide.with(this@PetProfileFragment).load(pet.petImage).into(imagePetProfile)
+            namePet.text = pet.name
+            adjPet.text = pet.type
+            bioPet.text = pet.profileBio
+            genderValueTv.text = pet.gender
+            sizeValueTv.text = pet.size
+            "${pet.weight} kg".also { weightValueTv.text = it }
+            formatDate(birthdayTv, pet.birthday)
+            formatDate(adoptionDayTv, pet.adoptionDay)
+            calculateAndSetAge(oldYear, pet.birthday)
+        }
     }
 
     private fun formatDate(view: TextView, dateString: String) {
@@ -111,18 +143,6 @@ class PetProfileFragment : Fragment() {
         return age
     }
 
-    private fun stopLoading() {
-        binding?.apply {
-            loading.visibility = View.GONE
-            petProfileContent.visibility = View.VISIBLE
-        }
-    }
-
-
-    private fun showError() {
-        // Handle the case where data is null
-        // For example, show a message or hide views
-    }
 
     override fun onResume() {
         super.onResume()
