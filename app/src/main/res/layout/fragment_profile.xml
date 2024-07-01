@@ -170,71 +170,65 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_top" />
 
-            <RelativeLayout
-                android:id="@+id/pets_layout"
-                android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/my_pets_rv"
+                android:layout_width="232dp"
                 android:layout_height="90dp"
+                android:layout_alignParentStart="true"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="18dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/My_pets">
+                app:layout_constraintTop_toBottomOf="@id/My_pets"
+                tools:itemCount="5"
+                tools:listitem="@layout/your_pets_item_home" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/my_pets_rv"
-                    android:layout_width="300dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-                    tools:itemCount="5"
-                    tools:listitem="@layout/your_pets_item_home" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/add_pet_card"
+                android:layout_width="60dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_toEndOf="@id/my_pets_rv"
+                android:backgroundTint="@color/white_BG"
+                android:visibility="visible"
+                app:cardCornerRadius="0dp"
+                app:layout_constraintStart_toEndOf="@id/my_pets_rv"
+                app:layout_constraintTop_toBottomOf="@id/My_pets"
+                app:strokeWidth="0dp">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/add_pet_card"
-                    android:layout_width="60dp"
-                    android:layout_height="90dp"
-                    android:layout_toEndOf="@id/my_pets_rv"
-                    android:backgroundTint="@color/white_BG"
-                    android:visibility="visible"
-                    app:cardCornerRadius="0dp"
-                    app:strokeWidth="0dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <ImageView
+                        android:id="@+id/add_pet_icon"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/add_pet"
+                        android:src="@drawable/add_pet_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
-                            android:id="@+id/add_pet_icon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@string/add_pet"
-                            android:src="@drawable/add_pet_icon"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.5"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/add_pet_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/Add_pet"
+                        android:textColor="@color/black_font"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/add_pet_icon" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <TextView
-                            android:id="@+id/add_pet_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:fontFamily="@font/roboto"
-                            android:text="@string/Add_pet"
-                            android:textColor="@color/black_font"
-                            android:textSize="12sp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/add_pet_icon" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </RelativeLayout>
-
+            </com.google.android.material.card.MaterialCardView>
 
             <View
                 style="@style/Divider"
@@ -242,7 +236,7 @@
                 android:layout_marginTop="18dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pets_layout" />
+                app:layout_constraintTop_toBottomOf="@id/my_pets_rv" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/favorites_section"
@@ -252,7 +246,7 @@
                 android:layout_marginTop="42dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pets_layout">
+                app:layout_constraintTop_toBottomOf="@id/my_pets_rv">
 
                 <ImageView
                     android:layout_width="wrap_content"

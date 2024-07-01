@@ -30,13 +30,9 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (binding != null) return binding?.root
-
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
-
         initView()
-
         return binding?.root
     }
 
@@ -86,6 +82,7 @@ class ProfileFragment : Fragment() {
                     .placeholder(R.drawable.user_default_image)
                     .error(R.drawable.error)
                     .into(userImage)
+                showToast(data.data.data.pets.size.toString())
                 myPetsRv.adapter = MyPetsHomeAdapter(data, requireContext())
             }
         }
