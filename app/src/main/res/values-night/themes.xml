@@ -1,18 +1,25 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Scooby" parent="Theme.Material3.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/app_background</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primary</item>
         <item name="colorSecondaryVariant">@color/primary</item>
         <item name="colorOnSecondary">@color/black_clear</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" >@color/app_background</item>
+        <item name="android:statusBarColor">@color/app_background</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <!--    Community Switch Btn-->
+    <style name="CommunitySwitch" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorControlActivated">#46bdbf</item>
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+        <item name="android:colorForeground">#42221f1f</item>
     </style>
 
 

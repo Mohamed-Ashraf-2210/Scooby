@@ -4,13 +4,13 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryVariant">@color/primary</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/app_background</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/primary</item>
         <item name="colorSecondaryVariant">@color/primary</item>
         <item name="colorOnSecondary">@color/black_clear</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/white_BG</item>
+        <item name="android:statusBarColor">@color/app_background</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowIsTranslucent">true</item>
     </style>
@@ -108,6 +108,7 @@
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="contentPadding">0dp</item>
     </style>
+
     <style name="fab_3_rounded">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
