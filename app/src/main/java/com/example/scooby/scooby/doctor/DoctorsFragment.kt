@@ -51,7 +51,7 @@ class DoctorsFragment : Fragment() {
             doctorResult.observe(viewLifecycleOwner) {
                 when (it) {
                     is BaseResponse.Loading -> {
-                        binding?.loading?.visibility = View.VISIBLE
+                        showLoading()
                     }
 
                     is BaseResponse.Success -> {
@@ -77,10 +77,12 @@ class DoctorsFragment : Fragment() {
         }
     }
 
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
+    }
+
     private fun stopLoading() {
-        binding?.apply {
-            loading.visibility = View.GONE
-        }
+        binding?.loading?.visibility = View.GONE
     }
 
 
