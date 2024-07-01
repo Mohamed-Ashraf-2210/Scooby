@@ -74,25 +74,24 @@ class CommunityFragment : Fragment() {
             publicPostsResult.observe(viewLifecycleOwner) {
                 when (it) {
                     is BaseResponse.Loading -> {
-                        //showLoading()
+                        showLoading()
                     }
 
                     is BaseResponse.Success -> {
-                        //stopLoading()
+                        stopLoading()
                         if (it.data != null) {
                             binding?.postRv?.adapter =
                                 PublicPostsAdapter(this, it.data, requireContext())
                         }
-
                     }
 
                     is BaseResponse.Error -> {
-                        //stopLoading()
+                        stopLoading()
                         showToast(it.msg)
                     }
 
                     else -> {
-                        //stopLoading()
+                        stopLoading()
                     }
                 }
             }
@@ -105,11 +104,11 @@ class CommunityFragment : Fragment() {
             myMomentPostsResult.observe(viewLifecycleOwner) {
                 when (it) {
                     is BaseResponse.Loading -> {
-                        //showLoading()
+                        showLoading()
                     }
 
                     is BaseResponse.Success -> {
-                        //stopLoading()
+                        stopLoading()
                         if (it.data != null) {
                             binding?.myMomentPostRv?.adapter =
                                 MyMomentPostsAdapter(this, it.data, requireContext())
@@ -118,12 +117,12 @@ class CommunityFragment : Fragment() {
                     }
 
                     is BaseResponse.Error -> {
-                        //stopLoading()
+                        stopLoading()
                         showToast(it.msg)
                     }
 
                     else -> {
-                        //stopLoading()
+                        stopLoading()
                     }
                 }
             }
@@ -133,6 +132,15 @@ class CommunityFragment : Fragment() {
     private fun showToast(msg: String?) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
+
+    private fun stopLoading() {
+        binding?.loading?.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

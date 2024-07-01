@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
+import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.example.domain.community.MyMomentsPosts
 import com.example.scooby.R
 import com.example.scooby.scooby.viewModels.CommunityViewModel
@@ -54,7 +55,7 @@ class MyMomentPostsAdapter(
         holder.timePost.text = getTimePost(currentItem.createdAt)
         holder.loveText.text = currentItem.likesNumber.toString()
         holder.loveIcon.isChecked = postsList.processedPosts[position].liked
-        Glide.with(context).load(currentItem.postImage).transform(CenterCrop())
+        Glide.with(context).load(currentItem.postImage).transform(FitCenter())
             .into(holder.postImage)
         holder.loveIcon.setEventListener(object : SparkEventListener {
             override fun onEvent(button: ImageView?, buttonState: Boolean) {
