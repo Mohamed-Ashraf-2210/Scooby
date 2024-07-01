@@ -54,8 +54,7 @@ class PublicPostsAdapter(
         holder.timePost.text = getTimePost(currentItem.createdAt)
         holder.loveText.text = currentItem.likesNumber.toString()
         holder.loveIcon.isChecked = postsList.processedPosts[position].liked
-        Glide.with(context).load(currentItem.postImage).transform(CenterCrop())
-            .into(holder.postImage)
+        Glide.with(context).load(currentItem.postImage).into(holder.postImage)
         holder.loveIcon.setEventListener(object : SparkEventListener {
             override fun onEvent(button: ImageView?, buttonState: Boolean) {
                 communityViewModel.apply {
