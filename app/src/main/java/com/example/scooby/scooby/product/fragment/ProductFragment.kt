@@ -18,7 +18,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.example.data.local.TokenManager
 import com.example.data.utils.Constant
 import com.example.domain.product.ProductResponse
@@ -40,25 +39,21 @@ class ProductFragment : Fragment() {
     private lateinit var productViewModel: ProductViewModel
     private lateinit var productAdapter: ProductAdapter
     private lateinit var userId: String
-    private var _binding: FragmentProductBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var productRv: RecyclerView
+    private var binding: FragmentProductBinding? = null
     private val CAMERA_PERMISSION_REQUEST_CODE = 1001
     private val REQUEST_IMAGE_CAPTURE = 100
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        if (_binding == null) {
-            _binding = FragmentProductBinding.inflate(layoutInflater, container, false)
-            productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-            userId = TokenManager.getAuth(Constant.USER_ID).toString()
-            init()
-        }
+    ): View? {
+        binding = FragmentProductBinding.inflate(layoutInflater, container, false)
+        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        userId = TokenManager.getAuth(Constant.USER_ID).toString()
+        init()
 
-        binding.cameraBtn.setOnClickListener { takeImage() }
-        return binding.root
+        binding?.cameraBtn?.setOnClickListener { takeImage() }
+        return binding?.root
     }
 
     // region Take Image to OCR
@@ -118,6 +113,7 @@ class ProductFragment : Fragment() {
             showToast("Camera Success")
             productViewModel.apply {
                 sendImageToOCR(imgFile)
+                getFavoriteProduct(userId)
                 ocrResult.observe(viewLifecycleOwner) { products ->
                     when (products) {
                         is BaseResponse.Loading -> {
@@ -180,45 +176,44 @@ class ProductFragment : Fragment() {
 
     private fun filterProduct(productType: String) {
         productViewModel.apply {
-            val filterProductByType = allProduct.data.filter { it.category == productType }
-            getProductData(ProductResponse(filterProductByType), favoriteProducts)
-
+            val filterProductByType = allProduct.data.filter { it.category == productType  }
+            getProductData(ProductResponse(filterProductByType,85,"success"), favoriteProducts)
         }
-
     }
 
     private fun init() {
         observeProductViewModel()
         backOffFragment()
         callBackButton()
-
     }
 
     private fun callBackButton() {
-        binding.btnMedicine.setOnClickListener {
-            filterProduct("medicine")
-        }
-        binding.btnFood.setOnClickListener {
-            filterProduct("food")
-        }
-        binding.btnToys.setOnClickListener {
-            filterProduct("toys")
-        }
-        binding.btnAccessories.setOnClickListener {
-            filterProduct("accessories")
-        }
-        binding.btnGrooming.setOnClickListener {
-            filterProduct("grooming")
-        }
-        binding.cart.setOnClickListener {
-            findNavController().navigate(R.id.action_productFragment_to_productCartFragment)
+        binding?.apply {
+            btnMedicine.setOnClickListener {
+                filterProduct("medicine")
+            }
+            btnFood.setOnClickListener {
+                filterProduct("food")
+            }
+            btnToys.setOnClickListener {
+                filterProduct("toys")
+            }
+            btnAccessories.setOnClickListener {
+                filterProduct("accessories")
+            }
+            btnGrooming.setOnClickListener {
+                filterProduct("grooming")
+            }
+            cart.setOnClickListener {
+                findNavController().navigate(R.id.action_productFragment_to_productCartFragment)
+            }
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.refreshMedicineLayout.apply {
+        binding?.refreshMedicineLayout?.apply {
             setOnRefreshListener {
                 isRefreshing = false
             }
@@ -262,8 +257,8 @@ class ProductFragment : Fragment() {
 
 
     private fun getProductData(data: ProductResponse?, favoriteProducts: ProductResponse) {
-        productRv = binding.productRv
-        productRv.adapter = ProductAdapter(productViewModel, userId, data!!, favoriteProducts)
+        binding?.productRv?.adapter =
+            ProductAdapter(productViewModel, userId, data!!, favoriteProducts)
     }
 
 
@@ -273,17 +268,21 @@ class ProductFragment : Fragment() {
     }
 
     private fun stopLoading() {
-        binding.loading.visibility = View.GONE
-        binding.productRv.visibility = View.VISIBLE
+        binding?.apply {
+            loading.visibility = View.GONE
+            productRv.visibility = View.VISIBLE
+        }
     }
 
     private fun showLoading() {
-        binding.loading.visibility = View.VISIBLE
-        binding.productRv.visibility = View.VISIBLE
+        binding?.apply {
+            loading.visibility = View.VISIBLE
+            productRv.visibility = View.VISIBLE
+        }
     }
 
     private fun backOffFragment() {
-        binding.icBack.setOnClickListener {
+        binding?.icBack?.setOnClickListener {
             findNavController().popBackStack()
         }
     }

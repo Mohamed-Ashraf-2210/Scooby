@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,22 +56,37 @@ class HomeFragment : Fragment() {
     private fun initView() {
         observeViewModel()
         clickActions()
+        servicesClicked()
     }
 
     private fun clickActions() {
         binding?.apply {
+
             userImage.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
             }
+
             blogsSeeMore.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_blogsFragment)
             }
+
             servicesSeeMore.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_servicesFragment)
             }
+
             vetIcon.setOnClickListener {
                 findNavController().navigate(R.id.action_homeFragment_to_vetFragment)
             }
+
+            moreIcon.setOnClickListener {
+                findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
+            }
+        }
+    }
+
+    private fun servicesClicked() {
+        binding?.apply {
+
             boardingIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Boarding",
@@ -80,6 +96,7 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
+
             sittingIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Sitting",
@@ -89,6 +106,7 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
+
             petFriendlyPlacesIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Pet Friendly Places",
@@ -98,6 +116,7 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
+
             groomingIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Grooming",
@@ -107,6 +126,7 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
+
             trainingIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Training",
@@ -116,6 +136,7 @@ class HomeFragment : Fragment() {
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
             }
+
             suppliesIcon.setOnClickListener {
                 val requestName = arrayOf(
                     "Supplies",
@@ -124,9 +145,6 @@ class HomeFragment : Fragment() {
                 val action =
                     HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
                 findNavController().navigate(action)
-            }
-            moreIcon.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
             }
         }
     }
@@ -168,6 +186,7 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun profileSuccess(data: UserProfileResponse?) {
         val userInfo = data?.data?.data
         binding?.apply {
@@ -330,10 +349,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun stopLoading() {
-        binding?.apply {
-            loading.visibility = View.GONE
-            homeContent.visibility = View.VISIBLE
-        }
+        binding?.loading?.visibility = View.GONE
     }
 
     private fun showLoading() {
@@ -345,8 +361,7 @@ class HomeFragment : Fragment() {
         binding?.apply {
             servicesRv.adapter = null
             petsRv.adapter = null
-            petsRv.adapter = null
+            blogsRv.adapter = null
         }
     }
-
 }

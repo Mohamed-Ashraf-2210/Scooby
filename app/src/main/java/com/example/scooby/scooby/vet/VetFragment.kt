@@ -34,8 +34,6 @@ class VetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (binding != null) return binding?.root
-
         binding = FragmentVetBinding.inflate(inflater, container, false)
         vetViewModel = ViewModelProvider(this)[VetViewModel::class.java]
         offerViewModel = ViewModelProvider(this)[OfferViewModel::class.java]

@@ -20,7 +20,6 @@ class CommunityFragment : Fragment() {
     private var binding: FragmentCommunityBinding? = null
     private lateinit var communityViewModel: CommunityViewModel
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
