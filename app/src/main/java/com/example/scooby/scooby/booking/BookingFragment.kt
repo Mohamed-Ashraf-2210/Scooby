@@ -27,6 +27,7 @@ class BookingFragment : Fragment() {
         _binding = FragmentBookingBinding.inflate(layoutInflater,container,false)
         communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
         // Inflate the layout for this fragment
+        communityViewModel.getUpcomingBooking()
         init()
         initData()
         return binding.root
@@ -38,6 +39,7 @@ class BookingFragment : Fragment() {
             binding.btnPast.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
             binding.btnUpcoming.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.white_btn_booking))
             binding.btnUpcoming.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
+            communityViewModel.getPastBooking()
 
       }
         binding.btnUpcoming.setOnClickListener {
@@ -62,6 +64,25 @@ class BookingFragment : Fragment() {
                         stopLoading()
                         Log.i("InfoUpcoming",it.data.toString())
                         binding.rvBooking.adapter = it.data?.let { it1 -> UpBookAdapter(it1) }
+                    }
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast("error in booking Upcoming")
+
+                    }
+                    else -> {
+                        stopLoading()
+                    }
+                }
+            }
+
+            bookingPastResult.observe(viewLifecycleOwner){
+                when(it){
+                    is BaseResponse.Loading -> showLoading()
+                    is BaseResponse.Success ->{
+                        stopLoading()
+                        Log.i("InfoPast",it.data.toString())
+                        binding.rvBooking.adapter = it.data?.let { it1 -> PastBookAdapter(it1) }
                     }
                     is BaseResponse.Error -> {
                         stopLoading()
