@@ -40,9 +40,6 @@ class SubmitPetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (binding != null)
-            return binding?.root
-
         binding = FragmentSubmitPetBinding.inflate(inflater, container, false)
         petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
         initView()
@@ -131,7 +128,7 @@ class SubmitPetFragment : Fragment() {
 
                         is BaseResponse.Success -> {
                             stopLoading()
-                            showToast("Add is successful")
+                            showToast("Success")
                             findNavController().popBackStack()
                         }
 

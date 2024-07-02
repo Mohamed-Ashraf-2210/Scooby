@@ -58,11 +58,11 @@ class MyPetsFragment : Fragment() {
             myPetsResult.observe(viewLifecycleOwner) {
                 when (it) {
                     is BaseResponse.Loading -> {
-                        //showLoading()
+                        showLoading()
                     }
 
                     is BaseResponse.Success -> {
-                        //stopLoading()
+                        stopLoading()
                         if (it.data != null) {
                             binding?.RvMyPetsContent?.adapter =
                                 MyPetsAddAdapter(it.data, requireContext())
@@ -71,12 +71,12 @@ class MyPetsFragment : Fragment() {
                     }
 
                     is BaseResponse.Error -> {
-                        //stopLoading()
+                        stopLoading()
                         showToast(it.msg)
                     }
 
                     else -> {
-                        //stopLoading()
+                        stopLoading()
                     }
                 }
 
@@ -86,6 +86,14 @@ class MyPetsFragment : Fragment() {
 
     private fun showToast(msg: String?) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopLoading() {
+        binding?.loading?.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
     }
 
     override fun onDestroyView() {

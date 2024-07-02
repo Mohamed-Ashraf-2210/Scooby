@@ -4,203 +4,202 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_BG"
+    android:background="@color/welcome_background"
     tools:context=".scooby.addPet.NamePetFragment">
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@color/white_tool_bar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="@string/my_pets"
-                android:textColor="@color/black_font"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/back_screen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:contentDescription="@string/back"
-                android:src="@drawable/arrow_left_black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="82dp"
+            android:layout_marginTop="14dp"
             android:fontFamily="@font/roboto_medium"
-            android:text="@string/what_is_your_pet_name"
+            android:text="@string/my_pets"
             android:textColor="@color/black_font"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/name_pet_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="114dp"
-            android:background="@drawable/edit_text_bg"
-            android:inputType="text"
-            android:lines="1"
-            android:maxLength="30"
-            android:paddingHorizontal="10dp"
-            android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="Autofill,LabelFor" />
-
-        <TextView
+        <ImageView
+            android:id="@+id/back_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/what_is_your_pet_type"
-            android:textColor="@color/black_font"
-            android:textSize="14sp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/back"
+            android:src="@drawable/arrow_left_black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_pet_edit_text" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/cat_card"
-            android:layout_width="151dp"
-            android:layout_height="170dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name_pet_edit_text"
-            app:strokeWidth="0dp">
-
-            <View
-                android:id="@+id/cat_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white_BG" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_margin="16dp"
-                android:background="@color/white_type_pet"
-                android:contentDescription="@string/cat"
-                android:src="@drawable/cat_icon_type" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:layout_margin="16dp"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="@string/cat"
-                android:textSize="14sp" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/dog_card"
-            android:layout_width="151dp"
-            android:layout_height="170dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="64dp"
-            android:checkable="true"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp"
-            app:layout_constraintStart_toEndOf="@id/cat_card"
-            app:layout_constraintTop_toBottomOf="@id/name_pet_edit_text"
-            app:strokeWidth="0dp">
-
-            <View
-                android:id="@+id/dog_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white_BG" />
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_margin="16dp"
-                android:background="@color/white_type_pet"
-                android:contentDescription="@string/dog"
-                android:src="@drawable/dog_icon_type" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:layout_margin="16dp"
-                android:layout_marginBottom="12dp"
-                android:fontFamily="@font/noto_sans"
-                android:text="@string/dog"
-                android:textSize="14sp" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="@string/what_is_your_pet_breed"
-            android:textColor="@color/black_font"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cat_card" />
-
-        <EditText
-            android:id="@+id/breed_pet_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="64dp"
-            android:autofillHints="breed"
-            android:background="@drawable/edit_text_bg"
-            android:inputType="text"
-            android:lines="1"
-            android:maxLength="30"
-            android:paddingHorizontal="10dp"
-            android:singleLine="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cat_card"
-            tools:ignore="LabelFor" />
-
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/next_btn"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:padding="0dp"
-            android:text="@string/next"
-            app:cornerRadius="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="82dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/what_is_your_pet_name"
+        android:textColor="@color/black_font"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/name_pet_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="114dp"
+        android:background="@drawable/edit_text_bg"
+        android:inputType="text"
+        android:lines="1"
+        android:maxLength="30"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill,LabelFor" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/what_is_your_pet_type"
+        android:textColor="@color/black_font"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_pet_edit_text" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cat_card"
+        android:layout_width="151dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/name_pet_edit_text"
+        app:strokeWidth="0dp">
+
+        <View
+            android:id="@+id/cat_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_BG" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="16dp"
+            android:background="@color/white_type_pet"
+            android:contentDescription="@string/cat"
+            android:src="@drawable/cat_icon_type" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="@string/cat"
+            android:textSize="14sp" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/dog_card"
+        android:layout_width="151dp"
+        android:layout_height="170dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintStart_toEndOf="@id/cat_card"
+        app:layout_constraintTop_toBottomOf="@id/name_pet_edit_text"
+        app:strokeWidth="0dp">
+
+        <View
+            android:id="@+id/dog_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_BG" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="16dp"
+            android:background="@color/white_type_pet"
+            android:contentDescription="@string/dog"
+            android:src="@drawable/dog_icon_type" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_margin="16dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/noto_sans"
+            android:text="@string/dog"
+            android:textSize="14sp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/what_is_your_pet_breed"
+        android:textColor="@color/black_font"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cat_card" />
+
+    <EditText
+        android:id="@+id/breed_pet_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="64dp"
+        android:autofillHints="breed"
+        android:background="@drawable/edit_text_bg"
+        android:inputType="text"
+        android:lines="1"
+        android:maxLength="30"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cat_card"
+        tools:ignore="LabelFor" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="0dp"
+        android:text="@string/next"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
