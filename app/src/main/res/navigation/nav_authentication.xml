@@ -86,7 +86,16 @@
             android:id="@+id/action_resetPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-
+    <activity
+        android:id="@+id/splashScreenActivity"
+        android:name="com.example.scooby.splash.SplashScreenActivity"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
+    <fragment
+        android:id="@+id/viewPagerFragment"
+        android:name="com.example.scooby.authentication.onBoarding.ViewPagerFragment"
+        android:label="fragment_view_pager"
+        tools:layout="@layout/fragment_view_pager" />
 
 
 </navigation>

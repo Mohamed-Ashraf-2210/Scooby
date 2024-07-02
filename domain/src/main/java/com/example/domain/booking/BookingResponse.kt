@@ -3,9 +3,11 @@ package com.example.domain.booking
 
 import com.google.gson.annotations.SerializedName
 
-data class PastBookResponse(
+data class BookingResponse(
     @SerializedName("request")
-    val request: List<Request>
+    val request: List<Request?>?,
+    @SerializedName("results")
+    val results: Int?
 ) {
     data class Request(
         @SerializedName("cardExpireDate")
@@ -34,10 +36,12 @@ data class PastBookResponse(
         val number: String?,
         @SerializedName("payment")
         val payment: String?,
+        @SerializedName("paymentImage")
+        val paymentImage: String?,
         @SerializedName("petsId")
         val petsId: List<String?>?,
         @SerializedName("petsNumber")
-        val petsNumber: Any?,
+        val petsNumber: Int?,
         @SerializedName("pickUp")
         val pickUp: Boolean?,
         @SerializedName("remindMe3Hours")
@@ -46,6 +50,8 @@ data class PastBookResponse(
         val requestTotalPrice: Int?,
         @SerializedName("saveCard")
         val saveCard: Boolean?,
+        @SerializedName("serviceImage")
+        val serviceImage: String?,
         @SerializedName("servicePrice")
         val servicePrice: Int?,
         @SerializedName("serviceType")

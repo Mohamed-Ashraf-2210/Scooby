@@ -1,7 +1,7 @@
 package com.example.data.remote.service
 
 import com.example.data.remote.apis.ApiClient
-import com.example.domain.booking.PastBookResponse
+import com.example.domain.booking.BookingResponse
 import com.example.domain.community.LikePostResponse
 import com.example.domain.community.MyMomentsPosts
 import com.example.domain.community.PublicPosts
@@ -23,7 +23,7 @@ interface CommunityApi {
     ): Response<LikePostResponse>
 
     @GET("/scooby/api/request/pastBooking")
-    suspend fun getPastBooking() : Response<PastBookResponse>
+    suspend fun getPastBooking() : Response<BookingResponse>
 
     companion object {
         fun getApi(): CommunityApi? {
