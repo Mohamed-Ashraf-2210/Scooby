@@ -29,10 +29,15 @@ class CommunityViewModel : ViewModel() {
     val likePostsResult: LiveData<BaseResponse<LikePostResponse>>
         get() = _likePostsResult
 
-    private val _BookingResult: MutableLiveData<BaseResponse<BookingResponse>> =
+    private val _bookingPastResult: MutableLiveData<BaseResponse<BookingResponse>> =
         MutableLiveData()
-    val BookingResult: LiveData<BaseResponse<BookingResponse>>
-        get() = _BookingResult
+    val bookingPastResult: LiveData<BaseResponse<BookingResponse>>
+        get() = _bookingPastResult
+
+    private val _bookingUpcomingResult: MutableLiveData<BaseResponse<BookingResponse>> =
+        MutableLiveData()
+    val bookingUpcomingResult: LiveData<BaseResponse<BookingResponse>>
+        get() = _bookingUpcomingResult
 
     fun getPublicPosts() {
         viewModelScope.launch {
@@ -84,16 +89,31 @@ class CommunityViewModel : ViewModel() {
     }
 
     fun getPastBooking(){
-        _BookingResult.value = BaseResponse.Loading()
+        _bookingPastResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
                 val response = communityRepo.getPastBooking()
                 if (response != null && response.isSuccessful)
-                    _BookingResult.value = BaseResponse.Success(response.body())
+                    _bookingPastResult.value = BaseResponse.Success(response.body())
                 else
-                    _BookingResult.value = BaseResponse.Error(response?.message())
+                    _bookingPastResult.value = BaseResponse.Error(response?.message())
             }catch (e: Exception){
-                _BookingResult.value = BaseResponse.Error(e.message)
+                _bookingPastResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
+
+    fun getUpcomingBooking(){
+        _bookingUpcomingResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = communityRepo.getUpcomingBooking()
+                if (response != null && response.isSuccessful)
+                    _bookingUpcomingResult.value = BaseResponse.Success(response.body())
+                else
+                    _bookingUpcomingResult.value = BaseResponse.Error(response?.message())
+            }catch (e: Exception){
+                _bookingUpcomingResult.value = BaseResponse.Error(e.message)
             }
         }
     }

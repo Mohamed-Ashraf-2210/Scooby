@@ -10,4 +10,6 @@ class CommunityRepo {
     suspend fun likePost(postId: String) = CommunityApi.getApi()?.likePost(postId)
 
     suspend fun getPastBooking() = CommunityApi.getApi()?.getPastBooking()
+
+    suspend fun getUpcomingBooking() = CommunityApi.getApi()?.getUpcomingBooking()
 }
