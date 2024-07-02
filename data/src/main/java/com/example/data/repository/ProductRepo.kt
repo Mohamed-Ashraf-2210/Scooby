@@ -14,8 +14,8 @@ class ProductRepo {
         return ProductApi.getApi()?.getAllProduct()
     }
 
-    suspend fun getFavoriteProduct(userId: String): Response<ProductResponse>? {
-        return ProductApi.getApi()?.getFavoriteProduct(userId)
+    suspend fun getFavoriteProduct(): Response<ProductResponse>? {
+        return ProductApi.getApi()?.getFavoriteProduct()
     }
 
     suspend fun addProductToFavorites(

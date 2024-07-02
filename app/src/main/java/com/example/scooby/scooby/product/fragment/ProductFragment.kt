@@ -49,7 +49,6 @@ class ProductFragment : Fragment() {
     ): View? {
         binding = FragmentProductBinding.inflate(layoutInflater, container, false)
         productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
-        userId = TokenManager.getAuth(Constant.USER_ID).toString()
         init()
 
         binding?.cameraBtn?.setOnClickListener { takeImage() }
@@ -113,7 +112,7 @@ class ProductFragment : Fragment() {
             showToast("Camera Success")
             productViewModel.apply {
                 sendImageToOCR(imgFile)
-                getFavoriteProduct(userId)
+                getFavoriteProduct()
                 ocrResult.observe(viewLifecycleOwner) { products ->
                     when (products) {
                         is BaseResponse.Loading -> {
@@ -224,8 +223,7 @@ class ProductFragment : Fragment() {
         productViewModel.apply {
             getProduct()
             productResult.observe(viewLifecycleOwner) { products ->
-                getFavoriteProduct(userId)
-
+                getFavoriteProduct()
                 when (products) {
                     is BaseResponse.Loading -> {
                         showLoading()

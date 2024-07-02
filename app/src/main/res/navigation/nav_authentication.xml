@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_authentication"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/viewPagerFragment">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -86,16 +86,18 @@
             android:id="@+id/action_resetPasswordFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-    <activity
-        android:id="@+id/splashScreenActivity"
-        android:name="com.example.scooby.splash.SplashScreenActivity"
-        android:label="activity_splash_screen"
-        tools:layout="@layout/activity_splash_screen" />
     <fragment
         android:id="@+id/viewPagerFragment"
         android:name="com.example.scooby.authentication.onBoarding.ViewPagerFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" />
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment"
+            app:popUpTo="@id/viewPagerFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 
 
 </navigation>

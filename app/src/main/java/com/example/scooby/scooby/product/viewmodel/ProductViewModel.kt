@@ -55,10 +55,10 @@ class ProductViewModel() : ViewModel() {
         }
     }
 
-    fun getFavoriteProduct(userId: String) {
+    fun getFavoriteProduct() {
         viewModelScope.launch {
             try {
-                val response = productRepo.getFavoriteProduct(userId)
+                val response = productRepo.getFavoriteProduct()
                 response?.body().let {
                     _favoriteProductResult.value = response?.body()
                 }

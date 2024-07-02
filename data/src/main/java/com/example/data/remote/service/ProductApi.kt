@@ -22,10 +22,8 @@ interface ProductApi {
     suspend fun getAllProduct(): Response<ProductResponse>
 
 
-    @GET("/scooby/api/fav/getfavproduct/{userId}")
-    suspend fun getFavoriteProduct(
-        @Path("userId") id: String
-    ): Response<ProductResponse>
+    @GET("/scooby/api/fav/getfavproduct")
+    suspend fun getFavoriteProduct(): Response<ProductResponse>
 
     @PATCH("/scooby/api/fav/addfav/{userId}")
     suspend fun addProductToFavorite(

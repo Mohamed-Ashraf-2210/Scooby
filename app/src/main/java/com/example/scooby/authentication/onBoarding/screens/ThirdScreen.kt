@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentSecondScreenBinding
@@ -23,6 +24,7 @@ class ThirdScreen : Fragment() {
         val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)
         binding.finish.setOnClickListener {
             //nav to auth || home
+            findNavController().navigate(R.id.action_viewPagerFragment_to_welcomeFragment)
             onBoardingFinish()
         }
         return binding.root

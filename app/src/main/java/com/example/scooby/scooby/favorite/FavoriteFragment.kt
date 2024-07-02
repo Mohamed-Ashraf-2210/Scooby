@@ -36,7 +36,7 @@ class FavoriteFragment : Fragment() {
     }
 
     private fun observeFavoriteProduct() {
-        productViewModel.getFavoriteProduct(currentUserId)
+        productViewModel.getFavoriteProduct()
         productViewModel.favoriteProductResult.observe(viewLifecycleOwner) {
             Log.d("productResult", it.data.toString())
             val adapter = FavoriteProductAdapter(it, productViewModel, currentUserId)
