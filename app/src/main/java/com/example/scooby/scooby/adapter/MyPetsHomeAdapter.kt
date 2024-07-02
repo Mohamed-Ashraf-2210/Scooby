@@ -27,7 +27,7 @@ class MyPetsHomeAdapter(private val myPetsList: UserProfileResponse, private val
         return MyPetsViewHolder(itemView)
     }
 
-    override fun getItemCount() = myPetsList.data.data.pets.size
+    override fun getItemCount() = myPetsList.data.data.pet.size
 
     override fun onBindViewHolder(holder: MyPetsViewHolder, position: Int) {
         val currentItem = myPetsList.data.data.pet

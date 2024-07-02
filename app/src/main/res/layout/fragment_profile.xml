@@ -54,8 +54,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:backgroundTint="@color/white_BG">
+            android:layout_height="match_parent">
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/loading"
@@ -177,9 +176,11 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:layout_constraintEnd_toStartOf="@id/add_pet_card"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/My_pets"
                 tools:itemCount="5"
@@ -446,6 +447,52 @@
                     android:layout_marginStart="30dp"
                     android:fontFamily="@font/roboto_medium"
                     android:text="@string/settings"
+                    android:textColor="@color/black_font"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="7dp"
+                    android:contentDescription="@string/arrow_right_black"
+                    android:src="@drawable/arrow_right_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                style="@style/Divider"
+                android:layout_marginHorizontal="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/settings_section" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/log_out_section"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/settings_section">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/log_out"
+                    android:src="@drawable/log_out_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/log_out"
                     android:textColor="@color/black_font"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"

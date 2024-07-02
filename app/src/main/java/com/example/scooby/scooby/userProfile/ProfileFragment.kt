@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.data.local.TokenManager
+import com.example.data.utils.Constant
 import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentProfileBinding
@@ -82,7 +84,6 @@ class ProfileFragment : Fragment() {
                     .placeholder(R.drawable.user_default_image)
                     .error(R.drawable.error)
                     .into(userImage)
-                showToast(data.data.data.pets.size.toString())
                 myPetsRv.adapter = MyPetsHomeAdapter(data, requireContext())
             }
         }
@@ -117,6 +118,14 @@ class ProfileFragment : Fragment() {
 
             favoritesSection.setOnClickListener {
                 findNavController().navigate(R.id.action_profileFragment_to_favoriteFragment)
+            }
+
+            logOutSection.setOnClickListener {
+                TokenManager.saveAuth(
+                    Constant.USER_TOKEN,
+                    ""
+                )
+                findNavController().popBackStack()
             }
 
         }

@@ -331,5 +331,6 @@ again."</string>
     <string name="text_second_onBoarding_screen_1">We\'re here to help your</string>
     <string name="text_second_onBoarding_screen_2">pet whenever they need it</string>
     <string name="shop">Shop</string>
+    <string name="log_out">Log out</string>
 
 </resources>
