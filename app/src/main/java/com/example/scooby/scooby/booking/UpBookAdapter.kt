@@ -8,7 +8,7 @@ import com.example.scooby.databinding.ItemBooking1Binding
 import com.example.scooby.utils.loadUrl
 
 class UpBookAdapter(
-    private val upcomingRes: List<BookingResponse.Request>
+    private val upcomingRes: BookingResponse
 ) : RecyclerView.Adapter<UpBookAdapter.UpBookAdapterViewHolder>() {
     inner class UpBookAdapterViewHolder(
         private val itemBooking1Binding: ItemBooking1Binding
@@ -29,10 +29,10 @@ class UpBookAdapter(
         )
     }
 
-    override fun getItemCount() = upcomingRes.size
+    override fun getItemCount() = upcomingRes.request.size
 
     override fun onBindViewHolder(holder: UpBookAdapterViewHolder, position: Int) {
-        holder.bind(upcomingRes[position])
+        holder.bind(upcomingRes.request[position])
     }
 
 }

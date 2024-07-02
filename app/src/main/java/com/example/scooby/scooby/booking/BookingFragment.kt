@@ -1,17 +1,18 @@
 package com.example.scooby.scooby.booking
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentBookingBinding
-import com.example.scooby.databinding.FragmentUserProfileMomentBinding
 import com.example.scooby.scooby.viewModels.CommunityViewModel
-import com.example.scooby.scooby.viewModels.ProfileViewModel
+import com.example.scooby.utils.BaseResponse
 
 
 class BookingFragment : Fragment() {
@@ -27,6 +28,7 @@ class BookingFragment : Fragment() {
         communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
         // Inflate the layout for this fragment
         init()
+        initData()
         return binding.root
     }
 
@@ -36,17 +38,53 @@ class BookingFragment : Fragment() {
             binding.btnPast.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
             binding.btnUpcoming.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.white_btn_booking))
             binding.btnUpcoming.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
-            initData()
+
       }
         binding.btnUpcoming.setOnClickListener {
             binding.btnPast.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.white_btn_booking))
             binding.btnPast.setTextColor(ContextCompat.getColor(requireContext(),R.color.black))
             binding.btnUpcoming.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.primary))
             binding.btnUpcoming.setTextColor(ContextCompat.getColor(requireContext(),R.color.white))
+            communityViewModel.getUpcomingBooking()
         }
     }
 
     private fun initData() {
+        observeUpcomingBook()
+    }
 
+    private fun observeUpcomingBook() {
+        communityViewModel.apply {
+            bookingUpcomingResult.observe(viewLifecycleOwner){
+                when(it){
+                    is BaseResponse.Loading -> showLoading()
+                    is BaseResponse.Success ->{
+                        stopLoading()
+                        Log.i("InfoUpcoming",it.data.toString())
+                        binding.rvBooking.adapter = it.data?.let { it1 -> UpBookAdapter(it1) }
+                    }
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast("error in booking Upcoming")
+
+                    }
+                    else -> {
+                        stopLoading()
+                    }
+                }
+            }
+        }
+    }
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopLoading() {
+        binding.loading.visibility = View.GONE
+        binding.rvBooking.visibility = View.VISIBLE
+    }
+
+    private fun showLoading() {
+        binding.loading.visibility = View.VISIBLE
     }
 }

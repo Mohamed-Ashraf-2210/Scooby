@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/requestImg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="74dp"
+                android:layout_height="74dp"
                 android:src="@drawable/placeholder" />
 
         </com.google.android.material.card.MaterialCardView>
@@ -58,7 +58,16 @@
                     android:id="@+id/numPets"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="2dp"
                     tools:text="1 pet"
+                    android:textColor="#B3F5F3F3"
+                    android:textSize="10sp"
+                    android:fontFamily="@font/roboto_medium"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pet"
                     android:textColor="#B3F5F3F3"
                     android:textSize="10sp"
                     android:fontFamily="@font/roboto_medium"
