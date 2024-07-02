@@ -1,26 +1,76 @@
 package com.example.scooby.scooby.userProfile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.scooby.R
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
+import com.example.domain.UserMomentResponse
+import com.example.scooby.databinding.FragmentMomentBinding
+import com.example.scooby.scooby.adapter.UserMomentAdapter
+import com.example.scooby.scooby.viewModels.CommunityViewModel
+import com.example.scooby.scooby.viewModels.ProfileViewModel
+import com.example.scooby.utils.BaseResponse
 
 
 class MomentFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
+    private val args: MomentFragmentArgs by navArgs()
+    private lateinit var communityViewModel: CommunityViewModel
+    private var _binding: FragmentMomentBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_moment, container, false)
+        _binding = FragmentMomentBinding.inflate(layoutInflater, container, false)
+        communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
+        init()
+        return binding.root
+    }
+
+    private fun init() {
+        observable()
+    }
+
+    private fun observable() {
+        communityViewModel.apply {
+            getUserMoment(args.userId)
+            userMomentResult.observe(viewLifecycleOwner) {
+                    when (it) {
+                        is BaseResponse.Loading -> showLoading()
+                        is BaseResponse.Success -> {
+                            stopLoading()
+                            Log.i("InfoPost", it.data.toString())
+                            binding.rvMoment.adapter = it.data?.let { it1 -> UserMomentAdapter(it1) }
+                        }
+                        is BaseResponse.Error -> {
+                            stopLoading()
+                            showToast("error in Post Upcoming")
+
+                        }
+
+                        else -> {
+                            stopLoading()
+                        }
+                    }
+                }
+            }
+        }
+        private fun showToast(msg: String?) {
+            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+        }
+
+        private fun stopLoading() {
+            binding.loading.visibility = View.GONE
+        }
+
+        private fun showLoading() {
+            binding.loading.visibility = View.VISIBLE
     }
 
 }

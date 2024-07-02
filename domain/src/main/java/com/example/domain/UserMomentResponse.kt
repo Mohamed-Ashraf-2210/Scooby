@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class UserMomentResponse(
     @SerializedName("processedPosts")
-    val processedPosts: List<ProcessedPost?>?
+    val processedPosts: List<ProcessedPost>
 ) {
     data class ProcessedPost(
         @SerializedName("liked")

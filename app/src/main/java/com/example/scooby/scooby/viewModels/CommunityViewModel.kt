@@ -41,9 +41,9 @@ class CommunityViewModel : ViewModel() {
     val bookingUpcomingResult: LiveData<BaseResponse<BookingResponse>>
         get() = _bookingUpcomingResult
 
-    private val _userMomentResult: MutableLiveData<BaseResponse<UserMomentResponse>> =
+    private val _userMomentResult: MutableLiveData<BaseResponse<List<UserMomentResponse.ProcessedPost.Post>>> =
         MutableLiveData()
-    val userMomentResult: LiveData<BaseResponse<UserMomentResponse>>
+    val userMomentResult: LiveData<BaseResponse<List<UserMomentResponse.ProcessedPost.Post>>>
         get() = _userMomentResult
 
 
