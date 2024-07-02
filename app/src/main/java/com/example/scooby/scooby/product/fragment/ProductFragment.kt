@@ -37,8 +37,6 @@ class ProductFragment : Fragment() {
     private lateinit var allProduct: ProductResponse
     private lateinit var favoriteProducts: ProductResponse
     private lateinit var productViewModel: ProductViewModel
-    private lateinit var productAdapter: ProductAdapter
-    private lateinit var userId: String
     private var binding: FragmentProductBinding? = null
     private val CAMERA_PERMISSION_REQUEST_CODE = 1001
     private val REQUEST_IMAGE_CAPTURE = 100
@@ -256,7 +254,7 @@ class ProductFragment : Fragment() {
 
     private fun getProductData(data: ProductResponse?, favoriteProducts: ProductResponse) {
         binding?.productRv?.adapter =
-            ProductAdapter(productViewModel, userId, data!!, favoriteProducts)
+            ProductAdapter(productViewModel, data!!, favoriteProducts)
     }
 
 

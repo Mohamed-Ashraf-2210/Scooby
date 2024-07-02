@@ -39,17 +39,17 @@ class FavoriteFragment : Fragment() {
         productViewModel.getFavoriteProduct()
         productViewModel.favoriteProductResult.observe(viewLifecycleOwner) {
             Log.d("productResult", it.data.toString())
-            val adapter = FavoriteProductAdapter(it, productViewModel, currentUserId)
+            val adapter = FavoriteProductAdapter(it, productViewModel)
             binding.rvFavProduct.adapter = adapter
             binding.numOfItem.text = it.data.size.toString()
 
         }
     }
     private fun observeFavoritePets() {
-        pawsViewModel.getFavoritePet(currentUserId)
+        pawsViewModel.getFavoritePet()
         pawsViewModel.favoritePetResult.observe(viewLifecycleOwner) {
             Log.d("petsResult", it.data.toString())
-            val adapter = FavoritePetsAdapter(it, pawsViewModel, currentUserId)
+            val adapter = FavoritePetsAdapter(it, pawsViewModel)
             binding.rvFavPets.adapter = adapter
             binding.numOfItem.text = adapter.itemCount.toString()
         }

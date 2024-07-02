@@ -43,12 +43,12 @@ class PawsRepo {
     }
 
 
-    suspend fun getFavoritePet(userId:String): Response<AdaptionAdoptMeResponse>? {
-        return PawsApi.getApi()?.getFavoritePet(userId)
+    suspend fun getFavoritePet(): Response<AdaptionAdoptMeResponse>? {
+        return PawsApi.getApi()?.getFavoritePet()
     }
 
-    suspend fun addPetToFavorite(userId:String, petId:String): Response<AddFavoriteResponse>? {
-        return PawsApi.getApi()?.addPetToFavorite(userId, petId)
+    suspend fun addPetToFavorite(petId:String): Response<AddFavoriteResponse>? {
+        return PawsApi.getApi()?.addPetToFavorite(petId)
     }
     suspend fun getShelterProfile(shelterId:String): Response<ShelterProfileResponse>? {
         return PawsApi.getApi()?.getShelterProfile(shelterId)

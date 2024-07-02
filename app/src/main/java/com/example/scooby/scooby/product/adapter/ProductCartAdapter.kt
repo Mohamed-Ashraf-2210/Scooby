@@ -17,7 +17,6 @@ import com.example.scooby.utils.IRefreshListListener
 import com.example.scooby.utils.loadUrl
 
 class ProductCartAdapter(
-    private val userId: String?,
     private val productViewModel: ProductViewModel,
     private val lifecycleOwner: LifecycleOwner,
     private val listener : IRefreshListListener
@@ -53,10 +52,8 @@ class ProductCartAdapter(
                 Log.i("cart", "Item removed")
                 Toast.makeText(itemView.context, "Deleted", Toast.LENGTH_SHORT).show()
                 productCart.product.id?.let { productId ->
-                    if (userId != null) {
-                        productViewModel.deleteProductFromCart(userId, productId)
+                        productViewModel.deleteProductFromCart(productId)
                         Log.i("infoDeletedPro", productId)
-                    }
                 }
 //                if (userId != null) {
 //                    productViewModel.getCartUser(userId)
@@ -77,9 +74,7 @@ class ProductCartAdapter(
         productViewModel.deleteProductCartResult.observe(lifecycleOwner) { baseResponse ->
             when (baseResponse) {
                 is BaseResponse.Success -> {
-                    if (userId != null) {
                         listener.onRefreshList()
-                    }
                 }
 
                 is BaseResponse.Error -> Log.i("DeleteItem",baseResponse.msg.toString())

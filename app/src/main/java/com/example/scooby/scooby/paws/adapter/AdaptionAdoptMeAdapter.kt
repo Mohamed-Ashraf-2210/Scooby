@@ -10,7 +10,10 @@ import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.utils.loadUrl
 import com.varunest.sparkbutton.SparkEventListener
 
-class AdaptionAdoptMeAdapter(private val listOfData: AdaptionAdoptMeResponse, val userId:String?, val pawsViewModel: PawsViewModel) : RecyclerView.Adapter<AdaptionAdoptMeAdapter.AdaptionAdoptMeViewHolder>() {
+class AdaptionAdoptMeAdapter(
+    private val listOfData: AdaptionAdoptMeResponse,
+    val pawsViewModel: PawsViewModel
+) : RecyclerView.Adapter<AdaptionAdoptMeAdapter.AdaptionAdoptMeViewHolder>() {
     inner class AdaptionAdoptMeViewHolder(private val itemAdaptionAdoptBinding: ItemAdaptionAdoptBinding) :
         RecyclerView.ViewHolder(itemAdaptionAdoptBinding.root) {
         fun bind(item : AdaptionAdoptMeResponse.Data){
@@ -25,9 +28,7 @@ class AdaptionAdoptMeAdapter(private val listOfData: AdaptionAdoptMeResponse, va
                 override fun onEvent(button: ImageView, buttonState: Boolean) {
                     buttonState.apply {
                         itemPet.id?.let {
-                            if (userId != null) {
-                                pawsViewModel.addPetToFavorite(userId, it)
-                            }
+                            pawsViewModel.addPetToFavorite(it)
                         }
                     }
 

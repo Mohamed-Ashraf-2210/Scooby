@@ -25,27 +25,23 @@ interface ProductApi {
     @GET("/scooby/api/fav/getfavproduct")
     suspend fun getFavoriteProduct(): Response<ProductResponse>
 
-    @PATCH("/scooby/api/fav/addfav/{userId}")
+    @PATCH("/scooby/api/fav/addfav")
     suspend fun addProductToFavorite(
-        @Path("userId") id: String,
         @Query("productId") productId: String
     ): Response<AddFavoriteResponse>
 
 
-    @PATCH("/scooby/api/cart/addproduct/{userId}")
+    @PATCH("/scooby/api/cart/addproduct")
     suspend fun addProductToCart(
-        @Path("userId") id: String,
         @Query("productId") productId: String
     ): Response<ProductPatch>
 
-    @GET("/scooby/api/cart/getcart/{userId}")
+    @GET("/scooby/api/cart/getcart")
     suspend fun getCartUser(
-        @Path("userId") id: String
     ): Response<CartProductResponse>
 
-    @DELETE("/scooby/api/cart/removeproduct/{userId}")
+    @DELETE("/scooby/api/cart/removeproduct")
     suspend fun deleteProductFromCart(
-        @Path("userId") id: String,
         @Query("itemId") productId: String
     ): Response<ProductPatch>
 

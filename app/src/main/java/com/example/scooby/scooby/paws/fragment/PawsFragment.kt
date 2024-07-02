@@ -250,7 +250,7 @@ class PawsFragment : Fragment() {
 
     private fun getDataTopCollection(data: AdaptionResponse) {
         rvTopCol = binding.rvTopCol
-        rvTopCol.adapter = PawsTopColAdapter(data,pawsViewModel,currentUserId)
+        rvTopCol.adapter = PawsTopColAdapter(data,pawsViewModel)
     }
 
     private fun getCatsData(data: AdaptionCatsResponse) {
@@ -265,7 +265,7 @@ class PawsFragment : Fragment() {
 
     private fun getAdoptMeData(data: AdaptionAdoptMeResponse) {
         rvAdoptMe = binding.rvAdoptMe
-        rvAdoptMe.adapter = AdaptionAdoptMeAdapter(data,currentUserId,pawsViewModel)
+        rvAdoptMe.adapter = AdaptionAdoptMeAdapter(data,pawsViewModel)
     }
     private fun getShelterData(data: ShelterResponse) {
         rvShelters = binding.rvShelters

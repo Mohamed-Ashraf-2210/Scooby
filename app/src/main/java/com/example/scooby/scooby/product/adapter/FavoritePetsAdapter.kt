@@ -14,7 +14,6 @@ import com.varunest.sparkbutton.SparkEventListener
 class FavoritePetsAdapter(
     private val petsResponse: AdaptionAdoptMeResponse,
     val pawsViewModel: PawsViewModel,
-    private val userId: String?
 ) :
     RecyclerView.Adapter<FavoritePetsAdapter.FavoritePetsViewHolder>() {
     inner class FavoritePetsViewHolder(private val itemBinding: ItemFavoritePetsBinding) :
@@ -32,10 +31,7 @@ class FavoritePetsAdapter(
             itemBinding.heartIconId.setEventListener(object : SparkEventListener {
                 override fun onEvent(button: ImageView, buttonState: Boolean) {
                     buttonState.apply {
-
-                        if (userId != null) {
-                            itemPet.id?.let { pawsViewModel.addPetToFavorite(userId, it) }
-                        }
+                            itemPet.id?.let { pawsViewModel.addPetToFavorite(it) }
                     }
 
                 }

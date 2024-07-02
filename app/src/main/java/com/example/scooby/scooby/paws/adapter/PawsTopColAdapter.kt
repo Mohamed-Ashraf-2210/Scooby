@@ -13,7 +13,6 @@ import com.varunest.sparkbutton.SparkEventListener
 class PawsTopColAdapter(
     private val adaptionTopResponse: AdaptionResponse,
     val pawsViewModel: PawsViewModel,
-    private val userId: String?
 ) : RecyclerView.Adapter<PawsTopColAdapter.PawsTopColViewHolder>() {
     inner class PawsTopColViewHolder(private val itemAdaptionOneBinding: ItemAdaptionOneBinding) :
         RecyclerView.ViewHolder(itemAdaptionOneBinding.root) {
@@ -28,9 +27,7 @@ class PawsTopColAdapter(
             itemAdaptionOneBinding.heartIconId.setEventListener(object : SparkEventListener {
                 override fun onEvent(button: ImageView, buttonState: Boolean) {
                     buttonState.apply {
-                        if (userId != null) {
-                            itemPet.id?.let { pawsViewModel.addPetToFavorite(userId, it) }
-                        }
+                            itemPet.id?.let { pawsViewModel.addPetToFavorite(it) }
                     }
 
                 }

@@ -68,30 +68,30 @@ class ProductViewModel() : ViewModel() {
         }
     }
 
-    fun addProductToFavorite(userId: String, productId: String) {
+    fun addProductToFavorite(productId: String) {
         viewModelScope.launch {
             try {
-                productRepo.addProductToFavorites(userId, productId)
+                productRepo.addProductToFavorites(productId)
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS addProductToFavorite $e")
             }
         }
     }
 
-    fun addProductToCart(userId: String, productId: String) {
+    fun addProductToCart(productId: String) {
         viewModelScope.launch {
             try {
-                productRepo.addProductToCart(userId, productId)
+                productRepo.addProductToCart( productId)
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS addProductToCart $e")
             }
         }
     }
 
-    fun getCartUser(userId: String) {
+    fun getCartUser() {
         viewModelScope.launch {
             try {
-                val response = productRepo.getCartUser(userId)
+                val response = productRepo.getCartUser()
                 response?.body().let {
                     _userCartResult.value = response?.body()
                 }
@@ -101,11 +101,11 @@ class ProductViewModel() : ViewModel() {
         }
     }
 
-    fun deleteProductFromCart(userId: String, productId: String) {
+    fun deleteProductFromCart( productId: String) {
         _deleteProductCartResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
-                val response = productRepo.deleteProductFromCart(userId, productId)
+                val response = productRepo.deleteProductFromCart(productId)
                 if (response?.code() == 200) {
                     _deleteProductCartResult.value = BaseResponse.Success(response.body())
                 } else {

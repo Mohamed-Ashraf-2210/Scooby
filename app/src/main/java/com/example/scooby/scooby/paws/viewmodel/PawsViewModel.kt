@@ -177,10 +177,10 @@ class PawsViewModel : ViewModel() {
         }
     }
 
-    fun getFavoritePet(userId: String) {
+    fun getFavoritePet() {
         viewModelScope.launch {
             try {
-                val response = pawsRepo.getFavoritePet(userId)
+                val response = pawsRepo.getFavoritePet()
                 response?.body().let {
                     _favoritePetResult.value = response?.body()
                 }
@@ -191,10 +191,10 @@ class PawsViewModel : ViewModel() {
         }
     }
 
-    fun addPetToFavorite(userId: String, petId: String) {
+    fun addPetToFavorite(petId: String) {
         viewModelScope.launch {
             try {
-                pawsRepo.addPetToFavorite(userId, petId)
+                pawsRepo.addPetToFavorite(petId)
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS favoritePet $e")
             }

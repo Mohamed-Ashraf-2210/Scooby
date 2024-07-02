@@ -47,13 +47,10 @@ interface PawsApi {
     @GET("/scooby/api/shelters/petsInShelters")
     suspend fun getAllPetsShelter() : Response<PetsInShelterResponse>
 
-    @GET("/scooby/api/fav/getfavpet/{userId}")
-    suspend fun getFavoritePet(
-        @Path("userId") id: String
-    ): Response<AdaptionAdoptMeResponse>
-    @PATCH("/scooby/api/fav/addfav/{userId}")
+    @GET("/scooby/api/fav/getfavpet")
+    suspend fun getFavoritePet(): Response<AdaptionAdoptMeResponse>
+    @PATCH("/scooby/api/fav/addfav")
     suspend fun addPetToFavorite(
-        @Path("userId") id: String,
         @Query("petId") petId: String
     ): Response<AddFavoriteResponse>
 

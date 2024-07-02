@@ -15,7 +15,6 @@ import com.varunest.sparkbutton.SparkEventListener
 
 class ProductAdapter(
     private val productViewModel: ProductViewModel,
-    val userId: String?,
     private val productList: ProductResponse,
     val favoriteProducts: ProductResponse,
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
@@ -46,9 +45,7 @@ class ProductAdapter(
                         Toast.makeText(itemView.context, "Added to favorite", Toast.LENGTH_SHORT)
                             .show()
                         // Button is
-                        if (userId != null) {
-                            product.id?.let { productViewModel.addProductToFavorite(userId, it) }
-                        }
+                        product.id.let { productViewModel.addProductToFavorite(it) }
 
                     } else {
                         Toast.makeText(
@@ -58,9 +55,7 @@ class ProductAdapter(
                         ).show()
                         // Button is inactive
                         product.id?.let {
-                            if (userId != null) {
-                                productViewModel.addProductToFavorite(userId, it)
-                            }
+                            productViewModel.addProductToFavorite(it)
                         }
                     }
                 }
@@ -76,9 +71,7 @@ class ProductAdapter(
                     if (buttonState) {
                         Toast.makeText(itemView.context, "Added to cart", Toast.LENGTH_SHORT).show()
                         product.id?.let {
-                            if (userId != null) {
-                                productViewModel.addProductToCart(userId, it)
-                            }
+                                productViewModel.addProductToCart(it)
                         }
                     } else {
                         Toast.makeText(
@@ -87,9 +80,8 @@ class ProductAdapter(
                             Toast.LENGTH_SHORT
                         ).show()
                         product.id?.let {
-                            if (userId != null) {
-                                productViewModel.addProductToCart(userId, it)
-                            }
+                                productViewModel.addProductToCart(it)
+
                         }
                     }
                 }

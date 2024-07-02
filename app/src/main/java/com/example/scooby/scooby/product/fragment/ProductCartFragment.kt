@@ -41,17 +41,13 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
 
     private fun initViews() {
         hideNavBar()
-        adapter = ProductCartAdapter(currentUserId, productViewModel, viewLifecycleOwner,this)
+        adapter = ProductCartAdapter(productViewModel, viewLifecycleOwner,this)
         binding.rvCart.adapter = adapter
         getCartData()
     }
 
     private fun getCartData() {
-        if (currentUserId != null) {
-            productViewModel.getCartUser(currentUserId)
-        } else {
-            Log.d("Cart User", "null")
-        }
+            productViewModel.getCartUser()
     }
     private fun setData2Ui(cartProductResponse: CartProductResponse) {
         binding.apply {
@@ -64,7 +60,7 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
         productViewModel.userCartResult.observe(viewLifecycleOwner) {
             binding.progressBtn.visibility = View.GONE
             if (it != null) {
-                initRecycleView(it, currentUserId)
+                initRecycleView(it)
                 setData2Ui(it)
                 Log.d("Cart User", it.data.toString())
                 binding.itemCardInfo.visibility = View.VISIBLE
@@ -73,7 +69,7 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
         }
     }
 
-    private fun initRecycleView(data: CartProductResponse, currentUserId: String) {
+    private fun initRecycleView(data: CartProductResponse) {
         adapter.submitList(data.data.cartItems)
         binding.itemQuantity.text = adapter.itemCount.toString()
         binding.itemInCart.text = adapter.itemCount.toString()

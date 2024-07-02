@@ -14,7 +14,6 @@ import com.varunest.sparkbutton.SparkEventListener
 class FavoriteProductAdapter(
     private val productList: ProductResponse,
     val productViewModel: ProductViewModel,
-    private val userId: String?
 ) :
     RecyclerView.Adapter<FavoriteProductAdapter.FavoriteProductViewHolder>() {
     inner class FavoriteProductViewHolder(private val itemFav: ItemProductFavoriteBinding) :
@@ -35,10 +34,8 @@ class FavoriteProductAdapter(
             itemFav.heartIconId.setEventListener(object : SparkEventListener {
                 override fun onEvent(button: ImageView, buttonState: Boolean) {
                     buttonState.apply {
-                        product.id?.let {
-                            if (userId != null) {
-                                productViewModel.addProductToFavorite(userId, it)
-                            }
+                        product.id.let {
+                            productViewModel.addProductToFavorite(it)
                         }
                     }
 

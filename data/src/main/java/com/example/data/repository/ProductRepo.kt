@@ -19,22 +19,21 @@ class ProductRepo {
     }
 
     suspend fun addProductToFavorites(
-        userId: String,
         productId: String
     ): Response<AddFavoriteResponse>? {
-        return ProductApi.getApi()?.addProductToFavorite(userId, productId)
+        return ProductApi.getApi()?.addProductToFavorite(productId)
     }
 
-    suspend fun addProductToCart(userId: String, productId: String): Response<ProductPatch>? {
-        return ProductApi.getApi()?.addProductToCart(userId, productId)
+    suspend fun addProductToCart(productId: String): Response<ProductPatch>? {
+        return ProductApi.getApi()?.addProductToCart(productId)
     }
 
-    suspend fun getCartUser(userId: String): Response<CartProductResponse>? {
-        return ProductApi.getApi()?.getCartUser(userId)
+    suspend fun getCartUser(): Response<CartProductResponse>? {
+        return ProductApi.getApi()?.getCartUser()
     }
 
-    suspend fun deleteProductFromCart(userId: String, productId: String): Response<ProductPatch>? {
-        return ProductApi.getApi()?.deleteProductFromCart(userId, productId)
+    suspend fun deleteProductFromCart(productId: String): Response<ProductPatch>? {
+        return ProductApi.getApi()?.deleteProductFromCart(productId)
     }
 
     suspend fun sendImageToOCR(
