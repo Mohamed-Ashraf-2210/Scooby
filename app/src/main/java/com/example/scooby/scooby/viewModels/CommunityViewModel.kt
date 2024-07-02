@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.data.repository.CommunityRepo
+import com.example.domain.UserMomentResponse
+import com.example.domain.UserReviewResponse
 import com.example.domain.booking.BookingResponse
 import com.example.domain.community.LikePostResponse
 import com.example.domain.community.MyMomentsPosts
@@ -38,6 +40,17 @@ class CommunityViewModel : ViewModel() {
         MutableLiveData()
     val bookingUpcomingResult: LiveData<BaseResponse<BookingResponse>>
         get() = _bookingUpcomingResult
+
+    private val _userMomentResult: MutableLiveData<BaseResponse<UserMomentResponse>> =
+        MutableLiveData()
+    val userMomentResult: LiveData<BaseResponse<UserMomentResponse>>
+        get() = _userMomentResult
+
+
+    private val _userReviewResult: MutableLiveData<BaseResponse<UserReviewResponse>> =
+        MutableLiveData()
+    val userReviewResult: LiveData<BaseResponse<UserReviewResponse>>
+        get() = _userReviewResult
 
     fun getPublicPosts() {
         viewModelScope.launch {
@@ -114,6 +127,36 @@ class CommunityViewModel : ViewModel() {
                     _bookingUpcomingResult.value = BaseResponse.Error(response?.message())
             }catch (e: Exception){
                 _bookingUpcomingResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
+
+    fun getUserMoment(userId : String){
+        _userMomentResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = communityRepo.getUserMoment(userId)
+                if (response != null && response.isSuccessful)
+                    _userMomentResult.value = BaseResponse.Success(response.body())
+                else
+                    _userMomentResult.value = BaseResponse.Error(response?.message())
+            }catch (e: Exception){
+                _userMomentResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
+
+    fun getUserReview(userId : String){
+        _userReviewResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = communityRepo.getUserReview(userId)
+                if (response != null && response.isSuccessful)
+                    _userReviewResult.value = BaseResponse.Success(response.body())
+                else
+                    _userReviewResult.value = BaseResponse.Error(response?.message())
+            }catch (e: Exception){
+                _userReviewResult.value = BaseResponse.Error(e.message)
             }
         }
     }

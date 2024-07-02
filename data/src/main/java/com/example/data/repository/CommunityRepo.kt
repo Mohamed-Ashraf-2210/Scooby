@@ -12,4 +12,8 @@ class CommunityRepo {
     suspend fun getPastBooking() = CommunityApi.getApi()?.getPastBooking()
 
     suspend fun getUpcomingBooking() = CommunityApi.getApi()?.getUpcomingBooking()
+
+    suspend fun getUserMoment(userId : String) = CommunityApi.getApi()?.getUserMoment(userId)
+
+    suspend fun getUserReview(userId : String) = CommunityApi.getApi()?.getUserReview(userId)
 }
