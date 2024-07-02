@@ -6,33 +6,37 @@ import com.google.gson.annotations.SerializedName
 data class ProductResponse(
     @SerializedName("data")
     val `data`: List<Data>,
+    @SerializedName("results")
+    val results: Int,
+    @SerializedName("status")
+    val status: String
 ) {
     data class Data(
         @SerializedName("category")
-        val category: String?,
+        val category: String,
         @SerializedName("createdAt")
-        val createdAt: String?,
+        val createdAt: String,
         @SerializedName("desc")
-        val desc: String?,
+        val desc: String,
         @SerializedName("discount")
-        val discount: Int?,
+        val discount: Int,
         @SerializedName("_id")
-        val id: String?,
+        val id: String,
         @SerializedName("name")
-        val name: String?,
+        val name: String,
         @SerializedName("price")
-        val price: Int?,
+        val price: Int,
         @SerializedName("priceAfterDiscount")
-        val priceAfterDiscount: Int?,
+        val priceAfterDiscount: Int,
         @SerializedName("productImage")
-        val productImage: String?,
+        val productImage: String,
         @SerializedName("quantity")
-        val quantity: Int?,
+        val quantity: Int,
         @SerializedName("updatedAt")
-        val updatedAt: String?,
+        val updatedAt: String,
         @SerializedName("user")
-        val user: String?,
+        val user: String,
         @SerializedName("__v")
-        val v: Int?
+        val v: Int
     )
 }
