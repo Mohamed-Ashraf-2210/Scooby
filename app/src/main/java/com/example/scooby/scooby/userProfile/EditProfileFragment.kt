@@ -108,7 +108,7 @@ class EditProfileFragment : Fragment() {
 
                     is BaseResponse.Success -> {
                         stopLoading()
-                        showToast("Save is successful")
+                        showToast("Success")
                     }
 
                     is BaseResponse.Error -> {

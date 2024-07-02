@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 
 class PetProfileFragment : Fragment() {
     private var binding: FragmentPetProfileBinding? = null
@@ -115,27 +116,33 @@ class PetProfileFragment : Fragment() {
     }
 
     private fun formatDate(view: TextView, dateString: String) {
-        val inputDateFormat = SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH)
+        val inputDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
         val outputDateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.ENGLISH)
+        inputDateFormat.timeZone = TimeZone.getTimeZone("UTC")
         val date: Date? = inputDateFormat.parse(dateString)
         view.text = date?.let { outputDateFormat.format(it) } ?: "Unknown"
     }
 
+
     private fun calculateAndSetAge(view: TextView, birthDate: String) {
-        val date: Date? = SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss 'GMT'Z", Locale.ENGLISH)
-            .parse(birthDate)
+        val inputDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        inputDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+        val date: Date? = inputDateFormat.parse(birthDate)
         val age = date?.let { calculateAge(it) } ?: "Unknown"
         "$age y.o".also { view.text = it }
     }
 
     private fun calculateAge(birthDate: Date): Int {
-        val birthCalendar = Calendar.getInstance().apply { time = birthDate }
-        val currentDate = Calendar.getInstance()
+        val today = Calendar.getInstance()
+        val birthDateCalendar = Calendar.getInstance()
+        birthDateCalendar.time = birthDate
 
-        var age = currentDate.get(Calendar.YEAR) - birthCalendar.get(Calendar.YEAR)
-        if (currentDate.get(Calendar.DAY_OF_YEAR) < birthCalendar.get(Calendar.DAY_OF_YEAR)) {
+        var age = today.get(Calendar.YEAR) - birthDateCalendar.get(Calendar.YEAR)
+
+        if (today.get(Calendar.DAY_OF_YEAR) < birthDateCalendar.get(Calendar.DAY_OF_YEAR)) {
             age--
         }
+
         return age
     }
 
