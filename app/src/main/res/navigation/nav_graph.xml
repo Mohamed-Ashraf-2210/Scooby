@@ -362,6 +362,24 @@
         app:startDestination="@id/pawsFragment">
 
         <fragment
+            android:id="@+id/momentFragment"
+            android:name="com.example.scooby.scooby.userProfile.MomentFragment"
+            android:label="fragment_moment"
+            tools:layout="@layout/fragment_moment" >
+            <argument
+                android:name="userId"
+                app:argType="string" />
+        </fragment>
+        <fragment
+            android:id="@+id/reviewFragment"
+            android:name="com.example.scooby.scooby.userProfile.ReviewFragment"
+            android:label="fragment_review"
+            tools:layout="@layout/fragment_review" >
+            <argument
+                android:name="userId"
+                app:argType="string" />
+        </fragment>
+        <fragment
             android:id="@+id/pawsFragment"
             android:name="com.example.scooby.scooby.paws.fragment.PawsFragment"
             android:label="fragment_paws"
@@ -452,6 +470,12 @@
             <argument
                 android:name="userId2"
                 app:argType="string" />
+            <action
+                android:id="@+id/action_userProfileMomentFragment_to_momentFragment"
+                app:destination="@id/momentFragment" />
+            <action
+                android:id="@+id/action_userProfileMomentFragment_to_reviewFragment"
+                app:destination="@id/reviewFragment" />
         </fragment>
         <fragment
             android:id="@+id/aiFragment"

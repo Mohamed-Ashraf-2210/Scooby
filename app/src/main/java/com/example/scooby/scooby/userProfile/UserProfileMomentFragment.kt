@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.example.domain.profile.UserProfileResponse
@@ -33,8 +34,15 @@ class UserProfileMomentFragment : Fragment() {
         profileViewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         observeOnUserData()
         initViewPager()
+        navUserId2Fragment()
         return binding.root
     }
+
+    private fun navUserId2Fragment() {
+        val action = UserProfileMomentFragmentDirections.actionUserProfileMomentFragmentToMomentFragment(args.userId)
+        findNavController().navigate(action)
+    }
+
     private fun observeOnUserData() {
         profileViewModel.apply {
             getUserById(args.userId)
