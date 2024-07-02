@@ -25,6 +25,9 @@ interface CommunityApi {
     @GET("/scooby/api/request/pastBooking")
     suspend fun getPastBooking() : Response<BookingResponse>
 
+    @GET("/scooby/api/request/upcomingBooking")
+    suspend fun getUpcomingBooking() : Response<BookingResponse>
+
     companion object {
         fun getApi(): CommunityApi? {
             return ApiClient.client?.create(CommunityApi::class.java)
