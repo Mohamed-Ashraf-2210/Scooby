@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class UserReviewResponse(
     @SerializedName("data")
-    val `data`: Data?,
+    val `data`: Data,
     @SerializedName("result")
     val result: Int?,
     @SerializedName("status")
@@ -13,7 +13,7 @@ data class UserReviewResponse(
 ) {
     data class Data(
         @SerializedName("Reviews")
-        val reviews: List<Review?>?
+        val reviews: List<Review>
     ) {
         data class Review(
             @SerializedName("createdAt")

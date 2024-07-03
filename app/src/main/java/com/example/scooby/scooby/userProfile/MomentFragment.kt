@@ -9,11 +9,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
-import com.example.domain.UserMomentResponse
 import com.example.scooby.databinding.FragmentMomentBinding
 import com.example.scooby.scooby.adapter.UserMomentAdapter
 import com.example.scooby.scooby.viewModels.CommunityViewModel
-import com.example.scooby.scooby.viewModels.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
 
 
@@ -38,8 +36,8 @@ class MomentFragment : Fragment() {
     }
 
     private fun observable() {
+        communityViewModel.getUserMoment(args.userId)
         communityViewModel.apply {
-            getUserMoment(args.userId)
             userMomentResult.observe(viewLifecycleOwner) {
                     when (it) {
                         is BaseResponse.Loading -> showLoading()
@@ -50,10 +48,8 @@ class MomentFragment : Fragment() {
                         }
                         is BaseResponse.Error -> {
                             stopLoading()
-                            showToast("error in Post Upcoming")
-
+                            showToast("error in moment ")
                         }
-
                         else -> {
                             stopLoading()
                         }

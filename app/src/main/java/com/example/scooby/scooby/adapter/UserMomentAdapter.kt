@@ -7,7 +7,10 @@ import com.example.domain.UserMomentResponse
 import com.example.scooby.databinding.ItemPostBinding
 import com.example.scooby.utils.loadUrl
 
-class UserMomentAdapter(private val momentRes : List<UserMomentResponse.ProcessedPost.Post>) : RecyclerView.Adapter<UserMomentAdapter.UserViewHolder>() {
+class UserMomentAdapter(
+    private val momentRes: List<UserMomentResponse.ProcessedPost.Post>
+) :
+    RecyclerView.Adapter<UserMomentAdapter.UserViewHolder>() {
     inner class UserViewHolder(
         private val itemBind: ItemPostBinding
     ) : RecyclerView.ViewHolder(itemBind.root) {
