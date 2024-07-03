@@ -81,7 +81,7 @@ class ProductViewModel() : ViewModel() {
     fun addProductToCart(productId: String) {
         viewModelScope.launch {
             try {
-                productRepo.addProductToCart( productId)
+                productRepo.addProductToCart(productId)
             } catch (e: Exception) {
                 Log.e(Constant.MY_TAG, "ERROR FETCHING URLS addProductToCart $e")
             }
@@ -101,7 +101,7 @@ class ProductViewModel() : ViewModel() {
         }
     }
 
-    fun deleteProductFromCart( productId: String) {
+    fun deleteProductFromCart(productId: String) {
         _deleteProductCartResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
@@ -128,14 +128,14 @@ class ProductViewModel() : ViewModel() {
         _ocrResult.value = BaseResponse.Loading()
         viewModelScope.launch {
             try {
-                val profileImage: MultipartBody.Part? = if (imagePath != null) {
+                val image: MultipartBody.Part? = if (imagePath != null) {
                     val file = File(imagePath)
                     val requestFile = file.asRequestBody("image/*".toMediaTypeOrNull())
-                    MultipartBody.Part.createFormData("profileImage", file.name, requestFile)
+                    MultipartBody.Part.createFormData("image", file.name, requestFile)
                 } else {
                     null
                 }
-                val response = productRepo.sendImageToOCR(profileImage)
+                val response = productRepo.sendImageToOCR(image)
                 if (response != null && response.isSuccessful) {
                     _ocrResult.value = BaseResponse.Success(response.body())
                 } else {

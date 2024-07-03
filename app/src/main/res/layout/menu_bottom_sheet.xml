@@ -5,7 +5,7 @@
     android:id="@+id/standard_bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="297dp"
-    android:background="@color/app_background"
+    android:backgroundTint="@color/white_BG"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".scooby.menuBottomSheet.MenuBottomSheetFragment">
 

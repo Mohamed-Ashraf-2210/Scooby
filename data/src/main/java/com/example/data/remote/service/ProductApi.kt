@@ -48,7 +48,7 @@ interface ProductApi {
     @Multipart
     @POST("/scooby/api/ocr/product")
     suspend fun sendImageToOCR(
-        @Part profileImage: MultipartBody.Part?
+        @Part image: MultipartBody.Part?
     ): Response<ProductResponse>
 
 

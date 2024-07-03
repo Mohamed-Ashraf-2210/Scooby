@@ -119,7 +119,7 @@ class ProductFragment : Fragment() {
 
                         is BaseResponse.Success -> {
                             stopLoading()
-                            showToast("Save is successful")
+                            showToast("Success")
                             favoriteProductResult.observe(viewLifecycleOwner) {
                                 favoriteProducts = it
                                 stopLoading()

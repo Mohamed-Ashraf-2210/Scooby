@@ -37,6 +37,6 @@ class ProductRepo {
     }
 
     suspend fun sendImageToOCR(
-        profileImage: MultipartBody.Part?
-    ) = ProductApi.getApi()?.sendImageToOCR(profileImage)
+        image: MultipartBody.Part?
+    ) = ProductApi.getApi()?.sendImageToOCR(image)
 }
