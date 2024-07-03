@@ -36,8 +36,8 @@ class MomentFragment : Fragment() {
     }
 
     private fun observable() {
-        communityViewModel.getUserMoment(args.userId)
         communityViewModel.apply {
+            getUserMoment(args.userId)
             userMomentResult.observe(viewLifecycleOwner) {
                     when (it) {
                         is BaseResponse.Loading -> showLoading()

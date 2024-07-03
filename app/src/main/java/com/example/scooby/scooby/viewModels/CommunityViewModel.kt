@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.viewModels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -136,12 +137,16 @@ class CommunityViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = communityRepo.getUserMoment(userId)
-                if (response != null && response.isSuccessful)
+                if (response != null && response.isSuccessful){
                     _userMomentResult.value = BaseResponse.Success(response.body())
-                else
+                } else{
                     _userMomentResult.value = BaseResponse.Error(response?.message())
+                    Log.e("ChK_Rev_suc", "ERROR FETCHING URLS found MomentUser ${response?.errorBody()}")
+                    Log.e("ChK_Rev_suc",response?.message().toString())
+                }
             }catch (e: Exception){
                 _userMomentResult.value = BaseResponse.Error(e.message)
+                Log.e("ChK_Rev_suc", "ERROR FETCHING URLS found MomentUser $e")
             }
         }
     }
@@ -151,12 +156,16 @@ class CommunityViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = communityRepo.getUserReview(userId)
-                if (response != null && response.isSuccessful)
+                if (response != null && response.isSuccessful){
                     _userReviewResult.value = BaseResponse.Success(response.body())
-                else
+                } else{
                     _userReviewResult.value = BaseResponse.Error(response?.message())
+                    Log.e("ChK_Rev_suc", "ERROR FETCHING URLS found ReviewUser ${response?.errorBody()}")
+                    Log.e("ChK_Rev_suc",response?.message().toString())
+                }
             }catch (e: Exception){
                 _userReviewResult.value = BaseResponse.Error(e.message)
+                Log.e("ChK_Rev_suc", "ERROR FETCHING URLS found ReviewUser $e")
             }
         }
     }
