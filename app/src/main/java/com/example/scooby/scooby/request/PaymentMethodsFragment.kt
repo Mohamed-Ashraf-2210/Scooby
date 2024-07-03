@@ -30,7 +30,6 @@ class PaymentMethodsFragment : Fragment() {
         pickUp
         paymentMethod
      */
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

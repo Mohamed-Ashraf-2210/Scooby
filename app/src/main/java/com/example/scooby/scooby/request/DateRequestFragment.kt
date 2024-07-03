@@ -67,20 +67,34 @@ class DateRequestFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun initView() {
         binding?.apply {
-            backScreen.setOnClickListener { findNavController().popBackStack() }
+            backScreen.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            exitBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
             selectDateTv.setOnClickListener {
                 showDatePickerSelectDate()
             }
+
             selectTimeTv.setOnClickListener {
                 showTimePickerSelectDate()
             }
+
             optionEt.setOnClickListener {
                 showPopup(it)
             }
+
             locationTv.setOnClickListener {
                 checkLocationPermission()
             }
-            nextBtn.setOnClickListener { onClickNext() }
+
+            nextBtn.setOnClickListener {
+                onClickNext()
+            }
+
             nextBtn.text = "Next (\$${args.requestName[1]} /night)"
         }
     }
@@ -247,7 +261,7 @@ class DateRequestFragment : Fragment() {
 
     private fun onClickNext() {
         binding?.apply {
-            if (selectDateTv.text != "Select Date" && selectTimeTv.text != "Select Time") {
+            if (selectDateTv.text != "Select Date" && selectTimeTv.text != "Select Time" && latitude != 0.0) {
                 val listOfData = arrayOf(
                     selectDateTv.text.toString(),
                     selectTimeTv.text.toString(),

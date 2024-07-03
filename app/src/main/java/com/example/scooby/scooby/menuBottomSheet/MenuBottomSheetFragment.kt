@@ -28,7 +28,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             }
             boardingIcon.setOnClickListener {
                 val requestName = arrayOf(
-                    "Boarding",
+                    "Pet Boarding",
                     "20"
                 )
                 val action =
@@ -39,7 +39,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             }
             sittingIcon.setOnClickListener {
                 val requestName = arrayOf(
-                    "Sitting",
+                    "Pet Sitting",
                     "20"
                 )
                 val action =
@@ -61,7 +61,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             }
             groomingIcon.setOnClickListener {
                 val requestName = arrayOf(
-                    "Grooming",
+                    "Pet Grooming",
                     "20"
                 )
                 val action =
@@ -72,7 +72,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             }
             trainingIcon.setOnClickListener {
                 val requestName = arrayOf(
-                    "Training",
+                    "Pet Training",
                     "20"
                 )
                 val action =
@@ -83,7 +83,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             }
             suppliesIcon.setOnClickListener {
                 val requestName = arrayOf(
-                    "Supplies",
+                    "Pet Supplies",
                     "20"
                 )
                 val action =
@@ -105,7 +105,7 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             }
             walkingIcon.setOnClickListener {
                 val requestName = arrayOf(
-                    "Walking",
+                    "Pet Walking",
                     "20"
                 )
                 val action =

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -44,7 +45,6 @@ class SummaryRequestFragment : Fragment() {
         optionEt
         latitude
         longitude
-        location
         Notes
         pickUp
      */
@@ -73,16 +73,34 @@ class SummaryRequestFragment : Fragment() {
 
     private fun initView() {
         binding?.apply {
-            backScreen.setOnClickListener { findNavController().popBackStack() }
-            selectDate.setOnClickListener { showDatePickerSelectDate() }
-            selectTime.setOnClickListener { showTimePickerSelectDate() }
-            optionServiceTv.setOnClickListener { showPopup(it) }
+            backScreen.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            exitBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            selectDate.setOnClickListener {
+                showDatePickerSelectDate()
+            }
+
+            selectTime.setOnClickListener {
+                showTimePickerSelectDate()
+            }
+
+            optionServiceTv.setOnClickListener {
+                showPopup(it)
+            }
+
             nextBtn.setOnClickListener {
                 onClickNext()
             }
+
             yesCard.setOnClickListener {
                 onClickYesCard()
             }
+
             noCard.setOnClickListener {
                 onClickNoCard()
             }
@@ -91,14 +109,12 @@ class SummaryRequestFragment : Fragment() {
 
     private fun onClickNext() {
         binding?.apply {
-
             val listOfData = arrayOf(
                 selectDate.text.toString(),
                 selectTime.text.toString(),
                 optionServiceTv.text.toString(),
                 args.listOfData[3],
                 args.listOfData[4],
-                args.listOfData[5],
                 yourNotesEt.text.toString(),
                 pickUp
             )
@@ -118,23 +134,23 @@ class SummaryRequestFragment : Fragment() {
             myPetsResult.observe(viewLifecycleOwner) {
                 when (it) {
                     is BaseResponse.Loading -> {
-                        //showLoading()
+                        showLoading()
                     }
 
                     is BaseResponse.Success -> {
-                        //stopLoading()
+                        stopLoading()
                         adapter =
                             PetsSummaryRequestAdapter(it.data!!, requireContext(), args.idPets)
                         binding?.petsRv?.adapter = adapter
                     }
 
                     is BaseResponse.Error -> {
-                        //stopLoading()
-                        //showToast(it.msg)
+                        stopLoading()
+                        showToast(it.msg)
                     }
 
                     else -> {
-                        //stopLoading()
+                        stopLoading()
                     }
                 }
             }
@@ -220,6 +236,18 @@ class SummaryRequestFragment : Fragment() {
             yesChecked.visibility = View.VISIBLE
             noChecked.visibility = View.GONE
         }
+    }
+
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopLoading() {
+        binding?.loading?.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding?.loading?.visibility = View.VISIBLE
     }
 
     override fun onResume() {

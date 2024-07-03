@@ -33,8 +33,6 @@ class SelectPetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (binding!= null) return binding?.root
-
         binding = FragmentSelectPetBinding.inflate(inflater, container, false)
         petsViewModel = ViewModelProvider(this)[PetsViewModel::class.java]
         initView()
@@ -45,10 +43,12 @@ class SelectPetFragment : Fragment() {
         observeMyPets()
         clickListener()
     }
+
     @SuppressLint("SetTextI18n")
     private fun clickListener() {
         binding?.apply {
             backScreen.setOnClickListener { findNavController().popBackStack() }
+            exitBtn.setOnClickListener { findNavController().popBackStack() }
             nextBtn.setOnClickListener { onClickNext() }
             nextBtn.text = "Next (\$${args.requestName[1]} /night)"
             addPetCard.setOnClickListener { findNavController().navigate(R.id.action_selectPetFragment_to_addPetsFragment) }
@@ -67,7 +67,7 @@ class SelectPetFragment : Fragment() {
 
                     is BaseResponse.Success -> {
                         stopLoading()
-                        adapter = MyPetsRequestAdapter(it.data!!,requireContext())
+                        adapter = MyPetsRequestAdapter(it.data!!, requireContext())
                         binding?.myPetsRv?.adapter = adapter
                     }
 
@@ -83,6 +83,7 @@ class SelectPetFragment : Fragment() {
             }
         }
     }
+
     private fun onClickNext() {
         val listOfPetsData = adapter.getItemSelected().toTypedArray()
         if (listOfPetsData.isEmpty()) {
@@ -102,10 +103,7 @@ class SelectPetFragment : Fragment() {
     }
 
     private fun stopLoading() {
-        binding?.apply {
-            loading.visibility = View.GONE
-            myPetsRv.visibility = View.VISIBLE
-        }
+        binding?.loading?.visibility = View.GONE
     }
 
     private fun showLoading() {

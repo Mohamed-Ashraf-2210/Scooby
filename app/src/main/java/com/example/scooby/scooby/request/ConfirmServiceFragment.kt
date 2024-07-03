@@ -3,6 +3,8 @@ package com.example.scooby.scooby.request
 import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -59,6 +61,79 @@ class ConfirmServiceFragment : Fragment() {
             normalPriceValue.text = "Normal price is $${args.requestName[1]} / night"
             confirmBtn.setOnClickListener { goToConfirm() }
         }
+
+        binding?.apply {
+
+            cardNumberLayout.addTextChangedListener(object : TextWatcher {
+                private val space = ' '
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    // Remove the TextWatcher to prevent infinite loop
+                    cardNumberLayout.removeTextChangedListener(this)
+
+                    // Remove spaces
+                    val text = s.toString().replace(" ", "")
+                    val formattedText = StringBuilder()
+
+                    // Add spaces every 4 characters
+                    for (i in text.indices) {
+                        if (i > 0 && i % 4 == 0) {
+                            formattedText.append(space)
+                        }
+                        formattedText.append(text[i])
+                    }
+
+                    // Set the formatted text and move the cursor to the end
+                    cardNumberLayout.setText(formattedText.toString())
+                    cardNumberLayout.setSelection(formattedText.length)
+
+                    // Re-attach the TextWatcher
+                    cardNumberLayout.addTextChangedListener(this)
+                }
+            })
+
+            expiryDateLayout.addTextChangedListener(object : TextWatcher {
+                private val slash = '/'
+
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+
+                override fun afterTextChanged(s: Editable?) {
+                    // Remove the TextWatcher to prevent infinite loop
+                    expiryDateLayout.removeTextChangedListener(this)
+
+                    // Remove slashes
+                    val text = s.toString().replace("/", "")
+                    val formattedText = StringBuilder()
+
+                    // Add slash after MM
+                    for (i in text.indices) {
+                        if (i == 2) {
+                            formattedText.append(slash)
+                        }
+                        formattedText.append(text[i])
+                    }
+
+                    // Set the formatted text and move the cursor to the end
+                    expiryDateLayout.setText(formattedText.toString())
+                    expiryDateLayout.setSelection(formattedText.length)
+
+                    // Re-attach the TextWatcher
+                    expiryDateLayout.addTextChangedListener(this)
+                }
+            })
+        }
     }
 
     private fun goToConfirm() {
@@ -66,7 +141,7 @@ class ConfirmServiceFragment : Fragment() {
             val cardNumber = cardNumberLayout.text.toString()
             val expiryDate = expiryDateLayout.text.toString()
             val securityCode = securityCodeLayout.text.toString()
-            if (cardNumber.length == 16 && securityCode.length == 3) {
+            if (cardNumber.length == 19 && securityCode.length == 3) {
                 val flag = saveCard.isChecked
                 val listOfData = arrayOf(
                     args.listOfData[0],

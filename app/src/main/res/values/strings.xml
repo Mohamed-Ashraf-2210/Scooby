@@ -313,7 +313,7 @@ again."</string>
     <string name="locationR">Location:</string>
     <string name="second_match_found">Second match found</string>
     <string name="expiry_date">Expiry date</string>
-    <string name="mm_yy">MM / YY</string>
+    <string name="mm_yy">MM/YY</string>
     <string name="security_code">Security code</string>
     <string name="save_card_for_future_purchases">Save card for future purchases</string>
     <string name="phone_number">Phone Number</string>

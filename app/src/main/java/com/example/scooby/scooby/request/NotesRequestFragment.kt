@@ -34,16 +34,26 @@ class NotesRequestFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun initView() {
         binding?.apply {
-            backScreen.setOnClickListener { findNavController().popBackStack() }
+            backScreen.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            exitBtn.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
             nextBtn.setOnClickListener {
                 onClickNext()
             }
+
             yesCard.setOnClickListener {
                 onClickYesCard()
             }
+
             noCard.setOnClickListener {
                 onClickNoCard()
             }
+
             nextBtn.text = "Next (\$${args.requestName[1]} /night)"
         }
     }
