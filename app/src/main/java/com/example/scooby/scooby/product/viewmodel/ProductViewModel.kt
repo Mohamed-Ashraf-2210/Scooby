@@ -9,6 +9,10 @@ import com.example.data.repository.ProductRepo
 import com.example.data.utils.Constant
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
+import com.example.domain.authentication.LoginRequest
+import com.example.domain.product.PatchCoupon
+import com.example.domain.product.PatchCouponRes
+import com.example.domain.product.PatchIncreaseProduct
 import com.example.domain.product.ProductResponse
 import com.example.scooby.utils.BaseResponse
 import kotlinx.coroutines.launch
@@ -37,6 +41,21 @@ class ProductViewModel() : ViewModel() {
         MutableLiveData()
     val deleteProductCartResult: LiveData<BaseResponse<ProductPatch>>
         get() = _deleteProductCartResult
+
+    private val _increaseProductCartResult: MutableLiveData<BaseResponse<PatchIncreaseProduct>> =
+        MutableLiveData()
+    val increaseProductCartResult: LiveData<BaseResponse<PatchIncreaseProduct>>
+        get() = _increaseProductCartResult
+
+    private val _decreaseProductCartResult: MutableLiveData<BaseResponse<PatchIncreaseProduct>> =
+        MutableLiveData()
+    val decreaseProductCartResult: LiveData<BaseResponse<PatchIncreaseProduct>>
+        get() = _decreaseProductCartResult
+
+    private val _couponResult: MutableLiveData<BaseResponse<PatchCouponRes>> =
+        MutableLiveData()
+    val couponResult: LiveData<BaseResponse<PatchCouponRes>>
+        get() = _couponResult
 
 
     fun getProduct() {
@@ -146,4 +165,55 @@ class ProductViewModel() : ViewModel() {
             }
         }
     }
+
+    fun increaseProductCount(productId: String) {
+        _increaseProductCartResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = productRepo.increaseProductCount(productId)
+                if (response?.code() == 200) {
+                    _increaseProductCartResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _increaseProductCartResult.value = BaseResponse.Error(response?.message())
+                }
+            } catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Delete Product From Cart $e")
+            }
+
+        }
+    }
+    fun decreaseProductCount(productId: String) {
+        _decreaseProductCartResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val response = productRepo.decreaseProductCount(productId)
+                if (response?.code() == 200) {
+                    _decreaseProductCartResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _decreaseProductCartResult.value = BaseResponse.Error(response?.message())
+                }
+            } catch (e: Exception) {
+                Log.e(Constant.MY_TAG, "ERROR FETCHING URLS Decrease Product From Cart $e")
+            }
+
+        }
+    }
+
+    fun applyCoupon(coupon: String) {
+        _couponResult.value = BaseResponse.Loading()
+        viewModelScope.launch {
+            try {
+                val couponT = PatchCoupon(coupon)
+                val response = productRepo.applyCoupon(couponT)
+                if (response?.code() == 201) {
+                    _couponResult.value = BaseResponse.Success(response.body())
+                } else {
+                    _couponResult.value = BaseResponse.Error(response?.message())
+                }
+            } catch (e: Exception) {
+                _couponResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
+
 }
