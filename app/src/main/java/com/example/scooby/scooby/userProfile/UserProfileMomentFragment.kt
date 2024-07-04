@@ -39,9 +39,8 @@ class UserProfileMomentFragment : Fragment() {
     }
 
     private fun navUserId2Fragment() {
-        val action = UserProfileMomentFragmentDirections.actionUserProfileMomentFragmentToMomentFragment(args.userId)
-        findNavController().navigate(action)
-
+//        val action = UserProfileMomentFragmentDirections.actionUserProfileMomentFragmentToMomentFragment(args.userId)
+//        findNavController().navigate(action)
 //        val action2 =UserProfileMomentFragmentDirections.actionUserProfileMomentFragmentToReviewFragment(args.userId)
 //        findNavController().navigate(action2)
     }

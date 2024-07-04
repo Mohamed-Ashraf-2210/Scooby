@@ -45,6 +45,9 @@ class AiResultFragment : Fragment() {
     private fun sendId2UserProfile() {
         val action = AiResultFragmentDirections.actionAiResultFragmentToUserProfileMomentFragment(args.userId1,args.userId2)
         findNavController().navigate(action)
+
+//        val action2 = AiResultFragmentDirections.actionAiResultFragmentToMomentFragment(args.userId1)
+//        findNavController().navigate(action2)
     }
 
     private fun initView() {
