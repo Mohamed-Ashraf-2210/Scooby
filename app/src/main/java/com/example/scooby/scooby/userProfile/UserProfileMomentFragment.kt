@@ -1,10 +1,12 @@
 package com.example.scooby.scooby.userProfile
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,6 +17,7 @@ import com.example.scooby.databinding.FragmentUserProfileMomentBinding
 import com.example.scooby.scooby.adapter.MyVpAdapter
 import com.example.scooby.scooby.viewModels.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
+import com.example.scooby.utils.SharedViewModel
 import com.example.scooby.utils.loadUrl
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -25,6 +28,7 @@ class UserProfileMomentFragment : Fragment() {
     private var _binding: FragmentUserProfileMomentBinding? = null
     private lateinit var profileViewModel: ProfileViewModel
     private val binding get() = _binding!!
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,24 +51,9 @@ class UserProfileMomentFragment : Fragment() {
 
     private fun observeOnUserData() {
         profileViewModel.apply {
+            Log.i("checkUserId","in Profile "+args.userId)
+            sharedViewModel.userId = args.userId
             getUserById(args.userId)
-            userDetailsResult.observe(viewLifecycleOwner){
-                when(it){
-                    is BaseResponse.Loading ->{
-                        showLoading()
-                    }
-                    is BaseResponse.Success->{
-                        stopLoading()
-                        it.data?.let { it1 -> setData2Ui(it1) }
-                    }
-                    is BaseResponse.Error ->{
-                        stopLoading()
-                    }
-                }
-            }
-        }
-        profileViewModel.apply {
-            getUserById(args.userId2)
             userDetailsResult.observe(viewLifecycleOwner){
                 when(it){
                     is BaseResponse.Loading ->{

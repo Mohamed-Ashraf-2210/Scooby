@@ -470,9 +470,6 @@
             <argument
                 android:name="userId"
                 app:argType="string" />
-            <argument
-                android:name="userId2"
-                app:argType="string" />
         </fragment>
         <fragment
             android:id="@+id/aiFragment"

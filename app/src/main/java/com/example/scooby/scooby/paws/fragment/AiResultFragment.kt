@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.scooby.R
 import com.example.scooby.databinding.FragmentAiResultBinding
 import com.example.scooby.utils.loadUrl
-import okhttp3.internal.wait
 
 class AiResultFragment : Fragment() {
     private val args : AiResultFragmentArgs by navArgs()
@@ -34,16 +32,17 @@ class AiResultFragment : Fragment() {
 
     private fun callBackImgBtn() {
         binding.foundPetImg1.setOnClickListener {
-//            findNavController().navigate(R.id.action_aiResultFragment_to_userProfileMomentFragment)
-            sendId2UserProfile()
+            sendId2UserProfile(args.userId1)
         }
         binding.foundPetImg2.setOnClickListener {
-            sendId2UserProfile()
+            sendId2UserProfile(args.userId2)
         }
     }
 
-    private fun sendId2UserProfile() {
-        val action = AiResultFragmentDirections.actionAiResultFragmentToUserProfileMomentFragment(args.userId1,args.userId2)
+    private fun sendId2UserProfile(userId: String) {
+
+
+        val action = AiResultFragmentDirections.actionAiResultFragmentToUserProfileMomentFragment(userId)
         findNavController().navigate(action)
 
 //        val action2 = AiResultFragmentDirections.actionAiResultFragmentToMomentFragment(args.userId1)

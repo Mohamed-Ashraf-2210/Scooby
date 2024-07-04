@@ -7,12 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.databinding.FragmentMomentBinding
 import com.example.scooby.scooby.adapter.UserMomentAdapter
 import com.example.scooby.scooby.viewModels.CommunityViewModel
 import com.example.scooby.utils.BaseResponse
+import com.example.scooby.utils.SharedViewModel
 
 
 class MomentFragment : Fragment() {
@@ -20,6 +22,8 @@ class MomentFragment : Fragment() {
     private lateinit var communityViewModel: CommunityViewModel
     private var _binding: FragmentMomentBinding? = null
     private val binding get() = _binding!!
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +41,8 @@ class MomentFragment : Fragment() {
 
     private fun observable() {
         communityViewModel.apply {
-            getUserMoment(args.userId)
+            Log.i("checkUserId","in Moment "+sharedViewModel.userId)
+            getUserMoment(sharedViewModel.userId)
             userMomentResult.observe(viewLifecycleOwner) {
                     when (it) {
                         is BaseResponse.Loading -> showLoading()

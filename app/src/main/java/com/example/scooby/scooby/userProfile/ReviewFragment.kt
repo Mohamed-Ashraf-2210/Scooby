@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.R
@@ -16,12 +17,15 @@ import com.example.scooby.scooby.adapter.UserMomentAdapter
 import com.example.scooby.scooby.adapter.UserReviewAdapter
 import com.example.scooby.scooby.viewModels.CommunityViewModel
 import com.example.scooby.utils.BaseResponse
+import com.example.scooby.utils.SharedViewModel
 
 class ReviewFragment : Fragment() {
     private val args : ReviewFragmentArgs by navArgs()
     private lateinit var communityViewModel: CommunityViewModel
     private var _binding: FragmentReviewBinding? = null
     private val binding get() = _binding!!
+    private val sharedViewModel: SharedViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,7 +42,8 @@ class ReviewFragment : Fragment() {
     }
 
     private fun observableOnReview() {
-        communityViewModel.getUserReview(args.userId)
+        Log.i("checkUserId","in Review "+sharedViewModel.userId)
+        communityViewModel.getUserReview(sharedViewModel.userId)
         communityViewModel.apply {
             userReviewResult.observe(viewLifecycleOwner){
                 when(it){
