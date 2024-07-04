@@ -98,7 +98,6 @@
                 app:layout_constraintTop_toBottomOf="@id/rv_cart">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/edit_text_coupon"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,7 +112,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/rv_cart">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextCoupn"
+                        android:id="@+id/edit_text_coupon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_coupon_background"

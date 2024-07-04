@@ -220,16 +220,17 @@ class ProductFragment : Fragment() {
     private fun observeProductViewModel() {
         productViewModel.apply {
             getProduct()
+            getFavoriteProduct()
+
             productResult.observe(viewLifecycleOwner) { products ->
-                getFavoriteProduct()
+
                 when (products) {
                     is BaseResponse.Loading -> {
                         showLoading()
                     }
 
                     is BaseResponse.Success -> {
-                        stopLoading()
-
+                        //stopLoading()
                         favoriteProductResult.observe(viewLifecycleOwner) {
                             favoriteProducts = it
                             stopLoading()
@@ -249,6 +250,8 @@ class ProductFragment : Fragment() {
                 }
             }
         }
+
+
     }
 
 

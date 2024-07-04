@@ -19,9 +19,9 @@ data class PatchCouponRes(
         @SerializedName("_id")
         val id: String?,
         @SerializedName("totalCartPrice")
-        val totalCartPrice: Int?,
+        val totalCartPrice: Float?,
         @SerializedName("totalPriceAfterDiscount")
-        val totalPriceAfterDiscount: Int?,
+        val totalPriceAfterDiscount: Float?,
         @SerializedName("updatedAt")
         val updatedAt: String?,
         @SerializedName("user")
@@ -33,7 +33,7 @@ data class PatchCouponRes(
             @SerializedName("_id")
             val id: String?,
             @SerializedName("price")
-            val price: Int?,
+            val price: Float?,
             @SerializedName("product")
             val product: String?,
             @SerializedName("quantity")

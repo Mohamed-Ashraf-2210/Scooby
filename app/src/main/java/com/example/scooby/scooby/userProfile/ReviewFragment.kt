@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.userProfile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -41,6 +42,7 @@ class ReviewFragment : Fragment() {
         observableOnReview()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observableOnReview() {
         Log.i("checkUserId","in Review "+sharedViewModel.userId)
         communityViewModel.getUserReview(sharedViewModel.userId)
@@ -51,7 +53,16 @@ class ReviewFragment : Fragment() {
                     is BaseResponse.Success -> {
                         stopLoading()
                         Log.i("InfoPost", it.data.toString())
-                        binding.rvReview.adapter = it.data?.let { reviewRes -> UserReviewAdapter(reviewRes) }
+                        if(it.data?.data?.reviews.isNullOrEmpty()){
+                            binding.textview.visibility = View.VISIBLE
+                            binding.rvReview.visibility = View.GONE
+                            binding.textview.text = "There is no reviews.."
+                        }else{
+                            binding.textview.visibility = View.GONE
+                            binding.rvReview.visibility = View.VISIBLE
+                            binding.rvReview.adapter = it.data?.let { reviewRes -> UserReviewAdapter(reviewRes) }
+                        }
+
                     }
                     is BaseResponse.Error -> {
                         stopLoading()

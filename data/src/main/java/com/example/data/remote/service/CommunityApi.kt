@@ -28,7 +28,7 @@ interface CommunityApi {
     @GET("/scooby/api/community/userMoments/{userId}")
     suspend fun getUserMoment(
         @Path("userId") userId: String
-    ):Response<List<UserMomentResponse.ProcessedPost.Post>>
+    ):Response<UserMomentResponse>
 
 
     @GET("/scooby/api/reviews/ReviewOfUser/{userId}")

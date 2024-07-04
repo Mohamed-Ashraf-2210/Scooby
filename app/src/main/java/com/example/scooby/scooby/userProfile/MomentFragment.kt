@@ -49,7 +49,7 @@ class MomentFragment : Fragment() {
                         is BaseResponse.Success -> {
                             stopLoading()
                             Log.i("InfoPost", it.data.toString())
-                            binding.rvMoment.adapter = it.data?.let { it1 -> UserMomentAdapter(it1) }
+                            binding.rvMoment.adapter = it.data?.let { it1 -> UserMomentAdapter(it1.processedPosts) }
                         }
                         is BaseResponse.Error -> {
                             stopLoading()

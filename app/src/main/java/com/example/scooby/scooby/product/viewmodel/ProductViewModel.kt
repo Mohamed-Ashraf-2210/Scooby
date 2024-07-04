@@ -205,12 +205,15 @@ class ProductViewModel() : ViewModel() {
             try {
                 val couponT = PatchCoupon(coupon)
                 val response = productRepo.applyCoupon(couponT)
-                if (response?.code() == 201) {
+                if (response?.code() == 200) {
+                    Log.i("apply_coupon", "success")
                     _couponResult.value = BaseResponse.Success(response.body())
                 } else {
+                    Log.i("apply_coupon", response?.message().toString())
                     _couponResult.value = BaseResponse.Error(response?.message())
                 }
             } catch (e: Exception) {
+                Log.i("apply_coupon", "exception : "+e.message.toString())
                 _couponResult.value = BaseResponse.Error(e.message)
             }
         }

@@ -8,17 +8,17 @@ import com.example.scooby.databinding.ItemPostBinding
 import com.example.scooby.utils.loadUrl
 
 class UserMomentAdapter(
-    private val momentRes: List<UserMomentResponse.ProcessedPost.Post>
+    private val momentRes: List<UserMomentResponse.ProcessedPost>
 ) :
     RecyclerView.Adapter<UserMomentAdapter.UserViewHolder>() {
     inner class UserViewHolder(
         private val itemBind: ItemPostBinding
     ) : RecyclerView.ViewHolder(itemBind.root) {
-        fun bind(data : UserMomentResponse.ProcessedPost.Post){
-            data.postImage?.let { itemBind.userPostImage.loadUrl(it) }
-            itemBind.userPostName.text = data.userName
-            data.userImage?.let { itemBind.userPostImage.loadUrl(it) }
-            itemBind.descriptionPost.text = data.description
+        fun bind(data : UserMomentResponse.ProcessedPost){
+            data.post?.postImage?.let { itemBind.userPostImage.loadUrl(it) }
+            itemBind.userPostName.text = data.post?.userName
+            data.post?.userImage?.let { itemBind.userPostImage.loadUrl(it) }
+            itemBind.descriptionPost.text = data.post?.description
         }
     }
 

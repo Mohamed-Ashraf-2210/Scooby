@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.data.utils.Constant
@@ -58,13 +59,15 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
 
                 is BaseResponse.Success -> {
                     stopLoading()
+                    Log.i("apply_coupon", "success")
                     binding.priceSubtotal.text = it.data?.data?.totalPriceAfterDiscount.toString()
                     binding.priceTotal2.text = it.data?.data?.totalPriceAfterDiscount.toString()
+                    binding.priceCheckout.text = it.data?.data?.totalPriceAfterDiscount.toString()
+                    binding.editTextCoupon.setText("")
                 }
 
                 is BaseResponse.Error -> {
                     stopLoading()
-
                 }
                 else -> {
                     stopLoading()
@@ -74,7 +77,7 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
     }
     private fun applyCoupon() {
         binding.apply {
-            val couponText = editTextCoupon.editText?.text.toString()
+            val couponText = editTextCoupon.text.toString()
             productViewModel.applyCoupon(couponText)
         }
     }
