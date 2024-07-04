@@ -333,5 +333,7 @@ again."</string>
     <string name="shop">Shop</string>
     <string name="log_out">Log out</string>
     <string name="camera_ocr">Camera Ocr</string>
+    <string name="please_login_to_scooby_to_continue">Please login to  <b>Scooby</b> to \nContinue</string>
+    <string name="not_on_scooby_yet_sign_up">Not on Scooby yet? <font color="#513973">Sign up</font></string>
 
 </resources>

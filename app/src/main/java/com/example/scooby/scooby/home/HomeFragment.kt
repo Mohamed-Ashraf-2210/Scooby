@@ -1,10 +1,14 @@
 package com.example.scooby.scooby.home
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -13,12 +17,16 @@ import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.constants.AnimationTypes
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.example.data.local.TokenManager
+import com.example.data.utils.Constant
 import com.example.domain.blog.BlogResponse
 import com.example.domain.offer.OfferResponse
 import com.example.domain.pet.PetsResponse
 import com.example.domain.profile.UserProfileResponse
 import com.example.scooby.R
+import com.example.scooby.authentication.AuthenticationActivity
 import com.example.scooby.databinding.FragmentHomeBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.BlogHomeAdapter
 import com.example.scooby.scooby.adapter.PetsHomeAdapter
 import com.example.scooby.scooby.services.adapter.ServicesAdapter
@@ -37,6 +45,7 @@ class HomeFragment : Fragment() {
     private lateinit var servicesViewModel: ServicesViewModel
     private lateinit var petsViewModel: PetsViewModel
     private lateinit var blogsViewModel: BlogViewModel
+    private val token = TokenManager.getAuth(Constant.USER_TOKEN)
 
 
     override fun onCreateView(
@@ -63,7 +72,11 @@ class HomeFragment : Fragment() {
         binding?.apply {
 
             userImage.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+                if (token.isNullOrBlank()) {
+                    showAlert()
+                } else {
+                    findNavController().navigate(R.id.action_homeFragment_to_profileFragment)
+                }
             }
 
             blogsSeeMore.setOnClickListener {
@@ -79,72 +92,101 @@ class HomeFragment : Fragment() {
             }
 
             moreIcon.setOnClickListener {
-                findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
+                if (token.isNullOrBlank()) {
+                    showAlert()
+                } else {
+                    findNavController().navigate(R.id.action_homeFragment_to_menuBottomSheetFragment)
+                }
             }
         }
     }
+
 
     private fun servicesClicked() {
         binding?.apply {
 
             boardingIcon.setOnClickListener {
-                val requestName = arrayOf(
-                    "Pet Boarding",
-                    "20"
-                )
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
-                findNavController().navigate(action)
+                if (token.isNullOrBlank()) {
+                    showAlert()
+                } else {
+                    val requestName = arrayOf(
+                        "Pet Boarding",
+                        "20"
+                    )
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
+                    findNavController().navigate(action)
+                }
             }
 
             sittingIcon.setOnClickListener {
-                val requestName = arrayOf(
-                    "Pet Sitting",
-                    "30"
-                )
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
-                findNavController().navigate(action)
+                if (token.isNullOrBlank()) {
+                    showAlert()
+                } else {
+                    val requestName = arrayOf(
+                        "Pet Sitting",
+                        "30"
+                    )
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
+                    findNavController().navigate(action)
+                }
             }
 
             petFriendlyPlacesIcon.setOnClickListener {
-                val requestName = arrayOf(
-                    "Pet Friendly Places",
-                    "25"
-                )
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
-                findNavController().navigate(action)
+                if (token.isNullOrBlank()) {
+                    showAlert()
+                } else {
+                    val requestName = arrayOf(
+                        "Pet Friendly Places",
+                        "25"
+                    )
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
+                    findNavController().navigate(action)
+                }
             }
 
             groomingIcon.setOnClickListener {
-                val requestName = arrayOf(
-                    "Pet Grooming",
-                    "35"
-                )
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
-                findNavController().navigate(action)
+                if (token.isNullOrBlank()) {
+                    showAlert()
+                } else {
+                    val requestName = arrayOf(
+                        "Pet Grooming",
+                        "35"
+                    )
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
+                    findNavController().navigate(action)
+                }
             }
 
             trainingIcon.setOnClickListener {
-                val requestName = arrayOf(
-                    "Pet Training",
-                    "40"
-                )
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
-                findNavController().navigate(action)
+                if (token.isNullOrBlank()) {
+                    showAlert()
+                } else {
+                    val requestName = arrayOf(
+                        "Pet Training",
+                        "40"
+                    )
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
+                    findNavController().navigate(action)
+                }
             }
 
             suppliesIcon.setOnClickListener {
-                val requestName = arrayOf(
-                    "Pet Supplies",
-                    "45"
-                )
-                val action =
-                    HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
-                findNavController().navigate(action)
+                if (token.isNullOrBlank()) {
+                    showAlert()
+                } else {
+                    val requestName = arrayOf(
+                        "Pet Supplies",
+                        "45"
+                    )
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentToSelectPetFragment(requestName)
+                    findNavController().navigate(action)
+                }
             }
         }
     }
@@ -343,6 +385,35 @@ class HomeFragment : Fragment() {
         binding?.blogsRv?.adapter = BlogHomeAdapter(data!!)
     }
     // endregion
+
+    private fun showAlert() {
+        val inflater: LayoutInflater = layoutInflater
+        val dialogLayout = inflater.inflate(R.layout.sign_up_alert, null)
+
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setView(dialogLayout)
+
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+
+        val loginButton: Button = dialogLayout.findViewById(R.id.login_btn)
+        val signUpButton: TextView = dialogLayout.findViewById(R.id.signup_btn)
+        loginButton.setOnClickListener {
+            dialog.dismiss()
+            goToLogin()
+        }
+        signUpButton.setOnClickListener {
+            dialog.dismiss()
+            goToLogin()
+        }
+    }
+
+    private fun goToLogin() {
+        val intent = Intent(requireContext(), AuthenticationActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+        findNavController().popBackStack()
+        startActivity(intent)
+    }
 
     private fun showToast(msg: String?) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
