@@ -15,6 +15,7 @@ import com.example.scooby.scooby.product.adapter.ProductCartAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 import com.example.scooby.utils.IRefreshListListener
 import com.example.data.local.TokenManager
+import com.example.scooby.utils.BaseResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ProductCartFragment : Fragment(), IRefreshListListener {
@@ -35,8 +36,47 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
         binding = FragmentProductCartBinding.inflate(layoutInflater, container, false)
         currentUserId = TokenManager.getAuth( Constant.USER_ID).toString()
         initViews()
+        observeCoupon()
         observeUserCart()
+        binding.btnApply.setOnClickListener {
+            productViewModel.apply {
+                applyCoupon()
+            }
+        }
         return binding.root
+    }
+
+
+
+    private fun observeCoupon() {
+        applyCoupon()
+        productViewModel.couponResult.observe(viewLifecycleOwner){
+            when (it) {
+                is BaseResponse.Loading -> {
+                    showLoading()
+                }
+
+                is BaseResponse.Success -> {
+                    stopLoading()
+                    binding.priceSubtotal.text = it.data?.data?.totalPriceAfterDiscount.toString()
+                    binding.priceTotal2.text = it.data?.data?.totalPriceAfterDiscount.toString()
+                }
+
+                is BaseResponse.Error -> {
+                    stopLoading()
+
+                }
+                else -> {
+                    stopLoading()
+                }
+            }
+        }
+    }
+    private fun applyCoupon() {
+        binding.apply {
+            val couponText = editTextCoupon.editText?.text.toString()
+            productViewModel.applyCoupon(couponText)
+        }
     }
 
     private fun initViews() {
@@ -58,7 +98,7 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
     }
     private fun observeUserCart() {
         productViewModel.userCartResult.observe(viewLifecycleOwner) {
-            binding.progressBtn.visibility = View.GONE
+            binding.loading.visibility = View.GONE
             if (it != null) {
                 initRecycleView(it)
                 setData2Ui(it)
@@ -81,8 +121,15 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
     }
 
     override fun onRefreshList() {
-        binding.progressBtn.visibility = View.VISIBLE
+        binding.loading.visibility = View.VISIBLE
         getCartData()
     }
 
+    private fun stopLoading() {
+        binding.loading.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding.loading.visibility = View.VISIBLE
+    }
 }

@@ -434,16 +434,18 @@
             <argument
                 android:name="location2"
                 app:argType="string" />
-            <action
-                android:id="@+id/action_aiResultFragment_to_userProfileMomentFragment"
-                app:destination="@id/userProfileMomentFragment" />
             <argument
                 android:name="userId1"
                 app:argType="string" />
             <argument
                 android:name="userId2"
                 app:argType="string" />
-
+            <action
+                android:id="@+id/action_aiResultFragment_to_userProfileMomentFragment"
+                app:destination="@id/userProfileMomentFragment" />
+            <action
+                android:id="@+id/action_aiResultFragment_to_momentFragment"
+                app:destination="@id/momentFragment" />
 
         </fragment>
         <fragment
@@ -471,12 +473,6 @@
             <argument
                 android:name="userId2"
                 app:argType="string" />
-            <action
-                android:id="@+id/action_userProfileMomentFragment_to_momentFragment"
-                app:destination="@id/momentFragment" />
-            <action
-                android:id="@+id/action_userProfileMomentFragment_to_reviewFragment"
-                app:destination="@id/reviewFragment" />
         </fragment>
         <fragment
             android:id="@+id/aiFragment"

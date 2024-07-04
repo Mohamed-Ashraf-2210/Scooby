@@ -113,11 +113,12 @@
                     app:layout_constraintTop_toBottomOf="@+id/rv_cart">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextCoupn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/et_coupon_background"
                         android:fontFamily="@font/roboto"
-                        android:inputType="textPassword"
+                        android:inputType="text"
                         android:textColor="@color/primary"
                         android:textSize="12sp" />
 
@@ -597,14 +598,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <ProgressBar
-        android:id="@+id/progress_btn"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
         android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

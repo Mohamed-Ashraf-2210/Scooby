@@ -4,6 +4,7 @@ import com.example.data.remote.service.ProductApi
 import com.example.domain.AddFavoriteResponse
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
+import com.example.domain.product.PatchCoupon
 import com.example.domain.product.ProductResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
@@ -39,4 +40,14 @@ class ProductRepo {
     suspend fun sendImageToOCR(
         image: MultipartBody.Part?
     ) = ProductApi.getApi()?.sendImageToOCR(image)
+
+    suspend fun increaseProductCount(
+        productId: String
+    ) = ProductApi.getApi()?.increaseProductCount(productId)
+
+    suspend fun decreaseProductCount(
+        productId: String
+    ) = ProductApi.getApi()?.decreaseProductCount(productId)
+
+    suspend fun applyCoupon(coupon:PatchCoupon) = ProductApi.getApi()?.applyCoupon(coupon)
 }

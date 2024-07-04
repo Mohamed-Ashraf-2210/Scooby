@@ -4,9 +4,13 @@ import com.example.data.remote.apis.ApiClient
 import com.example.domain.AddFavoriteResponse
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
+import com.example.domain.product.PatchCoupon
+import com.example.domain.product.PatchCouponRes
+import com.example.domain.product.PatchIncreaseProduct
 import com.example.domain.product.ProductResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Multipart
@@ -50,6 +54,19 @@ interface ProductApi {
     suspend fun sendImageToOCR(
         @Part image: MultipartBody.Part?
     ): Response<ProductResponse>
+
+    @PATCH("/scooby/api/cart/plusquantity")
+    suspend fun increaseProductCount(
+        @Query("productId") productId: String
+    ) : Response<PatchIncreaseProduct>
+
+    @PATCH("/scooby/api/cart/minusquantity")
+    suspend fun decreaseProductCount(
+        @Query("productId") productId: String
+    ) : Response<PatchIncreaseProduct>
+
+    @PATCH("/scooby/api/cart/applycoupon")
+    suspend fun applyCoupon(@Body coupon : PatchCoupon ) : Response<PatchCouponRes>
 
 
     companion object {
