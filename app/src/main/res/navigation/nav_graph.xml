@@ -443,9 +443,6 @@
             <action
                 android:id="@+id/action_aiResultFragment_to_userProfileMomentFragment"
                 app:destination="@id/userProfileMomentFragment" />
-            <action
-                android:id="@+id/action_aiResultFragment_to_momentFragment"
-                app:destination="@id/momentFragment" />
 
         </fragment>
         <fragment
@@ -473,6 +470,12 @@
             <argument
                 android:name="userId2"
                 app:argType="string" />
+            <action
+                android:id="@+id/action_userProfileMomentFragment_to_momentFragment"
+                app:destination="@id/momentFragment" />
+            <action
+                android:id="@+id/action_userProfileMomentFragment_to_reviewFragment"
+                app:destination="@id/reviewFragment" />
         </fragment>
         <fragment
             android:id="@+id/aiFragment"
@@ -481,7 +484,9 @@
             tools:layout="@layout/fragment_ai" >
             <action
                 android:id="@+id/action_aiFragment_to_aiResultFragment"
-                app:destination="@id/aiResultFragment" />
+                app:destination="@id/aiResultFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out" />
 
         </fragment>
     </navigation>
