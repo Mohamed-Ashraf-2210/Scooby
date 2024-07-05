@@ -12,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.services.ServicesResponse
 import com.example.scooby.databinding.FragmentServiceBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.services.adapter.ServicesMainAdapter
 import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
 import com.example.scooby.utils.BaseResponse
@@ -162,6 +163,15 @@ class ServiceFragment : Fragment() {
         binding?.icBack?.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
     }
 
 }

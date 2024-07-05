@@ -15,6 +15,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.example.domain.ServicesProfileResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentServicesProfileBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.services.adapter.ReviewAdapter
 import com.example.scooby.scooby.services.viewmodel.ServicesViewModel
 
@@ -104,6 +105,15 @@ class ServicesProfileFragment : Fragment() {
         binding.apply {
             rvReviews.adapter = null
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
     }
 
 }

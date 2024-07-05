@@ -79,7 +79,7 @@
             android:layout_height="206dp"
             android:layout_marginTop="12dp"
             android:contentDescription="@string/description_post"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/daycare_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

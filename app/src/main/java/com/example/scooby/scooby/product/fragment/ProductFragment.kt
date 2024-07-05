@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -121,6 +122,7 @@ class ProductFragment : Fragment() {
                         is BaseResponse.Success -> {
                             stopLoading()
                             showToast("Success")
+                            Log.i("infoOcrData", products.data.toString())
                             favoriteProductResult.observe(viewLifecycleOwner) {
                                 favoriteProducts = it
                                 stopLoading()
@@ -224,7 +226,6 @@ class ProductFragment : Fragment() {
             getFavoriteProduct()
 
             productResult.observe(viewLifecycleOwner) { products ->
-
                 when (products) {
                     is BaseResponse.Loading -> {
                         showLoading()

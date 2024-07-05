@@ -44,9 +44,17 @@
             tools:layout="@layout/fragment_home">
             <action
                 android:id="@+id/action_homeFragment_to_blogsFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/blogsFragment" />
             <action
                 android:id="@+id/action_homeFragment_to_servicesFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/servicesFragment" />
             <action
                 android:id="@+id/action_homeFragment_to_vetFragment"
@@ -60,6 +68,10 @@
                 app:destination="@id/menuBottomSheetFragment" />
             <action
                 android:id="@+id/action_homeFragment_to_selectPetFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/selectPetFragment" />
             <action
                 android:id="@+id/action_homeFragment_to_profileFragment"
@@ -78,6 +90,10 @@
             tools:layout="@layout/fragment_service">
             <action
                 android:id="@+id/action_servicesFragment_to_servicesProfileFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/servicesProfileFragment" />
         </fragment>
         <fragment
@@ -96,6 +112,10 @@
             tools:layout="@layout/fragment_doctors">
             <action
                 android:id="@+id/action_doctorsFragment_to_doctorProfileFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/doctorProfileFragment" />
         </fragment>
         <fragment
@@ -150,6 +170,10 @@
                 app:destination="@id/vetFragment" />
             <action
                 android:id="@+id/action_menuBottomSheetFragment_to_selectPetFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/selectPetFragment" />
         </dialog>
         <fragment
@@ -162,9 +186,17 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_selectPetFragment_to_dateRequestFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/dateRequestFragment" />
             <action
                 android:id="@+id/action_selectPetFragment_to_addPetsFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/addPetsFragment" />
         </fragment>
         <fragment
@@ -180,6 +212,10 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_dateRequestFragment_to_notesRequestFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/notesRequestFragment" />
         </fragment>
         <fragment
@@ -189,15 +225,31 @@
             tools:layout="@layout/fragment_profile">
             <action
                 android:id="@+id/action_profileFragment_to_editProfileFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/editProfileFragment" />
             <action
                 android:id="@+id/action_profileFragment_to_petProfileFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/petProfileFragment" />
             <action
                 android:id="@+id/action_profileFragment_to_myPetsFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/myPetsFragment" />
             <action
                 android:id="@+id/action_profileFragment_to_favoriteFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/favoriteFragment" />
         </fragment>
         <fragment
@@ -223,10 +275,10 @@
             <action
                 android:id="@+id/action_myPetsFragment_to_addPetsFragment"
                 app:destination="@id/addPetsFragment"
-                app:enterAnim="@anim/nav_default_enter_anim"
-                app:exitAnim="@anim/nav_default_exit_anim"
-                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-                app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out" />
         </fragment>
         <fragment
             android:id="@+id/addPetsFragment"
@@ -235,6 +287,10 @@
             tools:layout="@layout/fragment_name_pet">
             <action
                 android:id="@+id/action_addPetsFragment_to_sizePetFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/sizePetFragment" />
         </fragment>
         <fragment
@@ -247,6 +303,10 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_sizePetFragment_to_birthdayPetFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/birthdayPetFragment" />
 
         </fragment>
@@ -260,6 +320,10 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_birthdayPetFragment_to_infoPetFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/infoPetFragment" />
         </fragment>
         <fragment
@@ -269,6 +333,10 @@
             tools:layout="@layout/fragment_info_pet">
             <action
                 android:id="@+id/action_infoPetFragment_to_submitPetFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/submitPetFragment"
                 app:popUpTo="@id/myPetsFragment"
                 app:popUpToInclusive="true" />
@@ -302,6 +370,10 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_notesRequestFragment_to_summaryRequestFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/summaryRequestFragment" />
         </fragment>
         <fragment
@@ -321,6 +393,10 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_summaryRequestFragment_to_paymentMethodsFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/paymentMethodsFragment" />
         </fragment>
         <fragment
@@ -340,9 +416,17 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_paymentMethodsFragment_to_confirmServiceFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/confirmServiceFragment" />
             <action
                 android:id="@+id/action_paymentMethodsFragment_to_confirmNumberFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/confirmNumberFragment" />
 
         </fragment>
@@ -362,6 +446,10 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_confirmServiceFragment_to_confirmNumberFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/confirmNumberFragment" />
         </fragment>
         <fragment
@@ -385,6 +473,10 @@
                 app:argType="string[]" />
             <action
                 android:id="@+id/action_confirmNumberFragment_to_doneBookingFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/doneBookingFragment"
                 app:popUpTo="@id/selectPetFragment"
                 app:popUpToInclusive="true" />
