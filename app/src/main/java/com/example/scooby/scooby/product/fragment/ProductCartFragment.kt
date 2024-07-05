@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.data.utils.Constant
 import com.example.domain.CartProductResponse
 import com.example.scooby.R
@@ -39,6 +40,7 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
         initViews()
         observeCoupon()
         observeUserCart()
+        callBackBtn()
         binding.btnApply.setOnClickListener {
             productViewModel.apply {
                 applyCoupon()
@@ -47,6 +49,11 @@ class ProductCartFragment : Fragment(), IRefreshListListener {
         return binding.root
     }
 
+    private fun callBackBtn() {
+        binding.checkoutBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_productCartFragment_to_checkoutPaymentFragment)
+        }
+    }
 
 
     private fun observeCoupon() {

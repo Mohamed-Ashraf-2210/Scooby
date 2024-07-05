@@ -513,6 +513,7 @@
                 tools:text="1727.33" />
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/checkoutBtn"
                 android:layout_width="151dp"
                 android:layout_height="36dp"
                 android:layout_marginEnd="21dp"

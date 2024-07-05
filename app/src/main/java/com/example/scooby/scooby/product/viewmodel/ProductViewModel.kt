@@ -57,6 +57,11 @@ class ProductViewModel() : ViewModel() {
     val couponResult: LiveData<BaseResponse<PatchCouponRes>>
         get() = _couponResult
 
+    private val _cartResult: MutableLiveData<BaseResponse<CartProductResponse>> =
+        MutableLiveData()
+    val cartResult: LiveData<BaseResponse<CartProductResponse>>
+        get() = _cartResult
+
 
     fun getProduct() {
         viewModelScope.launch {
@@ -215,6 +220,27 @@ class ProductViewModel() : ViewModel() {
             } catch (e: Exception) {
                 Log.i("apply_coupon", "exception : "+e.message.toString())
                 _couponResult.value = BaseResponse.Error(e.message)
+            }
+        }
+    }
+
+    fun getCartPayment(){
+        viewModelScope.launch {
+            _cartResult.value = BaseResponse.Loading()
+            viewModelScope.launch {
+                try {
+                    val response = productRepo.getCartPayment()
+                    if (response != null && response.isSuccessful){
+                        _cartResult.value = BaseResponse.Success(response.body())
+                    } else{
+                        _cartResult.value = BaseResponse.Error(response?.message())
+                        Log.e("CheckPayMen", "ERROR FETCHING URLS found new cart user ${response?.errorBody()}")
+                        Log.e("CheckPayMen",response?.message().toString())
+                    }
+                }catch (e: Exception){
+                    _cartResult.value = BaseResponse.Error(e.message)
+                    Log.e("ChK_Rev_suc", "ERROR FETCHING URLS found new cart user $e")
+                }
             }
         }
     }

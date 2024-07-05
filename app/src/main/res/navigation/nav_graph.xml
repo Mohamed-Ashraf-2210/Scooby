@@ -10,6 +10,11 @@
         app:startDestination="@id/homeFragment">
 
         <fragment
+            android:id="@+id/checkoutPaymentFragment"
+            android:name="com.example.scooby.scooby.CheckoutPaymentFragment"
+            android:label="fragment_checkout_payment"
+            tools:layout="@layout/fragment_checkout_payment" />
+        <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.scooby.scooby.home.HomeFragment"
             android:label="fragment_home"
@@ -349,7 +354,11 @@
             android:id="@+id/productCartFragment"
             android:name="com.example.scooby.scooby.product.fragment.ProductCartFragment"
             android:label="ProductCartFragment"
-            tools:layout="@layout/fragment_product_cart" />
+            tools:layout="@layout/fragment_product_cart" >
+            <action
+                android:id="@+id/action_productCartFragment_to_checkoutPaymentFragment"
+                app:destination="@id/checkoutPaymentFragment" />
+        </fragment>
         <fragment
             android:id="@+id/doneBookingFragment"
             android:name="com.example.scooby.scooby.request.DoneBookingFragment"
@@ -534,7 +543,6 @@
             android:label="fragment_community"
             tools:layout="@layout/fragment_community" />
     </navigation>
-
 
 
 </navigation>

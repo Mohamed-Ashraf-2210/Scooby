@@ -33,6 +33,10 @@ class ProductRepo {
         return ProductApi.getApi()?.getCartUser()
     }
 
+    suspend fun getCartPayment(): Response<CartProductResponse>? {
+        return ProductApi.getApi()?.getCartPayment()
+    }
+
     suspend fun deleteProductFromCart(productId: String): Response<ProductPatch>? {
         return ProductApi.getApi()?.deleteProductFromCart(productId)
     }

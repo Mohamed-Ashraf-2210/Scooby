@@ -44,6 +44,10 @@ interface ProductApi {
     suspend fun getCartUser(
     ): Response<CartProductResponse>
 
+    @GET("/scooby/api/cart/getcart")
+    suspend fun getCartPayment(
+    ): Response<CartProductResponse>
+
     @DELETE("/scooby/api/cart/removeproduct")
     suspend fun deleteProductFromCart(
         @Query("itemId") productId: String

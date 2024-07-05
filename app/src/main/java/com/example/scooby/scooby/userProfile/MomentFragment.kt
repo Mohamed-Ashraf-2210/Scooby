@@ -30,7 +30,7 @@ class MomentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentMomentBinding.inflate(layoutInflater, container, false)
         communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
@@ -46,46 +46,51 @@ class MomentFragment : Fragment() {
     @SuppressLint("SetTextI18n")
     private fun observable() {
         communityViewModel.apply {
-            Log.i("checkUserId","in Moment "+sharedViewModel.userId)
+            Log.i("checkUserId", "in Moment " + sharedViewModel.userId)
             getUserMoment(sharedViewModel.userId)
             userMomentResult.observe(viewLifecycleOwner) {
-                    when (it) {
-                        is BaseResponse.Loading -> showLoading()
-                        is BaseResponse.Success -> {
-                            stopLoading()
-                            Log.i("InfoPost", it.data.toString())
-                            if (it.data?.processedPosts.isNullOrEmpty()){
-                                binding.textview.visibility = View.VISIBLE
-                                binding.rvMoment.visibility = View.GONE
-                                binding.textview.text = "There is no moment.."
-                            }else{
-                                binding.textview.visibility = View.GONE
-                                binding.rvMoment.visibility = View.VISIBLE
-                                binding.rvMoment.adapter = it.data?.let { it1 -> UserMomentAdapter(it1.processedPosts) }
-                            }
+                when (it) {
+                    is BaseResponse.Loading -> showLoading()
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        Log.i("InfoPost", it.data.toString())
+                        if (it.data?.processedPosts.isNullOrEmpty()) {
+                            binding.textview.visibility = View.VISIBLE
+                            binding.rvMoment.visibility = View.GONE
+                            binding.textview.text = "There is no moment.."
+                        } else {
+                            binding.textview.visibility = View.GONE
+                            binding.rvMoment.visibility = View.VISIBLE
+                            binding.rvMoment.adapter =
+                                it.data?.let { it1 -> UserMomentAdapter(it1.processedPosts) }
                         }
-                        is BaseResponse.Error -> {
-                            stopLoading()
-                            showToast("error in moment ")
-                        }
-                        else -> {
-                            stopLoading()
-                        }
+                    }
+
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast("error in moment ")
+                    }
+
+                    else -> {
+                        stopLoading()
                     }
                 }
             }
         }
-        private fun showToast(msg: String?) {
-            Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
-        }
-
-        private fun stopLoading() {
-            binding.loading.visibility = View.GONE
-        }
-
-        private fun showLoading() {
-            binding.loading.visibility = View.VISIBLE
     }
+
+    private fun showToast(msg: String?) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun stopLoading() {
+        binding.loading.visibility = View.GONE
+    }
+
+    private fun showLoading() {
+        binding.loading.visibility = View.VISIBLE
+    }
+
     private fun hideNavBar() {
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.GONE
