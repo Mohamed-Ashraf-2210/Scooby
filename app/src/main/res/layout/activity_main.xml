@@ -25,7 +25,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:theme="@style/bottomNavigationStyle"
         android:visibility="visible"
         app:backgroundTint="@color/menu_background"
         app:elevation="20dp"

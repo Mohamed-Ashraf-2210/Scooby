@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.userProfile
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -39,6 +40,7 @@ class MomentFragment : Fragment() {
         observable()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observable() {
         communityViewModel.apply {
             Log.i("checkUserId","in Moment "+sharedViewModel.userId)
@@ -49,7 +51,15 @@ class MomentFragment : Fragment() {
                         is BaseResponse.Success -> {
                             stopLoading()
                             Log.i("InfoPost", it.data.toString())
-                            binding.rvMoment.adapter = it.data?.let { it1 -> UserMomentAdapter(it1.processedPosts) }
+                            if (it.data?.processedPosts.isNullOrEmpty()){
+                                binding.textview.visibility = View.VISIBLE
+                                binding.rvMoment.visibility = View.GONE
+                                binding.textview.text = "There is no moment.."
+                            }else{
+                                binding.textview.visibility = View.GONE
+                                binding.rvMoment.visibility = View.VISIBLE
+                                binding.rvMoment.adapter = it.data?.let { it1 -> UserMomentAdapter(it1.processedPosts) }
+                            }
                         }
                         is BaseResponse.Error -> {
                             stopLoading()

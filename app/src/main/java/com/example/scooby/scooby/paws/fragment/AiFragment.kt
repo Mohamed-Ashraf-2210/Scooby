@@ -100,6 +100,7 @@ class AiFragment : Fragment() {
                     is BaseResponse.Error -> {
                         stopLoading()
                         showToast(it.msg)
+                        findNavController().navigate(R.id.action_aiFragment_to_failedUploadFragment)
                     }
                     else -> {
                         stopLoading()

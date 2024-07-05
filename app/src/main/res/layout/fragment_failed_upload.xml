@@ -45,6 +45,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_2" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/uploadBtn"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="280dp"
         android:layout_height="50dp"

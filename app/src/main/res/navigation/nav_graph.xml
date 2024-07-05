@@ -449,6 +449,10 @@
                 app:argType="string" />
             <action
                 android:id="@+id/action_aiResultFragment_to_userProfileMomentFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/userProfileMomentFragment" />
 
         </fragment>
@@ -482,8 +486,32 @@
             tools:layout="@layout/fragment_ai" >
             <action
                 android:id="@+id/action_aiFragment_to_aiResultFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/aiResultFragment" />
+            <action
+                android:id="@+id/action_aiFragment_to_failedUploadFragment"
+                app:destination="@id/failedUploadFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out" />
 
+        </fragment>
+        <fragment
+            android:id="@+id/failedUploadFragment"
+            android:name="com.example.scooby.scooby.paws.fragment.FailedUploadFragment"
+            android:label="fragment_failed_upload"
+            tools:layout="@layout/fragment_failed_upload" >
+            <action
+                android:id="@+id/action_failedUploadFragment_to_aiFragment"
+                app:destination="@id/aiFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out" />
         </fragment>
     </navigation>
 
@@ -506,6 +534,7 @@
             android:label="fragment_community"
             tools:layout="@layout/fragment_community" />
     </navigation>
+
 
 
 </navigation>

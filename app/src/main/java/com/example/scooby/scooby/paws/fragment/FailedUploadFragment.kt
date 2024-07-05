@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.scooby.R
+import com.example.scooby.databinding.FragmentFailedUploadBinding
+import com.example.scooby.databinding.FragmentMomentBinding
 
-/**
- * A simple [Fragment] subclass.
- * Use the [FailedUploadFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FailedUploadFragment : Fragment() {
-
+    private var _binding: FragmentFailedUploadBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -24,7 +23,15 @@ class FailedUploadFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_failed_upload, container, false)
+        _binding = FragmentFailedUploadBinding.inflate(layoutInflater,container,false)
+        nav2AIFragment()
+        return binding.root
+    }
+
+    private fun nav2AIFragment() {
+        binding.uploadBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_failedUploadFragment_to_aiFragment)
+        }
     }
 
 
