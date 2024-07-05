@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentMomentBinding
 import com.example.scooby.scooby.adapter.UserMomentAdapter
 import com.example.scooby.scooby.viewModels.CommunityViewModel
 import com.example.scooby.utils.BaseResponse
 import com.example.scooby.utils.SharedViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MomentFragment : Fragment() {
@@ -38,6 +40,7 @@ class MomentFragment : Fragment() {
 
     private fun init() {
         observable()
+        hideNavBar()
     }
 
     @SuppressLint("SetTextI18n")
@@ -82,6 +85,10 @@ class MomentFragment : Fragment() {
 
         private fun showLoading() {
             binding.loading.visibility = View.VISIBLE
+    }
+    private fun hideNavBar() {
+        val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
+        navBar.visibility = View.GONE
     }
 
 }

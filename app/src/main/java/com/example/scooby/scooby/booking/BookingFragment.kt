@@ -1,5 +1,6 @@
 package com.example.scooby.scooby.booking
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -55,6 +56,7 @@ class BookingFragment : Fragment() {
         observeUpcomingBook()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observeUpcomingBook() {
         communityViewModel.apply {
             bookingUpcomingResult.observe(viewLifecycleOwner){
@@ -63,7 +65,16 @@ class BookingFragment : Fragment() {
                     is BaseResponse.Success ->{
                         stopLoading()
                         Log.i("InfoUpcoming",it.data.toString())
-                        binding.rvBooking.adapter = it.data?.let { it1 -> UpBookAdapter(it1) }
+                        if (it.data?.request.isNullOrEmpty()){
+                            binding.textview.visibility = View.VISIBLE
+                            binding.rvBooking.visibility = View.GONE
+                            binding.textview.text = "There are no booking requests yet..."
+                        }else{
+                            binding.textview.visibility = View.GONE
+                            binding.rvBooking.visibility = View.VISIBLE
+                            binding.rvBooking.adapter = it.data?.let { it1 -> UpBookAdapter(it1) }
+                        }
+
                     }
                     is BaseResponse.Error -> {
                         stopLoading()
@@ -82,7 +93,15 @@ class BookingFragment : Fragment() {
                     is BaseResponse.Success ->{
                         stopLoading()
                         Log.i("InfoPast",it.data.toString())
-                        binding.rvBooking.adapter = it.data?.let { it1 -> PastBookAdapter(it1) }
+                        if (it.data?.request.isNullOrEmpty()){
+                            binding.textview.visibility = View.VISIBLE
+                            binding.rvBooking.visibility = View.GONE
+                            binding.textview.text = "There are no booking requests yet..."
+                        }else{
+                            binding.textview.visibility = View.GONE
+                            binding.rvBooking.visibility = View.VISIBLE
+                            binding.rvBooking.adapter = it.data?.let { it1 -> UpBookAdapter(it1) }
+                        }
                     }
                     is BaseResponse.Error -> {
                         stopLoading()
