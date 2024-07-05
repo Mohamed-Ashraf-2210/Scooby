@@ -13,7 +13,30 @@
             android:id="@+id/checkoutPaymentFragment"
             android:name="com.example.scooby.scooby.CheckoutPaymentFragment"
             android:label="fragment_checkout_payment"
-            tools:layout="@layout/fragment_checkout_payment" />
+            tools:layout="@layout/fragment_checkout_payment" >
+            <action
+                android:id="@+id/action_checkoutPaymentFragment_to_orderSuccessFragment"
+                app:destination="@id/orderSuccessFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:popUpTo="@id/checkoutPaymentFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/orderSuccessFragment"
+            android:name="com.example.scooby.scooby.OrderSuccessFragment"
+            android:label="fragment_order_success"
+            tools:layout="@layout/fragment_order_success" >
+            <action
+                android:id="@+id/action_orderSuccessFragment_to_homeFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@id/homeFragment" />
+        </fragment>
         <fragment
             android:id="@+id/homeFragment"
             android:name="com.example.scooby.scooby.home.HomeFragment"
@@ -27,7 +50,11 @@
                 app:destination="@id/servicesFragment" />
             <action
                 android:id="@+id/action_homeFragment_to_vetFragment"
-                app:destination="@id/vetFragment" />
+                app:destination="@id/vetFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out" />
             <action
                 android:id="@+id/action_homeFragment_to_menuBottomSheetFragment"
                 app:destination="@id/menuBottomSheetFragment" />
@@ -87,9 +114,17 @@
             tools:layout="@layout/fragment_vet">
             <action
                 android:id="@+id/action_vetFragment_to_doctorsFragment"
-                app:destination="@id/doctorsFragment" />
+                app:destination="@id/doctorsFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out" />
             <action
                 android:id="@+id/action_vetFragment_to_productFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/productFragment" />
         </fragment>
         <fragment
@@ -99,6 +134,10 @@
             tools:layout="@layout/fragment_product">
             <action
                 android:id="@+id/action_productFragment_to_productCartFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/productCartFragment" />
         </fragment>
         <dialog
@@ -357,6 +396,10 @@
             tools:layout="@layout/fragment_product_cart" >
             <action
                 android:id="@+id/action_productCartFragment_to_checkoutPaymentFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
                 app:destination="@id/checkoutPaymentFragment" />
         </fragment>
         <fragment

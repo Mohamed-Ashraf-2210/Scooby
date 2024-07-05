@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.domain.CartProductResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentCheckoutPaymentBinding
@@ -49,13 +50,19 @@ class CheckoutPaymentFragment : Fragment() {
                     R.id.cashBtn -> {
                         paymentMethod = "Cash"
                         cardLayoutPayment.visibility = View.GONE
+                        bottomAppBar.visibility = View.VISIBLE
                     }
 
                     R.id.onlineBtn -> {
                         cardLayoutPayment.visibility = View.VISIBLE
+                        bottomAppBar.visibility = View.GONE
                     }
                 }
             }
+        }
+
+        binding.placeOrderBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_checkoutPaymentFragment_to_orderSuccessFragment)
         }
     }
 

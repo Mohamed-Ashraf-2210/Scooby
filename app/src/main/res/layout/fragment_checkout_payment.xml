@@ -542,6 +542,7 @@
 
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/placeOrderBtn"
                 android:layout_width="165dp"
                 android:layout_height="36dp"
                 android:backgroundTint="@color/primary"
