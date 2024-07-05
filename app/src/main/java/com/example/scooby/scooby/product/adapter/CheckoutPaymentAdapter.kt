@@ -15,6 +15,7 @@ class CheckoutPaymentAdapter(private val cartRes: CartProductResponse) :
             product.product.productImage?.let { itemBind.productImg.loadUrl(it) }
             itemBind.productName.text = product.product.name
             itemBind.prodcutPrice.text = product.price.toString()
+            itemBind.productAmount.text = product.quantity.toString()
         }
     }
 

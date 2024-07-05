@@ -4,6 +4,7 @@ import com.example.data.remote.apis.ApiClient
 import com.example.domain.AddFavoriteResponse
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
+import com.example.domain.product.CheckoutSessionResponse
 import com.example.domain.product.PatchCoupon
 import com.example.domain.product.PatchCouponRes
 import com.example.domain.product.PatchIncreaseProduct
@@ -71,6 +72,11 @@ interface ProductApi {
 
     @PATCH("/scooby/api/cart/applycoupon")
     suspend fun applyCoupon(@Body coupon : PatchCoupon ) : Response<PatchCouponRes>
+
+    @GET("/scooby/api/order/checkout-session")
+    suspend fun getCheckoutUrl(
+        @Query("cartId") cartId : String
+    ): Response<CheckoutSessionResponse>
 
 
     companion object {

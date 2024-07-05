@@ -450,8 +450,10 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardLayoutPayment"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:visibility="gone"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="@color/fefbfb"
@@ -498,8 +500,6 @@
                             android:textSize="14sp" />
 
 
-
-
                     </com.google.android.material.card.MaterialCardView>
 
 
@@ -510,7 +510,7 @@
                 android:id="@+id/loading"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -542,13 +542,13 @@
 
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="151dp"
+                android:layout_width="165dp"
                 android:layout_height="36dp"
-                android:layout_marginEnd="21dp"
                 android:backgroundTint="@color/primary"
                 app:cardCornerRadius="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -557,7 +557,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="24dp"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="@string/checkout"
+                    android:text="PLACE ORDER"
                     android:textColor="@color/fefbfb"
                     android:textSize="14sp" />
 

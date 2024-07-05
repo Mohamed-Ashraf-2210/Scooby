@@ -54,4 +54,6 @@ class ProductRepo {
     ) = ProductApi.getApi()?.decreaseProductCount(productId)
 
     suspend fun applyCoupon(coupon:PatchCoupon) = ProductApi.getApi()?.applyCoupon(coupon)
+
+    suspend fun getCheckoutUrl(cartId:String) = ProductApi.getApi()?.getCheckoutUrl(cartId)
 }

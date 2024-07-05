@@ -1,5 +1,7 @@
 package com.example.scooby.scooby
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.domain.CartProductResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentCheckoutPaymentBinding
 import com.example.scooby.databinding.FragmentFailedUploadBinding
@@ -21,6 +24,8 @@ class CheckoutPaymentFragment : Fragment() {
     private var _binding: FragmentCheckoutPaymentBinding? = null
     private val binding get() = _binding!!
     private lateinit var productViewModel: ProductViewModel
+    private var paymentMethod: String = "Cash"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +39,24 @@ class CheckoutPaymentFragment : Fragment() {
 
     private fun init() {
         observeViewModel()
+        callBackButton()
+    }
+
+    private fun callBackButton() {
+        binding.apply {
+            radioGroup.setOnCheckedChangeListener{_, checkedId ->
+                when (checkedId) {
+                    R.id.cashBtn -> {
+                        paymentMethod = "Cash"
+                        cardLayoutPayment.visibility = View.GONE
+                    }
+
+                    R.id.onlineBtn -> {
+                        cardLayoutPayment.visibility = View.VISIBLE
+                    }
+                }
+            }
+        }
     }
 
     private fun observeViewModel() {
@@ -45,11 +68,17 @@ class CheckoutPaymentFragment : Fragment() {
                     is BaseResponse.Success -> {
                         stopLoading()
                         Log.i("InfoCart", it.data.toString())
+                        binding.apply {
+                            itemInCart.text = it.data?.data?.cartItems?.size.toString()
+                            priceSubtotal.text = it.data?.data?.totalCartPrice.toString()
+                            priceTotal2.text = it.data?.data?.totalCartPrice.toString()
+                        }
                         binding.rvOrderSummary.adapter = it.data?.let { it1 ->
                             CheckoutPaymentAdapter(
                                 it1
                             )
                         }
+                        it.data?.data?.id?.let { it1 -> getCheckoutSession(it1) }
                     }
                     is BaseResponse.Error -> {
                         stopLoading()
@@ -61,7 +90,40 @@ class CheckoutPaymentFragment : Fragment() {
                 }
             }
         }
+
+        productViewModel.apply {
+            checkoutSessionResult.observe(viewLifecycleOwner){
+                when (it) {
+                    is BaseResponse.Loading -> showLoading()
+                    is BaseResponse.Success -> {
+                        stopLoading()
+                        Log.i("InfoCart", it.data.toString())
+                        Log.i("InfoUrl", it.data?.session?.url.toString())
+                        val url = it.data?.session?.url.toString()
+                        binding.payOnBtn.setOnClickListener {
+                            val intent = Intent(Intent.ACTION_VIEW)
+                            intent.data = Uri.parse(url)
+                            startActivity(intent)
+                        }
+                    }
+                    is BaseResponse.Error -> {
+                        stopLoading()
+                        showToast("error in checkoutSession ")
+                    }
+                    else -> {
+                        stopLoading()
+                    }
+                }
+            }
+        }
     }
+    fun bindData2Ui(product: CartProductResponse.Data){
+        binding.apply {
+
+        }
+
+    }
+
     private fun showToast(msg: String?) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
@@ -71,6 +133,16 @@ class CheckoutPaymentFragment : Fragment() {
 
     private fun showLoading() {
         binding.loading.visibility = View.VISIBLE
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
     }
 
 

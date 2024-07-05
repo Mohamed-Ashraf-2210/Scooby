@@ -10,6 +10,7 @@ import com.example.data.utils.Constant
 import com.example.domain.CartProductResponse
 import com.example.domain.ProductPatch
 import com.example.domain.authentication.LoginRequest
+import com.example.domain.product.CheckoutSessionResponse
 import com.example.domain.product.PatchCoupon
 import com.example.domain.product.PatchCouponRes
 import com.example.domain.product.PatchIncreaseProduct
@@ -61,6 +62,11 @@ class ProductViewModel() : ViewModel() {
         MutableLiveData()
     val cartResult: LiveData<BaseResponse<CartProductResponse>>
         get() = _cartResult
+
+    private val _checkoutSessionResult: MutableLiveData<BaseResponse<CheckoutSessionResponse>> =
+        MutableLiveData()
+    val checkoutSessionResult: LiveData<BaseResponse<CheckoutSessionResponse>>
+        get() = _checkoutSessionResult
 
 
     fun getProduct() {
@@ -240,6 +246,28 @@ class ProductViewModel() : ViewModel() {
                 }catch (e: Exception){
                     _cartResult.value = BaseResponse.Error(e.message)
                     Log.e("ChK_Rev_suc", "ERROR FETCHING URLS found new cart user $e")
+                }
+            }
+        }
+    }
+
+
+    fun getCheckoutSession(cartId : String){
+        viewModelScope.launch {
+            _checkoutSessionResult.value = BaseResponse.Loading()
+            viewModelScope.launch {
+                try {
+                    val response = productRepo.getCheckoutUrl(cartId)
+                    if (response != null && response.isSuccessful){
+                        _checkoutSessionResult.value = BaseResponse.Success(response.body())
+                    } else{
+                        _checkoutSessionResult.value = BaseResponse.Error(response?.message())
+                        Log.e("CheckSessionUrl", "ERROR FETCHING URLS found checkoutSession ${response?.errorBody()}")
+                        Log.e("CheckSessionUrl",response?.message().toString())
+                    }
+                }catch (e: Exception){
+                    _checkoutSessionResult.value = BaseResponse.Error(e.message)
+                    Log.e("CheckSessionUrl", "ERROR FETCHING URLS found checkoutSession $e")
                 }
             }
         }

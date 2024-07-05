@@ -23,6 +23,7 @@ import com.example.data.utils.Constant
 import com.example.domain.product.ProductResponse
 import com.example.scooby.R
 import com.example.scooby.databinding.FragmentProductBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.product.adapter.ProductAdapter
 import com.example.scooby.scooby.product.viewmodel.ProductViewModel
 import com.example.scooby.utils.BaseResponse
@@ -263,7 +264,13 @@ class ProductFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
         (activity as AppCompatActivity).supportActionBar?.hide()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
     }
 
     private fun stopLoading() {

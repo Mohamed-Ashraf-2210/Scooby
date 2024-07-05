@@ -35,7 +35,32 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Generic Cats And Dogs Grooming Brush" />
 
+        <TextView
+            android:id="@+id/tv_qu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/quantity"
+            android:textColor="#606873"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/productName"
+            app:layout_constraintTop_toTopOf="@id/layout"
+            app:layout_constraintBottom_toBottomOf="@id/layout"/>
+        <TextView
+            android:id="@+id/productAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:text="0"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/_0f0f0f"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@id/tv_qu"
+            app:layout_constraintTop_toTopOf="@id/layout"
+            app:layout_constraintBottom_toBottomOf="@id/layout"/>
+
         <LinearLayout
+            android:id="@+id/layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -43,12 +68,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/productImg"
             app:layout_constraintTop_toTopOf="@id/productName">
+
             <TextView
                 android:id="@+id/prodcutPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:drawableStartCompat="@drawable/ic_x2"
                 tools:text="288"
+                android:layout_marginEnd="4dp"
                 android:textSize="12sp"
                 android:drawablePadding="4dp"
                 android:fontFamily="@font/roboto_medium"
