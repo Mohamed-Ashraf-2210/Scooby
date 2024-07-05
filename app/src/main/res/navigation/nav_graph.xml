@@ -390,11 +390,18 @@
                 app:destination="@id/shelterProfileFragment" />
             <action
                 android:id="@+id/action_pawsFragment_to_createPostFragment"
-                app:destination="@id/createPostFragment" />
+                app:destination="@id/createPostFragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out" />
             <action
                 android:id="@+id/action_pawsFragment_to_aiFragment"
                 app:destination="@id/aiFragment"
-                 />
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out" />
         </fragment>
         <fragment
             android:id="@+id/aiResultFragment"
@@ -443,9 +450,6 @@
             <action
                 android:id="@+id/action_aiResultFragment_to_userProfileMomentFragment"
                 app:destination="@id/userProfileMomentFragment" />
-            <action
-                android:id="@+id/action_aiResultFragment_to_momentFragment"
-                app:destination="@id/momentFragment" />
 
         </fragment>
         <fragment
