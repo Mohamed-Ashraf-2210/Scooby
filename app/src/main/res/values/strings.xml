@@ -335,5 +335,9 @@ again."</string>
     <string name="camera_ocr">Camera Ocr</string>
     <string name="please_login_to_scooby_to_continue">Please login to  <b>Scooby</b> to \nContinue</string>
     <string name="not_on_scooby_yet_sign_up">Not on Scooby yet? <font color="#513973">Sign up</font></string>
+    <string name="order_summary">Order Summary</string>
+    <string name="cash_on_delivery">Cash on delivery</string>
+    <string name="pay_with_cash_upon_delivery">Pay with cash upon delivery.</string>
+    <string name="by_clicking_the_button_below_i_agree_to">By clicking the button below, I agree to</string>
 
 </resources>
