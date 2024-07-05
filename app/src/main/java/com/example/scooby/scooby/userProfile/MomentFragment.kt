@@ -31,7 +31,7 @@ class MomentFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentMomentBinding.inflate(layoutInflater, container, false)
         communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
-        //init()
+        init()
         return binding.root
     }
 

@@ -34,7 +34,7 @@ class ReviewFragment : Fragment() {
         _binding = FragmentReviewBinding.inflate(layoutInflater,container,false)
         communityViewModel = ViewModelProvider(this)[CommunityViewModel::class.java]
         // Inflate the layout for this fragment
-        //init()
+        init()
         return binding.root
     }
 
