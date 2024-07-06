@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".scooby.FailedUpload2Fragment">
+
+    <TextView
+        android:id="@+id/tv_oops"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="205dp"
+        android:text="@string/oops"
+        android:textColor="#E4432D"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/something_went_wrong_we_can_t_get_any"
+        android:textColor="#990F0F0F"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_oops"
+        app:layout_constraintStart_toStartOf="@+id/tv_oops"
+        app:layout_constraintTop_toBottomOf="@id/tv_oops" />
+
+    <TextView
+        android:id="@+id/tv_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/information_please_try_again"
+        android:textColor="#990F0F0F"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_2"
+        app:layout_constraintStart_toStartOf="@+id/tv_2"
+        app:layout_constraintTop_toBottomOf="@id/tv_2" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/uploadBtn"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="104dp"
+        android:backgroundTint="@color/fefbfb"
+        android:elevation="1dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="@string/upload_photo"
+        android:textColor="@color/primary"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

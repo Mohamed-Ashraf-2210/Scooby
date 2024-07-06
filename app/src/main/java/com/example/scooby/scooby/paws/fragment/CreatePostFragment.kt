@@ -11,7 +11,10 @@ import android.widget.Toast
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.scooby.R
 import com.example.scooby.databinding.FragmentCreatePostBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.scooby.viewModels.ProfileViewModel
 import com.example.scooby.utils.BaseResponse
@@ -76,7 +79,7 @@ class CreatePostFragment : Fragment() {
                         }
                         is BaseResponse.Error -> {
                             stopLoading()
-                            showToast(it.msg)
+                            findNavController().navigate(R.id.action_createPostFragment_to_failedUpload2Fragment)
                         }
                         else -> {
                             stopLoading()
@@ -130,6 +133,15 @@ class CreatePostFragment : Fragment() {
 
     private fun showLoading() {
         binding?.loading?.visibility = View.VISIBLE
+    }
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
     }
 
     companion object {

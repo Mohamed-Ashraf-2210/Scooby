@@ -507,6 +507,17 @@
         app:startDestination="@id/pawsFragment">
 
         <fragment
+            android:id="@+id/failedUpload2Fragment"
+            android:name="com.example.scooby.scooby.FailedUpload2Fragment"
+            android:label="fragment_failed_upload2"
+            tools:layout="@layout/fragment_failed_upload2" >
+            <action
+                android:id="@+id/action_failedUpload2Fragment_to_createPostFragment"
+                app:destination="@id/createPostFragment"
+                app:popUpTo="@id/createPostFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
             android:id="@+id/momentFragment"
             android:name="com.example.scooby.scooby.userProfile.MomentFragment"
             android:label="fragment_moment"
@@ -613,7 +624,15 @@
             android:id="@+id/createPostFragment"
             android:name="com.example.scooby.scooby.paws.fragment.CreatePostFragment"
             android:label="fragment_create_post"
-            tools:layout="@layout/fragment_create_post" />
+            tools:layout="@layout/fragment_create_post" >
+            <action
+                android:id="@+id/action_createPostFragment_to_failedUpload2Fragment"
+                app:enterAnim="@android:anim/fade_in"
+                app:exitAnim="@android:anim/fade_out"
+                app:popEnterAnim="@android:anim/fade_in"
+                app:popExitAnim="@android:anim/fade_out"
+                app:destination="@id/failedUpload2Fragment" />
+        </fragment>
         <fragment
             android:id="@+id/userProfileMomentFragment"
             android:name="com.example.scooby.scooby.userProfile.UserProfileMomentFragment"
