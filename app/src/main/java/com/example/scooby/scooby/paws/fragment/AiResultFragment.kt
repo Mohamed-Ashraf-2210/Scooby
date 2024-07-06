@@ -1,24 +1,23 @@
 package com.example.scooby.scooby.paws.fragment
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.scooby.databinding.FragmentAiResultBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.utils.loadUrl
 
 class AiResultFragment : Fragment() {
     private val args : AiResultFragmentArgs by navArgs()
     private var _binding: FragmentAiResultBinding?= null
     private val binding get() = _binding!!
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,16 +36,19 @@ class AiResultFragment : Fragment() {
         binding.foundPetImg2.setOnClickListener {
             sendId2UserProfile(args.userId2)
         }
+        binding.callBtn.setOnClickListener {
+            makeCall(args.phoneNum1)
+
+        }
+        binding.callBtn2.setOnClickListener {
+            makeCall(args.phoneNum1)
+
+        }
     }
 
     private fun sendId2UserProfile(userId: String) {
-
-
         val action = AiResultFragmentDirections.actionAiResultFragmentToUserProfileMomentFragment(userId)
         findNavController().navigate(action)
-
-//        val action2 = AiResultFragmentDirections.actionAiResultFragmentToMomentFragment(args.userId1)
-//        findNavController().navigate(action2)
     }
 
     private fun initView() {
@@ -61,8 +63,23 @@ class AiResultFragment : Fragment() {
         binding.petDesc2.text = args.desc2
         binding.petOwnerNm2.text = args.phoneNum2
         binding.petOwnerLoc2.text = args.location2
-
     }
 
+    private fun makeCall(num: String) {
+        val intent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:${num}")
+        }
+        ContextCompat.startActivity(requireContext(), intent, Bundle())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
+    }
 
 }

@@ -15,10 +15,10 @@ class UserMomentAdapter(
         private val itemBind: ItemPostBinding
     ) : RecyclerView.ViewHolder(itemBind.root) {
         fun bind(data : UserMomentResponse.ProcessedPost){
-            data.post?.postImage?.let { itemBind.userPostImage.loadUrl(it) }
-            itemBind.userPostName.text = data.post?.userName
             data.post?.userImage?.let { itemBind.userPostImage.loadUrl(it) }
+            itemBind.userPostName.text = data.post?.userName
             itemBind.descriptionPost.text = data.post?.description
+            data.post?.postImage?.let { itemBind.postImage.loadUrl(it) }
         }
     }
 
