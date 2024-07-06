@@ -49,13 +49,13 @@ class CheckoutPaymentFragment : Fragment() {
                 when (checkedId) {
                     R.id.cashBtn -> {
                         paymentMethod = "Cash"
-                        cardLayoutPayment.visibility = View.GONE
-                        bottomAppBar.visibility = View.VISIBLE
+                        payOnBtn.visibility = View.GONE
+                        placeOrderBtn.visibility = View.VISIBLE
                     }
 
                     R.id.onlineBtn -> {
-                        cardLayoutPayment.visibility = View.VISIBLE
-                        bottomAppBar.visibility = View.GONE
+                        payOnBtn.visibility = View.VISIBLE
+                        placeOrderBtn.visibility = View.GONE
                     }
                 }
             }

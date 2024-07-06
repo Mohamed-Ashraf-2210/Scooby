@@ -5,6 +5,7 @@
     android:id="@+id/refresh_medicine_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_BG"
     tools:context=".scooby.product.fragment.ProductFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +16,7 @@
             android:id="@+id/top_app_bar"
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:background="@color/white_tool_bar"
+            android:background="#FEF9F9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -126,6 +127,7 @@
                         android:id="@+id/btn_Medicine"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:backgroundTint="@color/white_BG"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
                         app:strokeWidth="0dp">
@@ -172,6 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
+                        android:backgroundTint="@color/white_BG"
                         app:strokeWidth="0dp">
 
                         <LinearLayout
@@ -215,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_weight="1"
+                        android:backgroundTint="@color/white_BG"
                         app:strokeWidth="0dp">
 
 
@@ -258,6 +262,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/white_BG"
                         android:layout_weight="1"
                         app:strokeWidth="0dp">
 
@@ -301,6 +306,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
+                        android:backgroundTint="@color/white_BG"
                         android:layout_weight="1"
                         app:strokeWidth="0dp">
 

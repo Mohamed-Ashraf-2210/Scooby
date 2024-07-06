@@ -9,7 +9,7 @@
         android:id="@+id/scrollview"
         android:layout_width="408dp"
         android:layout_height="0dp"
-        android:background="#FEFBFB"
+        android:background="@color/white_BG"
         app:layout_constraintBottom_toTopOf="@+id/bottom_app_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -571,6 +571,7 @@
         android:id="@+id/top_app_bar"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:background="#FEF9F9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

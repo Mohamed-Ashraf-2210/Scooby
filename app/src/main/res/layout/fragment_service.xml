@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/refresh_services_layout"
+    android:background="@color/white_BG"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".scooby.services.fragment.ServiceFragment">
@@ -89,6 +90,7 @@
                     android:id="@+id/all_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white_BG"
                     android:layout_marginEnd="16dp"
                     app:strokeWidth="0dp">
 
@@ -136,6 +138,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/white_BG"
                     app:strokeWidth="0dp">
 
                     <LinearLayout
@@ -183,6 +186,7 @@
                     android:id="@+id/btn_boarding"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white_BG"
                     android:layout_marginEnd="16dp"
                     app:strokeWidth="0dp">
 
@@ -225,6 +229,7 @@
                     android:id="@+id/btn_grooming"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white_BG"
                     android:layout_marginEnd="16dp"
                     app:strokeWidth="0dp">
 
@@ -268,6 +273,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/white_BG"
                     app:strokeWidth="0dp">
 
                     <LinearLayout
@@ -309,6 +315,7 @@
                     android:id="@+id/btn_walking"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white_BG"
                     android:layout_marginEnd="16dp"
                     app:strokeWidth="0dp">
 
@@ -351,6 +358,7 @@
                     android:id="@+id/btn_petHotel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white_BG"
                     android:layout_marginEnd="16dp"
                     app:strokeWidth="0dp">
 
@@ -394,6 +402,7 @@
                     android:id="@+id/btn_taxi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white_BG"
                     android:layout_marginEnd="16dp"
                     app:strokeWidth="0dp">
 
@@ -436,6 +445,7 @@
                     android:id="@+id/btn_sitting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white_BG"
                     android:layout_marginEnd="16dp"
                     app:strokeWidth="0dp">
 

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="206dp"
     android:layout_margin="8dp"
+    android:backgroundTint="@color/white_BG"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout

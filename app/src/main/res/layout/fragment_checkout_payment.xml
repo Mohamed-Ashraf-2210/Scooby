@@ -10,7 +10,7 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#FEFBFB"
+        android:background="@color/white_BG"
         app:layout_constraintBottom_toTopOf="@+id/bottom_app_bar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -482,7 +482,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/payOnBtn"
+                        android:id="@+id/payOnBtn1"
                         android:layout_width="151dp"
                         android:layout_height="36dp"
                         android:backgroundTint="@color/yellow"
@@ -542,6 +542,30 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/payOnBtn"
+                android:layout_width="165dp"
+                android:layout_height="36dp"
+                android:visibility="gone"
+                android:backgroundTint="@color/yellow"
+                app:cardCornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Visit the website"
+                    android:textColor="@color/_0f0f0f"
+                    android:textSize="14sp" />
+
+
+            </com.google.android.material.card.MaterialCardView>
 
 
             <com.google.android.material.card.MaterialCardView
@@ -550,6 +574,7 @@
                 android:layout_height="36dp"
                 android:backgroundTint="@color/primary"
                 app:cardCornerRadius="20dp"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -595,6 +620,7 @@
         android:id="@+id/top_app_bar"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:background="#FEF9F9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
