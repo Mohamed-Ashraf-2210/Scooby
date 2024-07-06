@@ -1,11 +1,15 @@
 package com.example.scooby.scooby.doctor
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +18,7 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.example.domain.DoctorProfileResponse
 import com.example.scooby.databinding.FragmentDoctorProfileBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.adapter.ReviewDoctorAdapter
 import com.example.scooby.scooby.viewModels.VetViewModel
 
@@ -69,6 +74,13 @@ class DoctorProfileFragment : Fragment() {
                 Specialized4.text = it
             }
 
+            callDoctorBtn.setOnClickListener{
+                val intent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:${doctorResponse.updatedDoc?.phone}")
+                }
+                ContextCompat.startActivity(requireContext(), intent, Bundle())
+            }
+
 
         }
     }
@@ -92,5 +104,14 @@ class DoctorProfileFragment : Fragment() {
         binding.apply {
             rvReview.adapter = null
         }
+    }
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
     }
 }

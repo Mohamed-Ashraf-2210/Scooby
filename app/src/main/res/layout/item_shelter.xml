@@ -73,36 +73,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/shelter_name" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="86dp"
-            android:layout_marginTop="3dp"
-            android:text="("
-            android:textSize="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shelter_name" />
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/rate"
+            app:layout_constraintStart_toEndOf="@id/rate"
+            app:layout_constraintTop_toTopOf="@id/rate">
 
-        <TextView
-            android:id="@+id/num_like_shelter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="3dp"
-            android:text="45"
-            android:textSize="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shelter_name" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="("
+                android:textSize="8dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="105dp"
-            android:layout_marginTop="3dp"
-            android:text=")"
-            android:textSize="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/shelter_name" />
+            <TextView
+                android:id="@+id/num_like_shelter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="3dp"
+                android:text="45"
+                android:textSize="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=")"
+                android:textSize="8dp" />
+        </LinearLayout>
+
+
 
         <TextView
             android:id="@+id/shelter_timing"

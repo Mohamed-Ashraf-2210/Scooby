@@ -269,7 +269,7 @@ class PawsFragment : Fragment() {
     }
     private fun getShelterData(data: ShelterResponse) {
         rvShelters = binding.rvShelters
-        rvShelters.adapter = ShelterAdapter(data)
+        rvShelters.adapter = ShelterAdapter(data,requireContext())
     }
 
     private fun getPetsShelterData(data: PetsInShelterResponse) {

@@ -31,7 +31,9 @@ class ProductAdapter(
             itemProductBinding.medOfferPercent.text = product.discount.toString()
             if (favoriteProducts.data.contains(product)) {
                 itemProductBinding.heartIconId.isChecked = true
+                itemProductBinding.btnAdd.isChecked= true
             }
+
             // itemProductBinding.heartIconId.isChecked = favoriteProducts.data.contains(product)
             setFavoriteProduct(product)
             setAddProduct(product)

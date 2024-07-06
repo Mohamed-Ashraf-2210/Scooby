@@ -98,7 +98,7 @@ class ServiceFragment : Fragment() {
             btnPetHotel.setOnClickListener{
                 filterServices("Pet Hotel")
             }
-            btnPetCare.setOnClickListener{
+            outlineCircle.setOnClickListener{
                 filterServices("Pet Care")
             }
         }

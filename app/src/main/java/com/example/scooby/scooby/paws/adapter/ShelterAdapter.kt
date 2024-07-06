@@ -1,7 +1,12 @@
 package com.example.scooby.scooby.paws.adapter
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.paws.rescue.ShelterResponse
@@ -9,7 +14,7 @@ import com.example.scooby.databinding.ItemShelterBinding
 import com.example.scooby.scooby.paws.fragment.PawsFragmentDirections
 import com.example.scooby.utils.loadUrl
 
-class ShelterAdapter(private val shelterData: ShelterResponse):RecyclerView.Adapter<ShelterAdapter.ShelterViewHolder>() {
+class ShelterAdapter(private val shelterData: ShelterResponse,val context: Context):RecyclerView.Adapter<ShelterAdapter.ShelterViewHolder>() {
     inner class ShelterViewHolder(private val itemShelterBinding: ItemShelterBinding):RecyclerView.ViewHolder(itemShelterBinding.root){
         fun bind(itemShelter : ShelterResponse.AllShelter ){
             itemShelter.shelterImage?.let { itemShelterBinding.shelterImage.loadUrl(it) }
@@ -19,6 +24,13 @@ class ShelterAdapter(private val shelterData: ShelterResponse):RecyclerView.Adap
             itemShelterBinding.numLikeShelter.text = itemShelter.numberOfRates.toString()
             itemShelterBinding.shelterTiming.text = itemShelter.description
             itemShelterBinding.shelterAddress.text = itemShelter.locations?.address.toString()
+            itemShelterBinding.callShelterBtn.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:${itemShelter.shelterNumber}")
+                }
+                startActivity(context, intent, Bundle())
+            }
+
             navigate2ShelterProfile(itemShelter)
         }
 

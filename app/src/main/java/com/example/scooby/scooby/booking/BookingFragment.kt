@@ -100,7 +100,7 @@ class BookingFragment : Fragment() {
                         }else{
                             binding.textview.visibility = View.GONE
                             binding.rvBooking.visibility = View.VISIBLE
-                            binding.rvBooking.adapter = it.data?.let { it1 -> UpBookAdapter(it1) }
+                            binding.rvBooking.adapter = it.data?.let { it1 -> PastBookAdapter(it1) }
                         }
                     }
                     is BaseResponse.Error -> {
