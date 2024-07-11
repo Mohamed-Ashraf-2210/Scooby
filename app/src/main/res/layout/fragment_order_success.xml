@@ -3,20 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white_BG"
     android:layout_height="match_parent"
     tools:context=".scooby.OrderSuccessFragment">
-
-    <ImageView
-        android:id="@+id/back_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-
-        android:layout_marginTop="12dp"
-        android:contentDescription="@string/back"
-        android:src="@drawable/arrow_left_black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_confirm"

@@ -28,5 +28,14 @@ class OrderSuccessFragment : Fragment() {
             findNavController().navigate(R.id.action_orderSuccessFragment_to_homeFragment)
         }
     }
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
+    }
 
 }

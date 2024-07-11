@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.PetShelterProfileResponse
 import com.example.scooby.databinding.ItemPetBinding
-//import com.example.scooby.utils.loadUrl
+import com.example.scooby.utils.loadUrl
 
 class PetInShelterProfileAdapter(
     private val petsData : List<PetShelterProfileResponse.PetShelterProfileResponseItem>
@@ -14,7 +14,7 @@ class PetInShelterProfileAdapter(
     inner class PetInShelterProfileViewHolder(private val itemPetBinding: ItemPetBinding) :
         RecyclerView.ViewHolder(itemPetBinding.root) {
         fun bind(petsData: PetShelterProfileResponse.PetShelterProfileResponseItem) {
-            //petsData.petImage?.let { itemPetBinding.ivPet.loadUrl(it) }
+            petsData.petImage?.let { itemPetBinding.ivPet.loadUrl(it) }
         }
     }
 

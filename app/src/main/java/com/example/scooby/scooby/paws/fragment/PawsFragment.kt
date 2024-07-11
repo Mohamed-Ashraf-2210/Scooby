@@ -211,12 +211,10 @@ class PawsFragment : Fragment() {
             onAddButtonClicked()
         }
         binding.editButton.setOnClickListener {
-            Toast.makeText(requireContext(),"clicked",Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_pawsFragment_to_createPostFragment)
         }
         binding.imageButton.setOnClickListener {
             findNavController().navigate(R.id.action_pawsFragment_to_aiFragment)
-            Toast.makeText(requireContext(),"clicked",Toast.LENGTH_SHORT).show()
         }
     }
 

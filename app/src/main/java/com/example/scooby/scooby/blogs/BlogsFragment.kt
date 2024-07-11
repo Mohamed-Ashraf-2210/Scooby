@@ -60,7 +60,7 @@ class BlogsFragment : Fragment() {
 
     private fun getBlogsData(data: BlogResponse?) {
         blogRV = binding.RvBlogs
-        blogRV.adapter = BlogAdapter(data!!)
+        blogRV.adapter = BlogAdapter(data!!,requireContext())
     }
     private fun backOffFragment() {
         binding.icBack.setOnClickListener {

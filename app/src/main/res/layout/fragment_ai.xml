@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_BG"
     tools:context=".scooby.paws.fragment.AiFragment">
 
     <com.google.android.material.button.MaterialButton
@@ -32,10 +33,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/upload_pet_image"
+        android:textColor="@color/_0f0f0f"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/cameraBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="276dp"
-        android:layout_height="368dp"
-        app:strokeWidth="0dp"
+        android:id="@+id/cameraBtn"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:strokeWidth="1dp"
+        android:backgroundTint="@color/white_BG"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,25 +60,18 @@
         android:id="@+id/target_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/fluent_camera"
         android:scaleType="centerCrop"
         />
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cameraBtn"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/ic_camera"
+            android:id="@+id/icon_camera"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            />
+            android:src="@drawable/ic_camera" />
+
+
     </com.google.android.material.card.MaterialCardView>
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/loading"
         android:layout_width="wrap_content"

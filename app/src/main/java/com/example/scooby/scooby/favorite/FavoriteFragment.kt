@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import com.example.data.utils.Constant
 import com.example.data.local.TokenManager
 import com.example.scooby.databinding.FragmentFavoriteBinding
+import com.example.scooby.scooby.MainActivity
 import com.example.scooby.scooby.paws.viewmodel.PawsViewModel
 import com.example.scooby.scooby.product.adapter.FavoritePetsAdapter
 import com.example.scooby.scooby.product.adapter.FavoriteProductAdapter
@@ -70,5 +71,15 @@ class FavoriteFragment : Fragment() {
             binding.tvItems.text = "Babies"
             observeFavoritePets()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).hideBottomNavigationView()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as MainActivity).showBottomNavigationView()
     }
 }

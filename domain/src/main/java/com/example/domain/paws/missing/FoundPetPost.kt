@@ -17,7 +17,7 @@ data class FoundPetPost(
         @SerializedName("_id")
         val id: String?,
         @SerializedName("locations")
-        val locations: Locations?,
+        val locations: String?,
         @SerializedName("petImage")
         val petImage: String?,
         @SerializedName("phoneNumber")
@@ -30,12 +30,5 @@ data class FoundPetPost(
         val userId: String?,
         @SerializedName("__v")
         val v: Int?
-    ) {
-        data class Locations(
-            @SerializedName("coordinates")
-            val coordinates: List<Double?>?,
-            @SerializedName("type")
-            val type: String?
-        )
-    }
+    )
 }

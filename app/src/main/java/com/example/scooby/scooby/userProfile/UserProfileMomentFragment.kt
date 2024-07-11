@@ -57,14 +57,14 @@ class UserProfileMomentFragment : Fragment() {
             userDetailsResult.observe(viewLifecycleOwner){
                 when(it){
                     is BaseResponse.Loading ->{
-                        showLoading()
+//                        showLoading()
                     }
                     is BaseResponse.Success->{
-                        stopLoading()
+//                        stopLoading()
                         it.data?.let { it1 -> setData2Ui(it1) }
                     }
                     is BaseResponse.Error ->{
-                        stopLoading()
+//                        stopLoading()
                     }
                 }
             }
@@ -89,12 +89,12 @@ class UserProfileMomentFragment : Fragment() {
         }.attach()
     }
 
-    private fun stopLoading() {
-        binding.loading.visibility = View.GONE
-    }
-
-    private fun showLoading() {
-        binding.loading.visibility = View.VISIBLE
-    }
+//    private fun stopLoading() {
+//        binding.loading.visibility = View.GONE
+//    }
+//
+//    private fun showLoading() {
+//        binding.loading.visibility = View.VISIBLE
+//    }
 
 }

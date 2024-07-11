@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white_BG"
     android:layout_height="match_parent"
     tools:context=".scooby.paws.fragment.PawsFragment">
 
@@ -64,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/white_BG"
             app:strokeWidth="0dp">
 
             <LinearLayout
@@ -107,6 +109,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/white_BG"
             app:strokeWidth="0dp">
 
             <LinearLayout
@@ -148,6 +151,7 @@
             android:id="@+id/btn_Missing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white_BG"
             android:layout_marginEnd="16dp"
             app:strokeWidth="0dp">
 
