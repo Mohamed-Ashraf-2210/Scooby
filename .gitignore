@@ -14,3 +14,4 @@
 .cxx
 local.properties
 build.gradle.kts
+data/src/main/java/com/example/data/utils
